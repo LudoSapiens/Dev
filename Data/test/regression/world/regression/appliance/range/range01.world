@@ -1,0 +1,8 @@
+camera{
+   position = {0.5,5.0,5.0},
+   lookAt   = { {0.5,0.5,0.5}, {0,1,0} },
+}
+
+staticObject{
+   geometry = "appliance/range/range01"
+}

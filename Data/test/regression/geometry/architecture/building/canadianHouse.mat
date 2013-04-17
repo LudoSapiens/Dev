@@ -1,0 +1,102 @@
+mapping{
+   function( IN )
+      local n = abs( IN.fn+vec3(0,0.01,0) )
+      if n.x > n.y then
+         if n.x > n.z then
+            return IN.pos.zy
+         else
+            return IN.pos.xy
+         end
+      else
+         if n.y > n.z then
+            return IN.pos.xz
+         else
+            return IN.pos.xy
+         end
+      end
+   end
+}
+
+-- Look for Data/geometry/common_materials.geom for the list.
+local red         = { "test/color", {1,1}, { color=vec4(1,0,0,1) } }
+local green       = { "test/color", {1,1}, { color=vec4(0,1,0,1) } }
+local blue        = { "test/color", {1,1}, { color=vec4(0,0,1,1) } }
+local cyan        = { "test/color", {1,1}, { color=vec4(0,1,1,1) } }
+local magenta     = { "test/color", {1,1}, { color=vec4(1,0,1,1) } }
+local yellow      = { "test/color", {1,1}, { color=vec4(1,1,0,1) } }
+local black       = { "test/color", {1,1}, { color=vec4(0,0,0,1) } }
+local darkGray    = { "test/color", {1,1}, { color=vec4(0.25,0.25,0.25,1) } }
+local gray        = { "test/color", {1,1}, { color=vec4(0.5,0.5,0.5,1) } }
+local lightGray   = { "test/color", {1,1}, { color=vec4(0.75,0.75,0.75,1) } }
+local white       = { "test/color", {1,1}, { color=vec4(1,1,1,1) } }
+local matImages = {
+   "brick/brick_008"   , -- EXT_WALL1
+   "brick/brick_008"   , -- EXT_WALL2
+   "brick/brick_013"   , -- EXT_WALL3
+   "brick/brick_013"   , -- EXT_WALL4
+   "floor/grass_001"   , -- EXT_FLOOR1
+   "floor/grass_001"   , -- EXT_FLOOR2
+   blue                , -- EXT_ROOF1
+   ""                  , -- EXT_ROOF2
+   darkGray            , -- EXT_DETAIL1
+   lightGray           , -- EXT_DETAIL2
+
+   "wallpaper/wall_001", -- WALL1
+   ""                  , -- WALL2
+   ""                  , -- WALL3
+   ""                  , -- WALL4
+   "floor/parket_003"  , -- FLOOR1
+   ""                  , -- FLOOR2
+   ""                  , -- FLOOR3
+   ""                  , -- FLOOR4
+   gray                , -- CEILING1
+   ""                  , -- CEILING2
+   ""                  , -- CEILING3
+   ""                  , -- CEILING4
+   ""                  , -- DETAIL1
+   ""                  , -- DETAIL2
+   ""                  , -- DETAIL3
+   ""                  , -- DETAIL4
+
+   gray                , -- WINDOW1
+   gray                , -- WINDOW2
+   ""                  , -- WINDOW3
+   ""                  , -- WINDOW4
+
+   darkGray            , -- DOOR1
+   ""                  , -- DOOR2
+   ""                  , -- DOOR3
+   ""                  , -- DOOR4
+   gray                , -- DOORFRAME1
+   ""                  , -- DOORFRAME2
+   ""                  , -- DOORFRAME3
+   ""                  , -- DOORFRAME4
+   darkGray            , -- DOORKNOB1
+   ""                  , -- DOORKNOB2
+   ""                  , -- DOORKNOB3
+   ""                  , -- DOORKNOB4
+
+   ""                  , -- FURNITURE1
+   ""                  , -- FURNITURE2
+   ""                  , -- FURNITURE3
+
+   ""                  , -- METAL1
+   ""                  , -- METAL2
+   ""                  , -- METAL3
+   ""                  , -- TEXTILE1
+   ""                  , -- TEXTILE2
+   ""                  , -- TEXTILE3
+
+   red                 , -- DBG1
+   green               , -- DBG2
+   blue                , -- DBG3
+}
+
+for i,v in ipairs( matImages ) do
+   if v == "" then v = black end
+   if type(v) == "table" then
+      material{ { color=imageGen( unpack(v) ) } }
+   else
+      material{ { color=image(v) } }
+   end
+end

@@ -1,0 +1,2 @@
+vertex shader/vertex/filter/v_standard
+fragment shader/fragment/filter/p_downsample4x4

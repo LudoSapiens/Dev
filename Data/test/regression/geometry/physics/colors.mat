@@ -1,0 +1,21 @@
+local idToColor = {
+   vec4(0.0, 0.0, 0.0, 1.0), -- Black
+   vec4(0.0, 0.0, 1.0, 1.0), -- Blue
+   vec4(0.0, 1.0, 1.0, 1.0), -- Cyan
+   vec4(0.5, 0.5, 0.5, 1.0), -- Gray
+   vec4(0.0, 1.0, 0.0, 1.0), -- Green
+   vec4(1.0, 0.0, 1.0, 1.0), -- Magenta
+   vec4(1.0, 0.0, 0.0, 1.0), -- Red
+   vec4(1.0, 1.0, 1.0, 1.0), -- White
+   vec4(1.0, 1.0, 0.0, 1.0), -- Yellow
+}
+
+for i,v in ipairs( idToColor ) do
+   baseMaterial{
+      color = v,
+      {
+         clamp = TexClamp.LAST,
+         color = image( "image/white" )
+      },
+   }
+end

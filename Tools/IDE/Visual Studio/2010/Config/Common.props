@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ImportGroup Label="PropertySheets" />
+	<PropertyGroup Label="UserMacros" />
+	<PropertyGroup>
+		<IncludePath>../../../../../Projects;../../../../../Thirdparty/platform/vs2010/include;../../../../../Thirdparty/platform/vs2010/include/Bullet;$(IncludePath)</IncludePath>
+		<PlatformToolset>Windows7.1SDK</PlatformToolset>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+			<ExceptionHandling>false</ExceptionHandling>
+			<IntrinsicFunctions>true</IntrinsicFunctions>
+			<MinimalRebuild>false</MinimalRebuild>
+			<MultiProcessorCompilation>true</MultiProcessorCompilation>
+			<PreprocessorDefinitions>WIN32;_WINDOWS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<RuntimeTypeInfo>false</RuntimeTypeInfo>
+			<WarningLevel>Level3</WarningLevel>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemGroup />
+	<Import Condition="'$(Platform)'=='Win32'" Project="Win32.props" />
+	<Import Condition="'$(Platform)'=='x64'" Project="Win64.props" />
+	<Import Condition="'$(Configuration)'=='Debug'" Project="Debug.props" />
+	<Import Condition="'$(Configuration)'=='Release'" Project="Release.props" />
+</Project>

@@ -1,0 +1,9 @@
+camera{
+   position = { 0, 9, -3 },
+   lookAt   = { {0,0,1.5}, {0,1,0} },
+}
+
+staticObject{
+   geometry = "regression/basic/extrusion01",
+   position = { -1, 0, 0 }
+}

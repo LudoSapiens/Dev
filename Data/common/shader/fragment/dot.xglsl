@@ -1,0 +1,10 @@
+uniform vec4 color;
+varying vec2 mapping;
+
+void main( void )
+{
+   vec2  v = mapping - vec2(0.5);
+   float d = length(v);
+   float s = 1.0 - smoothstep( 0.25, 0.5, d );
+   gl_FragColor = color*s;
+}

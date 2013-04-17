@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4B222AAC-639B-428B-B9D4-8B84BD68A5C4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Fusion</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>../../../../../Projects;../../../../../Thirdparty/platform/vs2010/include;$(IncludePath)</IncludePath>
+    <LibraryPath>../../../../../Thirdparty/platform/vs2010/lib/$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>../../../../../Projects;../../../../../Thirdparty/platform/vs2010/include;$(IncludePath)</IncludePath>
+    <LibraryPath>../../../../../Thirdparty/platform/vs2010/lib/$(Configuration);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>COMPILING_FUSION=1;WIN32;_DEBUG;_WINDOWS;_USRDLL;FUSION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Lua.lib;XInput.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>COMPILING_FUSION=1;WIN32;NDEBUG;_WINDOWS;_USRDLL;FUSION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Lua.lib;XInput.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Animator.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Core.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Event.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\HID.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Key.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Pointer.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Win32\CoreWin.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Drawable\Drawable.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Drawable\Text.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Drawable\TQuad.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Fusion.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\Bitmap.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\BitmapManipulator.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\Font.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\GlyphManager.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\Image.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\ImageGenerator.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\RectPacker.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\ResCache.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\ResManager.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\Resource.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\stb_image.c" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\BaseProxies.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VM.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VMMath.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VMObjectPool.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VMRegistry.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VMSubject.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Box.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Button.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Canvas.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\ComboBox.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Desktop.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\FileDialog.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Grid.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\HotspotContainer.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Label.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Layer.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Menu.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\MenuItem.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\RadialButton.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\RadialMenu.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Spacer.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Splitter.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\TextEntry.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\TreeList.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\ValueEditor.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Widget.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\WidgetContainer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Animator.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Core.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Event.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\HID.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Key.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Pointer.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\TaskEvent.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Win32\CoreWin.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Drawable\Drawable.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Drawable\Text.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Drawable\TQuad.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Fusion.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\Bitmap.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\BitmapManipulator.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\Font.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\GlyphManager.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\Image.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\ImageGenerator.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\RectPacker.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\ResCache.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\ResManager.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\Resource.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\stb_image_write.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\stb_truetype.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\StdDefs.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\BaseProxies.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VM.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMMath.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMObject.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMObjectPool.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMRegistry.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMSubject.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Box.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Button.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Canvas.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\ComboBox.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Desktop.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\FileDialog.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Grid.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\HotspotContainer.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Label.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Layer.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Menu.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\MenuItem.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\RadialButton.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\RadialMenu.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Spacer.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Splitter.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\TextEntry.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\TreeList.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\ValueEditor.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Widget.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\WidgetContainer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Base\Base.vcxproj">
+      <Project>{7cdcc060-d599-4217-9bdc-21d2d8abd5f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\CGMath\CGMath.vcxproj">
+      <Project>{82dacbc8-0951-4f61-bf50-7574dae0c8c6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Gfx\Gfx.vcxproj">
+      <Project>{f33f53ac-0835-4d41-a35d-202ff98c07da}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Snd\Snd.vcxproj">
+      <Project>{ae14a03c-e966-4dff-a985-927d7bb2837b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

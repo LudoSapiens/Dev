@@ -1,0 +1,38 @@
+local entity, stimuli = ...
+
+local function unknownComp( s, a )
+   print( "Unknown completion type:", a.type, s, a )
+end
+
+local map_comp = {
+   moveTo = function( s, a )
+      post( { "makeDynamic", entity } )
+   end,
+}
+
+local map = {
+   actionCompleted = function( s )
+      local a = s.action
+      local comp = map_comp[a.type] or unknownComp
+      comp( s, a )
+   end,
+   goTo = function( s )
+      post( { "makeKinematic", entity } )
+      action( "entity.moveTo", { position=s.position }, true )
+   end,
+   stop = function( s )
+      action( "entity.moveTo", { position=entity.position }, true ) -- Hack until we have stopAction().
+   end,
+   begin = function( s )
+      action( "entity.moveTo", { autoDelete=false, enabled=false, notifyOnCompletion=true, speed=5 }, true )
+   end,
+}
+
+local function unknownType( s )
+   print( "Unknown stimulus type:", s.type )
+end
+
+for i,s in ipairs( stimuli ) do
+   local func = map[s.type] or unknownType
+   func( s )
+end

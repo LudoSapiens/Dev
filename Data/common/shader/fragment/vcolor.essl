@@ -1,0 +1,10 @@
+//
+// Vertex color GLSL fragment shader.
+//
+
+varying highp vec4 vcolor;
+
+void main( void )
+{
+   gl_FragColor = vcolor;
+}

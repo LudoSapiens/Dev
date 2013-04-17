@@ -1,0 +1,165 @@
+LoadFile("../Base/BSFile")
+LoadFile("../CGMath/BSFile")
+LoadFile("../Gfx/BSFile")
+LoadFile("../Snd/BSFile")
+
+FusionLib = Library(
+   "Fusion",
+   inputs=[
+      "Core/Animator.cpp",
+      "Core/Core.cpp",
+      "Core/Event.cpp",
+      "Core/HID.cpp",
+      "Core/Key.cpp",
+      "Core/Pointer.cpp",
+      "Drawable/Drawable.cpp",
+      "Drawable/Text.cpp",
+      "Drawable/TQuad.cpp",
+      "Fusion.cpp",
+      "Resource/Bitmap.cpp",
+      "Resource/BitmapManipulator.cpp",
+      "Resource/Font.cpp",
+      "Resource/GlyphManager.cpp",
+      "Resource/Image.cpp",
+      "Resource/ImageGenerator.cpp",
+      "Resource/RectPacker.cpp",
+      "Resource/ResCache.cpp",
+      "Resource/ResManager.cpp",
+      "Resource/Resource.cpp",
+      "VM/BaseProxies.cpp",
+      "VM/VM.cpp",
+      "VM/VMMath.cpp",
+      "VM/VMObjectPool.cpp",
+      "VM/VMRegistry.cpp",
+      "VM/VMSubject.cpp",
+      "Widget/Box.cpp",
+      "Widget/Button.cpp",
+      "Widget/Canvas.cpp",
+      "Widget/ComboBox.cpp",
+      "Widget/Desktop.cpp",
+      "Widget/FileDialog.cpp",
+      "Widget/Grid.cpp",
+      "Widget/HotspotContainer.cpp",
+      "Widget/Label.cpp",
+      "Widget/Layer.cpp",
+      "Widget/Menu.cpp",
+      "Widget/MenuItem.cpp",
+      "Widget/RadialButton.cpp",
+      "Widget/RadialMenu.cpp",
+      "Widget/Spacer.cpp",
+      "Widget/Splitter.cpp",
+      "Widget/TextEntry.cpp",
+      "Widget/TreeList.cpp",
+      "Widget/ValueEditor.cpp",
+      "Widget/Widget.cpp",
+      "Widget/WidgetContainer.cpp",
+      BaseLib,
+      CGMathLib,
+      GfxLib,
+      SndLib,
+   ],
+   shared=True, shared_define="COMPILING_FUSION",
+)
+
+ThirdpartyLibs = [ "lua" ] # freetype, png, z added below
+
+
+FusionLib.variant.add( StandardVariants )
+
+FusionLib.settings = StandardSettings.copy()
+
+# Set default libraries used.
+FusionLib.settings.defines["FUSION_USE_FREETYPE"]  = 0
+FusionLib.settings.defines["FUSION_USE_LIBPNG"]    = 0
+FusionLib.settings.defines["FUSION_USE_STB_IMAGE"] = 1
+if Defaults.Env.PlatformFlavor == "macosx":
+   FusionLib.settings.defines["FUSION_USE_FREETYPE"]      = 1
+   FusionLib.settings.defines["FUSION_USE_CORE_GRAPHICS"] = 1
+else:
+   FusionLib.settings.defines["FUSION_USE_CORE_GRAPHICS"] = 0
+
+
+# Set extra includes, sources, and libraries.
+FusionLib.settings.source_directories_includes.append(ThirdpartyIncludePath)
+
+if FusionLib.settings.defines.get("FUSION_USE_FREETYPE"):
+   FusionLib.settings.source_directories_includes.append(ThirdpartyIncludePath + "/freetype2") #temp in ft2 distribution
+   ThirdpartyLibs.append( "freetype" )
+
+if FusionLib.settings.defines.get("FUSION_USE_LIBPNG"):
+   ThirdpartyLibs.append( "png" )
+
+if FusionLib.settings.defines.get("FUSION_USE_LIBPNG") or FusionLib.settings.defines.get("FUSION_USE_FREETYPE"):
+   #ThirdpartyLibs.append( "z" )
+   FusionLib.settings.ldflags.append("-lz")
+
+if FusionLib.settings.defines.get("FUSION_USE_STB_IMAGE"):
+   FusionLib.inputs.append("Resource/stb_image.c")
+
+if FusionLib.settings.defines["FUSION_USE_CORE_GRAPHICS"]:
+   FusionLib.inputs.append("Resource/Bitmap_CoreGraphics.mm")
+   FusionLib.settings.frameworks.append("AppKit")
+
+if Defaults.Env.Platform == "windows":
+   FusionLib.inputs.append("Core/Win32/CoreWin.cpp")
+   FusionLib.settings.ldflags.append("-lgdi32")
+   FusionLib.settings.ldflags.append("-lcomdlg32")
+   FusionLib.settings.defines["FUSION_HID_XINPUT_SUPPORT"] = 0 # Was 1
+   FusionLib.settings.ldflags.append("-lxinput")
+elif Defaults.Env.Platform == "unix":
+   if Defaults.Env.PlatformFlavor == "macosx":
+      if GfxSettings.defines["TEST_API"] == TEST_API_GLX:
+         FusionLib.inputs.append("Core/X11/CoreXGL.cpp")
+         FusionLib.settings.source_directories_includes.append("/usr/X11R6/include")
+         FusionLib.settings.ldflags.append("-L/usr/X11R6/lib -lX11")
+      else:
+         print "Unknown OSX flavour"
+      FusionLib.settings.frameworks.append("CoreFoundation")
+      FusionLib.settings.defines["FUSION_HID_IOKIT_SUPPORT"] = 1
+      FusionLib.settings.frameworks.append("IOKit")
+      FusionLib.settings.frameworks.append("ForceFeedback")
+   else:
+      FusionLib.inputs.append("Core/X11/CoreXGL.cpp")
+   #   ... some HID support in Linux
+   #   ... also, how come Linux doesn't need X11 paths and libs?
+
+
+for lib in ThirdpartyLibs:
+   FusionLib.settings.ldflags.append(ThirdpartyLibraryPath + "/lib" + lib + ".a")
+
+Fusion = Application("fusion",
+                     inputs=["main.cpp", BaseLib, CGMathLib, FusionLib, GfxLib, SndLib],
+                     settings=FusionLib.settings,
+                     variant=FusionLib.variant)
+
+fusion = Fusion
+
+import new
+
+Fusion.app_prefix = "app/fusion/"
+
+def run_with_args(self):
+   self.run(self.app_prefix+"test")
+Fusion.run_test = new.instancemethod(run_with_args, Fusion, Application)
+
+def run_with_args(self):
+   self.run(self.app_prefix+"light")
+Fusion.run_light = new.instancemethod(run_with_args, Fusion, Application)
+
+#Make sure we can't access them outside of Plasma
+del run_with_args
+
+FusionTest = Application("FusionTest",
+                         inputs=["test.cpp", BaseLib, CGMathLib, FusionLib, GfxLib, SndLib],
+                         settings=FusionLib.settings,
+                         variant=FusionLib.variant)
+
+FusionImg = Application("FusionImg",
+                        inputs=["img.cpp", BaseLib, CGMathLib, FusionLib, GfxLib, SndLib],
+                        settings=FusionLib.settings,
+                        variant=FusionLib.variant)
+
+dbrdf = Application( "dbrdf",
+                     inputs=["dbrdf.cpp", BaseLib, CGMathLib, FusionLib, GfxLib, SndLib],
+                     settings=FusionLib.settings,
+                     variant=FusionLib.variant)

@@ -1,0 +1,946 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F426FDD210A34276003C990B /* libBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC5A10A32C9A003C990B /* libBase.a */; };
+		F426FDD310A3427E003C990B /* libCGMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC6910A32C9A003C990B /* libCGMath.a */; };
+		F426FDD410A34287003C990B /* libFusion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC8910A32C9A003C990B /* libFusion.a */; };
+		F426FDD510A34293003C990B /* libGfx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCA410A32C9A003C990B /* libGfx.a */; };
+		F426FDD610A3429E003C990B /* libMotionBullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCB410A32C9A003C990B /* libMotionBullet.a */; };
+		F426FE0610A342E7003C990B /* libPlasma.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCD410A32C9A003C990B /* libPlasma.a */; };
+		F426FEAF10A343BA003C990B /* Fusion.xib in Resources */ = {isa = PBXBuildFile; fileRef = F426FEAE10A343BA003C990B /* Fusion.xib */; };
+		F46D1A2210D7E957000DB825 /* App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F46D1A1D10D7E957000DB825 /* App.cpp */; };
+		F46D1A2310D7E957000DB825 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F46D1A2010D7E957000DB825 /* main.cpp */; };
+		F46D1A3010D7E9D0000DB825 /* Penseur_57x57_w.png in Resources */ = {isa = PBXBuildFile; fileRef = F46D1A2F10D7E9D0000DB825 /* Penseur_57x57_w.png */; };
+		F479C9B8125CE55500773EB5 /* libSnd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F479C720125CD48000773EB5 /* libSnd.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F426FC5510A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F474926C107E36F100E91BFA;
+			remoteInfo = "BaseTest (static)";
+		};
+		F426FC5710A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4749256107E36B600E91BFA;
+			remoteInfo = "Base (static)";
+		};
+		F426FC5910A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F45788E21016643F008FF75E;
+			remoteInfo = Base_CocoaTouch;
+		};
+		F426FC6410A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492ED107E388D00E91BFA;
+			remoteInfo = "CGMathTest (static)";
+		};
+		F426FC6610A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492CD107E380300E91BFA;
+			remoteInfo = "CGMath (static)";
+		};
+		F426FC6810A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4578A2C10166C2A008FF75E;
+			remoteInfo = CGMath_CocoaTouch;
+		};
+		F426FC7A10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F616107E44AB00CABC0A;
+			remoteInfo = "FusionApp_Cocoa (static)";
+		};
+		F426FC7C10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F688107E44AB00CABC0A;
+			remoteInfo = "Fusion_Cocoa (static)";
+		};
+		F426FC8610A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4D4E722108D04AD00614A03;
+			remoteInfo = "FusionApp CocoaTouch (GLES)";
+		};
+		F426FC8810A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4D4E797108D04F300614A03;
+			remoteInfo = "Fusion CocoaTouch (GLES)";
+		};
+		F426FC8A10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F44C7FDF0A91114E00EDC4C5;
+			remoteInfo = FusionApp_X11;
+		};
+		F426FC9B10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F47E107E3D1300CABC0A;
+			remoteInfo = "GfxTest_Cocoa (static)";
+		};
+		F426FC9D10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F471107E3D0700CABC0A;
+			remoteInfo = "Gfx_Cocoa (static)";
+		};
+		F426FCA310A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4D4E677108CE20900614A03;
+			remoteInfo = "Gfx CocoaTouch (GLES)";
+		};
+		F426FCA510A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4020DC90AA8CF8D00DB0230;
+			remoteInfo = GfxTest_X11;
+		};
+		F426FCAD10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4BB37880E1428BE009BF822;
+			remoteInfo = MotionBulletTest;
+		};
+		F426FCB110A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F426F070109B46B1003C990B;
+			remoteInfo = "MotionBullet (static)";
+		};
+		F426FCB310A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F426F0B4109B479A003C990B;
+			remoteInfo = "MotionBullet CocoaTouch (static)";
+		};
+		F426FCC510A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F876107E4BB800CABC0A;
+			remoteInfo = "PlasmaApp_Cocoa_Bullet (static)";
+		};
+		F426FCC710A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F911107E4BB800CABC0A;
+			remoteInfo = "Plasma_Cocoa_Bullet (static)";
+		};
+		F426FCD110A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F447AF691098CCFA00CC1805;
+			remoteInfo = PlasmaApp_CocoaTouch;
+		};
+		F426FCD310A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F447AF4D1098CC8200CC1805;
+			remoteInfo = Plasma_CocoaTouch_Bullet;
+		};
+		F479C706125CD48000773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4369D4C114E9EDD007653BA;
+			remoteInfo = "FusionTest (OSX)";
+		};
+		F479C708125CD48000773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C3E5125CB5E800773EB5;
+			remoteInfo = "FusionLib (X11)";
+		};
+		F479C70F125CD48000773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C337125C0A1E00773EB5;
+			remoteInfo = "GfxLib (X11)";
+		};
+		F479C71F125CD48000773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C087125C034C00773EB5;
+			remoteInfo = "SndLib (iOS)";
+		};
+		F479C721125CD48000773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C088125C034C00773EB5;
+			remoteInfo = "SndTest (OSX)";
+		};
+		F479C723125CD48000773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C08A125C034C00773EB5;
+			remoteInfo = "SndLib (OSX)";
+		};
+		F479C8C8125CE1E800773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C8C0125CE1C900773EB5;
+			remoteInfo = "PlasmaApp (X11)";
+		};
+		F479C8D5125CE20900773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C8CE125CE1EA00773EB5;
+			remoteInfo = "PlasmaLib (X11)";
+		};
+		F479C9AA125CE52D00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D4E64A108CE20900614A03;
+			remoteInfo = "GfxLib (iOS)";
+		};
+		F479C9AC125CE52D00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F496D934125B771C0000FB6C;
+			remoteInfo = "SndLib (iOS)";
+		};
+		F479C9AE125CE53A00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D4E729108D04F300614A03;
+			remoteInfo = "FusionLib (iOS)";
+		};
+		F479C9B0125CE53A00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F447AF4C1098CC8200CC1805;
+			remoteInfo = "PlasmaLib (iOS)";
+		};
+		F479C9B2125CE53A00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F426F0B3109B479A003C990B;
+			remoteInfo = "MotionBulletLib (iOS)";
+		};
+		F479C9B4125CE53A00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F45788E11016643F008FF75E;
+			remoteInfo = "BaseLib (iOS)";
+		};
+		F479C9B6125CE53A00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4578A2B10166C2A008FF75E;
+			remoteInfo = "CGMathLib (iOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F42600C010A35035003C990B /* Fusion.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Fusion.xib; path = ../../../Projects/Fusion/Core/Cocoa/Fusion.xib; sourceTree = SOURCE_ROOT; };
+		F426FC2110A32BCF003C990B /* Calibrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calibrator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F426FC2910A32C60003C990B /* iOS_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = iOS_Application_Debug.xcconfig; path = Config/Target/iOS_Application_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2A10A32C60003C990B /* OSX_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_Application_Debug.xcconfig; path = Config/Target/OSX_Application_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2B10A32C60003C990B /* iOS_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = iOS_Application_Release.xcconfig; path = Config/Target/iOS_Application_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2C10A32C60003C990B /* OSX_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_Application_Release.xcconfig; path = Config/Target/OSX_Application_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2D10A32C60003C990B /* OSX_Executable_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_Executable_Debug.xcconfig; path = Config/Target/OSX_Executable_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2E10A32C60003C990B /* OSX_Executable_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_Executable_Release.xcconfig; path = Config/Target/OSX_Executable_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2F10A32C60003C990B /* OSX_SharedLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_SharedLib_Debug.xcconfig; path = Config/Target/OSX_SharedLib_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3010A32C60003C990B /* OSX_SharedLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_SharedLib_Release.xcconfig; path = Config/Target/OSX_SharedLib_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3110A32C60003C990B /* iOS_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = iOS_StaticLib_Debug.xcconfig; path = Config/Target/iOS_StaticLib_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3210A32C60003C990B /* OSX_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_StaticLib_Debug.xcconfig; path = Config/Target/OSX_StaticLib_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3310A32C60003C990B /* iOS_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = iOS_StaticLib_Release.xcconfig; path = Config/Target/iOS_StaticLib_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3410A32C60003C990B /* OSX_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_StaticLib_Release.xcconfig; path = Config/Target/OSX_StaticLib_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3710A32C9A003C990B /* Base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Base.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CGMath.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Fusion.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC4010A32C9A003C990B /* Gfx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Gfx.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MotionBullet.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC4610A32C9A003C990B /* Plasma.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Plasma.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC4910A32C9A003C990B /* Snd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Snd.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FEAE10A343BA003C990B /* Fusion.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Fusion.xib; path = ../../../Projects/Fusion/Core/CocoaTouch/Fusion.xib; sourceTree = SOURCE_ROOT; };
+		F46D1A1D10D7E957000DB825 /* App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = App.cpp; path = ../../../Projects/Game/Calibrator/App.cpp; sourceTree = SOURCE_ROOT; };
+		F46D1A1E10D7E957000DB825 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = App.h; path = ../../../Projects/Game/Calibrator/App.h; sourceTree = SOURCE_ROOT; };
+		F46D1A2010D7E957000DB825 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F46D1A2110D7E957000DB825 /* StdDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StdDefs.h; path = ../../../Projects/Game/Calibrator/StdDefs.h; sourceTree = SOURCE_ROOT; };
+		F46D1A2A10D7E983000DB825 /* Calibrator_iOS-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Calibrator_iOS-Info.plist"; sourceTree = "<group>"; };
+		F46D1A2F10D7E9D0000DB825 /* Penseur_57x57_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Penseur_57x57_w.png; path = ../../../Data/texture/ludo/Penseur_57x57_w.png; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F426FC1F10A32BCF003C990B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426FDD210A34276003C990B /* libBase.a in Frameworks */,
+				F426FDD310A3427E003C990B /* libCGMath.a in Frameworks */,
+				F426FDD410A34287003C990B /* libFusion.a in Frameworks */,
+				F426FDD510A34293003C990B /* libGfx.a in Frameworks */,
+				F426FDD610A3429E003C990B /* libMotionBullet.a in Frameworks */,
+				F426FE0610A342E7003C990B /* libPlasma.a in Frameworks */,
+				F479C9B8125CE55500773EB5 /* libSnd.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F426003710A34CBC003C990B /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				F42600C010A35035003C990B /* Fusion.xib */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
+		F426FC0710A32B8C003C990B = {
+			isa = PBXGroup;
+			children = (
+				F426FC3610A32C80003C990B /* Projects */,
+				F426FC3510A32C7B003C990B /* Source */,
+				F426FC2810A32C4E003C990B /* Config */,
+				F426FE9A10A34347003C990B /* Resources */,
+				F426FC2210A32BCF003C990B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F426FC2210A32BCF003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC2110A32BCF003C990B /* Calibrator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC2810A32C4E003C990B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC2910A32C60003C990B /* iOS_Application_Debug.xcconfig */,
+				F426FC2A10A32C60003C990B /* OSX_Application_Debug.xcconfig */,
+				F426FC2B10A32C60003C990B /* iOS_Application_Release.xcconfig */,
+				F426FC2C10A32C60003C990B /* OSX_Application_Release.xcconfig */,
+				F426FC2D10A32C60003C990B /* OSX_Executable_Debug.xcconfig */,
+				F426FC2E10A32C60003C990B /* OSX_Executable_Release.xcconfig */,
+				F426FC2F10A32C60003C990B /* OSX_SharedLib_Debug.xcconfig */,
+				F426FC3010A32C60003C990B /* OSX_SharedLib_Release.xcconfig */,
+				F426FC3110A32C60003C990B /* iOS_StaticLib_Debug.xcconfig */,
+				F426FC3210A32C60003C990B /* OSX_StaticLib_Debug.xcconfig */,
+				F426FC3310A32C60003C990B /* iOS_StaticLib_Release.xcconfig */,
+				F426FC3410A32C60003C990B /* OSX_StaticLib_Release.xcconfig */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		F426FC3510A32C7B003C990B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F46D1A1D10D7E957000DB825 /* App.cpp */,
+				F46D1A1E10D7E957000DB825 /* App.h */,
+				F46D1A1F10D7E957000DB825 /* src */,
+				F46D1A2110D7E957000DB825 /* StdDefs.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		F426FC3610A32C80003C990B /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC3710A32C9A003C990B /* Base.xcodeproj */,
+				F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */,
+				F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */,
+				F426FC4010A32C9A003C990B /* Gfx.xcodeproj */,
+				F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */,
+				F426FC4610A32C9A003C990B /* Plasma.xcodeproj */,
+				F426FC4910A32C9A003C990B /* Snd.xcodeproj */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
+		F426FC3810A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC5A10A32C9A003C990B /* libBase.a */,
+				F426FC5810A32C9A003C990B /* libBase.a */,
+				F426FC5610A32C9A003C990B /* BaseTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC3B10A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC6910A32C9A003C990B /* libCGMath.a */,
+				F426FC6510A32C9A003C990B /* CGMathTest */,
+				F426FC6710A32C9A003C990B /* libCGMath.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC3E10A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC8710A32C9A003C990B /* Fusion.app */,
+				F426FC8910A32C9A003C990B /* libFusion.a */,
+				F426FC7B10A32C9A003C990B /* Fusion.app */,
+				F426FC7D10A32C9A003C990B /* libFusion.a */,
+				F479C707125CD48000773EB5 /* FusionTest */,
+				F426FC8B10A32C9A003C990B /* Fusion_X11 */,
+				F479C709125CD48000773EB5 /* libFusion_X11.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC4110A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FCA410A32C9A003C990B /* libGfx.a */,
+				F426FC9C10A32C9A003C990B /* GfxTest.app */,
+				F426FC9E10A32C9A003C990B /* libGfx.a */,
+				F426FCA610A32C9A003C990B /* GfxTest_X11 */,
+				F479C710125CD48000773EB5 /* libGfxLib_X11.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC4410A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FCB410A32C9A003C990B /* libMotionBullet.a */,
+				F426FCB210A32C9A003C990B /* libMotionBullet.a */,
+				F426FCAE10A32C9A003C990B /* MotionBulletTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC4710A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FCD210A32C9A003C990B /* Plasma.app */,
+				F426FCD410A32C9A003C990B /* libPlasma.a */,
+				F426FCC610A32C9A003C990B /* Plasma.app */,
+				F426FCC810A32C9A003C990B /* libPlasma.a */,
+				F479C8C9125CE1E800773EB5 /* Plasma_X11 */,
+				F479C8D6125CE20900773EB5 /* libPlasma_X11.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC4A10A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F479C720125CD48000773EB5 /* libSnd.a */,
+				F479C722125CD48000773EB5 /* SndTest */,
+				F479C724125CD48000773EB5 /* libSnd.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FE9A10A34347003C990B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F426FEAD10A343A5003C990B /* iOS */,
+				F426003710A34CBC003C990B /* OSX */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F426FEAD10A343A5003C990B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F46D1A2F10D7E9D0000DB825 /* Penseur_57x57_w.png */,
+				F46D1A2A10D7E983000DB825 /* Calibrator_iOS-Info.plist */,
+				F426FEAE10A343BA003C990B /* Fusion.xib */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		F46D1A1F10D7E957000DB825 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F46D1A2010D7E957000DB825 /* main.cpp */,
+			);
+			name = src;
+			path = ../../../Projects/Game/Calibrator/src;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F426FC2010A32BCF003C990B /* Calibrator (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F426FC2710A32BD2003C990B /* Build configuration list for PBXNativeTarget "Calibrator (iOS)" */;
+			buildPhases = (
+				F426FC1D10A32BCF003C990B /* Resources */,
+				F426FC1E10A32BCF003C990B /* Sources */,
+				F426FC1F10A32BCF003C990B /* Frameworks */,
+				F426FEBA10A343F0003C990B /* CopyData */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F479C9B5125CE53A00773EB5 /* PBXTargetDependency */,
+				F479C9B7125CE53A00773EB5 /* PBXTargetDependency */,
+				F479C9AF125CE53A00773EB5 /* PBXTargetDependency */,
+				F479C9AB125CE52D00773EB5 /* PBXTargetDependency */,
+				F479C9B3125CE53A00773EB5 /* PBXTargetDependency */,
+				F479C9B1125CE53A00773EB5 /* PBXTargetDependency */,
+				F479C9AD125CE52D00773EB5 /* PBXTargetDependency */,
+			);
+			name = "Calibrator (iOS)";
+			productName = "Calibrator (iOS)";
+			productReference = F426FC2110A32BCF003C990B /* Calibrator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F426FC0910A32B8C003C990B /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F426FC0C10A32B8C003C990B /* Build configuration list for PBXProject "Calibrator" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = F426FC0710A32B8C003C990B;
+			productRefGroup = F426FC2210A32BCF003C990B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F426FC3810A32C9A003C990B /* Products */;
+					ProjectRef = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC3B10A32C9A003C990B /* Products */;
+					ProjectRef = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC3E10A32C9A003C990B /* Products */;
+					ProjectRef = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC4110A32C9A003C990B /* Products */;
+					ProjectRef = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC4410A32C9A003C990B /* Products */;
+					ProjectRef = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC4710A32C9A003C990B /* Products */;
+					ProjectRef = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC4A10A32C9A003C990B /* Products */;
+					ProjectRef = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F426FC2010A32BCF003C990B /* Calibrator (iOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F426FC5610A32C9A003C990B /* BaseTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BaseTest;
+			remoteRef = F426FC5510A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC5810A32C9A003C990B /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libBase.a;
+			remoteRef = F426FC5710A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC5A10A32C9A003C990B /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBase.a;
+			remoteRef = F426FC5910A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC6510A32C9A003C990B /* CGMathTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = CGMathTest;
+			remoteRef = F426FC6410A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC6710A32C9A003C990B /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libCGMath.a;
+			remoteRef = F426FC6610A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC6910A32C9A003C990B /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCGMath.a;
+			remoteRef = F426FC6810A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC7B10A32C9A003C990B /* Fusion.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Fusion.app;
+			remoteRef = F426FC7A10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC7D10A32C9A003C990B /* libFusion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libFusion.a;
+			remoteRef = F426FC7C10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC8710A32C9A003C990B /* Fusion.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Fusion.app;
+			remoteRef = F426FC8610A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC8910A32C9A003C990B /* libFusion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFusion.a;
+			remoteRef = F426FC8810A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC8B10A32C9A003C990B /* Fusion_X11 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Fusion_X11;
+			remoteRef = F426FC8A10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC9C10A32C9A003C990B /* GfxTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = GfxTest.app;
+			remoteRef = F426FC9B10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC9E10A32C9A003C990B /* libGfx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libGfx.a;
+			remoteRef = F426FC9D10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCA410A32C9A003C990B /* libGfx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGfx.a;
+			remoteRef = F426FCA310A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCA610A32C9A003C990B /* GfxTest_X11 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = GfxTest_X11;
+			remoteRef = F426FCA510A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCAE10A32C9A003C990B /* MotionBulletTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = MotionBulletTest;
+			remoteRef = F426FCAD10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCB210A32C9A003C990B /* libMotionBullet.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMotionBullet.a;
+			remoteRef = F426FCB110A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCB410A32C9A003C990B /* libMotionBullet.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMotionBullet.a;
+			remoteRef = F426FCB310A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCC610A32C9A003C990B /* Plasma.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Plasma.app;
+			remoteRef = F426FCC510A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCC810A32C9A003C990B /* libPlasma.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libPlasma.a;
+			remoteRef = F426FCC710A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCD210A32C9A003C990B /* Plasma.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Plasma.app;
+			remoteRef = F426FCD110A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCD410A32C9A003C990B /* libPlasma.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPlasma.a;
+			remoteRef = F426FCD310A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C707125CD48000773EB5 /* FusionTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = FusionTest;
+			remoteRef = F479C706125CD48000773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C709125CD48000773EB5 /* libFusion_X11.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFusion_X11.a;
+			remoteRef = F479C708125CD48000773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C710125CD48000773EB5 /* libGfxLib_X11.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGfxLib_X11.a;
+			remoteRef = F479C70F125CD48000773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C720125CD48000773EB5 /* libSnd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSnd.a;
+			remoteRef = F479C71F125CD48000773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C722125CD48000773EB5 /* SndTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SndTest;
+			remoteRef = F479C721125CD48000773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C724125CD48000773EB5 /* libSnd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libSnd.a;
+			remoteRef = F479C723125CD48000773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C8C9125CE1E800773EB5 /* Plasma_X11 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Plasma_X11;
+			remoteRef = F479C8C8125CE1E800773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C8D6125CE20900773EB5 /* libPlasma_X11.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPlasma_X11.a;
+			remoteRef = F479C8D5125CE20900773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F426FC1D10A32BCF003C990B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426FEAF10A343BA003C990B /* Fusion.xib in Resources */,
+				F46D1A3010D7E9D0000DB825 /* Penseur_57x57_w.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F426FEBA10A343F0003C990B /* CopyData */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = CopyData;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "Script/CopyData.py Calibrator";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F426FC1E10A32BCF003C990B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46D1A2210D7E957000DB825 /* App.cpp in Sources */,
+				F46D1A2310D7E957000DB825 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F479C9AB125CE52D00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GfxLib (iOS)";
+			targetProxy = F479C9AA125CE52D00773EB5 /* PBXContainerItemProxy */;
+		};
+		F479C9AD125CE52D00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SndLib (iOS)";
+			targetProxy = F479C9AC125CE52D00773EB5 /* PBXContainerItemProxy */;
+		};
+		F479C9AF125CE53A00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FusionLib (iOS)";
+			targetProxy = F479C9AE125CE53A00773EB5 /* PBXContainerItemProxy */;
+		};
+		F479C9B1125CE53A00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "PlasmaLib (iOS)";
+			targetProxy = F479C9B0125CE53A00773EB5 /* PBXContainerItemProxy */;
+		};
+		F479C9B3125CE53A00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MotionBulletLib (iOS)";
+			targetProxy = F479C9B2125CE53A00773EB5 /* PBXContainerItemProxy */;
+		};
+		F479C9B5125CE53A00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BaseLib (iOS)";
+			targetProxy = F479C9B4125CE53A00773EB5 /* PBXContainerItemProxy */;
+		};
+		F479C9B7125CE53A00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CGMathLib (iOS)";
+			targetProxy = F479C9B6125CE53A00773EB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F426FC0A10A32B8C003C990B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		F426FC0B10A32B8C003C990B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		F426FC2510A32BD1003C990B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F426FC2910A32C60003C990B /* iOS_Application_Debug.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -framework AudioToolbox -framework CoreGraphics -framework Foundation -framework OpenAL -framework OpenGLES -framework QuartzCore -framework UIKit -lz";
+				INFOPLIST_FILE = "Calibrator_iOS-Info.plist";
+				PRODUCT_NAME = Calibrator;
+			};
+			name = Debug;
+		};
+		F426FC2610A32BD1003C990B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F426FC2B10A32C60003C990B /* iOS_Application_Release.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -framework AudioToolbox -framework CoreGraphics -framework Foundation -framework OpenAL -framework OpenGLES -framework QuartzCore -framework UIKit -lz";
+				INFOPLIST_FILE = "Calibrator_iOS-Info.plist";
+				PRODUCT_NAME = Calibrator;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F426FC0C10A32B8C003C990B /* Build configuration list for PBXProject "Calibrator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F426FC0A10A32B8C003C990B /* Debug */,
+				F426FC0B10A32B8C003C990B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F426FC2710A32BD2003C990B /* Build configuration list for PBXNativeTarget "Calibrator (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F426FC2510A32BD1003C990B /* Debug */,
+				F426FC2610A32BD1003C990B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F426FC0910A32B8C003C990B /* Project object */;
+}

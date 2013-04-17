@@ -1,0 +1,11 @@
+//
+// Mapping ESSL vertex shader.
+//
+
+varying vec2 mapping;
+
+void main(void)
+{
+   mapping     = gfxMultiTexCoord0.xy;
+   gl_Position = gfxWorldViewProjectionMatrix * gfxVertex;
+}

@@ -1,0 +1,26 @@
+camera{
+   position = { 0, 30, 50 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+staticObject{
+   geometry = geometry( "geometry/physics/box", { size=vec3(25,1,25), color="gray", detailsError=1.0 } ),
+   material = material( "geometry/physics/colors" ),
+   position = { 0, -1, 0 },
+}
+
+local v = { 0, 0, 5 }
+local n = 16
+n = n - 1
+for i=0,n do
+   local f = i/n
+   local x = -25 + 2.5 + (i*3)
+   object{
+      geometry       = geometry( "geometry/physics/box", { size=vec3(1,1,1), color="blue" } ),
+      material       = material( "geometry/physics/colors" ),
+      position       = { x, 1.01, -20 },
+      friction       = f,
+      linearVelocity = v,
+   }
+end

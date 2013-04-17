@@ -1,0 +1,45 @@
+//==============================================================================
+// Copyright (c) 2009, Ludo Sapiens Inc.
+// All rights reserved.
+//
+// These coded instructions, statements, and computer programs contain
+// unpublished, proprietary information and are protected by Federal copyright
+// law. They may not be disclosed to third parties or copied or duplicated in
+// any form, in whole or in part, without prior written consent.
+//==============================================================================
+
+//ARCHS = $(ARCHS_UNIVERSAL_IPHONE_OS)
+ARCHS = $(ARCHS_STANDARD_32_BIT)
+VALID_ARCHS = $(ARCHS_STANDARD_32_BIT)
+
+
+//TARGETED_DEVICE_FAMILY = 1  // iPhone
+//TARGETED_DEVICE_FAMILY = 2  // iPad
+TARGETED_DEVICE_FAMILY = 1,2  // iPhone/iPad
+
+// Development.
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Developer
+VALIDATE_PRODUCT = NO
+//ONLY_ACTIVE_ARCH = YES
+
+// Distribution.
+//CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Distribution
+//VALIDATE_PRODUCT = YES
+ONLY_ACTIVE_ARCH = NO
+
+
+SDKROOT = iphoneos
+//SDKROOT = iphoneos4.3
+
+IPHONEOS_DEPLOYMENT_TARGET = 3.1
+
+//GCC_INLINES_ARE_PRIVATE_EXTERN = YES
+//GCC_SYMBOLS_PRIVATE_EXTERN = YES
+GCC_THUMB_SUPPORT = NO
+
+DEV_PLAT[sdk=iphonesimulator*] = iphone-simulator
+DEV_PLAT[sdk=iphoneos*] = iphone-device
+//DEV_PLAT[sdk=iphonesimulator4.0] = iphone-simulator
+//DEV_PLAT[sdk=iphoneos4.0] = iphone-device
+//DEV_PLAT[sdk=iphonesimulator4.1] = iphone-simulator
+//DEV_PLAT[sdk=iphoneos4.1] = iphone-device

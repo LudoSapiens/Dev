@@ -1,0 +1,1535 @@
+--==============================================================================
+--  Plasma Theme file.
+--==============================================================================
+
+--==============================================================================
+--  Shaders description.
+--==============================================================================
+
+UI.shaders  = {}
+UI.baseSize = {}
+
+local FONT_BASE        = { "font/default", 12 }
+local FONT_BASE2       = { "font/default", 15 }
+local FONT_BOLD        = { "font/tahomabd", 13 }
+local FONT_NUMERICAL   = { "font/base2", 14 }
+
+local LIGHT            = vec4( 1.3, 1.3, 1.3, 1.0 )
+
+local BLUEGLOW_COLOR   = vec4( 0.7, 0.7, 1.3, 1.0 )
+local BLUEGLOW2_COLOR  = BLUEGLOW_COLOR * LIGHT
+
+local REDGLOW_COLOR    = vec4( 1.3, 0.6, 0.6, 1 )
+local REDGLOW2_COLOR   = REDGLOW_COLOR * LIGHT
+
+local GREENGLOW_COLOR  = vec4( 0.6, 1.2, 0.6, 1 )
+local GREENGLOW2_COLOR = GREENGLOW_COLOR * LIGHT
+
+local FILL_COLOR       = vec4( 0.0, 0.0, 0.0, 0.8 )
+local BORDER_COLOR     = vec4( 0.9, 0.9, 0.9, 1.0 )
+local DISABLED_COLOR   = vec4( 0.3, 0.3, 0.3, 0.4 )
+local INPUT_COLOR      = vec4( 0.1, 0.1, 0.1, 0.7 )
+local TEXT_INPUT_COLOR = vec4( 0.9, 0.9, 0.9, 0.9 )
+local MENU_COLOR       = vec4( 0.1, 0.1, 0.1, 0.9 )
+local COMBO_COLOR      = vec4( 0.2, 0.2, 0.2, 0.8 )
+local ITEM_COLOR       = vec4( 0.3, 0.3, 0.3, 0.9 )
+
+local WHITE_COLOR      = vec4( 1.0, 1.0, 1.0, 1.0 )
+local NORMAL_COLOR     = vec4( 0.9, 0.9, 0.9, 1.0 )
+
+--==============================================================================
+-- Image
+--==============================================================================
+
+function UI.shaders.image( widget )
+   local image = widget.tquad{
+      image = widget.image,
+      type  = widget.type or UI.TQuadType.NORMAL,
+      u     = widget.u or { 0, 1 },
+      v     = widget.v or { 0, 1 },
+   }
+
+   local function shade( widget )
+      image.position = widget.globalPosition
+      image.size     = widget.actualSize
+      image.image    = widget.image
+      image.type     = widget.type or UI.TQuadType.NORMAL
+      if not widget.enabled then
+         -- Disabled
+         image.color = widget.disabledColor or DISABLED_COLOR
+      else
+         -- NORMAL
+         image.color = widget.color or WHITE_COLOR
+      end
+      return image
+   end
+
+   -- Keep image for computing base size
+   widget.imgDrawable = image
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.image( widget )
+   local size = widget.imgDrawable.imageSize
+   return { size[1], size[2] }
+end
+
+--==============================================================================
+-- Button
+--==============================================================================
+
+function UI.shaders.button( widget )
+   local text = widget.textQuad{
+      text = widget.text, font = widget.font or FONT_BASE, alignH = UI.TextAlignment.MIDDLE,
+      offset = { -1, 1 }
+   }
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedboxEmpty",
+      u = { 0, 0.4, 0.6, 1 },
+      v = { 0, 0.4, 0.6, 1 },
+      type = UI.TQuadType.CONTOUR
+   }
+   local icon = widget.tquad{
+      image = widget.icon,
+      u = { 0, 1 },
+      v = { 0, 1 } ,
+      type = UI.TQuadType.CENTERED,
+   }
+
+   widget.vAlign = UI.WidgetAlignment.MIDDLE
+
+   local function shade( widget )
+      local pos  = widget.globalPosition
+      local size = widget.actualSize
+
+      icon.position = pos
+      icon.size     = size
+
+      quad.position = pos
+      quad.size     = size
+
+      text.position = pos
+      text.size     = size
+      text.text     = widget.text
+
+      if not widget.enabled then
+         -- Disabled
+         text.color = DISABLED_COLOR
+         quad.color = DISABLED_COLOR
+         icon.color = DISABLED_COLOR
+      elseif widget.hovered then
+         if widget.pressed then
+            -- PRESSED & HOVERED
+            text.color = BLUEGLOW2_COLOR
+            quad.color = BLUEGLOW2_COLOR
+            icon.color = BLUEGLOW2_COLOR
+         else
+            -- HOVERED
+            text.color = BLUEGLOW_COLOR
+            quad.color = BLUEGLOW_COLOR
+            icon.color = BLUEGLOW_COLOR
+         end
+      else
+         -- NORMAL
+         text.color = NORMAL_COLOR
+         quad.color = NORMAL_COLOR
+         icon.color = NORMAL_COLOR
+      end
+
+      if widget.icon then
+         icon.image = widget.icon
+         return quad, icon, text
+      else
+         return quad, text
+      end
+   end
+
+   -- Keep text for computing base size
+   widget.textDrawable = text
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.button( widget )
+   local size = widget.textDrawable.textSize
+   return { size[1] + 24, size[2] + 10 }
+end
+
+--==============================================================================
+-- TOGGLE
+--==============================================================================
+
+function UI.shaders.toggle( widget )
+   local text  = widget.textQuad{
+      text = widget.text, font = widget.font or FONT_BASE, alignH = UI.TextAlignment.MIDDLE,
+      offset = { 10, 1 }
+   }
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedboxEmpty",
+      u = { 0, 0.4, 0.6, 1 },
+      v = { 0, 0.4, 0.6, 1 },
+      type = UI.TQuadType.CONTOUR
+   }
+   local light = widget.tquad{
+      image = "theme/plasma/image/circle",
+      u = { 0.0, 1, 0.6, 1 },
+      v = { 0.0, 1, 0.6, 1 } ,
+      type = UI.TQuadType.CENTERED
+   }
+
+   widget.vAlign = UI.WidgetAlignment.MIDDLE
+
+   local function shade( widget )
+      local pos   = widget.globalPosition
+      local size  = widget.actualSize
+
+      quad.position = pos
+      quad.size     = size
+
+      text.position = pos
+      text.size     = size
+      text.text     = widget.text
+
+      if not widget.enabled then
+         -- Disabled
+         text.color = DISABLED_COLOR
+         quad.color = DISABLED_COLOR
+      elseif widget.hovered then
+         if widget.pressed then
+            -- PRESSED & HOVERED
+            quad.color  = BLUEGLOW2_COLOR
+            text.color  = BLUEGLOW2_COLOR
+            light.color = BLUEGLOW2_COLOR
+         else
+            -- HOVERED
+            text.color  = BLUEGLOW_COLOR
+            quad.color  = BLUEGLOW_COLOR
+            light.color = BLUEGLOW_COLOR
+         end
+      else
+         -- NORMAL
+         text.color  = NORMAL_COLOR
+         quad.color  = NORMAL_COLOR
+         light.color = NORMAL_COLOR
+      end
+
+      light.position = { pos[1]+6, pos[2]+1 }
+      light.size = { 16, size[2] }
+
+      if widget.toggled then
+         light.color = GREENGLOW2_COLOR
+      end
+
+      return quad, light, text
+   end
+
+   -- Keep text for computing base size
+   widget.textDrawable = text
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.toggle( widget )
+   local size = widget.textDrawable.textSize
+   return { size[1] + 32, size[2] + 16 }
+end
+
+--==============================================================================
+-- VALUE EDITOR
+--==============================================================================
+
+function UI.shaders.valueEditor( widget )
+
+   widget.format = widget.format or "%.3g"
+
+   local curOffset = { 0, 0 }
+   local text  = widget.textQuad{
+      text   = string.format( widget.format, widget.value ),
+      font   = FONT_NUMERICAL,
+      alignH = UI.TextAlignment.END
+   }
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedboxIntShadow",
+      u = { 0, 0.4, 0.6, 1 },
+      v = { 0, 0.4, 0.6, 1 }
+   }
+   local cQuad = widget.tquad{
+      image = "theme/plasma/image/roundedbox",
+      type  = UI.TQuadType.NORMAL,
+      color = GREENGLOW2_COLOR,
+      u     = { 0.5, 0.5 },
+      v     = { 0.5, 0.5 },
+      size  = { 2, 18 }
+   }
+
+   widget.vAlign = UI.WidgetAlignment.MIDDLE
+
+   local function shade( widget )
+      local state  = widget.state
+      local pos    = widget.globalPosition
+      local size   = widget.actualSize
+      local inEdit = widget.inEdit
+
+      text.position = pos + vec2(2,1)
+      text.size     = size - vec2(4,4)
+
+      quad.position = pos
+      quad.size     = size
+
+      if inEdit then
+         text.text  = widget.editText
+         text.color = BLUEGLOW2_COLOR
+         quad.color = INPUT_COLOR
+
+         local charPos = text.charPosition( widget.cursor )
+         local endPos  = pos[1] + size[1] - 6
+
+         -- Offset text to keep cursor visible.
+         if charPos[1] > endPos then
+            curOffset[1] = curOffset[1] - ( charPos[1] - endPos )
+         elseif charPos[1] < pos[1] + 6 then
+            curOffset[1] = curOffset[1] + ( 6 + pos[1] - charPos[1] )
+         end
+
+         text.offset    = curOffset
+         charPos        = text.charPosition( widget.cursor )
+         cQuad.position = { charPos[1], charPos[2]+1 }
+
+         return quad, cQuad, text
+      else
+         text.text    = string.format( widget.format, widget.value )
+         curOffset[1] = 0
+         text.offset  = curOffset
+
+         if not widget.enabled then
+            -- DISABLED
+            text.color = DISABLED_COLOR
+            quad.color = INPUT_COLOR
+         elseif widget.pressed then
+            -- PRESSED
+            text.color = BLUEGLOW2_COLOR
+            quad.color = INPUT_COLOR
+         elseif widget.hovered then
+            -- HOVERED
+            text.color = BLUEGLOW_COLOR
+            quad.color = INPUT_COLOR
+         else
+            -- NORMAL
+            text.color = TEXT_INPUT_COLOR
+            quad.color = INPUT_COLOR
+         end
+
+         return quad, text
+      end
+   end
+
+   -- Keep text for computing base size
+   widget.textDrawable = text
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.valueEditor( widget )
+   local size = widget.textDrawable.textSize
+   return { 64, size[2] + 6 }
+end
+
+--==============================================================================
+-- TEXT ENTRY
+--==============================================================================
+
+function UI.shaders.textEntry( widget )
+   local curOffset = { 4, 0 }
+   local text      = widget.textQuad{
+      text   = widget.text,
+      font   = FONT_BASE,
+      alignH = UI.TextAlignment.START,
+      offset = curOffset
+   }
+
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedboxIntShadow",
+      u = { 0, 0.4, 0.6, 1 },
+      v = { 0, 0.4, 0.6, 1 }
+   }
+   local cQuad = widget.tquad{
+      image = "theme/plasma/image/roundedbox",
+      type  = UI.TQuadType.NORMAL,
+      color = GREENGLOW_COLOR,
+      u     = { 0.5, 0.5 },
+      v     = { 0.5, 0.5 },
+      size  = { 2, 18 }
+   }
+
+   widget.vAlign = UI.WidgetAlignment.MIDDLE
+
+   local function shade( widget )
+      local state   = widget.state
+      local pos     = widget.globalPosition
+      local size    = widget.actualSize
+      local inEdit  = widget.inEdit
+
+      text.position = pos + 2
+      text.size     = size - 4
+      text.text     = widget.text
+
+      quad.position = pos
+      quad.size     = size
+
+      if inEdit then
+         text.color = BLUEGLOW2_COLOR
+         quad.color = INPUT_COLOR
+
+         local charPos = text.charPosition( widget.cursor )
+         local endPos  = pos[1] + size[1] - 6
+
+         -- Offset text to keep cursor visible.
+         if charPos[1] > endPos then
+            curOffset[1] = curOffset[1] - ( charPos[1] - endPos )
+         elseif charPos[1] < pos[1] + 6 then
+            curOffset[1] = curOffset[1] + ( 6 + pos[1] - charPos[1] )
+         end
+
+         text.offset    = curOffset
+         charPos        = text.charPosition( widget.cursor )
+         cQuad.position = { charPos[1], charPos[2]-2 }
+
+         return quad, cQuad, text
+      else
+         curOffset[1] = 4
+         text.offset  = curOffset
+
+         if not widget.enabled then
+            -- Disabled
+            text.color = DISABLED_COLOR
+            quad.color = INPUT_COLOR
+         elseif widget.hovered then
+            if widget.pressed then
+               -- PRESSED & HOVERED
+               text.color = BLUEGLOW2_COLOR
+               quad.color = INPUT_COLOR
+            else
+               -- HOVERED
+               text.color = BLUEGLOW_COLOR
+               quad.color = INPUT_COLOR
+            end
+         else
+            -- NORMAL
+            text.color = TEXT_INPUT_COLOR
+            quad.color = INPUT_COLOR
+         end
+
+         return quad, text
+      end
+   end
+
+   -- Give the drawable to the widget.
+   widget.textDrawable = text
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.textEntry( widget )
+   local size = widget.textDrawable.textSize
+   return { 60, size[2] + 10 }
+end
+
+--==============================================================================
+-- PANEL
+--==============================================================================
+
+function UI.shaders.panel( widget )
+   local text = widget.textQuad{  text = widget.title, font = widget.font or FONT_BOLD }
+   local panelQuad = widget.tquad{
+      image = "theme/plasma/image/roundedboxShadow",
+      u = { 0, 0.4, 0.6, 1 },
+      v = { 0, 0.4, 0.6, 1 }
+   }
+   local separatorQuad = widget.tquad{
+      image = "theme/plasma/image/roundedbox",
+      u = { 0.5, 0.5 },
+      v = { 0.5, 0.5 },
+      type = UI.TQuadType.NORMAL
+   }
+
+   local function shade( widget )
+      local pos   = widget.globalPosition
+      local size  = widget.actualSize
+
+      -- Take shadow into account.
+      panelQuad.position  = { pos[1]-8, pos[2]-8 }
+      panelQuad.size      = { size[1]+16, size[2]+16 }
+      panelQuad.color     = FILL_COLOR
+
+      separatorQuad.position = { pos[1]+8, pos[2] + size[2]-30 }
+      separatorQuad.size     = { size[1]-16, 2 }
+      separatorQuad.color    = NORMAL_COLOR
+
+      text.position          = { pos[1], pos[2] + size[2]-24 }
+      text.size              = { size[1], 20 }
+      text.text              = widget.title
+      text.color             = NORMAL_COLOR
+
+      if widget.minimized then
+         return panelQuad, text
+      end
+      return panelQuad, separatorQuad, text
+   end
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--==============================================================================
+-- RADIAL BUTTON
+--==============================================================================
+
+function UI.shaders.radialButton( widget )
+   local text = widget.textQuad{
+      text = widget.text, font = widget.font or FONT_BASE2, alignH = UI.TextAlignment.MIDDLE,
+      offset = { -1, 1 }
+   }
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedboxShadow",
+      u = { 0, 0.4, 0.6, 1 },
+      v = { 0, 0.4, 0.6, 1 },
+      color = FILL_COLOR
+   }
+   local borderQuad = widget.tquad{
+      image = "theme/plasma/image/roundedboxEmpty",
+      u = { 0, 0.4, 0.6, 1 },
+      v = { 0, 0.4, 0.6, 1 },
+      type = UI.TQuadType.CONTOUR
+   }
+
+   local function shade( widget )
+      local pos   = widget.globalPosition
+      local size  = widget.actualSize
+
+      quad.position = { pos[1]-8, pos[2]-16 }
+      quad.size = { size[1]+16, size[2]+16 }
+
+      borderQuad.position = pos
+      borderQuad.size     = size
+
+      text.position = pos
+      text.size     = size
+      text.text     = widget.text
+
+      if not widget.enabled then
+         -- Disabled
+         text.color       = DISABLED_COLOR
+         borderQuad.color = DISABLED_COLOR
+      elseif widget.hovered then
+         if widget.pressed then
+            -- PRESSED & HOVERED
+            text.color       = BLUEGLOW2_COLOR
+            borderQuad.color = BLUEGLOW2_COLOR
+         else
+            -- HOVERED
+            text.color       = BLUEGLOW_COLOR
+            borderQuad.color = BLUEGLOW_COLOR
+         end
+      else
+         -- NORMAL
+         text.color       = NORMAL_COLOR
+         borderQuad.color = BORDER_COLOR
+      end
+      return quad, borderQuad, text
+   end
+
+   -- Keep text for computing base size
+   widget.textDrawable = text
+
+   -- Create new closure
+   widget.shader = shade
+end
+--------------------------------------------------------------------------------
+function UI.baseSize.radialButton( widget )
+   local size = widget.textDrawable.textSize
+   return { size[1] + 30, size[2] + 20 }
+end
+
+--------------------------------------------------------------------------------
+function UI.shaders.comboBox( widget )
+   local text = widget.textQuad{
+      text   = widget.itemId,
+      font   = widget.font or FONT_BASE,
+      alignH = UI.TextAlignment.START,
+      offset = { 10, 1 }
+   }
+   local nQuad = widget.tquad{
+      image = "theme/plasma/image/button01",
+      u = { 0, 0.2, 0.75, 1 },
+      v = { 0, 0.48, 0.52, 1 }
+   }
+   local pQuad = widget.tquad{
+      image = "theme/plasma/image/buttonpress01",
+      u = { 0, 0.2, 0.75, 1 },
+      v = { 0, 0.48, 0.52, 1 }
+   }
+   local arrow = widget.tquad{
+      image = "theme/plasma/image/arrow04",
+      type = UI.TQuadType.NORMAL,
+      u = { 0, 1, 0, 0 },
+      v = { 0, 1, 0, 0 }
+   }
+
+   widget.menuOffset = {4,1}
+   widget.menuAbove  = false
+   widget.vAlign     = UI.WidgetAlignment.MIDDLE
+
+   local function shade( widget )
+      local pos   = widget.globalPosition
+      local size  = widget.actualSize
+      local tquad = ( widget.enabled and widget.hovered and widget.pressed and pQuad ) or nQuad
+      if( widget.opened ) then tquad = pQuad end
+
+      tquad.position = pos
+      tquad.size     = size
+
+      local item    = widget.item
+      text.position = pos
+      text.size     = { size[1] - 10, size[2] }
+      text.text     = item and item.text or widget.itemId
+
+      local asize    = arrow.size
+      local dsize    = size - asize
+      arrow.position = pos + vec2( dsize.x - 5, dsize.y/2 - 1 )
+
+      if not widget.enabled then
+         -- Disabled
+         text.color  = DISABLED_COLOR
+         tquad.color = DISABLED_COLOR
+         arrow.color = DISABLED_COLOR
+      elseif widget.opened then
+         text.color  = BLUEGLOW2_COLOR
+         tquad.color = COMBO_COLOR
+         arrow.color = BLUEGLOW2_COLOR
+      elseif widget.hovered then
+         if widget.pressed then
+            -- PRESSED & HOVERED
+            text.color  = BLUEGLOW2_COLOR
+            tquad.color = COMBO_COLOR
+            arrow.color = BLUEGLOW2_COLOR
+         else
+            -- HOVERED
+            text.color  = BLUEGLOW_COLOR
+            tquad.color = COMBO_COLOR
+            arrow.color = BLUEGLOW_COLOR
+         end
+      else
+         -- NORMAL
+         text.color  = NORMAL_COLOR
+         tquad.color = COMBO_COLOR
+         arrow.color = NORMAL_COLOR
+      end
+      return tquad, text, arrow
+   end
+
+   -- Keep text for computing base size
+   widget.textDrawable = text
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.comboBox( widget )
+   local size = widget.textDrawable.textSize
+   return { 60, size[2] + 10 }
+end
+
+--------------------------------------------------------------------------------
+function UI.shaders.label( widget )
+   local text = widget.textQuad{
+      text = widget.text, font = widget.font or FONT_BOLD, alignH = UI.TextAlignment.START
+   }
+
+   local function shade( widget )
+      if widget.alignH then text.alignH = widget.alignH end
+      if widget.alignV then text.alignV = widget.alignV end
+      text.position = widget.globalPosition
+      text.size = widget.actualSize
+      text.text = widget.text
+      text.font = widget.font or FONT_BOLD
+
+      if not widget.enabled then
+         -- Disabled
+         text.color = DISABLED_COLOR
+      else
+         text.color = widget.textColor or NORMAL_COLOR
+      end
+
+      return text
+   end
+
+   -- Keep text for computing base size
+   widget.textDrawable = text
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.label_tight( widget )
+   return widget.textDrawable.textSize
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.label( widget )
+   local size = widget.textDrawable.textSize
+   return { size[1] + 10, size[2] + 10 }
+end
+
+--------------------------------------------------------------------------------
+function UI.shaders.group( widget )
+   local text = widget.textQuad{  text = widget.title, font = widget.font or widget.font or FONT_BOLD }
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedboxIntShadow",
+      u     = { 0, 0.20, 0.80, 1 },
+      v     = { 0, 0.34, 0.35, 1 }
+   }
+   widget.border = { 8, 6, 8, 22 }
+
+   local _qHb = nil
+   local _qHe = nil
+   local _qVb = nil
+   local _qVe = nil
+
+   local function createQuad()
+      return widget.tquad{
+         image = "image/white",
+         type  = UI.TQuadType.NORMAL,
+         u     = { 0, 1 },
+         v     = { 0, 1 }
+      }
+   end
+
+   local function shade( widget )
+      local pos   = widget.globalPosition
+      local size  = widget.actualSize
+
+      -- Take shadow into account.
+      quad.position = pos
+      quad.size     = size
+      quad.color    = (widget.level == 1) and {0.07,0.07,0.07,0.3} or { 0.15, 0.15, 0.15, 0.8 }
+
+      text.position = { pos[1], pos[2] + size[2] - 20 }
+      text.size     = { size[1], 20 }
+      text.text     = widget.title
+      text.color    = NORMAL_COLOR
+
+      local qHb
+      local qHe
+      local qVb
+      local qVe
+      local sr = widget.scrollRatio
+      if sr.x > 0 then
+         if not _qHb then _qHb = createQuad() end
+         qHb          = _qHb
+         qHb.position = pos + vec2(7,5)
+         qHb.size     = vec2( 1, size.y-25 )
+         qHb.color    = BLUEGLOW_COLOR * sr.x
+      end
+      if sr.y > 0 then
+         if not _qHe then _qHe = createQuad() end
+         qHe          = _qHe
+         qHe.position = pos + vec2(size.x-7,5)
+         qHe.size     = vec2( 1, size.y-25 )
+         qHe.color    = BLUEGLOW_COLOR * sr.y
+      end
+      if sr.z > 0 then
+         if not _qVb then _qVb = createQuad() end
+         qVb          = _qVb
+         qVb.position = pos + vec2(7,size.y-21)
+         qVb.size     = vec2( size.x-14, 1 )
+         qVb.color    = BLUEGLOW_COLOR * sr.z
+      end
+      if sr.w > 0 then
+         if not _qVe then _qVe = createQuad() end
+         qVe          = _qVe
+         qVe.position = pos + vec2(7,5)
+         qVe.size     = vec2( size.x-14, 1 )
+         qVe.color    = BLUEGLOW_COLOR * sr.w
+      end
+
+      return quad, text, qVb, qVe, qHb, qHe
+   end
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.shaders.boxScrollable( widget )
+
+   local _qHb = nil
+   local _qHe = nil
+   local _qVb = nil
+   local _qVe = nil
+
+   local function createQuad()
+      return widget.tquad{
+         image = "image/white",
+         type  = UI.TQuadType.NORMAL,
+         u     = { 0, 1 },
+         v     = { 0, 1 }
+      }
+   end
+
+   local function shade( widget )
+      local pos   = widget.globalPosition
+      local size  = widget.actualSize
+
+      local qHb
+      local qHe
+      local qVb
+      local qVe
+      local sr = widget.scrollRatio
+      if sr.x > 0 then
+         if not _qHb then _qHb = createQuad() end
+         qHb          = _qHb
+         qHb.position = pos + vec2(0,0)
+         qHb.size     = vec2( 1, size.y-2 )
+         qHb.color    = BLUEGLOW_COLOR * sr.x
+      end
+      if sr.y > 0 then
+         if not _qHe then _qHe = createQuad() end
+         qHe          = _qHe
+         qHe.position = pos + vec2(size.x-0,0)
+         qHe.size     = vec2( 1, size.y-2 )
+         qHe.color    = BLUEGLOW_COLOR * sr.y
+      end
+      if sr.z > 0 then
+         if not _qVb then _qVb = createQuad() end
+         qVb          = _qVb
+         qVb.position = pos + vec2(0,size.y)
+         qVb.size     = vec2( size.x-1, 1 )
+         qVb.color    = BLUEGLOW_COLOR * sr.z
+      end
+      if sr.w > 0 then
+         if not _qVe then _qVe = createQuad() end
+         qVe          = _qVe
+         qVe.position = pos + vec2(0,-1)
+         qVe.size     = vec2( size.x-1, 1 )
+         qVe.color    = BLUEGLOW_COLOR * sr.w
+      end
+
+      return qVb, qVe, qHb, qHe
+   end
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.shaders.menu( widget )
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedboxShadow",
+      u     = { 0, 0.4, 0.6, 1 },
+      v     = { 0, 0.4, 0.6, 0.7 },
+      color = MENU_COLOR
+   }
+   local bd = widget.tquad{
+      image = "theme/plasma/image/roundedboxEmpty",
+      u     = { 0, 0.4, 0.6, 1 },
+      v     = { 0, 0.4, 0.6, 0.7 },
+      color = {0,0,0,1}
+   }
+   widget.border = { 3, 3, 3, 3 }
+
+   local function shade( widget )
+      local pos  = widget.globalPosition
+      local size = widget.actualSize
+      -- take shadow into account.
+      quad.position = pos  - vec2( 8, 8 )
+      quad.size     = size + vec2( 16, 8 )
+      bd.position = pos
+      bd.size     = size
+      return quad, bd
+   end
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.shaders.menuItem( widget )
+   local text = widget.textQuad{
+      text = widget.text, font = widget.font or FONT_BASE, alignH = UI.TextAlignment.START,
+      offset = { 6, 1 }
+   }
+   local nQuad = widget.tquad{
+      image = "image/white",
+      u     = { 0, 1 },
+      v     = { 0, 1 },
+      type  = UI.TQuadType.NORMAL,
+      color = ITEM_COLOR
+   }
+   local arrow = widget.tquad{
+      image = "theme/plasma/image/arrow01",
+      type  = UI.TQuadType.NORMAL,
+      u     = { 0, 1, 0, 0 },
+      v     = { 0, 1, 0, 0 }
+   }
+
+   local function shade( widget )
+      local pos   = widget.globalPosition
+      local size  = widget.actualSize
+
+      text.position = pos
+      text.size     = size
+      text.text     = widget.text
+
+      local asize = arrow.size
+      local dsize = size - asize
+      arrow.position = pos + vec2( dsize.x - 5, dsize.y/2 - 1 )
+
+
+      if widget.enabled and widget.hovered then
+         nQuad.position = pos  + vec2(0,1)
+         nQuad.size     = size - vec2(0,2)
+         text.color     = BLUEGLOW_COLOR
+         arrow.color    = BLUEGLOW_COLOR
+
+         if widget.menu then
+            return nQuad, text, arrow
+         else
+            return nQuad, text
+         end
+      end
+
+      if not widget.enabled then
+         -- Disabled
+         text.color  = DISABLED_COLOR
+         arrow.color = DISABLED_COLOR
+      else
+         -- NORMAL
+         text.color  = NORMAL_COLOR
+         arrow.color = NORMAL_COLOR
+      end
+
+      if widget.menu then
+         --if widget.menu.parent then
+         --   arrow.color = BLUEGLOW_COLOR
+         --end
+         return text, arrow
+      else
+         return text
+      end
+   end
+
+   -- Keep text for computing base size
+   widget.textDrawable = text
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.menuItem( widget )
+   local size = widget.textDrawable.textSize
+   return { size[1] + 24, size[2] + 8 }
+end
+
+--==============================================================================
+-- SPLITTER
+--==============================================================================
+function UI.shaders.splitter( widget )
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedbox",
+      type  = UI.TQuadType.NORMAL,
+      u     = { 0.5, 0.5 },
+      v     = { 0.5, 0.5 }
+   }
+   widget.gap = 4
+
+   local function shade( widget )
+      local splitPos = widget.splitPosition
+      local size     = widget.actualSize
+      local pos      = widget.globalPosition
+
+      if widget.orientation == UI.BoxOrientation.HORIZONTAL then
+         quad.position = { splitPos[1] + pos[1]-2, splitPos[2] + pos[2] }
+         quad.size     = { 4, size[2] }
+      else
+         quad.position = { splitPos[1] + pos[1], splitPos[2] + pos[2]-2 }
+         quad.size     = { size[1], 4 }
+      end
+
+      if not widget.enabled then
+         -- Disabled
+         quad.color = DISABLED_COLOR
+      elseif widget.hovered then
+         if widget.pressed then
+            -- PRESSED & HOVERED
+            quad.color = BLUEGLOW2_COLOR
+         else
+            -- HOVERED
+            quad.color = BLUEGLOW_COLOR
+         end
+      else
+         -- NORMAL
+         quad.color = {0.2,0.2,0.2,1.0}
+      end
+
+      return quad
+   end
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--==============================================================================
+-- SEPARATOR
+--==============================================================================
+
+function UI.shaders.separator( widget )
+   local quad = widget.tquad{
+      image = "theme/plasma/image/roundedbox",
+      type  = UI.TQuadType.NORMAL,
+      color = {0.2,0.2,0.2,0.3},
+      u = { 0.5, 0.5 },
+      v = { 0.5, 0.5 },
+   }
+
+   local function shade( widget )
+      local size = widget.actualSize
+      local pos  = widget.globalPosition
+
+      if widget.parent.orientation == UI.BoxOrientation.HORIZONTAL then
+         quad.position = { (size[1]/2) + pos[1] + 1, pos[2] }
+         quad.size = { 1, size[2] }
+      else
+         quad.position = { pos[1], (size[2]/2) + pos[2] + 1 }
+         quad.size = { size[1], 1 }
+      end
+
+      return quad
+   end
+
+   -- Create new closure
+   widget.shader = shade
+end
+
+--------------------------------------------------------------------------------
+function UI.baseSize.separator( widget )
+   return { 4, 4 }
+end
+
+--==============================================================================
+--  Definition of shortcuts widgets.
+--==============================================================================
+
+--------------------------------------------------------------------------------
+function UI.vbox( ui, attributes )
+   attributes.orientation = UI.BoxOrientation.VERTICAL
+   return ui.box( attributes )
+end
+
+--------------------------------------------------------------------------------
+function UI.hbox( ui, attributes )
+   attributes.orientation = UI.BoxOrientation.HORIZONTAL
+   return ui.box( attributes )
+end
+
+--------------------------------------------------------------------------------
+function UI.obox( ui, attributes )
+   attributes.orientation = UI.BoxOrientation.OVERLAY
+   return ui.box( attributes )
+end
+
+--------------------------------------------------------------------------------
+function UI.toggle( ui, attributes )
+   attributes.shader   = attributes.shader or UI.shaders.toggle
+   attributes.baseSize = attributes.baseSize or UI.baseSize.toggle
+   return ui.button( attributes )
+end
+
+--------------------------------------------------------------------------------
+function UI.image( ui, attributes )
+   attributes.shader   = attributes.shader or UI.shaders.image
+   attributes.baseSize = attributes.baseSize or UI.baseSize.image
+   return ui.button( attributes )
+end
+
+--------------------------------------------------------------------------------
+function UI.separator( ui, attributes )
+   attributes.shader   = attributes.shader or UI.shaders.separator
+   attributes.baseSize = attributes.baseSize or UI.baseSize.separator
+   return ui.button( attributes )
+end
+
+--------------------------------------------------------------------------------
+function UI.group( ui, attributes )
+   attributes.title = attributes.title or ""
+   attributes.level = attributes.level or 1
+   attributes.shader = UI.shaders.group
+   return ui.box( attributes )
+end
+
+--------------------------------------------------------------------------------
+function UI.panel( ui, attributes )
+
+   -- Subwidgets
+   local _closeButton      -- UI.widget with a specific shader
+   local _minimizeButton   -- UI.widget with a specific shader
+
+   -- Private members
+   local _grabPos = { 0, 0 }
+   local _grab    = false
+
+   -- Resizing information.
+   local _resizeH = 0
+   local _resizeV = 0
+   local _pointer = {
+      [-1] = { [-1] = UI.Pointer.SIZE_BL, [0] = UI.Pointer.SIZE_B,  [1] = UI.Pointer.SIZE_BR },
+      [0]  = { [-1] = UI.Pointer.SIZE_L,  [0] = UI.Pointer.DEFAULT, [1] = UI.Pointer.SIZE_R  },
+      [1]  = { [-1] = UI.Pointer.SIZE_TL, [0] = UI.Pointer.SIZE_T,  [1] = UI.Pointer.SIZE_TR }
+   }
+
+
+   --==============================================================================
+   --  PRIVATE METHODS
+   --==============================================================================
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget:  UI.widget, close window button to shade
+   -- RETURN
+   --    list of UI.tquad to use as drawables for a close window button
+   function closeButtonShader( widget )
+
+      local xQuad = widget.tquad{
+         image = "theme/plasma/image/close",
+         type = UI.TQuadType.CENTERED,
+         u = { 0, 1, 0, 0 },
+         v = { 0, 1, 0, 0 }
+      }
+
+      --------------------------------------------------------------------------------
+      local function shade( widget )
+         xQuad.position = widget.globalPosition
+         xQuad.size     = widget.actualSize
+
+         if not widget.enabled then
+            -- Disabled
+            xQuad.color = DISABLED_COLOR
+         elseif widget.hovered then
+            if widget.pressed then
+               -- PRESSED & HOVERED
+               xQuad.color = REDGLOW2_COLOR
+            else
+               -- HOVERED
+               xQuad.color = REDGLOW_COLOR
+            end
+         else
+            -- NORMAL
+            xQuad.color = NORMAL_COLOR
+         end
+
+         return xQuad
+      end
+
+      -- Keep circle for computing base size
+      widget.drawable = xQuad
+
+      -- Create new closure
+      widget.shader = shade
+   end
+
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget:  UI.widget, minimize window button to shade
+   -- RETURN
+   --    list of UI.tquad to use as drawables for a minimize window button
+   function minimizeButtonShader( widget )
+
+      local fullQuad = widget.tquad{
+         image = "theme/plasma/image/circle",
+         type = UI.TQuadType.CENTERED,
+            u = { 0, 1, 0, 0 },
+            v = { 0, 1, 0, 0 }
+         }
+      local halfQuad = widget.tquad{
+         image = "theme/plasma/image/circlehalf",
+         type = UI.TQuadType.CENTERED,
+         u = { 0, 1, 0, 0 },
+         v = { 0, 1, 0, 0 }
+      }
+
+      --------------------------------------------------------------------------------
+      local function shade( widget )
+         local pos   = widget.globalPosition
+         local size  = widget.actualSize
+
+         local quad = ( widget.minimized and fullQuad ) or halfQuad
+
+         quad.position = pos
+         quad.size     = size
+
+         if not widget.enabled then
+            -- Disabled
+            quad.color  = DISABLED_COLOR
+         elseif widget.hovered then
+            if widget.pressed then
+               -- PRESSED & HOVERED
+               quad.color = GREENGLOW2_COLOR
+            else
+               -- HOVERED
+               quad.color = GREENGLOW_COLOR
+            end
+         else
+            -- NORMAL
+            quad.color = NORMAL_COLOR
+         end
+
+         return quad
+      end
+
+      -- Keep circle for computing base size
+      widget.drawable = fullQuad
+
+      -- Create new closure
+      widget.shader = shade
+   end
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget:  UI.widget, any window button (minimize, close...) for which to compute size
+   -- RETURN
+   --    Vec2i, size to use for close button
+   function windowButtonBaseSize( widget )
+      return widget.drawable.imageSize
+   end
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget: UI.panel, panel on which to operate
+   --    pos:    Vec2i, position of mouse pointer
+   -- RETURN
+   --    { [-1,0,1], [-1,0,1] }  indicating the direction of horizontal and vertical
+   --                            resize that should occur with given mouse position
+   local function resizeDirection( widget, pos )
+      local globalPos  = widget.globalPosition
+      local actualSize = widget.actualSize
+      local relX       = pos[1]-globalPos[1]
+      local relY       = pos[2]-globalPos[2]
+      local resH       = 0
+      local resV       = 0
+
+      if widget.resizableH and not widget.minimized then
+         if relX < 16 then
+            resH = -1
+         elseif relX > actualSize[1] - 16 then
+            resH = 1
+         end
+      end
+
+      if widget.resizableV and not widget.minimized then
+         if relY < 16 then
+            resV = -1
+         elseif relY > actualSize[2] - 16 then
+            resV = 1
+         end
+      end
+      return resH, resV
+   end
+
+
+   --==============================================================================
+   --  CALLBACKS
+   --==============================================================================
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget: UI.panel, panel on which to operate
+   --    ev:     UI.event, event information
+   local function press( widget, ev )
+      local parent = widget.parent
+      if not parent.noReorder then
+         parent.toFront()
+      end
+      if ev.repeated then
+         parent.onMinimize( parent )
+      end
+      _grabPos = ev.position
+      _grab    = true
+   end
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget: UI.panel, panel on which to operate
+   --    ev:     UI.event, event information
+   local function release( widget, ev )
+      _grab = false
+   end
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget: UI.panel, panel on which to operate
+   --    ev:     UI.event, event information
+   local function move( widget, ev )
+      if _grab then
+         local parent  = widget.parent
+         local wpos    = parent.absPosition
+         wpos[1]       = wpos[1] + ev.position[1] - _grabPos[1]
+         wpos[2]       = wpos[2] + ev.position[2] - _grabPos[2]
+         _grabPos      = ev.position
+         parent.absPosition = wpos
+      end
+   end
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget: UI.panel, panel on which to operate
+   --    ev:     UI.event, event information
+   local function resizePress( widget, ev )
+      if not widget.noReorder then
+         widget.toFront()
+      end
+      _grab    = true
+      _grabPos = ev.position
+      _resizeH, _resizeV = resizeDirection( widget, _grabPos )
+   end
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget: UI.panel, panel on which to operate
+   --    ev:     UI.event, event information
+   local function resizeRelease( widget, ev )
+      _grab = false
+   end
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget: UI.panel, panel on which to operate
+   --    ev:     UI.event, event information
+   local function resizeMove( widget, ev )
+      if _grab then
+         delX = ( ev.position[1] - _grabPos[1] ) * _resizeH
+         delY = ( ev.position[2] - _grabPos[2] ) * _resizeV
+
+         local actualSize = widget.actualSize
+         local baseSize   = widget.desiredSize
+
+         if delX + actualSize[1] < baseSize[1] then
+            delX = baseSize[1] - actualSize[1]
+         end
+         if delY + actualSize[2] < baseSize[2] then
+            delY = baseSize[2] - actualSize[2]
+         end
+
+         if delX ~= 0 and delY ~= 0 then
+            widget.resize( ( _resizeH == -1 and delX ) or 0,
+                           ( _resizeV == -1 and delY ) or 0,
+                           ( _resizeH ==  1 and delX ) or 0,
+                           ( _resizeV ==  1 and delY ) or 0 )
+         else
+            if delX ~= 0 then
+               widget.resizeW( ( _resizeH == -1 and delX ) or 0,
+                               ( _resizeH ==  1 and delX ) or 0 )
+            end
+            if delY ~= 0 then
+               widget.resizeH( ( _resizeV == -1 and delY ) or 0,
+                               ( _resizeV ==  1 and delY ) or 0 )
+            end
+         end
+
+         if not (_resizeH == 0) then
+            _grabPos[1] = _grabPos[1] + delX / _resizeH
+         end
+         if not (_resizeV == 0) then
+            _grabPos[2] = _grabPos[2] + delY / _resizeV
+         end
+
+      else
+         _resizeH, _resizeV = resizeDirection( widget, ev.position )
+      end
+      UI.setPointer( ev.pointerID, _pointer[_resizeV][_resizeH] )
+   end
+
+   --------------------------------------------------------------------------------
+   -- INPUT
+   --    widget: UI.panel, panel on which to operate
+   local prevSize
+   local prevPos
+   local prevMinPos
+   local function minimize( widget )
+      local userArea = widget[2]
+      if widget.minimized then
+         _minimizeButton.minimized = false
+         userArea.hidden  = false
+         widget.minimized = false
+         -- Reset pos and size
+         local pos   = widget.position
+         widget.position = { prevPos[1] + pos[1]-prevMinPos[1], prevPos[2] + pos[2]-prevMinPos[2] }
+         widget.size = prevSize
+      else
+         prevSize         = widget.size
+         prevPos          = widget.position
+         userArea.hidden  = true
+         widget.minimized = true
+         _minimizeButton.minimized = true
+         widget.resize( 0, 32 - widget.actualSize[2], 0, 0 )
+         prevMinPos = widget.position
+      end
+   end
+
+
+   --==============================================================================
+   --  UI
+   --==============================================================================
+
+   -- User area attributes description.
+   local subattributes = {
+      flex       = 1,
+      gap        = attributes.gap,
+      border     = attributes.border or { 6, 6, 6, 6 },
+      orientation= attributes.orientation,
+      anchor     = attributes.anchor,
+      onPointerPress   = function( w, e ) w.parent.onPointerPress( w.parent, e ) end,
+      onPointerRelease = function( w, e ) w.parent.onPointerRelease( w.parent, e ) end,
+      onPointerMove    = function( w, e ) w.parent.onPointerMove( w.parent, e ) end
+   }
+
+   -- Move child widgets into user area.
+   table.foreachi(
+      attributes,
+      function( key, value )
+         subattributes[key] = value
+         attributes[key]    = nil
+      end
+   )
+
+   -- Setup panel attributes
+   attributes.gap              = nil
+   attributes.border           = { 4, 4, 4, 4 }
+   attributes.orientation      = nil
+   attributes.title            = attributes.title or ""
+   attributes.onPointerPress   = resizePress
+   attributes.onPointerRelease = resizeRelease
+   attributes.onPointerMove    = resizeMove
+   attributes.onMinimize       = attributes.onMinimize or minimize
+   attributes.onClose          = attributes.onClose or function(w) w.close(w) end
+   attributes.shader           = UI.shaders.panel
+   attributes.minimized        = false
+   if attributes.intangible == nil then attributes.intangible = false end
+
+
+   -- Setup window buttons
+   _closeButton = ui.button{
+      hidden  = not attributes.closeButton,
+      onClick = function( w, e )
+                   local panel   = w.parent.parent
+                   local onClose = panel.onClose
+                   if onClose then
+                      onClose( panel )
+                   end
+                end,
+      shader   = closeButtonShader,
+      baseSize = windowButtonBaseSize
+   }
+
+   _minimizeButton = ui.button{
+      hidden   = not attributes.minimizeButton,
+      minimized= attributes.minimized,
+      onClick  = function( w, e )
+                    local panel      = w.parent.parent
+                    local onMinimize = panel.onMinimize
+                    if onMinimize then
+                       onMinimize( panel )
+                    end
+                 end,
+      shader   = minimizeButtonShader,
+      baseSize = windowButtonBaseSize
+   }
+
+   -- Panel title bar
+   attributes[1] = ui.hbox{
+      gap              = 4,
+      size             = { -1, 30 },
+      border           = { 0, 7, 6, 0 },
+      intangible       = false,
+      onPointerPress   = press,
+      onPointerRelease = release,
+      onPointerMove    = move,
+      ui.spacer{
+         flex = 1,
+         eventsEnabled    = true,
+         onPointerPress   = function( w, e ) w.parent.onPointerPress( w.parent, e ) end,
+         onPointerRelease = function( w, e ) w.parent.onPointerRelease( w.parent, e ) end,
+         onPointerMove    = function( w, e ) w.parent.onPointerMove( w.parent, e ) end
+      },
+      _minimizeButton,
+      _closeButton
+   }
+
+   -- Panel user area
+   attributes[2] = ui.box( subattributes )
+   attributes.userArea = attributes[2]
+
+   -- Create panel
+   local panel = ui.vbox( attributes )
+
+
+   function panel.replaceUserArea( widget )
+      panel.removeWidget( panel.userArea )
+      panel.addWidget( widget )
+      panel.userArea = widget
+   end
+
+   function panel.setMinimized( value )
+      if panel.minimized ~= value then
+         minimize( panel )
+      end
+   end
+
+   function panel.toggleMinimized()
+      minimize( panel )
+   end
+
+   -- Setup initial unminimized size
+   panel.unMinimizedSize = panel.desiredSize
+   if panel.size[1] < 0 then panel.unMinimizedSize[1] = -1 end
+   if panel.size[2] < 0 then panel.unMinimizedSize[2] = -1 end
+
+   return panel
+
+end
+
+function UI.rect( gui, params )
+   local params = params or {}
+   params.size  = params.size
+
+   local this   = gui.button( params )
+
+   local rect = this.tquad{
+      image = "theme/plasma/image/roundedboxIntShadow",
+      u = { 0.0, 0.4, 0.6, 1.0 },
+      v = { 0.0, 0.4, 0.6, 1.0 },
+   }
+
+   -----------------------------------------------------------------------------
+   function this.shader( w )
+      rect.position = w.globalPosition
+      rect.size     = w.actualSize
+      rect.color    = w.color
+      return rect
+   end
+
+   return this
+end

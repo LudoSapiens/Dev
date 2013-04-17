@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\ADT">
+      <UniqueIdentifier>{e9d12975-7226-45ff-92b1-e2d6a926a242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Dbg">
+      <UniqueIdentifier>{250bfe2b-7a19-49eb-8c24-44f6ce32985a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\IO">
+      <UniqueIdentifier>{3d80ea5b-e995-43bb-9c54-64be043b245e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Msg">
+      <UniqueIdentifier>{98c0da23-38ba-4158-b590-a5c9c832c565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Net">
+      <UniqueIdentifier>{effb9254-e64c-4d2a-a972-aa4d9c19020c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Util">
+      <UniqueIdentifier>{7f5f3c60-c3ff-4b4b-a944-d06200e3b7fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\MT">
+      <UniqueIdentifier>{d013e13d-e4f2-4793-9081-7b9c0119fe36}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Cache.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Vector.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\ConstString.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\DEQueue.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\DynArray.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\HashTable.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Heap.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\List.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Map.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\MapWithDefault.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\MemoryPool.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Pair.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Queue.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\RCVector.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Set.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\String.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\StringMap.h">
+      <Filter>Source\ADT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Dbg\DebugStream.h">
+      <Filter>Source\Dbg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Dbg\Defs.h">
+      <Filter>Source\Dbg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Dbg\ErrorManager.h">
+      <Filter>Source\Dbg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Dbg\UnitTest.h">
+      <Filter>Source\Dbg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\BinaryStream.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\FileDevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\FileSystem.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\GZippedFileDevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\IODevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\LockedMemoryDevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\MemoryDevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\MMapDevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\MultiDevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\NullDevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\Path.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\StreamIndent.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\StringDevice.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\TextStream.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Msg\Delegate.h">
+      <Filter>Source\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Msg\DelegateList.h">
+      <Filter>Source\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Msg\Observer.h">
+      <Filter>Source\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Msg\Subject.h">
+      <Filter>Source\Msg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Atomic.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Lock.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\RWLock.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Semaphore.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Task.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\TaskQueue.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Thread.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Trigger.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\ValueTrigger.h">
+      <Filter>Source\MT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Application.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Arguments.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\ArrayAdaptor.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Bits.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Compiler.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\CPU.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Date.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\EndianSwapper.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Enum.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Half.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Hash.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\IDPool.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Memory.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Packed.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Platform.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\RadixSort.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\RCObject.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\RCObjectNA.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\RCP.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\SHA.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Singleton.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Time.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Timer.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Unicode.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\UnicodeIterator.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Union.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Validator.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\windows.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Net\Socket.h">
+      <Filter>Source\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Net\SocketDevice.h">
+      <Filter>Source\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Net\_SocketImpl.h">
+      <Filter>Source\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\StdDefs.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\ADT\ConstString.cpp">
+      <Filter>Source\ADT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\ADT\String.cpp">
+      <Filter>Source\ADT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\ADT\StringMap.cpp">
+      <Filter>Source\ADT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Dbg\DebugStream.cpp">
+      <Filter>Source\Dbg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Dbg\ErrorManager.cpp">
+      <Filter>Source\Dbg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Dbg\UnitTest.cpp">
+      <Filter>Source\Dbg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\BinaryStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\FileDevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\FileSystem.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\GZippedFileDevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\IODevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\LockedMemoryDevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\MemoryDevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\MMapDevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\MultiDevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\NullDevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\Path.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\StringDevice.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\TextStream.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Msg\Observer.cpp">
+      <Filter>Source\Msg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Msg\Subject.cpp">
+      <Filter>Source\Msg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Lock.cpp">
+      <Filter>Source\MT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\RWLock.cpp">
+      <Filter>Source\MT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Semaphore.cpp">
+      <Filter>Source\MT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Task.cpp">
+      <Filter>Source\MT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\TaskQueue.cpp">
+      <Filter>Source\MT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Thread.cpp">
+      <Filter>Source\MT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Trigger.cpp">
+      <Filter>Source\MT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\ValueTrigger.cpp">
+      <Filter>Source\MT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Application.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Arguments.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Date.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Memory.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\RadixSort.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\RCObject.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\RCObjectNA.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\SHA.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Time.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Unicode.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\UnicodeIterator.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Validator.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Net\Socket.cpp">
+      <Filter>Source\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Net\SocketDevice.cpp">
+      <Filter>Source\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Net\_SocketImpl.cpp">
+      <Filter>Source\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Formatter.cpp">
+      <Filter>Source\Util</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,28 @@
+local entity, stimuli = ...
+
+local path = {
+   { vec3(  3,  0,  0 ), 3 },
+   { vec3(  0,  2,  0 ), 1 },
+   { vec3( -3, -2,  0 ), 2 },
+}
+
+local function setPath( idx )
+   local p = path[idx]
+   if p then
+      local pos = round( entity.position + p[1] )
+      print( "Going to: "..tostring(pos) )
+      action( "entity.moveTo", { position=pos, speed=p[2] }, true )
+      entity.pathID = idx
+   end
+end
+
+for i,s in ipairs( stimuli ) do
+   if s.type == "actionCompleted" then
+      setPath( entity.pathID + 1 )
+   elseif s.type == "begin" then
+      action( "entity.moveTo",  { autoDelete=false, notifyOnCompletion=true }, true )
+      setPath( 1 )
+   else
+      print( "Unknown stimulus type", s.type )
+   end
+end

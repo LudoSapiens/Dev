@@ -1,0 +1,454 @@
+include( "script/task/taskInterface" )
+include( "script/util/cgmath" )
+include( "script/ui/inputWidgets" )
+
+local res = ObjectPool( "RES" )
+
+--==============================================================================
+-- Regression Task plugin script.
+-- This task is a testbed for our new procedural geometry system.
+--==============================================================================
+
+--local backgroundColor = { 0.60, 0.75, 0.95, 1.00 }
+local backgroundColor = { 0.8, 0.8, 0.8, 1.0 }
+--local backgroundColor = { 1.2, 1.2, 1.2, 1.0 }
+--local backgroundColor = { 1.0, 1.0, 1.0, 1.0 }
+
+--==============================================================================
+-- RegressionPanel
+--==============================================================================
+local regressionDir = "world/regression/"
+
+local regressionFiles = {
+   "primitives",
+   "simple",
+   "simple2",
+   "simple3",
+   "simple4",
+   "multi_level",
+   {
+      name="action",
+      "camera01",
+   },
+   {
+      name="basic",
+      "union01",
+      "union02",
+      "intersection01",
+      "transform01",
+      "difference01",
+      {
+         name="params",
+         "blocks01",
+         "blocks02",
+         "creases01",
+         "creases02",
+         "creases03",
+         "creases04",
+         "merge01",
+         "merge02",
+      },
+      "slice01",
+      "split01",
+      "alternate01",
+   },
+   {  name="precision",
+      "union01",
+      "intersection01",
+      "difference01",
+      "union02",
+      "intersection02",
+      "difference02",
+      "oblique_union01",
+      "oblique_intersection01",
+      "oblique_difference01",
+      "oblique_union02",
+      "oblique_intersection02",
+      "oblique_difference02",
+      "raytrace01",
+   },
+   {  name="moderate",
+      "01",
+      "difference01",
+      "overlap01",
+      "roof01",
+   },
+   {  name="curve",
+      "union01",
+      "union02",
+      "union03",
+      "union04",
+      "union05",
+      "difference01",
+      "difference02",
+      "difference03",
+      "difference04",
+      "difference05",
+      "moderate01",
+      "moderate02",
+   },
+   {
+      name="vegetation",
+      "tree01",
+      "tree02",
+      "tree03",
+   },
+   {
+      name="terrain",
+      "terrain01",
+   },
+   {  name="compositing",
+      "composite01",
+      "composite02",
+      "composite03",
+      "constraints",
+      "occlusion",
+   },
+   {
+      name="building",
+      "building01",
+      "building02",
+      "building03",
+      "building04",
+      "building05",
+      "building06",
+      "interior01",
+      "interior02",
+      "interior03",
+      "stairs",
+      "apartments",
+      "hotel01",
+      "hotel02",
+      "house01",
+      "rowhouse01",
+      "school01",
+      "school02",
+      "corridors",
+      {
+         name="famous",
+         "pentagon",
+      },
+   },
+   {
+      name="furniture",
+      {
+         name="bath",
+         "bath01",
+      },
+      {
+         name="bed",
+         "bed01",
+      },
+      {
+         name="chair",
+         "chair01",
+         "chair02",
+         "chair03",
+      },
+      {
+         name="couch",
+         "couch01",
+      },
+      {
+         name="desk",
+         "desk01",
+      },
+      {
+         name="sink",
+         "sink01",
+      },
+      {
+         name="table",
+         "table01",
+         "table02",
+      },
+      {
+         name="toilet",
+         "toilet01",
+      },
+   },
+   {
+      name="appliance",
+      {
+         name="range",
+         "range01",
+      },
+      {
+         name="refrigerator",
+         "refrigerator01",
+      },
+   },
+   {
+      name="object",
+      "dice",
+   },
+   {  name="abstract",
+      "abstract01",
+      "abstract02",
+      "abstract03",
+      "abstractAnim01",
+   },
+   {
+      name="character",
+      "creature01",
+      "hand"
+   },
+   {
+      name="material",
+      "base",
+      "base_multi",
+      "custom",
+      "custom_multi",
+      "mixed_multi",
+      "reflective",
+   },
+   "doorknob",
+   "trimesh",
+}
+
+--------------------------------------------------------------------------------
+local function pathJoin( path, ... )
+   local args = {...}
+   for _,arg in ipairs( args ) do
+      if not path then
+         path = arg
+      elseif path:sub(-1) == "/" then
+         path = path .. arg
+      else
+         path = path .. "/" .. arg
+      end
+   end
+   return path
+end
+--------------------------------------------------------------------------------
+local function RegressionPanel( ui, params )
+   local this = params or {}
+
+   this.title       = this.title       or "Regressions"
+   this.orientation = this.orientation or UI.BoxOrientation.VERTICAL
+   this.hAlign      = this.hAlign      or UI.WidgetAlignment.START
+   this.vAlign      = this.vAlign      or UI.WidgetAlignment.START
+   this.size        = this.size        or { 200, -1 }
+
+   local this  = ui.panel( this )
+   local ua    = this.userArea
+
+   -----------------------------------------------------------------------------
+   function this.addFiles( files, directory, widget )
+      widget    = widget or ua
+      --widget.gap = 0
+      for _,v in ipairs( files ) do
+         if type(v) == "table" then
+            local dir = pathJoin(directory, v.name)
+            local dirPanel = ui.panel{
+               title       = v.name,
+               orientation = UI.BoxOrientation.VERTICAL,
+               noReorder   = true,
+            }
+            dirPanel.setMinimized( true )
+            this.addFiles( v, dir, dirPanel )
+            widget.addWidget( dirPanel )
+         else
+            local file = pathJoin(directory, v)
+            widget.addWidget(
+               ui.label{
+                  text    = v,
+                  id      = file,
+                  onClick = function( w )
+                     local name = regressionDir .. w.id
+                     this.task.load( name )
+                  end,
+               }
+            )
+         end
+      end
+   end
+
+   return this
+end
+
+--==============================================================================
+-- RegressionTask
+--==============================================================================
+
+local function RegressionTask( params )
+   local this = TaskInterface( params )
+   local ui   = this.ui
+   local timeStart
+   local charCtrl
+   local flyByManip
+
+   -----------------------------------------------------------------------------
+   -- Methods
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   local frameID   = 0
+   local framePath = "screen_%05d"
+   function this.screenGrab( silent )
+      local filename = string.format( framePath, frameID )
+      UI.screenGrab( filename )
+      if not silent then
+         print("Dumped: " .. filename)
+      end
+      frameID = frameID + 1
+   end
+
+   -----------------------------------------------------------------------------
+   local worldID   = 0
+   local worldPath = "/Users/luc/world_%05d"
+   function this.worldGrab( silent )
+      local filename = string.format( worldPath, worldID )
+      --if true then print( filename ); worldID = worldID + 1; return end
+      local ok = Plasma.saveWorld( this._world, filename )
+      if not ok then
+         print( "ERROR - Could not save '" .. filename .. "'." )
+      else
+         if not silent then
+            print( "SUCCESS" )
+         end
+      end
+      worldID = worldID + 1
+      return ok
+   end
+
+   -----------------------------------------------------------------------------
+   function this.close()
+      if this._world then res.remove( this._world ) end
+   end
+   -----------------------------------------------------------------------------
+   function this.open()
+      print( "Opening Regression." )
+   end
+   -----------------------------------------------------------------------------
+   function this.save()
+      print( "Saving Regression." )
+   end
+   -----------------------------------------------------------------------------
+   function this.hotkey( ev )
+      local key = ev.value
+      if key == UI.Key.SLASH then
+         PlasmaConfig.wireframe = not PlasmaConfig.wireframe
+      elseif key == UI.Key.c then
+         local camPos = this._screen.cameraPosition
+         print( "campos = { " .. camPos[1] .. ", " .. camPos[2] .. ", " .. camPos[3] .. " }" )
+         local camOri = this._screen.cameraOrientation
+         print( "camori = { " .. camOri[1] .. ", " .. camOri[2] .. ", " .. camOri[3] .. ", " .. camOri[4] .. " }" )
+      elseif key == UI.Key.h then
+         this._regressionPanel.hidden = not this._regressionPanel.hidden
+      elseif key == UI.Key.m then
+         local curManip = this._screen.frontManipulator()
+         --if curManip == flyByManip then
+         --   print("Switching to default manipulator")
+         --   this._screen.manipulator = flyByManip.next
+         --else
+         --   print("Switching to flyby manipulator")
+         --   this._screen.manipulator = flyByManip
+         --end
+         if curManip == charCtrl then
+            print("Switching to default manipulator")
+            this._screen.removeManipulator( charCtrl )
+         else
+            print("Switching to entity controller")
+            this._screen.addManipulatorFront( charCtrl )
+         end
+      --[[
+      elseif key == UI.Key.M then
+         local curManip = this._screen.manipulator
+         local mode = curManip.mode
+         if mode then
+            mode = (mode + 1) % 2
+            print("Setting mode to " .. mode)
+            curManip.mode = mode
+         end
+      --]]
+      elseif key == UI.Key.S then
+         this.worldGrab()
+         -- local filename = "temp_world"
+         -- print( "Trying to save the world:", filename )
+         -- local ok = Plasma.saveWorld( this._world, filename )
+         -- if not ok then
+         --    print( "ERROR - Could not save '" .. filename .. "'." )
+         -- else
+         --    print( "SUCCESS" )
+         -- end
+      elseif key == UI.Key.P then
+         this.screenGrab()
+      elseif key == UI.Key.O then
+         print("Dumping last entity's trimesh")
+         local e = this._world.entity( this._world.numEntities-1 ) -- C++ index.
+         print(e, e.geometry)
+         --local outputFile = "/Users/jph/output.mesh"
+         local outputFile = "/Users/luc/mesh.obj"
+         Plasma.saveGeometry( e.geometry, outputFile )
+      end
+   end
+   -----------------------------------------------------------------------------
+   function this.keyPress( ev )
+      local key = ev.value
+   end
+   -----------------------------------------------------------------------------
+   function this.keyRelease( ev )
+      local key = ev.value
+   end
+   -----------------------------------------------------------------------------
+   function this.worldCb( w )
+      print( string.format( "World loaded (took %.2f s).", os.clock()-timeStart ) )
+      this._regressionPanel.title = "Loaded"
+      this.setWorld( w )
+   end
+   -----------------------------------------------------------------------------
+   function this.setWorld( w )
+      local ow = this._world
+      if ow then res.remove( ow ) end
+      if w then w.backgroundColor = backgroundColor end
+      this._world = w
+      this._screen.world = w
+      w.startSimulation()
+   end
+   -----------------------------------------------------------------------------
+   function this.load( name, params )
+      print( "Loading world: " .. name, params )
+      this._regressionPanel.title = "Loading..."
+      timeStart = os.clock()
+      res.newWorld( name, params, this.worldCb )
+   end
+
+   -----------------------------------------------------------------------------
+   --  Data members
+   -----------------------------------------------------------------------------
+   this.name  = "Regression " .. tostring(this.id)
+
+   -----------------------------------------------------------------------------
+   -- UI
+   this.desktop.color = backgroundColor
+
+   this._screen = ui.plasmaScreen{
+      flex        = 1,
+      renderSize  = {-1,-1},
+      manipulator = ui.touchCameraManipulator{},
+   }
+   this.desktop.addWidget( this._screen )
+
+   charCtrl = gui.multiCharacterController{}
+   flyByManip = gui.FlyByManipulator{}
+
+   this._regressionPanel = RegressionPanel( ui, { task=this } )
+   this._regressionPanel.addFiles( regressionFiles )
+   this.desktop.addWidget( this._regressionPanel )
+
+   local regression = os.getenv("PLASMA_REGRESSION")
+   if regression then
+      print("Lauching user-specified regression:", regression)
+      this.load( pathJoin(regressionDir, regression) )
+   end
+
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- REGISTRATION
+--==============================================================================
+
+registerTask( "Regression", { create = RegressionTask } )

@@ -1,0 +1,10 @@
+//
+// Vertex color with constant color GLSL fragment shader.
+//
+uniform highp vec4 color;
+varying highp vec4 vcolor;
+
+void main( void )
+{
+   gl_FragColor = vcolor*color;
+}

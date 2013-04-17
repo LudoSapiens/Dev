@@ -1,0 +1,2 @@
+vertex shader/vertex/mnp_skel
+fragment shader/fragment/forward/depth1_dir

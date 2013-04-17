@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- shape-rendering crispEdges, geometricPrecision  -->
+<svg width="64px" height="64px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	<desc>Stroke</desc>
+	<g style="fill:black;stroke:none;">
+		<rect x="0" y="0" width="100" height="100"/>
+	</g>
+	<g transform="translate(50,50) scale(1,-1) translate(-50,-50)">
+		<g style="fill:white;stroke:none;">
+			<path d="M10,10 L50,10 S50,30 80,70 30,80 10,10"/>
+		</g>
+		<g style="fill:white;stroke:black;stroke-width:3;stroke-linecap:round;stroke-dasharray:3 8;">
+			<path d="M30,10 C30,20 40,50 72,75"/>
+		</g>
+	</g>
+</svg>

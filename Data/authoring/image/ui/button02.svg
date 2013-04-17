@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+
+<svg width="64px" height="30px" viewBox="0 0 64 30">
+<desc>button</desc>
+
+<linearGradient id="grad1" gradientUnits="objectBoundingBox"
+    x1="0%" y1="100%" x2="0%" y2="0%">
+    <stop offset="0%" stop-color="rgb(150,150,150)" />
+    <stop offset="100%" stop-color="rgb(255,255,255)" />
+  </linearGradient>
+
+<rect x="0" y="0" width="64" height="30" rx="16"
+fill="black" shape-rendering="geometricPrecision" />
+
+<!--
+<rect x="2" y="2" width="60" height="26" rx="8"
+fill="rgb(255,255,255)" fill-opacity="1"/>
+-->
+
+<rect x="2" y="2" width="60" height="26" rx="14"
+fill="url(#grad1)"/>
+
+</svg>
+

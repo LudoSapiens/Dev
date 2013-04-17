@@ -1,0 +1,292 @@
+--==============================================================================
+--  Include files
+--==============================================================================
+
+include( "theme/default" )
+--include( "theme/plasma" )
+include( "script/ui/inputWidgets" )
+include( "script/util/table" )
+
+gui = ObjectPool()
+
+local ssid = 0
+local function nextScreenShotName()
+   local name = "screenshot" .. ssid -- .. ".png"
+   ssid = ssid + 1
+   return name
+end
+
+--=============================================================================
+--  UI definition.
+--=============================================================================
+
+local function FontPanel( gui, params )
+   local this = params or {}
+
+   -- Default values.
+   this.orientation = this.orientation or UI.BoxOrientation.VERTICAL
+
+   local _fonts = this.fonts or {
+      "default",
+      "DejaVuSansMono",
+      "tahomabd",
+   }
+   this.fonts = nil
+
+   local _curFont = {}
+
+   local function newLabel( name, text )
+      if text then
+         return gui.hbox{
+            gui.label{ text=name, font=name, size={100,-1}, alignH=UI.TextAlignment.END },
+            gui.spacer{ size={5,-1} },
+            gui.label{ text=text, font=_curFont },
+         }
+      else
+         return gui.label{ text=name, font=_curFont }  -- Use 'name' as 'text'.
+      end
+   end
+
+   local _lower  = gui.label{ text="abcdefghijklmnopqrstuvwxyz" }
+   local _upper  = gui.label{ text="ABCDEFGHIJKLMNOPQRSTUVWXYZ" }
+   --local _upper  = gui.label{ text=string.upper(_lower.text) }
+   local _digit  = gui.label{ text="0123456789" }
+   local _other  = gui.label{ text=",.;:'\"<>“”_~&/|\\!?$@#%+-*=°•{}[]()" }
+   local _alower = gui.label{ text="âäéèêëíìîïóòôöõøúùûüŭñç" }
+   local _aupper = gui.label{ text="ÂÄÉÈÊËÍÌÎÏÓÒÔÖÕØÚÙÛÜŬÑÇ" }
+   --local _aupper = gui.label{ text=string.upper(_alower.text) } -- Lua doesn't support UTF8.
+   local _custom = gui.textEntry{ text="custom text" }
+   local _all    = gui.vbox{
+      _lower,
+      _upper,
+      _digit,
+      _other,
+      _alower,
+      _aupper,
+      _custom,
+   }
+
+   this = gui.panel( this )
+   this.addWidget( _all )
+
+   local function toMenu( fonts )
+      local items = {}
+      for i,v in ipairs( fonts ) do
+         items[#items+1] = gui.menuItem{ id=v, text=v }
+      end
+      return gui.menu( items )
+   end
+   local _fontName = gui.comboBox{ size={200,-1}, menu=toMenu(_fonts), onItemChanged=function(w,i) this.setFont(w.item.text) end }
+   local _fontSize = UI.floatInput( gui, { labelWidth=0, alignH=UI.TextAlignment.END, min=1, max=256, step=1, integer=true, onModify=function(w,v) if( v ~= 0 ) then this.setFont(nil,v) end end } )
+   local _fontScal = gui.toggle{ text="Scalable", toggled=_curFont[3], onClick=function(w,ev) this.setFont(nil,nil,w.toggled) end }
+   --local _parSpace = UI.floatInput( gui, { text="Spacing", alignH=UI.TextAlignment.END, min=0.5, max=2, onModify=function(ev) this.setParagraphSpacing( ev.value ) end } )
+   this.addWidgets{
+      gui.hbox{
+         flex=1,
+         gui.spacer{ flex=1 },
+         _fontName,
+         _fontSize,
+         _fontScal,
+         gui.spacer{ flex=1 },
+      },
+   }
+
+   function this.setParagraphSpacing( parSpacing )
+      print("Par spacing", parSpacing)
+      local s
+      if parSpacing ~= 1 then
+         s = { -1, parSpacing * _curFont[2] }
+      else
+         s = { -1, -1 }
+      end
+      local n = _all.numWidgets()
+      for i=1,n do
+         _all[i].size = s
+      end
+   end
+
+   function this.setFont( name, size, scalable )
+      print( "SetFont", name, size, scalable )
+      if name then
+         if type(name) == "number" then
+            name = _fonts[name] or _fonts[1]
+         end
+         _curFont[1] = "font/"..name
+      end
+      if size then
+         _curFont[2] = size
+      end
+      if scalable ~= none then
+         _curFont[3] = scalable
+      end
+      -- Update widget fonts.
+      local n = _all.numWidgets()
+      for i=1,n do
+         _all[i].font = _curFont
+      end
+      -- Update panel's title.
+      this.title = _curFont[1]:sub(6) .. " " .. _curFont[2]
+      -- Update the selection widgets.
+      if name and size then
+         _fontName.itemId = name
+         _fontSize.setValue( _curFont[2] )
+      end
+      if _fontScal.toggled ~= _curFont[3] then
+         -- For when we set the value from outside of the widgets.
+         _fontScal.toggled = _curFont[3]
+      end
+      -- Update potential callback.
+      if this.onFontChange then this.onFontChange( _curFont ) end
+   end
+
+   return this
+end
+
+-------------------------------------------------------------------------------
+local function AlignmentLabel( gui, params )
+
+   params = params or {}
+
+   -- Defaults.
+   params.backgroundColor = params.backgroundColor or { 0.3, 0.3, 0.3, 1.0 }
+   params.size            = params.size            or { 200, 200 }
+   params.text            = params.text            or "ABCgj_"
+
+   local label = gui.label{
+      flex = 1,
+      text = params.text,
+      font = params.font,
+   }
+
+   local entry = gui.textEntry{ text=label.text, onModify=function(w) label.text = w.text end }
+
+   local background = gui.image{
+      flex  = 1,
+      image = "image/white",
+      color = params.backgroundColor,
+   }
+
+   local hline = UI.vbox( gui, {
+      gui.spacer{ flex=1 },
+      gui.image{
+         size  = { -1, 1 },
+         image = "image/white",
+         color = { 1, 0, 0, 1 },
+      },
+      gui.spacer{ flex=1 },
+   } )
+
+   local vline = UI.hbox( gui, {
+      gui.spacer{ flex=1 },
+      gui.image{
+         size  = { 1, -1 },
+         image = "image/white",
+         color = { 0, 0, 1, 1 },
+      },
+      gui.spacer{ flex=1 },
+   } )
+
+   local hAlign = gui.comboBox{
+      size   = { 80, 30 },
+      itemID = "",
+      menu   = gui.menu{
+         gui.menuItem{ id=""      , text=" "      },
+         gui.menuItem{ id="START" , text="START"  },
+         gui.menuItem{ id="MIDDLE", text="MIDDLE" },
+         gui.menuItem{ id="END"   , text="END"    },
+      },
+      onItemChanged = function( w, i )
+         label.alignH = UI.TextAlignment[i]
+      end,
+   }
+   local vAlign = gui.comboBox{
+      size   = hAlign.size,
+      itemID = "",
+      menu   = gui.menu{
+         gui.menuItem{ id=""         , text=" "         },
+         gui.menuItem{ id="START"    , text="START"     },
+         gui.menuItem{ id="MIDDLE"   , text="MIDDLE"    },
+         gui.menuItem{ id="END"      , text="END"       },
+         gui.menuItem{ id="BASELINE" , text="BASELINE"  },
+         gui.menuItem{ id="MIDASCENT", text="MIDASCENT" },
+      },
+      onItemChanged = function( w, i )
+         label.alignV = UI.TextAlignment[i]
+      end,
+   }
+
+   local this = UI.hbox( gui, {
+      UI.obox( gui, {
+         size = params.size,
+         background,
+         hline, vline,
+         label,
+      } ),
+      gui.spacer{ size={4,4} },
+      UI.vbox( gui, {
+         UI.hbox( gui, { gui.label{ text="alignH" }, hAlign } ),
+         UI.hbox( gui, { gui.label{ text="alignV" }, vAlign } ),
+         entry,
+      } ),
+   } )
+
+   this.changeFont = function( font )
+      label.font = font
+      entry.font = font
+   end
+
+   return this
+end
+
+local function createDesktop()
+
+   --==============================================================================
+   -- CALLBACKS
+   --==============================================================================
+   local cb_onChar = {
+      [UI.Key.ESC] = function( w, ev ) UI.exit() end,
+   }
+   local function onChar( w, ev )
+      --print("onChar", ev.value, UI.KeyToString[ev.value])
+      local cb = cb_onChar[ev.value] or cb_onChar[UI.KeyToString[ev.value]]
+      if cb then cb( w, ev ) end
+   end
+
+   --==============================================================================
+   -- UI
+   --==============================================================================
+
+   local fonts = {
+      "default",
+      "Arimo-Bold",
+      "Arimo-Regular",
+      "DejaVuSansMono",
+      "tahomabd",
+   }
+
+   local fontPanel = FontPanel( gui, {fonts=fonts} )
+
+   local quitButton = gui.button{ text="Quit", onClick=function(w,ev) UI.exit() end, vAlign=UI.TextAlignment.START }
+
+   local alignGroup = AlignmentLabel( gui )
+
+   fontPanel.onFontChange = alignGroup.changeFont -- Connect callback.
+
+   fontPanel.setFont( 2, 16, true ) -- Default font used.
+
+   local hotspots = gui.hotspots{ flex=1 }
+
+   hotspots.addWidget{ quitButton, UI.Hotspot.TOP_LEFT     , {20,-20} }
+   hotspots.addWidget{ fontPanel , UI.Hotspot.BOTTOM_CENTER, { 0, 20} }
+   hotspots.addWidget{ alignGroup, UI.Hotspot.TOP_CENTER   , {20,-20} }
+
+   return gui.desktop{
+      onChar = onChar,
+      color = { 0.5, 0.5, 0.5, 1.0 },
+      hotspots,
+   }
+end
+
+--------------------------------------------------------------------------------
+-- Set the main desktop.
+UI.setDesktop( createDesktop() )

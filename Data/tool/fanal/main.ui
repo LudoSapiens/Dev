@@ -1,0 +1,99 @@
+include( "theme/plasma" )
+include( "script/ui/console"  )
+
+local res = ObjectPool( "RES" )
+local gui = ObjectPool( "UI" )
+
+--==============================================================================
+-- Global context
+--==============================================================================
+
+local fileInfo  = { [0] = {} }
+local curFileID = 0
+
+local console   = nil
+local epviewer  = nil
+
+--==============================================================================
+-- File handling
+--==============================================================================
+
+--------------------------------------------------------------------------------
+local function loadFile( name )
+   if not name then
+      gui.fileDialog{
+         type=UI.FileDialog.OPEN,
+         allowedTypes={ "prof", "PROF" },
+         onConfirm=function(d)
+            loadFile( "file://"..d.path )
+            gui.remove(d)
+         end,
+         onCancel=function(d)
+            gui.remove(d)
+         end,
+      }.ask()
+      return
+   end
+
+   if not epviewer.load( name ) then
+      print( "Error loading file:", name )
+   end
+end
+
+--==============================================================================
+-- Desktop UI
+--==============================================================================
+
+epviewer  = gui.eventProfileViewer{ flex=1 }
+console   = gui.Console()
+
+local desktop  = gui.desktop{
+   color = vec4(0.25,0.25,0.25,1.0),
+   epviewer,
+}
+
+UI.setDesktop( desktop )
+
+--==============================================================================
+-- Event handling.
+--==============================================================================
+
+--------------------------------------------------------------------------------
+local keyPressFunc = {
+   [UI.Key.Q] = function()
+      if UI.isKeyPressed(UI.Key.META) then
+         UI.exit()
+      end
+   end,
+   [UI.Key.SLASH] = function()
+      PlasmaConfig.wireframe = not PlasmaConfig.wireframe
+   end,
+   [UI.Key.BACKQUOTE] = function()
+      console.toggle()
+   end,
+   -- Graph related hotkeys.
+   [UI.Key.O] = function()
+      if UI.isKeyPressed(UI.Key.META) then
+         loadFile()
+      end
+   end,
+   [UI.Key.TAB] = function()
+      if UI.isKeyPressed( UI.Key.CTRL ) then
+         switchNextFile()
+      end
+   end,
+   [UI.Key.W] = function()
+      if UI.isKeyPressed( UI.Key.META ) then
+         closeFile( curFileID )
+      end
+   end,
+}
+desktop.onKeyPress = function( w, ev )
+   local func = keyPressFunc[ev.value]
+   if func then func( w, ev ) end
+end
+
+--==============================================================================
+-- MAIN
+--==============================================================================
+loadFile( "profile.prof" )

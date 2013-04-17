@@ -1,0 +1,460 @@
+local n0 = probe{
+   position = vec2(-1,0),
+   width = 1,
+   type = 0,
+   id = "sample/probes01/probe0",
+   pos = vec3(0,0,0),
+   size = 64,
+}
+local n1 = mergeWorld{
+   position = vec2(-22,-1),
+   width = 24,
+}
+local n2 = box{
+   position = vec2(-4,3),
+   width = 3,
+   hsize = vec3(64,2,64),
+   ref = {quat(0,0,0,1),vec3(0,-1,0)},
+}
+local n3 = object{
+   position = vec2(-4,0),
+   width = 3,
+   ref = {quat(0,0,0,1),vec3(0,-4.2,0)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   id = "floor",
+   material = "sample/colors01",
+}
+local n4 = box{
+   position = vec2(-7,2),
+   width = 2,
+   hsize = vec3(1,1,1),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n5 = object{
+   position = vec2(-7,0),
+   width = 2,
+   ref = {quat(0,0,0,1),vec3(0,0,4)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n6 = materialID{
+   position = vec2(-7,1),
+   width = 2,
+   id = 16,
+}
+local n7 = box{
+   position = vec2(-5,2),
+   width = 1,
+   hsize = vec3(0.5,0.5,0.5),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n8 = box{
+   position = vec2(-10,2),
+   width = 2,
+   hsize = vec3(1,1,1),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n9 = object{
+   position = vec2(-10,0),
+   width = 2,
+   ref = {quat(0,0,0,1),vec3(0,4,0)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n10 = materialID{
+   position = vec2(-10,1),
+   width = 2,
+   id = 15,
+}
+local n11 = box{
+   position = vec2(-13,2),
+   width = 2,
+   hsize = vec3(1,1,1),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n12 = object{
+   position = vec2(-13,0),
+   width = 2,
+   ref = {quat(0,0,0,1),vec3(4,0,0)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n13 = materialID{
+   position = vec2(-13,1),
+   width = 2,
+   id = 14,
+}
+local n14 = box{
+   position = vec2(-16,2),
+   width = 2,
+   hsize = vec3(1,1,1),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n15 = object{
+   position = vec2(-16,0),
+   width = 2,
+   ref = {quat(0,0,0,1),vec3(0,0,-4)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n16 = materialID{
+   position = vec2(-16,1),
+   width = 2,
+   id = 13,
+}
+local n17 = box{
+   position = vec2(-19,2),
+   width = 2,
+   hsize = vec3(1,1,1),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n18 = object{
+   position = vec2(-19,0),
+   width = 2,
+   ref = {quat(0,0,0,1),vec3(0,-4,0)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n19 = materialID{
+   position = vec2(-19,1),
+   width = 2,
+   id = 12,
+}
+local n20 = box{
+   position = vec2(-22,2),
+   width = 2,
+   hsize = vec3(1,1,1),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n21 = object{
+   position = vec2(-22,0),
+   width = 2,
+   ref = {quat(0,0,0,1),vec3(-4,0,0)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n22 = materialID{
+   position = vec2(-22,1),
+   width = 2,
+   id = 11,
+}
+local n23 = box{
+   position = vec2(-20,2),
+   width = 1,
+   hsize = vec3(0.5,0.5,0.5),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n24 = materialID{
+   position = vec2(-20,1),
+   width = 1,
+   id = 10,
+}
+local n25 = object{
+   position = vec2(-20,0),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(-3,1,-1)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n26 = materialID{
+   position = vec2(-17,1),
+   width = 1,
+   id = 10,
+}
+local n27 = box{
+   position = vec2(-17,2),
+   width = 1,
+   hsize = vec3(0.5,0.5,0.5),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n28 = object{
+   position = vec2(-17,0),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(-1,-3,-1)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n29 = object{
+   position = vec2(-14,0),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(1,1,-3)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n30 = object{
+   position = vec2(-11,0),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(3,1,1)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n31 = object{
+   position = vec2(-8,0),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(-1,3,-1)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n32 = object{
+   position = vec2(-5,0),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(-1,1,3)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/colors01",
+}
+local n33 = materialID{
+   position = vec2(-14,1),
+   width = 1,
+   id = 10,
+}
+local n34 = materialID{
+   position = vec2(-11,1),
+   width = 1,
+   id = 10,
+}
+local n35 = materialID{
+   position = vec2(-8,1),
+   width = 1,
+   id = 10,
+}
+local n36 = materialID{
+   position = vec2(-5,1),
+   width = 1,
+   id = 10,
+}
+local n37 = box{
+   position = vec2(-14,2),
+   width = 1,
+   hsize = vec3(0.5,0.5,0.5),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n38 = box{
+   position = vec2(-11,2),
+   width = 1,
+   hsize = vec3(0.5,0.5,0.5),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n39 = box{
+   position = vec2(-8,2),
+   width = 1,
+   hsize = vec3(0.5,0.5,0.5),
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n40 = materialID{
+   position = vec2(-4,1),
+   width = 3,
+   id = 17,
+}
+local n41 = mapping{
+   position = vec2(-4,2),
+   width = 3,
+   scale = 0.125,
+   offset = vec3(0,0,0),
+}
+local n42 = probeBaker{
+   position = vec2(-1,-2),
+   width = 3,
+}
+local n43 = sphere{
+   position = vec2(2,0),
+   width = 1,
+   radius = 1,
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n44 = object{
+   position = vec2(2,-2),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/probes01/probes",
+}
+local n45 = mergeWorld{
+   position = vec2(-1,-3),
+   width = 6,
+}
+local n46 = probe{
+   position = vec2(1,0),
+   width = 1,
+   type = 0,
+   id = "sample/probes01/probe2",
+   pos = vec3(4,2,-3),
+   size = 64,
+}
+local n47 = probe{
+   position = vec2(0,0),
+   width = 1,
+   type = 0,
+   id = "sample/probes01/probe1",
+   pos = vec3(-3,0,-3),
+   size = 64,
+}
+local n48 = sphere{
+   position = vec2(3,0),
+   width = 1,
+   radius = 1,
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n49 = object{
+   position = vec2(3,-2),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(-3,0,-3)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/probes01/probes",
+}
+local n50 = sphere{
+   position = vec2(4,0),
+   width = 1,
+   radius = 1,
+   ref = {quat(0,0,0,1),vec3(0,0,0)},
+}
+local n51 = object{
+   position = vec2(4,-2),
+   width = 1,
+   ref = {quat(0,0,0,1),vec3(3,2,-3)},
+   visible = true,
+   castsShadows = true,
+   ghost = false,
+   bodyType = 1,
+   mass = 1,
+   friction = 0.5,
+   restitution = 0.5,
+   exists = 1,
+   senses = 0,
+   material = "sample/probes01/probes",
+}
+local n52 = materialID{
+   position = vec2(2,-1),
+   width = 1,
+   id = 0,
+}
+local n53 = materialID{
+   position = vec2(3,-1),
+   width = 1,
+   id = 1,
+}
+local n54 = materialID{
+   position = vec2(4,-1),
+   width = 1,
+   id = 2,
+}
+output( n45 )

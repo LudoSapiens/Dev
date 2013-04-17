@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{7ca103b4-c70d-43ad-bea3-10817a311547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\FB">
+      <UniqueIdentifier>{4f766962-3768-43ab-862d-171155882d4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Geom">
+      <UniqueIdentifier>{9b83ab5f-35d1-4867-a3ac-fb1f8104e980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Mgr">
+      <UniqueIdentifier>{0d5dafc7-43d5-4074-aad0-094c4fcbb6e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tex">
+      <UniqueIdentifier>{e4122516-4d8b-47e7-98ca-c90c185152ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Pass">
+      <UniqueIdentifier>{1cde98d5-5b61-4ae3-b177-f90721f1643c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Prog">
+      <UniqueIdentifier>{d5f94f35-fabd-465a-af43-944ddd652743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Mgr\D3D">
+      <UniqueIdentifier>{f97f6ab6-9c0d-4d28-a927-53619201c7d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Mgr\GL">
+      <UniqueIdentifier>{fd5e5ffb-4c76-4ef3-994a-522193b9aa72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Mgr\Null">
+      <UniqueIdentifier>{50b27108-aa2c-4345-ac0f-5565443a86e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Mgr\GLES">
+      <UniqueIdentifier>{c71ea61a-a752-4ba8-9755-82d3453effea}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\FB\Framebuffer.cpp">
+      <Filter>Source\FB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\FB\RenderState.cpp">
+      <Filter>Source\FB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Geom\Buffer.cpp">
+      <Filter>Source\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Geom\Geometry.cpp">
+      <Filter>Source\Geom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\Context.cpp">
+      <Filter>Source\Mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\Manager.cpp">
+      <Filter>Source\Mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\Null\NullContext.cpp">
+      <Filter>Source\Mgr\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\Null\NullManager.cpp">
+      <Filter>Source\Mgr\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLContext.cpp">
+      <Filter>Source\Mgr\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLContext_WGL.cpp">
+      <Filter>Source\Mgr\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLManager.cpp">
+      <Filter>Source\Mgr\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Pass\Pass.cpp">
+      <Filter>Source\Pass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Pass\RenderNode.cpp">
+      <Filter>Source\Pass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Prog\Constants.cpp">
+      <Filter>Source\Prog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Prog\Program.cpp">
+      <Filter>Source\Prog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Tex\Sampler.cpp">
+      <Filter>Source\Tex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Tex\Texture.cpp">
+      <Filter>Source\Tex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Tex\TextureState.cpp">
+      <Filter>Source\Tex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLESContext.cpp">
+      <Filter>Source\Mgr\GLES</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLESContext_EGL.cpp">
+      <Filter>Source\Mgr\GLES</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLES2Manager.cpp">
+      <Filter>Source\Mgr\GLES</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\FB\Framebuffer.h">
+      <Filter>Source\FB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\FB\RenderState.h">
+      <Filter>Source\FB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Geom\Buffer.h">
+      <Filter>Source\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Geom\Geometry.h">
+      <Filter>Source\Geom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\Context.h">
+      <Filter>Source\Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\Manager.h">
+      <Filter>Source\Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\Null\NullContext.h">
+      <Filter>Source\Mgr\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\Null\NullManager.h">
+      <Filter>Source\Mgr\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLContext.h">
+      <Filter>Source\Mgr\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLContext_WGL.h">
+      <Filter>Source\Mgr\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLManager.h">
+      <Filter>Source\Mgr\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Pass\Pass.h">
+      <Filter>Source\Pass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Pass\RenderNode.h">
+      <Filter>Source\Pass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Prog\Constants.h">
+      <Filter>Source\Prog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Prog\Program.h">
+      <Filter>Source\Prog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Tex\Sampler.h">
+      <Filter>Source\Tex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Tex\Texture.h">
+      <Filter>Source\Tex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Tex\TextureState.h">
+      <Filter>Source\Tex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\StdDefs.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLESContext.h">
+      <Filter>Source\Mgr\GLES</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLESContext_EGL.h">
+      <Filter>Source\Mgr\GLES</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLES2Manager.h">
+      <Filter>Source\Mgr\GLES</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

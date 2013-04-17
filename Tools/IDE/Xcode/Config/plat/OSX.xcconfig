@@ -1,0 +1,19 @@
+//==============================================================================
+// Copyright (c) 2009, Ludo Sapiens Inc.
+// All rights reserved.
+//
+// These coded instructions, statements, and computer programs contain
+// unpublished, proprietary information and are protected by Federal copyright
+// law. They may not be disclosed to third parties or copied or duplicated in
+// any form, in whole or in part, without prior written consent.
+//==============================================================================
+
+//ARCHS = $(ARCHS_STANDARD_32_64_BIT)
+ARCHS = $(NATIVE_ARCH_ACTUAL)
+
+SDKROOT = 
+//SDKROOT = macosx10.6
+
+MACOSX_DEPLOYMENT_TARGET = 10.5
+
+DEV_PLAT = macosx

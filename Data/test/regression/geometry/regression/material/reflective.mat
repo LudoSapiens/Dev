@@ -1,0 +1,17 @@
+if true then
+   reflectivePlanarMaterial{
+      normal = { 0, 0, 1 },
+      color = { 1.0, 1.0, 1.0, 0.8 },
+      {
+         color = image( "image/white" ),
+      }
+   }
+else
+   baseMaterial{
+      color = { 1.0, 0.3, 0.3, 1.0 },
+      {
+         clamp = TexClamp.LAST,
+         color = image( "image/white" ),
+      },
+   }
+end

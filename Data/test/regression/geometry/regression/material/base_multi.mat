@@ -1,0 +1,54 @@
+--[[
+mapping{
+   function( IN )
+      return vec2( IN.xy )
+   end
+}
+--]]
+
+local red = vec4( 1, 0, 0, 1 )
+local grn = vec4( 0, 1, 0, 1 )
+local blu = vec4( 0, 0, 1, 1 )
+
+baseMaterial{
+   color = red,
+   {
+      clamp = TexClamp.LAST,
+      color = image( "image/white" )
+   },
+}
+baseMaterial{
+   color = red,
+   {
+      clamp = TexClamp.LAST,
+      color = image( "image/checker" )
+   },
+}
+baseMaterial{
+   color = grn,
+   {
+      clamp = TexClamp.LAST,
+      color = image( "image/white" )
+   },
+}
+baseMaterial{
+   color = grn,
+   {
+      clamp = TexClamp.LAST,
+      color = image( "image/checker" )
+   },
+}
+baseMaterial{
+   color = blu,
+   {
+      clamp = TexClamp.LAST,
+      color = image( "image/white" )
+   },
+}
+baseMaterial{
+   color = blu,
+   {
+      clamp = TexClamp.LAST,
+      color = image( "image/checker" )
+   },
+}

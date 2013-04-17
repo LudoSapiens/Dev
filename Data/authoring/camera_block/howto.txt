@@ -1,0 +1,14 @@
+How I did the block and camera icons (tri-state)
+- Made the icons with Inkscape in SVG.
+   - Exported to 56x56 PNGs (or 56x50 for camera.png).
+- Opened in GIMP.
+   - Increased canvas size to 64x64 (centered).
+   - Duplicated layer.
+   - Filters -> Alpha to Logo -> Neon...
+      - Width of 8 pixels.
+      - Used FFDDDD for light red and D6DBFD for light blue.
+      - Kept background as black.
+   - Deleted black background layer.
+   - Merge both neon layers.
+   - Renamed layers.
+   - Exported results as PNG.

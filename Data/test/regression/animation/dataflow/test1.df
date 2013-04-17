@@ -1,0 +1,3 @@
+local n0 = importAnim{ "animation/humanoid01/walk01", position={1,1}, width=12 }
+
+output( n0 )

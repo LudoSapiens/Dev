@@ -1,0 +1,351 @@
+--==============================================================================
+--  Include files
+--==============================================================================
+
+include( "theme/default" )
+include( "script/ui/inputWidgets" )
+include( "script/util/table" )
+
+gui = ObjectPool()
+
+local ssid = 0
+local function nextScreenShotName()
+   local name = "screenshot" .. ssid -- .. ".png"
+   ssid = ssid + 1
+   return name
+end
+
+--==============================================================================
+--  UI definition.
+--==============================================================================
+
+--===========================================================================
+-- Accelerometer event panel
+--===========================================================================
+local function AccelerometerPanel( gui, params )
+
+   params = params or {}
+
+   params.title          = params.title or "ACCEL"
+   params.gap            = params.gap   or 6
+   params.minimizeButton = false
+   params.closeButton    = false
+   params.orientation    = params.orientation or UI.BoxOrientation.VERTICAL
+   params.resizableH     = false
+   params.resizableV     = false
+   params.accelerometer  = true
+
+   local this = gui.panel( params )
+
+   local xyz = UI.vec3Input( gui, {} )
+   local onOff = gui.toggle{
+      text = "On",
+      toggled = true,
+      onClick = function( w, ev )
+         if w.toggled then
+            w.text = "On"
+            this.accelerometer = true
+         else
+            w.text = "Off"
+            this.accelerometer = false
+         end
+      end,
+   }
+
+   this.addWidgets{ xyz, onOff }
+
+   function this.onAccelerate( w, ev )
+      xyz.setValue( {ev.dx, ev.dy, ev.dz } )
+   end
+
+   return this
+end
+
+--===========================================================================
+-- Key/Char event panel
+--===========================================================================
+function KeyboardPanel( gui, params )
+
+   params = params or {}
+
+   params.title = params.title or "KEYBOARD"
+
+   local font = {
+      small  = { "font/base", 10 },
+      medium = { "font/base", 15 },
+      large  = { "font/base", 20 },
+   }
+   font = {} -- Disable fonts.
+
+   local keyValue = gui.label{ text=" ", font=font.large  }
+   local keyName  = gui.label{ text=" ", font=font.small  }
+   local keyState = gui.label{ text=" ", font=font.medium, size={80, -1} }
+
+   local charValue = gui.label{ text=" ", font=font.large  }
+   local charName  = gui.label{ text=" ", font=font.small  }
+   local charState = gui.label{ text=" ", font=font.medium }
+
+   local deadState = gui.label{ text=" ", font=font.small }
+
+   local this = gui.panel( params )
+
+   this.addWidgets{
+      gui.hbox{
+         flex = 1,
+
+         gui.vbox{
+            gui.spacer{ size={-1,20} },
+            gui.label{ text="Value:" },
+            gui.label{ text="Name:"  },
+            gui.label{ text="State:" },
+         },
+
+         gui.group{
+            title = "Key",
+            size = { 150, -1 },
+            gui.hbox{
+               gui.vbox{
+                  flex = 1,
+                  keyValue,
+                  keyName,
+                  keyState,
+               },
+            }
+         },
+
+         gui.group{
+            title = "Char",
+            size = { 150, -1 },
+            gui.vbox{
+               flex = 1,
+               charValue,
+               charName,
+               charState,
+            },
+         },
+      },
+      deadState,
+   }
+
+   local function updateDeadState()
+      local s = ""
+      if UI.isKeyPressed(UI.Key.ALT) then
+         s = s .. " Alt"
+      end
+      if UI.isKeyPressed(UI.Key.CMD) then
+         s = s .. " Cmd"
+      end
+      if UI.isKeyPressed(UI.Key.CTRL) then
+         s = s .. " Ctrl"
+      end
+      if UI.isKeyPressed(UI.Key.SHIFT) then
+         s = s .. " Shift"
+      end
+      if UI.isKeyPressed(UI.Key.CAPS_LOCK) then
+         s = s .. " CapsLock"
+      end
+      if UI.isKeyPressed(UI.Key.META) then
+         s = s .. " (Meta)"
+      end
+      deadState.text = s
+   end
+
+   -----------------------------------------------------------------------------
+   function this.onKeyPress( w, ev )
+      local s
+      if ev.repeated then
+         s = keyState.text
+         if #s > 7 then
+            s = "p+"
+         else
+            s = s .. "+"
+         end
+      else
+         s = "p"
+      end
+      keyValue.text = ev.value
+      keyName.text  = UI.KeyToString[ev.value]
+      keyState.text = s
+      updateDeadState()
+   end
+   -----------------------------------------------------------------------------
+   function this.onKeyRelease( w, ev )
+      local s
+      if ev.repeated then
+         s = keyState.text
+         if #s > 7 then
+            s = "r+"
+         else
+            s = s .. "+"
+         end
+      else
+         s = "r"
+      end
+      keyValue.text = ev.value
+      keyName.text  = UI.KeyToString[ev.value]
+      keyState.text = s
+      updateDeadState()
+   end
+   -----------------------------------------------------------------------------
+   local onCharN = 0
+   function this.onChar( w, ev )
+      local s -- Will contain "N+++++", where N is the number of times the string was reset.
+      if ev.repeated then
+         s = charState.text
+         if #s > 10 then
+            onCharN = onCharN + 1
+            s = tostring(onCharN) .. "+"
+         else
+            s = s .. "+"
+         end
+      else
+         onCharN = 0
+      end
+      local str = UI.toUTF8( ev.value )
+      charValue.text = str
+      charName.text  = UI.KeyToString[str]
+      charState.text = s
+      updateDeadState()
+   end
+
+   return this
+end
+
+--===========================================================================
+-- Pointer event panel
+--===========================================================================
+local function PointerPanel( gui, params )
+
+   params = params or {}
+
+   params.size           = params.size  or { 220, -1 }
+   params.title          = params.title or "POINTER"
+   params.gap            = params.gap   or 6
+   params.minimizeButton = false
+   params.closeButton    = false
+   params.orientation    = params.orientation or UI.BoxOrientation.VERTICAL
+   params.resizableH     = false
+   params.resizableV     = false
+   params.accelerometer  = true
+
+   local this = gui.panel( params )
+
+   local theTypeL  = gui.label           { enabled=false }
+   local theType   = UI.floatInput( gui, { enabled=false, param="type"     , text="type"  , format="%.0f", step=1, integer=true } )
+   local theTime   = UI.floatInput( gui, { enabled=false, param="timestamp", text="time"  , format="%8.2f" } )
+   local theID     = UI.floatInput( gui, { enabled=false, param="pointerID", text="id"    , format="%.0f", step=1, integer=true } )
+   local theBut    = UI.floatInput( gui, { enabled=false, param="value"    , text="but"   , format="%.0f", step=1, integer=true } )
+   local thePos    = UI.vec2Input ( gui, { enabled=false, param="position" , text="pos"   , format="%g"    } )
+   local theCount  = UI.floatInput( gui, { enabled=false, param="count"    , text="count" , format="%.0f", step=1, integer=true } )
+   local theScroll = UI.vec2Input ( gui, { enabled=false, param="scroll"   , text="scroll", format="%g" } )
+   local theSpeed  = UI.vec2Input ( gui, { enabled=false, param="speed"    , text="speed" , format="%5.1f" } )
+
+   local relative = gui.toggle{
+      text = "Relative",
+      toggled = false,
+      onClick = function( w, ev )
+      end,
+   }
+
+   if true then
+      -- Test that multiple refs can point to the same routine.
+      local function collapsedRef( w, ev )
+         print("Clicked:", w.text)
+      end
+      for i,v in ipairs( { theType, theTime, theID, theBut, thePos, theCount } ) do
+         local label = v[1]
+         label.enabled = true
+         label.onClick = collapsedRef
+      end
+   end
+
+   this.addWidgets{
+      gui.hbox{ theType, gui.spacer{}, theTypeL },
+      theTime,
+      theID,
+      theBut,
+      thePos,
+      theCount,
+      theScroll,
+      theSpeed,
+      relative
+   }
+
+   local typeToStr = {
+      [UI.Event.POINTER_CANCEL]  = " cancel",
+      [UI.Event.POINTER_MOVE]    = " move",
+      [UI.Event.POINTER_PRESS]   = " press",
+      [UI.Event.POINTER_RELEASE] = " release",
+      [UI.Event.POINTER_SCROLL]  = " scroll",
+   }
+   local function pointerEvent( w, ev )
+      theTypeL.text = typeToStr[ev.type]
+      theType.setValue( ev.type )
+      theTime.setValue( ev.timestamp )
+      theID.setValue( ev.pointerID )
+      thePos.setValue( ev.position )
+      if ev.scrollValue then
+         theScroll.setValue( ev.scrollValue )
+         theBut.setValue( 0 )
+      else
+         theScroll.setValue( {0,0} )
+         theBut.setValue( ev.value )
+      end
+      theSpeed.setValue( UI.getPointerSpeed( ev.pointerID ) )
+      theCount.setValue( ev.count )
+   end
+   this.onPointerCancel  = pointerEvent
+   this.onPointerMove    = pointerEvent
+   this.onPointerPress   = pointerEvent
+   this.onPointerRelease = pointerEvent
+   this.onPointerScroll  = pointerEvent
+
+   return this
+end
+
+local function createDesktop()
+
+   --==============================================================================
+   -- CALLBACKS
+   --==============================================================================
+
+   --==============================================================================
+   -- UI
+   --==============================================================================
+
+   local accelometerPanel = AccelerometerPanel( gui, {} )
+   local keyboardPanel    = KeyboardPanel( gui, {} )
+   local pointerPanel     = PointerPanel( gui, {} )
+   local soundButton      = gui.button{ text="Sound", onClick=function(w,ev) UI.playSound("sound/test") end }
+   local quitButton       = gui.button{ text="Quit", onClick=function(w,ev) UI.exit() end }
+
+   local hotspots = gui.hotspots{ flex=1 }
+   --[[
+   hotspots.addWidget{
+      gui.vbox{ gap=6, accelometerPanel, keyboardPanel, pointerPanel },
+      UI.Hotspot.MIDDLE_CENTER,
+   }
+   --]]
+   hotspots.addWidget{ quitButton      , UI.Hotspot.TOP_LEFT, {20,-20} }
+   hotspots.addWidget{ keyboardPanel   , UI.Hotspot.TOP_RIGHT          }
+   hotspots.addWidget{ accelometerPanel, UI.Hotspot.BOTTOM_LEFT        }
+   hotspots.addWidget{ pointerPanel    , UI.Hotspot.BOTTOM_RIGHT       }
+   hotspots.addWidget{ soundButton     , UI.Hotspot.MIDDLE_CENTER      }
+
+   return gui.desktop{
+      color            = { 0.5, 0.5, 0.5, 1.0 },
+      onAccelerate     = accelometerPanel.onAccelerate,
+      onChar           = keyboardPanel.onChar,
+      onKeyPress       = keyboardPanel.onKeyPress,
+      onKeyRelease     = keyboardPanel.onKeyRelease,
+      onPointerPress   = pointerPanel.onPointerPress,
+      onPointerMove    = pointerPanel.onPointerMove,
+      onPointerRelease = pointerPanel.onPointerRelease,
+      onPointerScroll  = pointerPanel.onPointerScroll,
+      hotspots,
+   }
+end
+
+--------------------------------------------------------------------------------
+-- Set the main desktop.
+UI.setDesktop( createDesktop() )

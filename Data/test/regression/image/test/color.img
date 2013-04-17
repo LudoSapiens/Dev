@@ -1,0 +1,3 @@
+local params = ...
+local color = params.color or vec4(1)
+rect( color )

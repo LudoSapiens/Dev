@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btAabbUtil2.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btAlignedAllocator.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btAlignedObjectArray.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btConvexHull.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btConvexHullComputer.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btDefaultMotionState.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btGeometryUtil.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btHashMap.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btIDebugDraw.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btList.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btMatrix3x3.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btMinMax.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btMotionState.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btPoolAllocator.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btQuadWord.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btQuaternion.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btQuickprof.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btRandom.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btScalar.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btSerializer.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btStackAlloc.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btTransform.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btTransformUtil.h" />
+    <ClInclude Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btVector3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btAlignedAllocator.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btConvexHull.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btConvexHullComputer.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btGeometryUtil.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btQuickprof.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\Thirdparty\src\bullet\src\LinearMath\btSerializer.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{27D4CA6A-073B-4E2B-B0FB-F01B7C06C94D}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>BulletLinearMath</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>Windows7.1SDK</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Config\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>../../../../../../Thirdparty/src/bullet/src;$(IncludePath)</IncludePath>
+    <TargetName>LinearMath</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>../../../../../../Thirdparty/src/bullet/src;$(IncludePath)</IncludePath>
+    <TargetName>LinearMath</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>../../../../../../Thirdparty/src/bullet/src;$(IncludePath)</IncludePath>
+    <TargetName>LinearMath</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>../../../../../../Thirdparty/src/bullet/src;$(IncludePath)</IncludePath>
+    <TargetName>LinearMath</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

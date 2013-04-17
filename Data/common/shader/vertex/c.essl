@@ -1,0 +1,11 @@
+//
+// Color GLSL vertex shader.
+//
+
+varying vec4 vcolor;
+
+void main( void )
+{
+   vcolor      = gfxColor;
+   gl_Position = gfxWorldViewProjectionMatrix * gfxVertex;
+}

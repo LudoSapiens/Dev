@@ -1,0 +1,30 @@
+//==============================================================================
+// Copyright (c) 2009, Ludo Sapiens Inc.
+// All rights reserved.
+//
+// These coded instructions, statements, and computer programs contain
+// unpublished, proprietary information and are protected by Federal copyright
+// law. They may not be disclosed to third parties or copied or duplicated in
+// any form, in whole or in part, without prior written consent.
+//==============================================================================
+
+// This xcconfig file simply does a final merge of all of the DEV variables into the Xcode ones.
+// The reason for this is because Xcode's config parser is very basic, and doesn't properly handles:
+//   SOME_VAR = "firstValue";
+//   SOME_VAR = $(SOME_VAR) "secondValue";
+// You'll only get "secondValue", since SOME_VAR needs to have been defined in the previous stage (Project/Target/etc.).
+// This trick comes from Google:
+//   http://code.google.com/p/google-toolbox-for-mac/source/browse/trunk/XcodeConfig/subconfig/GTMMerge.xcconfig
+// I used a slightly different variant.
+// First of all, since I have a _Common.xcconfig, I don't think I need one for the Project layer.
+// Also, I decided to have more compact variable names, and put the class (type vs. conf vs. plat) as a suffix.
+// This makes the variables easier to find (DEV_DEFINES*) and has the side effect that all variables in each class have
+// the same termination (all of the vars touched in plat/Leopard.xcconfig should end in _PLAT).
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) $(DEV_DEFINES)        $(DEV_DEFINES_TYPE)        $(DEV_DEFINES_CONF)        $(DEV_DEFINES_PLAT)
+HEADER_SEARCH_PATHS          = $(inherited) $(DEV_INC_PATH)       $(DEV_INC_PATH_TYPE)       $(DEV_INC_PATH_CONF)       $(DEV_INC_PATH_PLAT)
+LIBRARY_SEARCH_PATHS         = $(inherited) $(DEV_LIB_PATH)       $(DEV_LIB_PATH_TYPE)       $(DEV_LIB_PATH_CONF)       $(DEV_LIB_PATH_PLAT)
+OTHER_CFLAGS                 = $(inherited) $(DEV_CFLAGS)         $(DEV_CFLAGS_TYPE)         $(DEV_CFLAGS_CONF)         $(DEV_CFLAGS_PLAT)
+OTHER_CPLUSPLUSFLAGS         = $(inherited) $(DEV_CPPFLAGS)       $(DEV_CPPFLAGS_TYPE)       $(DEV_CPPFLAGS_CONF)       $(DEV_CPPFLAGS_PLAT)
+OTHER_LDFLAGS                = $(inherited) $(DEV_LDFLAGS)        $(DEV_LDFLAGS_TYPE)        $(DEV_LDFLAGS_CONF)        $(DEV_LDFLAGS_PLAT)
+WARNING_CFLAGS               = $(inherited) $(DEV_WARNING_CFLAGS) $(DEV_WARNING_CFLAGS_TYPE) $(DEV_WARNING_CFLAGS_CONF) $(DEV_WARNING_CFLAGS_PLAT)

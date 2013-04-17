@@ -1,0 +1,21 @@
+if IN.id == 0 then
+   OUT.color = vec3(1.0)
+   --OUT.color = tex( "brick/brick_004", vec2( IN.pos.x, IN.pos.y )*0.5 )
+   if IN.f == 4 then
+      --OUT.pos = IN.pos + IN.n*(1-tex( "brickbump", vec2( IN.pos.x, IN.pos.y )*0.5 ).x)*0.1
+      --OUT.pos = IN.pos + IN.n*(1-tex( "brick/brick_008", vec2( IN.pos.x, IN.pos.y )*0.5 ).x)*0.09
+      --OUT.color = tex( "brick/brick_008", vec2( IN.pos.x, IN.pos.y )*0.5 )      
+   end
+elseif IN.id == 1 then
+   OUT.color = vec3(0.8)
+elseif IN.id == 2 then
+   OUT.color = vec3(0.5)
+elseif IN.id == 20 then
+   OUT.color = vec3(0.9)
+elseif IN.id == 21 then
+   OUT.color = vec3(0.75)
+elseif IN.id == 30 then
+   OUT.color = vec3(0.6)
+else
+   OUT.color = vec3(0.5)
+end

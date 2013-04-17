@@ -1,0 +1,15 @@
+local params = ...
+if params.msg then print( params.msg ) end
+print("SIZE="..tostring(SIZE))
+local w_1 = SIZE.x - 1
+local func = function( IN )
+   local tmp   = IN.x / w_1
+   local color = vec4( tmp, tmp, tmp, 1 )
+   --print( "Pixel", IN.xy, IN.x, IN.width, color )
+   return color
+end
+rect( func )
+--rect( vec2(4,5), func )
+rect( vec2(1,2), vec2(3,1), vec4(1,0,0,1) )
+--rect( vec4(1,0,0,1) )
+--print("Simple.img done!")

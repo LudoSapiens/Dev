@@ -1,0 +1,332 @@
+--==============================================================================
+-- Main script for the editor program.
+-- Here we handle task management and offer common services for all tasks, like
+-- a main Hotkey handler.
+--==============================================================================
+
+--==============================================================================
+--  INCLUDE FILES
+--==============================================================================
+
+include( "theme/plasma" )
+--include( "browser" )
+--include( "resourceView" )
+
+gui = ObjectPool()
+
+--==============================================================================
+-- CONSTANTS and LOCALS
+--==============================================================================
+
+local desktopColor = { 0.4, 0.4, 0.4, 1.0 }
+
+local newTaskRadial
+local switchTaskRadial
+
+local browser
+
+local hotkey
+local keyPress
+local keyRelease
+
+--==============================================================================
+-- CONSOLE PANEL
+--==============================================================================
+
+local function ConsolePanel( ui, params )
+   local this = params or {}
+
+   -----------------------------------------------------------------------------
+   --  Data members
+   -----------------------------------------------------------------------------
+   this.title    = "Console"
+   this.size     = {800,-1}
+   this.position = {240,0}
+   this.hidden   = true
+   --this.flex = 1
+   -----------------------------------------------------------------------------
+   this = ui.panel( this )
+   local ua = this.userArea
+
+   -----------------------------------------------------------------------------
+   -- Methods
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   function this.hide()
+      this.hidden = true
+   end
+
+   -----------------------------------------------------------------------------
+   function this.show()
+      this.hidden = false
+      this.toFront()
+   end
+
+   --------------------------------------------------------------------------------
+   function this.set( widget )
+      this.replaceUserArea( widget )
+      this.show()
+   end
+
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- TASKS MANAGEMENT
+--==============================================================================
+
+local Tasks = {}
+local OrderedTasks = {}
+local OpenedTasks = {}
+local currentTask
+
+--------------------------------------------------------------------------------
+-- This function register a task "name" to be accessable for usage throughout
+-- the application. A taskInfo should contain the following informations:
+--    function create( desktop ) - function called to create a new task.
+--    ...
+function registerTask( name, taskInfo )
+   Tasks[name] = taskInfo
+   OrderedTasks[#OrderedTasks + 1] = name
+   print( "Registering task... " .. name )
+end
+
+--------------------------------------------------------------------------------
+local function switchTask( task )
+   if task then
+      UI.setDesktop( task.desktop )
+      currentTask = task
+   end
+end
+
+--------------------------------------------------------------------------------
+local function createTask( name )
+   if Tasks[name] then
+      local ui = ObjectPool()
+      local desktop = ui.desktop{
+         color        = desktopColor,
+         onChar       = hotkey,
+         onKeyPress   = keyPress,
+         onKeyRelease = keyRelease,
+         orientation  = UI.BoxOrientation.VERTICAL,
+         hAlign       = UI.WidgetAlignment.START,
+         vAlign       = UI.WidgetAlignment.START,
+      }
+      local console = ConsolePanel(ui)
+      desktop.addWidget( console )
+
+      local task    = Tasks[name].create{ desktop=desktop, console=console, ui=ui }
+      OpenedTasks[#OpenedTasks+1] = task
+      switchTaskRadial.addWidget(
+         ui.radialButton{ text = task.name, onClick = function() switchTask( task ) end }
+      )
+      switchTask( task )
+   end
+end
+
+--------------------------------------------------------------------------------
+local function closeTask( task )
+   for i = 1, #OpenedTasks do
+      if OpenedTasks[i] == task then
+         switchTaskRadial.removeWidget( switchTaskRadial[i+1] )
+         switchTask( OpenedTasks[i-1] )
+         table.remove( OpenedTasks, i )
+         task.close()
+         task.ui.clear()
+         return
+      end
+   end
+end
+
+--==============================================================================
+-- GLOBAL FUNCTIONS
+--==============================================================================
+
+local function openRadial( menu )
+   local pos = UI.getPointerPosition()
+   local radius = menu.radius
+   menu.radius  = 0
+   local currentRadius = 0
+   UI.addAnimator(
+      function( time, delta )
+         local finish  = false
+         currentRadius = currentRadius + delta * 1000
+         if currentRadius >= radius then
+            currentRadius = radius
+            finish = true
+         end
+         menu.radius  = currentRadius
+         local center = menu.center
+         UI.getDesktop().modal( menu, { pos[1]-center[1], pos[2]-center[2] } )
+         return finish
+      end
+   )
+end
+
+--==============================================================================
+-- HOTKEY HANDLER
+--==============================================================================
+function hotkey( w, ev )
+   local key = ev.value
+   if key == UI.Key.ESC then
+      UI.exit()
+   --[[
+      local console = currentTask.console
+      if console.hidden then
+         local lui = ObjectPool()
+         local exit = lui.vbox{
+            lui.label{ text = "Quit?", hAlign=UI.WidgetAlignment.MIDDLE },
+            lui.hbox{
+               lui.spacer{flex=1},
+               lui.button{ text="Yes", onClick=function() UI.exit() end },
+               lui.spacer{flex=1},
+               lui.button{ text="No", onClick=function() console.hide() end },
+               lui.spacer{flex=1}
+            }
+         }
+         console.set( exit )
+      else
+         console.hide()
+      end
+      --]]
+   --[[
+   elseif key == UI.Key.O then
+      if currentTask.desktop.findWidget( browser.id ) then
+         currentTask.desktop.removeWidget( browser )
+      else
+         local desktopSize = currentTask.desktop.actualSize
+         local browserSize = browser.size  --Why is actual size returning 0?
+         browser.position = {
+            (desktopSize[1] - browserSize[1]) * 0.5,
+            (desktopSize[2] - browserSize[2]) * 0.5,
+         }
+         currentTask.desktop.addWidget( browser )
+      end
+   --]]
+   elseif key >= UI.Key.DIGIT_0 and key <= UI.Key.DIGIT_9 then
+      local taskNb = key - UI.Key.DIGIT_0
+      switchTask( OpenedTasks[taskNb] )
+   elseif currentTask then
+      currentTask.hotkey( ev )
+   end
+end
+
+--------------------------------------------------------------------------------
+function keyPress( w, ev )
+   local key = ev.value
+
+   -- Just keep real keypressed.
+   if ev.repeated then
+      return
+   end
+
+   if key == UI.Key.SPACE then
+      openRadial( mainRadial )
+   else
+      currentTask.keyPress( ev )
+   end
+end
+
+--------------------------------------------------------------------------------
+function keyRelease( w, ev )
+   local key = ev.value
+   currentTask.keyRelease( ev )
+end
+
+--==============================================================================
+-- HID HANDLER
+--==============================================================================
+
+local function hid( ev )
+   currentTask.hid( ev )
+end
+
+--==============================================================================
+-- RADIAL MENU
+--==============================================================================
+
+--------------------------------------------------------------------------------
+mainRadial = gui.radialMenu{
+   radius = 80,
+   gui.radialButton{ text = "New Task", onClick = function() openRadial( newTaskRadial ) end },
+   gui.radialButton{ text = "Save Task", onClick = function() currentTask.save() end },
+   gui.radialButton{ text = "Close Task", onClick = function() closeTask( currentTask ) end },
+   gui.radialButton{ text = "Switch Task", onClick = function() openRadial( switchTaskRadial ) end }
+}
+
+--==============================================================================
+--  DESKTOP
+--==============================================================================
+
+local function createDesktop( ui )
+
+   --==============================================================================
+   -- UI
+   --==============================================================================
+   return ui.desktop{
+      color        = desktopColor,
+      onChar       = hotkey,
+      onKeyPress   = keyPress,
+      onKeyRelease = keyRelease
+   }
+end
+
+
+--==============================================================================
+-- MAIN PROGRAM
+--==============================================================================
+
+-- Load all Task scripts contained in the database.
+-- 1. Find all tasks.
+local taskID = {
+   "script/task/controllerTask",
+   --"script/task/gameTask",
+   --"script/task/objectTask",
+   "script/task/physicsTask",
+   --"script/task/proceduralTask",
+   "script/task/regressionTask",
+   --"script/task/skeletonTask",
+   --"script/task/worldTask",
+}
+-- 2. Load all tasks.
+for i = 1, #taskID do
+   include( taskID[i] )
+end
+
+-- Set the main task.
+local mainTask   = TaskInterface{ desktop=createDesktop(gui), console=ConsolePanel(gui) }
+mainTask.name    = "Main"
+mainTask.save    = function() print( "Nothing to save." ) end
+mainTask.desktop.addWidget( mainTask.console )
+
+OpenedTasks[0]   = mainTask
+currentTask      = mainTask
+
+UI.setDesktop( mainTask.desktop )
+
+UI.onHID( hid )
+
+--------------------------------------------------------------------------------
+newTaskRadial = gui.radialMenu{ radius = 80 }
+for i,v in ipairs( OrderedTasks ) do
+   local k = OrderedTasks[i]
+   newTaskRadial.addWidget( gui.radialButton{ size={100,-1}, text = k, onClick = function() createTask( k ) end } )
+end
+
+switchTaskRadial = gui.radialMenu{
+   radius = 80,
+   gui.radialButton{ text = "Main", onClick = function() switchTask( mainTask ) end }
+}
+
+--------------------------------------------------------------------------------
+--browser = gui.browser{ id = "browser", title = "Browser" }
+
+local envTask = os.getenv("PLASMA_TASK")
+--envTask = envTask or "Physics"
+envTask = envTask or "Physics"
+if envTask then
+   print("Lauching user-specified task:", envTask)
+   createTask( envTask )
+end

@@ -1,0 +1,9 @@
+camera{
+   position = {0,50,50},
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+staticObject{
+   geometry = "architecture/building/building01",
+   position = { -40, 0, -15 }
+}

@@ -1,0 +1,91 @@
+--
+
+--==============================================================================
+-- Console
+--==============================================================================
+
+function UI.Console( gui, params )
+   params = params or {}
+
+   params.flex  = params.flex  or 1
+   params.title = params.title or "Console"
+   if params.hidden == nil then params.hidden = true end
+
+   local this = gui.panel( params )
+
+   local history = gui.vbox{ flex=1 }
+   local entry   = gui.textEntry{
+      flex      = 1,
+      size      = { 600, -1 },
+      multiEdit = true,
+      onEdit    = function(w)
+         this.run(w.text)
+         w.text = nil
+      end,
+      onEndEdit = function(w)
+         this.cancel()
+      end,
+   }
+
+   this.addWidget( history )
+   this.addWidget( entry )
+
+   function this.activate()
+      this.hidden = false
+      entry.edit()
+   end
+
+   function this.cancel()
+      this.hidden = true
+   end
+
+   function this.toggle()
+      if this.hidden then
+         this.activate()
+      else
+         this.cancel()
+      end
+   end
+
+   function this.run(str)
+      if str then
+         local n = history.numWidgets()
+         if n >= 3 then
+            history.removeWidgetAt( 1 )
+         end
+         --print("Str:", str)
+         local code = assert(loadstring(str))
+         --print("Code:", code)
+         local res
+         if code then
+            res = code()
+         end
+         res = res or "OK"
+         local cmd = gui.label{ text="> "..str }
+         local ret = gui.label{ text=res }
+         history.addWidget( gui.vbox{ cmd, ret } )
+      end
+   end
+
+   function this.toggle()
+      if this.hidden then
+         this.activate()
+      else
+         this.cancel()
+      end
+   end
+
+   local keyPressFunc = {
+      [UI.Key.ESC]    = this.cancel,
+   }
+   function this.onKeyPress( w, ev )
+      local func = keyPressFunc[ev.value]
+      if func then func( w, ev ) end
+   end
+
+   if not this.hidden then
+      entry.edit()
+   end
+
+   return this
+end

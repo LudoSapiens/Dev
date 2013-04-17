@@ -1,0 +1,108 @@
+--=============================================================================
+-- Copyright (c) 2009, Ludo Sapiens Inc.
+-- All rights reserved.
+--
+-- These coded instructions, statements, and computer programs contain
+-- unpublished, proprietary information and are protected by Federal copyright
+-- law. They may not be disclosed to third parties or copied or duplicated in
+-- any form, in whole or in part, without prior written consent.
+--=============================================================================
+
+--===========================================================================
+-- A Result structure similar to what is used in C++.
+--===========================================================================
+function Result()
+   local res = {
+      nSuccesses = 0,
+      nFailures = 0,
+      failureInfos = {},
+   }
+   -----------------------------------------------------------------------------
+   function res.successes()
+      return res.nSuccesses
+   end
+   -----------------------------------------------------------------------------
+   function res.failures()
+      return res.nFailures
+   end
+   -----------------------------------------------------------------------------
+   function res.total()
+      return res.nSuccesses + res.nFailures
+   end
+   -----------------------------------------------------------------------------
+   function res.add( v )
+      if type(v) == "table" then
+         res.nSuccesses = res.nSuccesses + v.nSuccesses
+         res.nFailures  = res.nFailures  + v.nFailures
+         for _,msg in ipairs(v.failureInfos) do
+            table.insert( res.failureInfos, msg )
+         end
+      else
+         if v then
+            res.nSuccesses = res.nSuccesses + 1
+         else
+            res.nFailures = res.nFailures + 1
+         end
+      end
+   end
+   -----------------------------------------------------------------------------
+   function res.addFailureInfo( msg )
+      table.insert( res.failureInfos, msg )
+   end
+   -----------------------------------------------------------------------------
+   function res.printFailureInfos( clear )
+      for _,msg in ipairs(res.failureInfos) do
+         print( msg )
+      end
+      if clear then
+         res.failureInfos = {}
+      end
+   end
+   -----------------------------------------------------------------------------
+   function res.clearFailureInfos()
+      res.failureInfos = {}
+   end
+   -----------------------------------------------------------------------------
+   function res.printResults( prefix )
+      local tot  = res.total()
+      local rate = 100 * res.nSuccesses / tot
+      local str = { prefix }
+      str[#str+1] = string.format( "%5d/%-5d", res.nSuccesses, tot )
+      if tot > 0 then
+         str[#str+1] = string.format( "(%g %%)", rate )
+      else
+         str[#str+1] = "(empty)"
+      end
+      print( table.concat(str, " ") )
+   end
+   -----------------------------------------------------------------------------
+   function res.print( prefix )
+      res.printResults( prefix )
+      res.printFailureInfos( true )
+   end
+   -----------------------------------------------------------------------------
+   function res.reset()
+      res.nSuccesses = 0
+      res.nFailures  = 0
+   end
+   -----------------------------------------------------------------------------
+   return res
+end
+
+--===========================================================================
+-- A function serving the same purpose as the C++'s macro of the same name.
+--===========================================================================
+function TEST_ADD( res, test )
+   if test then
+      res.nSuccesses = res.nSuccesses + 1
+   else
+      res.nFailures = res.nFailures + 1
+      if debug then
+         local stack = debug.traceback("", 2)
+         stack = string.sub( stack,  20, -16 ) -- Get rid of "stack traceback:\n\t"...": in main chunk" currently printed.
+         res.addFailureInfo( "FAILED: " .. stack )
+      else
+         res.addFailureInfo( "FAILED: test #" .. res.total() )
+      end
+   end
+end

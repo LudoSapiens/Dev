@@ -1,0 +1,71 @@
+local Mat = {}
+local function addMat( name, matTable )
+   local i        = #matTable + 1
+   matTable[i]    = name
+   matTable[name] = i
+end
+addMat( "EXT_WALL1"  , Mat )
+addMat( "EXT_WALL2"  , Mat )
+addMat( "EXT_WALL3"  , Mat )
+addMat( "EXT_WALL4"  , Mat )
+addMat( "EXT_FLOOR1" , Mat )
+addMat( "EXT_FLOOR2" , Mat )
+addMat( "EXT_ROOF1"  , Mat )
+addMat( "EXT_ROOF2"  , Mat )
+addMat( "EXT_DETAIL1", Mat )
+addMat( "EXT_DETAIL2", Mat )
+
+addMat( "WALL1"   , Mat )
+addMat( "WALL2"   , Mat )
+addMat( "WALL3"   , Mat )
+addMat( "WALL4"   , Mat )
+addMat( "FLOOR1"  , Mat )
+addMat( "FLOOR2"  , Mat )
+addMat( "FLOOR3"  , Mat )
+addMat( "FLOOR4"  , Mat )
+addMat( "CEILING1", Mat )
+addMat( "CEILING2", Mat )
+addMat( "CEILING3", Mat )
+addMat( "CEILING4", Mat )
+addMat( "DETAIL1" , Mat )
+addMat( "DETAIL2" , Mat )
+addMat( "DETAIL3" , Mat )
+addMat( "DETAIL4" , Mat )
+
+addMat( "WINDOW1", Mat )
+addMat( "WINDOW2", Mat )
+addMat( "WINDOW3", Mat )
+addMat( "WINDOW3", Mat )
+
+addMat( "DOOR1"     , Mat )
+addMat( "DOOR2"     , Mat )
+addMat( "DOOR3"     , Mat )
+addMat( "DOOR4"     , Mat )
+addMat( "DOORFRAME1", Mat )
+addMat( "DOORFRAME2", Mat )
+addMat( "DOORFRAME3", Mat )
+addMat( "DOORFRAME4", Mat )
+addMat( "DOORKNOB1" , Mat )
+addMat( "DOORKNOB2" , Mat )
+addMat( "DOORKNOB3" , Mat )
+addMat( "DOORKNOB4" , Mat )
+
+--addMat( CARPET1"    , Mat )
+--addMat( CARPET2"    , Mat )
+--addMat( CARPET3"    , Mat )
+addMat( "FURNITURE1", Mat )
+addMat( "FURNITURE2", Mat )
+addMat( "FURNITURE3", Mat )
+
+addMat( "METAL1"    , Mat )
+addMat( "METAL2"    , Mat )
+addMat( "METAL3"    , Mat )
+addMat( "TEXTILE1"  , Mat )
+addMat( "TEXTILE2"  , Mat )
+addMat( "TEXTILE3"  , Mat )
+
+addMat( "DBG1", Mat )
+addMat( "DBG2", Mat )
+addMat( "DBG3", Mat )
+
+return Mat

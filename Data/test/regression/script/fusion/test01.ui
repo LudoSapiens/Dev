@@ -1,0 +1,70 @@
+include( "util/table" )
+
+print("==================")
+print("test01 is starting")
+print("==================")
+print("= It is recommended to have the following debug streams active:")
+print("= VMObjectPool : @stderr")
+print("= VMRegistry   : @stderr")
+print("= VMProxy      : @stderr")
+print("==================")
+
+print("----------------")
+print("LISTING POINTERS")
+print("----------------")
+print(UI)
+print(UI.test)
+print(ObjectPool)
+
+print("-------------------")
+print("TESTING OBJECT POOL")
+print("-------------------")
+local f = ObjectPool()
+print("f="..tostring(f))
+local f2 = f
+f = nil
+print("Calling garbage collector while f2 still holds on to the factory")
+collectgarbage()
+f2 = nil
+print("Calling garbage collector while no one holds on to the factory")
+collectgarbage()
+
+print("---------------")
+print("TESTING UI.test")
+print("---------------")
+UI.test = function( pool, arg )
+   print("UI.test was called with pool="..tostring(pool).." arg="..tostring(arg))
+   return "yep"
+end
+local f = ObjectPool()
+local t = f.test( "myArg" )
+print("Test returned:", t)
+f = nil
+collectgarbage()
+
+print("----------------")
+print("TESTING CLEARING")
+print("----------------")
+f = ObjectPool()
+print("BEFORE:")
+print("f", f)
+print("f.clear", f.clear)
+print(">> creating a desktop")
+print("f.desktop", f.desktop)
+local d = f.desktop{}
+print("d", d)
+print("d.color", table.toString(d.color))
+print(">> clearing")
+f.clear()
+print(">> cleared")
+print("AFTER:")
+print("f", f)
+print("f.clear", f.clear)
+print("d", d)
+print("d.color", table.toString(d.color))
+print("======================")
+print("Test01 is ending")
+print("(one outstanding dtor)")
+print("======================")
+
+UI.exit()

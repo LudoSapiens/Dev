@@ -1,0 +1,10 @@
+camera{
+   --position = {0,10,10},
+   --lookAt   = { {0,0,0}, {0,1,0} },
+   position    = { 7.5, 2.5, 20.0 },
+   orientation = { -0.057584404945374, 0.20755124092102, 0.012239873409271, 0.97645109891891 }
+}
+
+staticObject{
+   geometry = "architecture/building/building02"
+}

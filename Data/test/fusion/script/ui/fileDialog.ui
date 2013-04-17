@@ -1,0 +1,423 @@
+--=============================================================================
+-- Copyright (c) 2009, Ludo Sapiens Inc.
+-- All rights reserved.
+--
+-- These coded instructions, statements, and computer programs contain
+-- unpublished, proprietary information and are protected by Federal copyright
+-- law. They may not be disclosed to third parties or copied or duplicated in
+-- any form, in whole or in part, without prior written consent.
+--=============================================================================
+include( "util/table" )
+
+-- TODO: Fix widgets leaks when removing them!!!!
+
+-----------------------------------------------------------------------------
+function splice( str, len )
+   local prefix = string.sub( str, 1, len )
+   local suffix = string.sub( str, len+1 )
+   return prefix, suffix
+end
+
+-----------------------------------------------------------------------------
+-- Taken from http://lua-users.org/wiki/SplitJoin
+function split(str, pat)
+   local t = {}  -- NOTE: use {n = 0} in Lua-5.0
+   local fpat = "(.-)" .. pat
+   local last_end = 1
+   local s, e, cap = str:find(fpat, 1)
+   while s do
+      if s ~= 1 or cap ~= "" then
+         table.insert(t,cap)
+      end
+      last_end = e+1
+      s, e, cap = str:find(fpat, last_end)
+   end
+   if last_end <= #str then
+      cap = str:sub(last_end)
+      table.insert(t, cap)
+   end
+   return t
+end
+-----------------------------------------------------------------------------
+function splitPath(str)
+   return split(str,'[\\/]+')
+end
+
+-----------------------------------------------------------------------------
+function startsWith( src, sub )
+   local n = #sub
+   return (n == 0) or (string.sub( src, 1, n ) == sub)
+end
+
+-----------------------------------------------------------------------------
+function endsWith( src, sub )
+   local n = #sub
+   return (n == 0) or (string.sub( src, -n ) == sub)
+end
+
+-----------------------------------------------------------------------------
+function commonPrefixLength( strA, strB )
+   local cA = string.byte( strA, 1 )
+   local cB = string.byte( strB, 1 )
+   local i = 1
+   while( cA and (cA == cB) ) do
+      i = i + 1
+      cA = string.byte( strA, i )
+      cB = string.byte( strB, i )
+   end
+   return i - 1
+end
+
+-----------------------------------------------------------------------------
+function determineCommonPrefixLength( t, tSize )
+   local first  = t[1]
+   local cmnLen = #first
+   tSize = tSize or #t
+   for i=2,tSize do
+      cmnLen = math.min( cmnLen, commonPrefixLength(first, t[i]) )
+   end
+   return cmnLen
+end
+
+-----------------------------------------------------------------------------
+function rfind( src, char, start )
+   char = string.byte(char)
+   start = start or #src
+   for i=start,1,-1 do
+      if string.byte(src, i) == char then
+         return i
+      end
+   end
+   return nil
+end
+
+-----------------------------------------------------------------------------
+function goUp( path )
+   local p = rfind( path, "/", #path-1 )
+   if p then
+      return string.sub( path, 1, p )
+   else
+      return path
+   end
+end
+
+-----------------------------------------------------------------------------
+function mod_off( a, b )
+   return (((a-1) % b) + b) % b + 1
+end
+
+--===========================================================================
+--
+--===========================================================================
+function UI.tightLabel( ui, params )
+   params = params or {}
+   params.baseSize = params.baseSize or UI.baseSize.label_tight
+   return ui.label( params )
+end
+
+--===========================================================================
+--
+--===========================================================================
+local function SuggestionBox( ui, params )
+   params = params or {}
+   params.orientation = params.orientation or UI.BoxOrientation.VERTICAL
+
+   local this = ui.vbox( params )
+   -- Defaults.
+   this.suggestions  = this.suggestions or {}
+   this.selection    = this.selection or 1
+   this.prefix       = this.prefix or ""
+   this.entriesAbove = this.entriesAbove or 3
+   this.entriesBelow = this.entriesBelow or 3
+   this.numRetained  = 0
+
+   -- Temp.
+   function this.onSelect( s )
+      print("Selected:", s)
+   end
+
+   -----------------------------------------------------------------------------
+   -- Private Interface.
+   -----------------------------------------------------------------------------
+   local function SuggestionHBox( sug, cmnLen, preLen, func, colorA, colorB, colorC )
+      local pre, suf = splice( sug, cmnLen )
+      local preA, preB = splice( pre, preLen )
+      local hbox = ui.hbox{}
+      if #preA > 0 then
+         hbox.addWidget( ui.label{
+            text      = preA,
+            onClick   = func,
+            textColor = colorA,
+         } )
+      end
+      if #preB > 0 then
+         hbox.addWidget( ui.label{
+            text      = preB,
+            onClick   = func,
+            textColor = colorB,
+         } )
+      end
+      if #suf > 0 then
+         hbox.addWidget( ui.label{
+            text      = suf,
+            onClick   = func,
+            textColor = colorC,
+         } )
+      end
+      return hbox
+   end
+
+   -----------------------------------------------------------------------------
+   -- Public Interface.
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   -- Adds one or many suggestions.
+   function this.addSuggestion( s )
+      local sug = this.suggestions
+      sug[#sug+1] = s
+   end
+
+   -----------------------------------------------------------------------------
+   -- Adds one or many suggestions.
+   function this.addSuggestions( sugs )
+      -- Add every suggestion.
+      local sug = this.suggestions
+      for i,s in ipairs( sugs ) do
+         sug[#sug+1] = s
+      end
+   end
+
+   -----------------------------------------------------------------------------
+   -- Clears all of the suggestions.
+   function this.clearSuggestions()
+      this.suggestions = {}
+      this.removeAllWidgets()
+   end
+
+   -----------------------------------------------------------------------------
+   -- Changes the current selection.
+   function this.changeSelection( offset )
+      local sel = mod_off( this.selection + offset, this.numRetained )
+      this.suggest( this.prefix, sel )
+   end
+
+   -----------------------------------------------------------------------------
+   -- Sets the suggestions using the specified prefix.
+   function this.suggest( prefix, selection )
+      this.removeAllWidgets()
+      prefix = prefix or ""
+      local retained = this.getCandidates( prefix )
+      local n = #retained
+      -- Select the middle one, favoring earlier one when even number.
+      local mid        = math.floor( (n + 1) / 2 )
+      selection        = selection or mid
+      this.selection   = selection
+      this.prefix      = prefix
+      this.numRetained = n
+      if n > 0 then
+         -- Determine common prefix.
+         local cmnLen = determineCommonPrefixLength( retained, n )
+         local preLen = #prefix
+         local sel    = retained[selection]
+         local completion = string.sub( sel, preLen+1, cmnLen )
+         if #completion == 0 then
+            completion = string.sub( sel, preLen+1 )
+         end
+         this.completion = completion
+         local entriesAbove = this.entriesAbove
+         local entriesBelow = this.entriesBelow
+         -- TODO: Clamp based on available widget space.
+         -- Clamp based on required number of entries.
+         local maxEntries = this.entriesAbove + this.entriesBelow + 1
+         if n < maxEntries then
+            entriesAbove = math.min( entriesAbove, mid-1 )
+            entriesBelow = math.min( entriesBelow, n-entriesAbove-1 )
+         end
+         -- Some reused variables.
+         local colorA = { 1.0, 0.0, 0.0, 1.0 }
+         local colorB = { 0.0, 1.0, 0.0, 1.0 }
+         local colorC = { 0.0, 0.0, 1.0, 1.0 }
+         local func = function( w )
+            if this.onSelect then
+               this.onSelect( v )
+            end
+         end
+         -- Suggestions above.
+         for i=1,entriesAbove do
+            local idx = mod_off( selection-entriesAbove+i-1, n )
+            local sug = retained[idx]
+            local w = SuggestionHBox( sug, cmnLen, preLen, func )
+            this.addWidget( w )
+         end
+         -- Current selection.
+         local idx = mod_off( selection, n )
+         local sug = retained[idx]
+         local w = SuggestionHBox( sug, cmnLen, preLen, func, colorA, colorB, colorC )
+         this.addWidget( w )
+         -- Suggestions below.
+         for i=1,entriesBelow do
+            local idx = mod_off( selection+i, n )
+            local sug = retained[idx]
+            local w = SuggestionHBox( sug, cmnLen, preLen, func )
+            this.addWidget( w )
+         end
+      else
+         this.completion = ""
+      end
+   end
+
+   -----------------------------------------------------------------------------
+   -- Returns a list of candidates matching the specified prefix.
+   function this.getCandidates( prefix )
+      local t = {}
+      for i,v in ipairs( this.suggestions ) do
+         if startsWith( v, prefix ) then
+            t[#t+1] = v
+         end
+      end
+      return t
+   end
+
+   -----------------------------------------------------------------------------
+   -- Initialization.
+
+   return this
+end
+
+--===========================================================================
+-- File Dialog Controller
+--===========================================================================
+local function createFileDialogController( params )
+end
+
+--===========================================================================
+-- File Dialog
+--===========================================================================
+local function createFileDialog( ui, path, params )
+   path = path or FS.Entry("<DATA>").path
+
+   params = params or {}
+   params.size = params.size or { 300, -1 }
+   local this = ui.textEntry( params )
+
+   local subpathStart
+   local lastSize
+   local pathSug
+
+   -- Utility routines.
+   local function placeSuggestions( path )
+      if not pathSug.parent then
+         desktop = UI.getDesktop()
+         if desktop then
+            desktop.addWidget( pathSug )
+         end
+      end
+      --print("gp", table.toString(this.globalPosition))
+      pathSug.position = this.globalPosition
+      pathSug.position = { pathSug.position[1], pathSug.position[2] + 50 }
+      --print("endPos", table.toString(pathSug.position))
+   end
+
+   local function refreshSuggestions( path )
+      pathSug.clearSuggestions()
+      path = path or this.text
+      for s in FS.DirIterator( path ) do
+         if not startsWith( s, "." ) then
+            pathSug.addSuggestion( s )
+         end
+      end
+   end
+
+   local function initPath( path, subStart )
+      subStart = subStart or rfind( path, "/" )
+      local dir
+      if subStart then
+         if subStart == 1 then
+            dir = "/"
+         else
+            dir = string.sub( path, 1, subStart-1 )
+         end
+         subpathStart = subStart + 1 -- Start right after the slash.
+      else
+         dir = ""
+         subpathStart = 1
+      end
+      refreshSuggestions( dir )
+   end
+
+   -----------------------------------------------------------------------------
+   -- Callbacks.
+   function this.onKeyPress( w, ev )
+      local key = ev.value
+      if key == UI.Key.TAB or key == UI.Key.EM then
+         if UI.isKeyPressed( UI.Key.SHIFT ) then
+            -- Remove last word.
+            local t = goUp( this.text )
+            this.text = t
+         else
+            -- Complete current selection suggestion.
+            local c = pathSug.completion
+            if #c > 0 then
+               this.text = this.text .. c
+            else
+               local t = this.text
+               if string.sub( t, -1 ) ~= "/" then
+                  local e = FS.Entry( t )
+                  if e.type == FS.Type.DIRECTORY then
+                     this.text = t .. "/"
+                  end
+               end
+            end
+         end
+      elseif key == UI.Key.UP_ARROW then
+         pathSug.changeSelection( -1 )
+      elseif key == UI.Key.DOWN_ARROW then
+         pathSug.changeSelection( 1 )
+      end
+   end
+   function this.onModify( w )
+      local t = this.text
+      initPath( t )
+      local prefix = string.sub(t, subpathStart)
+      pathSug.suggest( prefix )
+      lastSize = ts
+   end
+   function this.onStartEdit( w )
+      local t = this.text
+      lastSize = #t
+      initPath( t )
+      placeSuggestions()
+      local prefix = string.sub(t, subpathStart)
+      pathSug.suggest( prefix )
+      --pathSug.suggest( "" )
+   end
+   function this.onEndEdit( w )
+      pathSug.clearSuggestions()
+      local desktop = UI.getDesktop()
+      if desktop then
+         UI.getDesktop().removeWidget( pathSug )
+      end
+   end
+
+   -----------------------------------------------------------------------------
+   -- Public Interface.
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   -- Sets the current path in the file dialog.
+   function this.set( path )
+      this.text = path
+      initPath( path )
+   end
+
+   -----------------------------------------------------------------------------
+   -- Initialization.
+   pathSug = SuggestionBox( ui, { color = { 0.5, 0.5, 0.5, 0.8 } } )
+
+   this.set( path )
+
+   return this
+end
+
+UI.fileDialog = createFileDialog

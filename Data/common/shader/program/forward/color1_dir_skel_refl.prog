@@ -1,0 +1,2 @@
+vertex shader/vertex/mnp_skel
+fragment shader/fragment/forward/color1_dir_refl

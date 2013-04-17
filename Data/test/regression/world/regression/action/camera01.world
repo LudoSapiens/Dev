@@ -1,0 +1,18 @@
+staticObject{
+   geometry = geometry( "geometry/physics/box", { size=vec3(10,1,10), color="gray", detailsError=1.0 } ),
+   material = material( "geometry/physics/colors" ),
+   position = { 0, -1, 0 },
+}
+
+object{
+   geometry = geometry( "geometry/physics/box", { size=vec3(1,1,1), color="blue" } ),
+   material = material( "geometry/physics/colors" ),
+   position = { 0, 1.01, 0 },
+}
+
+camera{
+   position = {0,2,10},
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+   brain    = brain( "brain/regression/action/camera01", nil, true ),
+}

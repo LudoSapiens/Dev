@@ -1,0 +1,14 @@
+uniform sampler2D tex;
+uniform vec2 disp;
+
+varying vec2 mapping;
+
+void main( void )
+{
+   vec4 color;
+   color  = ( 8.0/128.0) * texture2D(tex, mapping.xy - vec2(0.0, disp.y));
+   color += (56.0/128.0) * texture2D(tex, mapping.xy - vec2(0.0, disp.x));
+   color += (56.0/128.0) * texture2D(tex, mapping.xy + vec2(0.0, disp.x));
+   color += ( 8.0/128.0) * texture2D(tex, mapping.xy + vec2(0.0, disp.y));
+   gl_FragColor = color;
+}

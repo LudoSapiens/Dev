@@ -1,0 +1,38 @@
+local colors = {
+   vec4( vec3(0.0/10.0), 1.0 ), -- [ 0] Black
+   vec4( vec3(1.0/10.0), 1.0 ), -- [ 1] Gray 10%
+   vec4( vec3(2.0/10.0), 1.0 ), -- [ 2] Gray 20%
+   vec4( vec3(3.0/10.0), 1.0 ), -- [ 3] Gray 30%
+   vec4( vec3(4.0/10.0), 1.0 ), -- [ 4] Gray 40%
+   vec4( vec3(5.0/10.0), 1.0 ), -- [ 5] Gray 50%
+   vec4( vec3(6.0/10.0), 1.0 ), -- [ 6] Gray 60%
+   vec4( vec3(7.0/10.0), 1.0 ), -- [ 7] Gray 70%
+   vec4( vec3(8.0/10.0), 1.0 ), -- [ 8] Gray 80%
+   vec4( vec3(9.0/10.0), 1.0 ), -- [ 9] Gray 90%
+   vec4(                 1.0 ), -- [10] White
+   vec4(  1.0, 0.0, 0.0, 1.0 ), -- [11] Red
+   vec4(  0.0, 1.0, 0.0, 1.0 ), -- [12] Green
+   vec4(  0.0, 0.0, 1.0, 1.0 ), -- [13] Blue
+   vec4(  0.0, 1.0, 1.0, 1.0 ), -- [14] Cyan
+   vec4(  1.0, 0.0, 1.0, 1.0 ), -- [15] Magenta
+   vec4(  1.0, 1.0, 0.0, 1.0 ), -- [16] Yellow
+}
+
+for i,c in ipairs(colors) do
+   baseMaterial{
+      color = c,
+      {
+         color = image( "image/white" ),
+         clamp = TexClamp.LAST,
+      }
+   }
+end
+
+-- [17] Checkerboard.
+baseMaterial{
+   color = vec4(1),
+   {
+      color = image( "image/checker" ),
+      clamp = TexClamp.WRAP,
+   }
+}

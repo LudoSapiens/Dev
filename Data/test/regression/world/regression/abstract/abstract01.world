@@ -1,0 +1,17 @@
+local o = {-5,0,-3}
+local p = {2,10,5}
+local a = {0,0,0}
+local u = {0,1,0}
+if p[1] == 0 and p[2] == 0 then
+   u = {0,0,-1}
+end
+camera{
+   position = p,
+   lookAt   = { a, u },
+}
+
+staticObject{
+   geometry = "architecture/abstract/abstract01",
+   material = "architecture/abstract/abstract01",
+   position = o,
+}

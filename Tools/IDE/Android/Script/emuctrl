@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+
+#CALL=echo
+EMU_PROC=emulator
+
+function emuPause {
+   ${CALL} killall -STOP ${EMU_PROC}
+}
+
+function emuResume {
+   ${CALL} killall -CONT ${EMU_PROC}
+}
+
+for arg in "$@"
+do
+	case $arg in
+		pause)
+			 emuPause
+			 ;;
+		stop)
+			 emuPause
+			 ;;
+		resume)
+			 emuResume
+			 ;;
+		start)
+			 emuResume
+			 ;;
+		-n)
+			 CALL=echo
+			 ;;
+		*)
+			echo "Unknown command: '${arg}'"
+			;;
+	esac
+done

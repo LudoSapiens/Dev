@@ -1,0 +1,101 @@
+def default():
+   Base()
+
+BaseSettings = StandardSettings.copy()
+BaseVariants = StandardVariants.copy()
+
+if Defaults.Env.Platform == "windows":
+   if Defaults.Env.PlatformFlavor == "cygwin":
+      if False:
+         BaseSettings.defines["BASE_SOCKET_USE_BSD"] = 1
+         BaseSettings.defines["BASE_SOCKET_USE_WINSOCK"] = 0
+      else:
+         BaseSettings.defines["BASE_SOCKET_USE_BSD"] = 0
+         BaseSettings.defines["BASE_SOCKET_USE_WINSOCK"] = 1
+         BaseSettings.defines["_WIN32_WINNT"] = 0x501
+         BaseSettings.ldflags.append("-lws2_32")
+
+BaseSettings.ldflags.append( "-lz" )
+
+BaseLib = Library(
+   "Base",
+   inputs=[
+      "ADT/ConstString.cpp",
+      "ADT/String.cpp",
+      "ADT/StringMap.cpp",
+      "Dbg/DebugStream.cpp",
+      "Dbg/ErrorManager.cpp",
+      "Dbg/UnitTest.cpp",
+      "IO/BinaryStream.cpp",
+      "IO/FileDevice.cpp",
+      "IO/FileSystem.cpp",
+      "IO/GZippedFileDevice.cpp",
+      "IO/IODevice.cpp",
+      "IO/LockedMemoryDevice.cpp",
+      "IO/MMapDevice.cpp",
+      "IO/MemoryDevice.cpp",
+      "IO/MultiDevice.cpp",
+      "IO/NullDevice.cpp",
+      "IO/Path.cpp",
+      "IO/StringDevice.cpp",
+      "IO/TextStream.cpp",
+      "Msg/Observer.cpp",
+      "Msg/Subject.cpp",
+      "Net/Socket.cpp",
+      "Net/SocketDevice.cpp",
+      "Net/_SocketImpl.cpp",
+      "MT/Lock.cpp",
+      "MT/RWLock.cpp",
+      "MT/Semaphore.cpp",
+      "MT/Task.cpp",
+      "MT/TaskQueue.cpp",
+      "MT/Thread.cpp",
+      "MT/Trigger.cpp",
+      "MT/ValueTrigger.cpp",
+      "Util/Application.cpp",
+      "Util/Arguments.cpp",
+      "Util/Date.cpp",
+      "Util/Formatter.cpp",
+      "Util/Memory.cpp",
+      "Util/RadixSort.cpp",
+      "Util/RCObject.cpp",
+      "Util/RCObjectNA.cpp",
+      "Util/SHA.cpp",
+      "Util/Time.cpp",
+      "Util/Unicode.cpp",
+      "Util/UnicodeIterator.cpp",
+      "Util/Validator.cpp",
+   ],
+   shared=True, shared_define="COMPILING_BASE",
+   settings=BaseSettings,
+   variant=BaseVariants,
+)
+
+Base = Application("base",
+                   inputs=[
+                     "test.cpp",
+                     "test_adt.cpp",
+                     "test_dbg.cpp",
+                     "test_io.cpp",
+                     "test_msg.cpp",
+                     "test_mt.cpp",
+                     "test_net.cpp",
+                     "test_util.cpp",
+                     "test_old.cpp",
+                     BaseLib
+                   ],
+                   settings=BaseLib.settings,
+                   variant=BaseLib.variant)
+
+base = Base
+
+import new
+
+def run_with_args(self):
+   self.run("bits")
+Base.run_bits = new.instancemethod(run_with_args, Base, Application)
+
+fileperf = Application("fileperf",
+                       inputs=[ "file_perf.cpp", BaseLib ],
+                       settings=BaseLib.settings,
+                       variant=BaseLib.variant)

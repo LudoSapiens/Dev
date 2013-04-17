@@ -1,0 +1,104 @@
+baseMaterial{
+   {
+      color = image( "floor/tile_001" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "wallpaper/wall_001" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "floor/parket_003" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "wallpaper/wall_001" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "brick/brick_011" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "brick/brick_004" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "floor/tile_005" )
+   }
+}
+baseMaterial{
+   color = {0.5,0.5,0.5,1},
+   {
+      color = image( "image/white" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "floor/tile_006" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "floor/tile_004" )
+   }
+}
+baseMaterial{
+   color = {0.168,0.1,0.034,1.0},
+   {
+      color = image( "image/white" )
+   }
+}
+-- Furniture. 12-...
+baseMaterial{
+   --color = {1.0,0.2,0.2,1.0},
+   color = {1.0,0.0,0.0,1.0},
+   {
+      color = image( "image/white" )
+   }
+}
+baseMaterial{
+   color = {0.25,0.5,1.0,1.0},
+   --color = {0.0,0.0,1.0,1.0},
+   {
+      color = image( "image/white" )
+   }
+}
+
+baseMaterial{
+   --color = {0.0,1.0,0.0,1.0},
+   --color = {0.62,0.8,0.5,1.0},
+   color = {0.47,0.7,0.4,1.0},
+   {
+      color = image( "image/white" )
+   }
+}
+baseMaterial{
+   color = {0.8,0.8,0.8,1.0},
+   {
+      color = image( "image/white" )
+   }
+}
+baseMaterial{
+   {
+      color = image( "wood/birch" )
+   }
+}
+baseMaterial{
+   color = {0.4,0.25,0.2,1.0},
+   {
+      color = image( "image/white" )
+   }
+}
+baseMaterial{
+   color = {0.7,0.7,0.7,1.0},
+   {
+      color = image( "image/white" )
+   }
+}

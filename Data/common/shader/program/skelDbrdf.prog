@@ -1,0 +1,2 @@
+vertex shader/vertex/mnpt_skel
+fragment shader/fragment/dbrdf

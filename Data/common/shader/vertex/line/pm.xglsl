@@ -1,0 +1,29 @@
+#ifndef GL_ES
+#define gfxMultiTexCoord0  gl_MultiTexCoord0
+#define gfxMultiTexCoord1  gl_MultiTexCoord1
+#define gfxMultiTexCoord2  gl_MultiTexCoord2
+#define gfxMultiTexCoord3  gl_MultiTexCoord3
+#define gfxVertex          gl_Vertex
+#endif
+
+varying vec2 mapping;
+varying vec4 vcolor;
+
+// TexCoord0: T, Radius
+// TexCoord1: Previous
+// TexCoord2: Next
+// TexCoord3: Color
+void main(void)
+{
+   vec4 p    = gfxWorldViewProjectionMatrix * gfxVertex;
+   vec4 prev = gfxWorldViewProjectionMatrix * vec4( gfxMultiTexCoord1.xyz, 1.0 );
+   vec4 next = gfxWorldViewProjectionMatrix * vec4( gfxMultiTexCoord2.xyz, 1.0 );
+
+   vec2 e = normalize( (next.xy/next.w)-(prev.xy/prev.w) );
+   //vec2 e = normalize( (next.xy/next.w)-(p.xy/p.w) );
+   p.xy += vec2( -e.y, e.x )*gfxMultiTexCoord0.y;
+   gl_Position = p;
+   mapping.x   = gfxMultiTexCoord0.x;
+   mapping.y   = sign( gfxMultiTexCoord0.y )*0.5 + 0.5;
+   vcolor      = gfxMultiTexCoord3;
+}

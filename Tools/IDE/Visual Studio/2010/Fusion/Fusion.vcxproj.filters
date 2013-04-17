@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{fc1e6dfc-ec33-4858-bcb2-7276b86dedff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{4a6a101f-51cc-4249-a303-e87bb3112f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Drawable">
+      <UniqueIdentifier>{c553c63e-2712-42cb-9fc9-2ce2edf09ba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Resource">
+      <UniqueIdentifier>{333a35f2-673d-4cc6-98fc-4804d6204345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\VM">
+      <UniqueIdentifier>{39944384-7499-4025-9c99-34593629b040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Widget">
+      <UniqueIdentifier>{38bbbd6d-bad7-44f1-a59e-b9f33a9fa5cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Win32">
+      <UniqueIdentifier>{f2835976-cfd0-4ab4-853f-f6c531b34182}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Animator.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Core.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Event.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\HID.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Key.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Pointer.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Core\Win32\CoreWin.cpp">
+      <Filter>Source\Core\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Drawable\Drawable.cpp">
+      <Filter>Source\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Drawable\Text.cpp">
+      <Filter>Source\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Drawable\TQuad.cpp">
+      <Filter>Source\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\Bitmap.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\BitmapManipulator.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\Font.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\GlyphManager.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\Image.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\ImageGenerator.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\RectPacker.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\ResCache.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\ResManager.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\Resource.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Resource\stb_image.c">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\BaseProxies.cpp">
+      <Filter>Source\VM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VM.cpp">
+      <Filter>Source\VM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VMMath.cpp">
+      <Filter>Source\VM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VMObjectPool.cpp">
+      <Filter>Source\VM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VMRegistry.cpp">
+      <Filter>Source\VM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\VM\VMSubject.cpp">
+      <Filter>Source\VM</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Box.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Button.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Canvas.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\ComboBox.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Desktop.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Grid.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\HotspotContainer.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Label.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Layer.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Menu.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\MenuItem.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\RadialButton.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\RadialMenu.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Spacer.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Splitter.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\TextEntry.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\TreeList.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\ValueEditor.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\Widget.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\WidgetContainer.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Fusion.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Fusion\Widget\FileDialog.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Animator.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Core.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Event.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\HID.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Key.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Pointer.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\TaskEvent.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Core\Win32\CoreWin.h">
+      <Filter>Source\Core\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Drawable\Drawable.h">
+      <Filter>Source\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Drawable\Text.h">
+      <Filter>Source\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Drawable\TQuad.h">
+      <Filter>Source\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\Bitmap.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\BitmapManipulator.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\Font.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\GlyphManager.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\Image.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\ImageGenerator.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\RectPacker.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\ResCache.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\ResManager.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\Resource.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\stb_image_write.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Resource\stb_truetype.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\BaseProxies.h">
+      <Filter>Source\VM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VM.h">
+      <Filter>Source\VM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMMath.h">
+      <Filter>Source\VM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMObject.h">
+      <Filter>Source\VM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMObjectPool.h">
+      <Filter>Source\VM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMRegistry.h">
+      <Filter>Source\VM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\VM\VMSubject.h">
+      <Filter>Source\VM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Box.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Button.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Canvas.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\ComboBox.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Desktop.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Grid.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\HotspotContainer.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Label.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Layer.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Menu.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\MenuItem.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\RadialButton.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\RadialMenu.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Spacer.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Splitter.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\TextEntry.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\TreeList.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\ValueEditor.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\Widget.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\WidgetContainer.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Fusion.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\StdDefs.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Fusion\Widget\FileDialog.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

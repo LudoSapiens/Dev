@@ -1,0 +1,175 @@
+LoadFile("../Base/BSFile")
+LoadFile("../CGMath/BSFile")
+LoadFile("../Fusion/BSFile")
+LoadFile("../Gfx/BSFile")
+LoadFile("../Snd/BSFile")
+
+if StandardSettings.defines.get( "MOTION_BULLET" ) == 1:
+   LoadFile("../MotionBullet/BSFile")
+else:
+   LoadFile("../Motion/BSFile")
+
+PlasmaLib = Library(
+   "Plasma",
+   inputs=[
+      "Action/Action.cpp",
+#     "Action/BodyActions.cpp",
+      "Action/Command.cpp",
+#     "Action/CameraActions.cpp",
+      "Action/PuppeteerAction.cpp",
+#     "Action/WidgetActions.cpp",
+      "Animation/AnimationGraph.cpp",
+      "Animation/AnimationNode.cpp",
+      "Animation/AnimationRail.cpp",
+      "Animation/BasicNode.cpp",
+      "Animation/JumpNode.cpp",
+      "Animation/Pinocchio.cpp",
+      "Animation/Puppeteer.cpp",
+      "Animation/SkeletalAnimation.cpp",
+      "Animation/Skeleton.cpp",
+      "Animation/TravelNode.cpp",
+      "DataFlow/DFBlocks.cpp",
+      "DataFlow/DFGeometry.cpp",
+      "DataFlow/DFGeomNode.cpp",
+      "DataFlow/DFGraph.cpp",
+      "DataFlow/DFNode.cpp",
+      "DataFlow/DFPatch.cpp",
+      "DataFlow/DFStrokes.cpp",
+      "DataFlow/DFStrokesManipulator.cpp",
+      "DataFlow/ProceduralDataFlow.cpp",
+      "Geometry/Geometry.cpp",
+      "Geometry/Material.cpp",
+      "Geometry/MaterialSet.cpp",
+      "Geometry/MetaGeometry.cpp",
+      "Geometry/MetaNode.cpp",
+      "Geometry/MetaSurface.cpp",
+      "Geometry/ParametricPatch.cpp",
+      "Geometry/SurfaceGeometry.cpp",
+      "Geometry/SilhouetteGeometry.cpp",
+      "Geometry/MeshGeometry.cpp",
+      "Intersector.cpp",
+      "Manipulator/CameraManipulator.cpp",
+      "Manipulator/Controller.cpp",
+      "Manipulator/EventDispatcher.cpp",
+      "Manipulator/FlyByManipulator.cpp",
+      "Manipulator/Manipulator.cpp",
+      "Manipulator/ManipulatorGroup.cpp",
+      "Manipulator/MultiCharacterController.cpp",
+      "Particle/ParticleAnimator.cpp",
+      "Particle/ParticleGenerator.cpp",
+      "Particle/ParticleGroup.cpp",
+      "Particle/ParticleManager.cpp",
+      "Particle/ParticleSource.cpp",
+      "Particle/Smoke.cpp",
+      "Particle/Spark.cpp",
+      "Physics/CollisionShapeGenerator.cpp",
+      "Physics/PlasmaAttractors.cpp",
+      "Plasma.cpp",
+      "Procedural/Boundary.cpp",
+      "Procedural/BoundaryPolygon.cpp",
+      "Procedural/BSP2.cpp",
+      "Procedural/BSP3.cpp",
+      "Procedural/Component.cpp",
+      "Procedural/ProceduralAnimation.cpp",
+      "Procedural/ProceduralAnimationGraph.cpp",
+      "Procedural/ProceduralGeometry.cpp",
+      "Procedural/ProceduralMaterial.cpp",
+      "Procedural/ProceduralMesh.cpp",
+      "Procedural/ProceduralSkeleton.cpp",
+      "Procedural/ProceduralWorld.cpp",
+      "Render/DebugGeometry.cpp",
+      "Render/DeferredRenderer.cpp",
+      "Render/ForwardRenderer.cpp",
+      "Render/ForwardRendererHDR.cpp",
+      "Render/PlasmaBaker.cpp",
+#     "Render/PlasmaRayTracer.cpp",
+      "Render/Renderer.cpp",
+      "Renderable/BasicsRenderable.cpp",
+      "Renderable/DebugRenderable.cpp",
+#     "Renderable/PlaneProjector.cpp",
+      "Renderable/PrimitiveRenderable.cpp",
+      "Renderable/Renderable.cpp",
+      "Resource/ResExporter.cpp",
+      "Resource/ResManager.cpp",
+      "Resource/ResourceVM.cpp",
+      "Resource/Serializer.cpp",
+      "Stimulus/EventStimuli.cpp",
+      "Stimulus/Orders.cpp",
+      "Stimulus/Stimulus.cpp",
+      "Widget/DFViewer.cpp",
+      "Widget/DFViewport.cpp",
+      "Widget/PlasmaBrowser.cpp",
+      "Widget/PlasmaScreen.cpp",
+      "World/Brain.cpp",
+      "World/Camera.cpp",
+      "World/Entity.cpp",
+      "World/EntityGroup.cpp",
+      "World/Light.cpp",
+#     "World/Material.cpp",
+      "World/Receptor.cpp",
+      "World/RigidEntity.cpp",
+      "World/Selection.cpp",
+      "World/SkeletalEntity.cpp",
+#     "World/Sound.cpp",
+      "World/Viewport.cpp",
+      "World/World.cpp",
+      "World/WorldVM.cpp",
+      BaseLib,
+      CGMathLib,
+      FusionLib,
+      GfxLib,
+      MotionLib,
+      SndLib,
+   ],
+   shared=True, shared_define="COMPILING_PLASMA"
+)
+
+
+PlasmaLib.settings = StandardSettings.copy()
+PlasmaLib.variant.add( StandardVariants )
+
+if Defaults.Env.Platform == "unix":
+   if GfxLib.settings.defines["GFX_OGL_GLX_SUPPORT"]:
+      PlasmaLib.settings.source_directories_includes.append("/usr/X11R6/include")
+      PlasmaLib.settings.ldflags.append("-L/usr/X11R6/lib -lX11 -lGL")
+PlasmaLib.settings.ldflags.append("-L"+ThirdpartyLibraryPath)
+
+# Adding zLib, used by the GZippedFileDevice indirectly used by the ResManager.
+PlasmaLib.settings.ldflags.append("-lz")
+
+
+Plasma = Application("plasma",
+                     inputs=["main.cpp", BaseLib, CGMathLib, FusionLib, GfxLib, MotionLib, SndLib, PlasmaLib],
+                     settings=PlasmaLib.settings,
+                     variant=PlasmaLib.variant)
+
+PlasmaTest = Application("plasmaTest",
+                     inputs=["test.cpp", BaseLib, CGMathLib, FusionLib, GfxLib, MotionLib, SndLib, PlasmaLib],
+                     settings=PlasmaLib.settings,
+                     variant=PlasmaLib.variant)
+
+tda = Application("tda",
+                  inputs=["tda.cpp", BaseLib, CGMathLib, FusionLib, GfxLib, MotionLib, SndLib, PlasmaLib],
+                  settings=PlasmaLib.settings,
+                  variant=PlasmaLib.variant)
+
+plasma = Plasma
+
+import new
+
+Plasma.app_prefix = "app/plasma/"
+
+def run_with_args(self):
+   self.run(self.app_prefix+"editor")
+Plasma.run_editor = new.instancemethod(run_with_args, Plasma, Application)
+
+def run_with_args(self, args=None):
+   realArgs = []
+   realArgs.append( self.ui_prefix+"convert.ui" )
+   if args:
+      realArgs.extend( args )
+   self.run(realArgs)
+Plasma.convert = new.instancemethod(run_with_args, Plasma, Application)
+
+#Make sure we can't access them outside of Plasma
+del run_with_args

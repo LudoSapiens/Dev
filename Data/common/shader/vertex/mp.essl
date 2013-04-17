@@ -1,0 +1,18 @@
+//
+// ESSL vertex shader.
+// --------------------
+//  m: mapping
+//  p: position
+//
+
+varying highp vec2 mapping;
+varying highp vec3 position;
+//varying highp vec3 normal;
+
+void main(void)
+{
+   mapping     = gfxMultiTexCoord0.xy;
+   position    = (gfxWorldViewMatrix * gfxVertex).xyz;
+   //normal      = (gfxWorldViewMatrix * vec4(gfxNormal,0)).xyz;
+   gl_Position = gfxWorldViewProjectionMatrix * gfxVertex;
+}

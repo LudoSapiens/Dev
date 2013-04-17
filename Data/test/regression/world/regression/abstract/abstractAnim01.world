@@ -1,0 +1,23 @@
+local params = ... or {}
+
+local w_2 = (params.w or 10) * 0.5
+local d_2 = (params.d or 10) * 0.5
+local o   = params.pos or {-w_2,0,-d_2}
+
+local cam = params.cam or {}
+local p   = cam.pos or {0,30,20}
+local a   = cam.at or {0,0,5}
+local u   = cam.up or {0,1,0}
+if p[1] == 0 and p[2] == 0 then
+   u = {0,0,-1}
+end
+
+camera{
+   position = p,
+   lookAt   = { a, u },
+}
+
+staticObject{
+   geometry = geometry( "architecture/abstract/abstractAnim01", params ),
+   position = o,
+}

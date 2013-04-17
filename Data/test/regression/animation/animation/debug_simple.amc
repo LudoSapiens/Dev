@@ -1,0 +1,138 @@
+#!OML:ASF H:\Terrain\Patient Classification 1\PLAYGROUND\JustinFriday\JustinFriday.ASF
+:FULLY-SPECIFIED
+:DEGREES
+1
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 0
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+2
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 10
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+3
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 20
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+4
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 30
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+5
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 40
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+6
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 50
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+7
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 60
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+8
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 70
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+9
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 80
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+10
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 0
+lhand 0 0
+rarm 0 0 0
+rhand 0 0
+11
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 0
+lhand 0 0
+rarm 0 20 -20
+rhand 0 0
+12
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 0
+lhand 0 0
+rarm 0 40 -40
+rhand 0 0
+13
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 0
+lhand 0 0
+rarm 0 60 -60
+rhand 0 0
+14
+root 0 0 0 0 0 0
+torso 0 0 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 0
+lhand 0 0
+rarm 0 80 -80
+rhand 0 0
+15
+root 0 0 0 0 0 0
+torso 0 90 0
+neck 0 0 0
+head 0 0 0
+larm 0 0 0
+lhand 0 0
+rarm 0 -90 0
+rhand 0 0

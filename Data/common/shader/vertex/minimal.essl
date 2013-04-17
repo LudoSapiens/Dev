@@ -1,0 +1,8 @@
+//
+// Minimal ESSL vertex shader.
+//
+
+void main( void )
+{
+   gl_Position = gfxWorldViewProjectionMatrix * gfxVertex;
+}

@@ -1,0 +1,252 @@
+include( "script/task/taskInterface" )
+include( "script/util/cgmath" )
+include( "script/ui/inputWidgets" )
+
+--==============================================================================
+-- Physics Task plugin script.
+-- This task is a testbed for our physics system.
+--==============================================================================
+
+local res = ObjectPool( "RES" )
+
+--==============================================================================
+-- RegressionPanel
+--==============================================================================
+local regressionDir = "world/physics/"
+
+local regressionFiles = {
+   "simple",
+   "friction",
+   "joints_ball",
+   "joints_cradle",
+   "collisions_mass",
+   "collisions_restitution",
+   "collisions_groups",
+   "collisions_stress01",
+   "collisions_callback",
+   "trimesh",
+   "trimesh02",
+   "concave01",
+   "kinematic",
+}
+
+--------------------------------------------------------------------------------
+local function pathJoin( path, ... )
+   local args = {...}
+   for _,arg in ipairs( args ) do
+      if not path then
+         path = arg
+      elseif path:sub(-1) == "/" then
+         path = path .. arg
+      else
+         path = path .. "/" .. arg
+      end
+   end
+   return path
+end
+
+--------------------------------------------------------------------------------
+local function RegressionPanel( ui, params )
+   local this = params or {}
+
+   this.title       = this.title       or "Regressions"
+   this.orientation = this.orientation or UI.BoxOrientation.VERTICAL
+   this.hAlign      = this.hAlign      or UI.WidgetAlignment.START
+   this.vAlign      = this.vAlign      or UI.WidgetAlignment.START
+   this.size        = this.size        or { 200, -1 }
+
+   local this  = ui.panel( this )
+   local ua    = this.userArea
+
+   -----------------------------------------------------------------------------
+   function this.addFiles( files, directory, widget )
+      widget    = widget or ua
+      --widget.gap = 0
+      for _,v in ipairs( files ) do
+         if type(v) == "table" then
+            local dir = pathJoin(directory, v.name)
+            local dirPanel = ui.panel{
+               title       = v.name,
+               orientation = UI.BoxOrientation.VERTICAL,
+               noReorder   = true,
+            }
+            dirPanel.setMinimized( true )
+            this.addFiles( v, dir, dirPanel )
+            widget.addWidget( dirPanel )
+         else
+            local file = pathJoin(directory, v)
+            widget.addWidget(
+               ui.label{
+                  text    = v,
+                  id      = file,
+                  onClick = function( w )
+                     local name = regressionDir .. w.id
+                     this.task.load( name )
+                  end,
+               }
+            )
+         end
+      end
+   end
+
+   return this
+end
+
+--------------------------------------------------------------------------------
+local function SimControl( ui, params )
+   local this = params or {}
+
+   -- Default hbox parameters here.
+
+   this = ui.hbox( this )
+
+   local playPause = ui.button{
+   }
+   local simTime   = ui.valueEditor{
+      value   = 0,
+      format  = "%0.2f",
+      flex    = 1,
+      enabled = false,
+   }
+   local simSpeed  = ui.valueEditor{
+      value  = 1,
+      min    = 0.0,
+      max    = 10.0,
+      step   = 0.01,
+      format = "%0.2f",
+      flex   = 1,
+   }
+   function this.updateWorld()
+      local w = this.task._world
+      if w then
+         playPause.enabled = true
+         w.simulationSpeed = simSpeed.value
+         if w.simulationSpeed == 0 then
+            playPause.icon = "image/ui/playback/pause"
+         else
+            playPause.icon = "image/ui/playback/play"
+         end
+      else
+         -- Disable the controls.
+         playPause.enabled = false
+         playPause.icon    = "image/ui/playback/stop"
+      end
+   end
+   function playPause.onClick()
+      local w = this.task._world
+      if playPause.icon == "image/ui/playback/play" then
+         w.simulationSpeed = 0
+         playPause.icon = "image/ui/playback/pause"
+      elseif playPause.icon == "image/ui/playback/pause" then
+         w.simulationSpeed = simSpeed.value
+         playPause.icon = "image/ui/playback/play"
+      end
+   end
+   function simSpeed.onModify()
+      local w = this.task._world
+      if w then
+         w.simulationSpeed = simSpeed.value
+      end
+   end
+   this.addWidgets{
+      playPause,
+      simTime,
+      ui.label{ text="x", baseSize=UI.baseSize.label_tight },
+      simSpeed,
+   }
+   this.updateWorld()
+   return this
+end
+
+
+--==============================================================================
+-- PhysicsTask
+--==============================================================================
+
+local function PhysicsTask( params )
+   local this = TaskInterface( params )
+   local ui   = this.ui
+   -----------------------------------------------------------------------------
+   -- Methods
+   -----------------------------------------------------------------------------
+
+   -----------------------------------------------------------------------------
+   function this.close()
+      if this._world then res.remove( this._world ) end
+   end
+   -----------------------------------------------------------------------------
+   function this.open()
+      print( "Opening Physics." )
+   end
+   -----------------------------------------------------------------------------
+   function this.save()
+      print( "Saving Physics." )
+   end
+   -----------------------------------------------------------------------------
+   function this.hotkey( ev )
+      local key = ev.value
+   end
+   -----------------------------------------------------------------------------
+   function this.keyPress( ev )
+      local key = ev.value
+   end
+   -----------------------------------------------------------------------------
+   function this.keyRelease( ev )
+      local key = ev.value
+   end
+   -----------------------------------------------------------------------------
+   function this.worldCb( nw )
+      print( "world loaded" )
+      local ow = this._world
+      if ow then
+         res.remove( ow )
+      end
+      this._world = nw
+      this._screen.world = nw
+      this._control.updateWorld()
+      nw.startSimulation()
+   end
+   -----------------------------------------------------------------------------
+   function this.load( name )
+      print( "loading world: " .. name )
+      res.newWorld( name, this.worldCb )
+   end
+
+   -----------------------------------------------------------------------------
+   --  Data members
+   -----------------------------------------------------------------------------
+   this.name  = "Physics " .. tostring(this.id)
+
+   -----------------------------------------------------------------------------
+   -- UI
+   this._screen = ui.plasmaScreen{
+      flex        = 1,
+      renderSize  = {-1,-1},
+      manipulator = ui.touchCameraManipulator{},
+   }
+   this.desktop.addWidget( this._screen )
+
+   this._regressionPanel = RegressionPanel( ui, { task=this } )
+   this._regressionPanel.addFiles( regressionFiles )
+   --this.desktop.addWidget( this._regressionPanel ) -- In this._panel below.
+
+   this._control = SimControl( ui, { task=this } )
+   this._panel = ui.panel{
+      title       = "Physics",
+      orientation = UI.BoxOrientation.VERTICAL,
+      hAlign      = UI.WidgetAlignment.START,
+      vAlign      = UI.WidgetAlignment.START,
+      size        = { -1, -1 },
+      this._control,
+      this._regressionPanel,
+   }
+   this.desktop.addWidget( this._panel )
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- REGISTRATION
+--==============================================================================
+
+registerTask( "Physics", { create = PhysicsTask } )

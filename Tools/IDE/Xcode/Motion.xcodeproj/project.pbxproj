@@ -1,0 +1,530 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4692D450CD11B8100F7A183 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D440CD11B8100F7A183 /* test.cpp */; };
+		F479C68F125CD40400773EB5 /* libMotion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F479C684125CD39200773EB5 /* libMotion.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4578B6210175671008FF75E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F442190A0B8A2B0100906FDC /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F45788E21016643F008FF75E;
+			remoteInfo = Base_CocoaTouch;
+		};
+		F4578B6610175671008FF75E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44219130B8A2B0D00906FDC /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4578A2C10166C2A008FF75E;
+			remoteInfo = CGMath_CocoaTouch;
+		};
+		F479C690125CD40D00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44218C60B8A2A3300906FDC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F479C683125CD39200773EB5 /* MotionLib (OSX) */;
+			remoteInfo = "MotionLib (OSX)";
+		};
+		F4E33F8B1080C8F400E441F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F442190A0B8A2B0100906FDC /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F474926C107E36F100E91BFA;
+			remoteInfo = "BaseTest (static)";
+		};
+		F4E33F8D1080C8F400E441F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F442190A0B8A2B0100906FDC /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4749256107E36B600E91BFA;
+			remoteInfo = "Base (static)";
+		};
+		F4E33F931080C8F400E441F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44219130B8A2B0D00906FDC /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492ED107E388D00E91BFA;
+			remoteInfo = "CGMathTest (static)";
+		};
+		F4E33F951080C8F400E441F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44219130B8A2B0D00906FDC /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492CD107E380300E91BFA;
+			remoteInfo = "CGMath (static)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F442190A0B8A2B0100906FDC /* Base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Base.xcodeproj; sourceTree = "<group>"; };
+		F44219130B8A2B0D00906FDC /* CGMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CGMath.xcodeproj; sourceTree = "<group>"; };
+		F44219510B8A2BE400906FDC /* MotionTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MotionTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4578B6A10175687008FF75E /* OSX_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Application_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B6B10175687008FF75E /* OSX_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Application_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B6C10175687008FF75E /* OSX_Executable_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Executable_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B6D10175687008FF75E /* OSX_Executable_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Executable_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B6E10175687008FF75E /* OSX_SharedLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_SharedLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B6F10175687008FF75E /* OSX_SharedLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_SharedLib_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B7010175687008FF75E /* iOS_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_StaticLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B7110175687008FF75E /* iOS_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_StaticLib_Release.xcconfig; sourceTree = "<group>"; };
+		F45F45050D50C44B00ABA083 /* Springs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Springs.cpp; sourceTree = "<group>"; };
+		F45F45060D50C44B00ABA083 /* Springs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Springs.h; sourceTree = "<group>"; };
+		F4692D010CD11B7300F7A183 /* Attractor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = Attractor.cpp; sourceTree = "<group>"; };
+		F4692D020CD11B7300F7A183 /* Attractor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Attractor.h; sourceTree = "<group>"; };
+		F4692D030CD11B7300F7A183 /* BasicAttractors.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = BasicAttractors.cpp; sourceTree = "<group>"; };
+		F4692D040CD11B7300F7A183 /* BasicAttractors.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = BasicAttractors.h; sourceTree = "<group>"; };
+		F4692D050CD11B7300F7A183 /* GravitationalAttractor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = GravitationalAttractor.cpp; sourceTree = "<group>"; };
+		F4692D060CD11B7300F7A183 /* GravitationalAttractor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GravitationalAttractor.h; sourceTree = "<group>"; };
+		F4692D080CD11B7300F7A183 /* BasicShapes.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = BasicShapes.cpp; sourceTree = "<group>"; };
+		F4692D090CD11B7300F7A183 /* BasicShapes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = BasicShapes.h; sourceTree = "<group>"; };
+		F4692D0A0CD11B7300F7A183 /* CollisionGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionGroup.cpp; sourceTree = "<group>"; };
+		F4692D0B0CD11B7300F7A183 /* CollisionGroup.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CollisionGroup.h; sourceTree = "<group>"; };
+		F4692D0C0CD11B7300F7A183 /* CollisionInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionInfo.cpp; sourceTree = "<group>"; };
+		F4692D0D0CD11B7300F7A183 /* CollisionInfo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CollisionInfo.h; sourceTree = "<group>"; };
+		F4692D0E0CD11B7300F7A183 /* CollisionShape.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionShape.cpp; sourceTree = "<group>"; };
+		F4692D0F0CD11B7300F7A183 /* CollisionShape.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CollisionShape.h; sourceTree = "<group>"; };
+		F4692D110CD11B7300F7A183 /* CharacterConstraint.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterConstraint.cpp; sourceTree = "<group>"; };
+		F4692D120CD11B7300F7A183 /* CharacterConstraint.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CharacterConstraint.h; sourceTree = "<group>"; };
+		F4692D130CD11B7300F7A183 /* Constraint.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = Constraint.cpp; sourceTree = "<group>"; };
+		F4692D140CD11B7300F7A183 /* Constraint.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Constraint.h; sourceTree = "<group>"; };
+		F4692D150CD11B7300F7A183 /* Joints.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = Joints.cpp; sourceTree = "<group>"; };
+		F4692D160CD11B7300F7A183 /* Joints.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Joints.h; sourceTree = "<group>"; };
+		F4692D180CD11B7300F7A183 /* ImpulseSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = ImpulseSolver.cpp; sourceTree = "<group>"; };
+		F4692D190CD11B7300F7A183 /* ImpulseSolver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ImpulseSolver.h; sourceTree = "<group>"; };
+		F4692D1A0CD11B7300F7A183 /* NextSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = NextSolver.cpp; sourceTree = "<group>"; };
+		F4692D1B0CD11B7300F7A183 /* NextSolver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NextSolver.h; sourceTree = "<group>"; };
+		F4692D1C0CD11B7300F7A183 /* SequentialImpulseSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SequentialImpulseSolver.cpp; sourceTree = "<group>"; };
+		F4692D1D0CD11B7300F7A183 /* SequentialImpulseSolver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SequentialImpulseSolver.h; sourceTree = "<group>"; };
+		F4692D1E0CD11B7300F7A183 /* StdDefs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = StdDefs.h; path = ../../../Projects/Motion/StdDefs.h; sourceTree = SOURCE_ROOT; };
+		F4692D200CD11B7300F7A183 /* MotionWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MotionWorld.cpp; sourceTree = "<group>"; };
+		F4692D210CD11B7300F7A183 /* MotionWorld.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MotionWorld.h; sourceTree = "<group>"; };
+		F4692D220CD11B7300F7A183 /* RigidBody.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = RigidBody.cpp; sourceTree = "<group>"; };
+		F4692D230CD11B7300F7A183 /* RigidBody.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RigidBody.h; sourceTree = "<group>"; };
+		F4692D440CD11B8100F7A183 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		F479C684125CD39200773EB5 /* libMotion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMotion.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F479C68B125CD3E500773EB5 /* iOS_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_Application_Debug.xcconfig; sourceTree = "<group>"; };
+		F479C68C125CD3E500773EB5 /* iOS_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_Application_Release.xcconfig; sourceTree = "<group>"; };
+		F479C68D125CD3E500773EB5 /* OSX_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_StaticLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F479C68E125CD3E500773EB5 /* OSX_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_StaticLib_Release.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F442194F0B8A2BE400906FDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F479C68F125CD40400773EB5 /* libMotion.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F479C682125CD39200773EB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F44218C40B8A2A3300906FDC = {
+			isa = PBXGroup;
+			children = (
+				F442190A0B8A2B0100906FDC /* Base.xcodeproj */,
+				F44219130B8A2B0D00906FDC /* CGMath.xcodeproj */,
+				F44218E50B8A2AB800906FDC /* Source */,
+				F4578B6910175687008FF75E /* Config */,
+				F44218DC0B8A2A8500906FDC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F44218DC0B8A2A8500906FDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F44219510B8A2BE400906FDC /* MotionTest */,
+				F479C684125CD39200773EB5 /* libMotion.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F44218E50B8A2AB800906FDC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F4692D000CD11B7300F7A183 /* Attractor */,
+				F4692D070CD11B7300F7A183 /* Collision */,
+				F4692D100CD11B7300F7A183 /* Constraint */,
+				F4692D170CD11B7300F7A183 /* Solver */,
+				F4692D430CD11B8100F7A183 /* src */,
+				F4692D1E0CD11B7300F7A183 /* StdDefs.h */,
+				F4692D1F0CD11B7300F7A183 /* World */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		F442190B0B8A2B0100906FDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4578B6310175671008FF75E /* libBase.a */,
+				F4E33F8E1080C8F400E441F3 /* libBase.a */,
+				F4E33F8C1080C8F400E441F3 /* BaseTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F44219140B8A2B0D00906FDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4578B6710175671008FF75E /* libCGMath.a */,
+				F4E33F941080C8F400E441F3 /* CGMathTest */,
+				F4E33F961080C8F400E441F3 /* libCGMath.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4578B6910175687008FF75E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				F479C68B125CD3E500773EB5 /* iOS_Application_Debug.xcconfig */,
+				F479C68C125CD3E500773EB5 /* iOS_Application_Release.xcconfig */,
+				F4578B7010175687008FF75E /* iOS_StaticLib_Debug.xcconfig */,
+				F4578B7110175687008FF75E /* iOS_StaticLib_Release.xcconfig */,
+				F4578B6A10175687008FF75E /* OSX_Application_Debug.xcconfig */,
+				F4578B6B10175687008FF75E /* OSX_Application_Release.xcconfig */,
+				F4578B6C10175687008FF75E /* OSX_Executable_Debug.xcconfig */,
+				F4578B6D10175687008FF75E /* OSX_Executable_Release.xcconfig */,
+				F4578B6E10175687008FF75E /* OSX_SharedLib_Debug.xcconfig */,
+				F4578B6F10175687008FF75E /* OSX_SharedLib_Release.xcconfig */,
+				F479C68D125CD3E500773EB5 /* OSX_StaticLib_Debug.xcconfig */,
+				F479C68E125CD3E500773EB5 /* OSX_StaticLib_Release.xcconfig */,
+			);
+			name = Config;
+			path = Config/Target;
+			sourceTree = "<group>";
+		};
+		F4692D000CD11B7300F7A183 /* Attractor */ = {
+			isa = PBXGroup;
+			children = (
+				F4692D010CD11B7300F7A183 /* Attractor.cpp */,
+				F4692D020CD11B7300F7A183 /* Attractor.h */,
+				F4692D030CD11B7300F7A183 /* BasicAttractors.cpp */,
+				F4692D040CD11B7300F7A183 /* BasicAttractors.h */,
+				F4692D050CD11B7300F7A183 /* GravitationalAttractor.cpp */,
+				F4692D060CD11B7300F7A183 /* GravitationalAttractor.h */,
+			);
+			name = Attractor;
+			path = ../../../Projects/Motion/Attractor;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4692D070CD11B7300F7A183 /* Collision */ = {
+			isa = PBXGroup;
+			children = (
+				F4692D080CD11B7300F7A183 /* BasicShapes.cpp */,
+				F4692D090CD11B7300F7A183 /* BasicShapes.h */,
+				F4692D0A0CD11B7300F7A183 /* CollisionGroup.cpp */,
+				F4692D0B0CD11B7300F7A183 /* CollisionGroup.h */,
+				F4692D0C0CD11B7300F7A183 /* CollisionInfo.cpp */,
+				F4692D0D0CD11B7300F7A183 /* CollisionInfo.h */,
+				F4692D0E0CD11B7300F7A183 /* CollisionShape.cpp */,
+				F4692D0F0CD11B7300F7A183 /* CollisionShape.h */,
+			);
+			name = Collision;
+			path = ../../../Projects/Motion/Collision;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4692D100CD11B7300F7A183 /* Constraint */ = {
+			isa = PBXGroup;
+			children = (
+				F4692D110CD11B7300F7A183 /* CharacterConstraint.cpp */,
+				F4692D120CD11B7300F7A183 /* CharacterConstraint.h */,
+				F4692D130CD11B7300F7A183 /* Constraint.cpp */,
+				F4692D140CD11B7300F7A183 /* Constraint.h */,
+				F4692D150CD11B7300F7A183 /* Joints.cpp */,
+				F4692D160CD11B7300F7A183 /* Joints.h */,
+				F45F45050D50C44B00ABA083 /* Springs.cpp */,
+				F45F45060D50C44B00ABA083 /* Springs.h */,
+			);
+			name = Constraint;
+			path = ../../../Projects/Motion/Constraint;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4692D170CD11B7300F7A183 /* Solver */ = {
+			isa = PBXGroup;
+			children = (
+				F4692D180CD11B7300F7A183 /* ImpulseSolver.cpp */,
+				F4692D190CD11B7300F7A183 /* ImpulseSolver.h */,
+				F4692D1A0CD11B7300F7A183 /* NextSolver.cpp */,
+				F4692D1B0CD11B7300F7A183 /* NextSolver.h */,
+				F4692D1C0CD11B7300F7A183 /* SequentialImpulseSolver.cpp */,
+				F4692D1D0CD11B7300F7A183 /* SequentialImpulseSolver.h */,
+			);
+			name = Solver;
+			path = ../../../Projects/Motion/Solver;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4692D1F0CD11B7300F7A183 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				F4692D200CD11B7300F7A183 /* MotionWorld.cpp */,
+				F4692D210CD11B7300F7A183 /* MotionWorld.h */,
+				F4692D220CD11B7300F7A183 /* RigidBody.cpp */,
+				F4692D230CD11B7300F7A183 /* RigidBody.h */,
+			);
+			name = World;
+			path = ../../../Projects/Motion/World;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4692D430CD11B8100F7A183 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F4692D440CD11B8100F7A183 /* test.cpp */,
+			);
+			name = src;
+			path = ../../../Projects/Motion/src;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F479C680125CD39200773EB5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F44219500B8A2BE400906FDC /* MotionTest (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F44219600B8A2C2800906FDC /* Build configuration list for PBXNativeTarget "MotionTest (OSX)" */;
+			buildPhases = (
+				F442194E0B8A2BE400906FDC /* Sources */,
+				F442194F0B8A2BE400906FDC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F479C691125CD40D00773EB5 /* PBXTargetDependency */,
+			);
+			name = "MotionTest (OSX)";
+			productName = "MotionTest (OSX)";
+			productReference = F44219510B8A2BE400906FDC /* MotionTest */;
+			productType = "com.apple.product-type.tool";
+		};
+		F479C683125CD39200773EB5 /* MotionLib (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F479C68A125CD3C000773EB5 /* Build configuration list for PBXNativeTarget "MotionLib (OSX)" */;
+			buildPhases = (
+				F479C680125CD39200773EB5 /* Headers */,
+				F479C681125CD39200773EB5 /* Sources */,
+				F479C682125CD39200773EB5 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MotionLib (OSX)";
+			productName = "MotionLib (OSX)";
+			productReference = F479C684125CD39200773EB5 /* libMotion.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F44218C60B8A2A3300906FDC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
+			buildConfigurationList = F44218C70B8A2A3300906FDC /* Build configuration list for PBXProject "Motion" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = F44218C40B8A2A3300906FDC;
+			productRefGroup = F44218DC0B8A2A8500906FDC /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F442190B0B8A2B0100906FDC /* Products */;
+					ProjectRef = F442190A0B8A2B0100906FDC /* Base.xcodeproj */;
+				},
+				{
+					ProductGroup = F44219140B8A2B0D00906FDC /* Products */;
+					ProjectRef = F44219130B8A2B0D00906FDC /* CGMath.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F479C683125CD39200773EB5 /* MotionLib (OSX) */,
+				F44219500B8A2BE400906FDC /* MotionTest (OSX) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F4578B6310175671008FF75E /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBase.a;
+			remoteRef = F4578B6210175671008FF75E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F4578B6710175671008FF75E /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCGMath.a;
+			remoteRef = F4578B6610175671008FF75E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F4E33F8C1080C8F400E441F3 /* BaseTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BaseTest;
+			remoteRef = F4E33F8B1080C8F400E441F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F4E33F8E1080C8F400E441F3 /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libBase.a;
+			remoteRef = F4E33F8D1080C8F400E441F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F4E33F941080C8F400E441F3 /* CGMathTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = CGMathTest;
+			remoteRef = F4E33F931080C8F400E441F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F4E33F961080C8F400E441F3 /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libCGMath.a;
+			remoteRef = F4E33F951080C8F400E441F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F442194E0B8A2BE400906FDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4692D450CD11B8100F7A183 /* test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F479C681125CD39200773EB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F479C691125CD40D00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F479C683125CD39200773EB5 /* MotionLib (OSX) */;
+			targetProxy = F479C690125CD40D00773EB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F44218C80B8A2A3300906FDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		F44218C90B8A2A3300906FDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		F44219610B8A2C2800906FDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B6C10175687008FF75E /* OSX_Executable_Debug.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = MotionTest;
+			};
+			name = Debug;
+		};
+		F44219620B8A2C2800906FDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B6D10175687008FF75E /* OSX_Executable_Release.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = MotionTest;
+			};
+			name = Release;
+		};
+		F479C685125CD39200773EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F479C68D125CD3E500773EB5 /* OSX_StaticLib_Debug.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = Motion;
+			};
+			name = Debug;
+		};
+		F479C686125CD39200773EB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F479C68E125CD3E500773EB5 /* OSX_StaticLib_Release.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = Motion;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F44218C70B8A2A3300906FDC /* Build configuration list for PBXProject "Motion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F44218C80B8A2A3300906FDC /* Debug */,
+				F44218C90B8A2A3300906FDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F44219600B8A2C2800906FDC /* Build configuration list for PBXNativeTarget "MotionTest (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F44219610B8A2C2800906FDC /* Debug */,
+				F44219620B8A2C2800906FDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F479C68A125CD3C000773EB5 /* Build configuration list for PBXNativeTarget "MotionLib (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F479C685125CD39200773EB5 /* Debug */,
+				F479C686125CD39200773EB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F44218C60B8A2A3300906FDC /* Project object */;
+}

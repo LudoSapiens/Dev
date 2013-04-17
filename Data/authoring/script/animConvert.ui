@@ -1,0 +1,51 @@
+--=============================================================================
+-- Copyright (c) 2007, Ludo Sapiens Inc.
+-- All rights reserved.
+--
+-- These coded instructions, statements, and computer programs contain
+-- unpublished, proprietary information and are protected by Federal copyright
+-- law. They may not be disclosed to third parties or copied or duplicated in
+-- any form, in whole or in part, without prior written consent.
+--=============================================================================
+
+include("animation")
+include("string")
+
+local asfInfo
+local rate
+
+for i=1,#arg do
+   --print(i, arg[i])
+   if string.sub(arg[i], 1, 4) == "asf=" then
+      local asfFile = string.sub( arg[i], 5 )
+      _,asfInfo = Animation.loadSkeletonTable_ASF( asfFile )
+   elseif string.sub(arg[i], 1, 5) == "rate=" then
+      rate = tonumber( string.sub( arg[i], 6 ) )
+   else
+      local infilename = arg[i]
+      local outfilename
+      local ext = string.getExt(infilename)
+      if ext then
+         ext_lc = string.lower(ext)
+         if ext_lc == "asf" then
+            outfilename = string.sub(infilename, 1, -4)
+            outfilename = outfilename .. "skel"
+            print("'" .. infilename .. "' --> '" .. outfilename .. "'")
+            asfInfo = Animation.convertASF(infilename, outfilename)
+         elseif ext_lc == "amc" then
+            if not asfInfo then
+               print("Missing ASF specification for AMC file...  Ignoring.")
+            else
+               outfilename = string.sub(infilename, 1, -4)
+               outfilename = outfilename .. "anim"
+               print("'" .. infilename .. "' --> '" .. outfilename .. "'")
+               Animation.convertAMC(infilename, outfilename, asfInfo, rate)
+            end
+         else
+            print("Error - Unrecognized type for '" .. infilename .. "'...  Ignoring.")
+         end
+      else
+         print("Error - Unknown type for '" .. infilename .. "'...  Ignoring.")
+      end
+   end
+end

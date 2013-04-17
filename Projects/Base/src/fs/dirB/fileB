@@ -1,0 +1,21 @@
+0123456789
+    
+abcdefghijklmnopqrstuvwxyz
+    
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    
+!@#$%?&*()
+
+
+Info
+----
+The content of this file is defined in such a way as to help with regression tests.
+It contains characters at specific locations:
+   Start Offset     Characters
+   ------------     ----------
+    0  (0x0000)     Digits 0 to 9
+   16  (0x0010)     Lowercase letters a to z
+   48  (0x0030)     Uppercase letters A to z
+   80  (0x0050)     Various punctuation
+
+=END=

@@ -1,0 +1,78 @@
+--==============================================================================
+--  Include files
+--==============================================================================
+
+include( "theme/default" )
+include( "script/ui/inputWidgets" )
+include( "script/util/table" )
+
+addRoot( "regression" )
+
+gui = ObjectPool()
+
+local ssid = 0
+local function nextScreenShotName()
+   local name = "screenshot" .. ssid -- .. ".png"
+   ssid = ssid + 1
+   return name
+end
+
+--==============================================================================
+--  UI definition.
+--==============================================================================
+
+local function createDesktop()
+
+   --==============================================================================
+   -- CALLBACKS
+   --==============================================================================
+
+   --==============================================================================
+   -- UI
+   --==============================================================================
+
+   local desktop = gui.desktop{
+      color = { 0.5, 0.5, 0.5, 1.0 },
+      onChar = function( widget, ev )
+         local key = ev.value
+         if key == UI.Key.ESC or key == UI.Key.q then
+            UI.exit()
+         end
+      end
+   }
+
+   local hotspots = gui.hotspots{ flex=1 }
+
+   local image = gui.image{
+      image = "image/test/RGBw",
+      size  = { 128, 128 },
+   }
+
+   local size = UI.vec2Input( gui, { value={4,4}, step=1, format="%3.0f", min=1, max=1024 } )
+
+   local genButton = gui.button{
+      text = "Generate",
+      onClick = function( w, ev )
+         w.text = "Generating..."
+         image.image = UI.imageGen( "image/test/simple", size.getValue(), { msg="If you can read this, args are working" } )
+         w.text = "Generate"
+         --print("Generation size:", table.toString(size.getValue()) )
+      end
+   }
+
+   local control = gui.vbox{
+      genButton,
+      size,
+   }
+
+   hotspots.addWidget{ image  , UI.Hotspot.MIDDLE_CENTER }
+   hotspots.addWidget{ control, UI.Hotspot.BOTTOM_LEFT   }
+
+   desktop.addWidget( hotspots )
+
+   return desktop
+end
+
+--------------------------------------------------------------------------------
+-- Set the main desktop.
+UI.setDesktop( createDesktop() )

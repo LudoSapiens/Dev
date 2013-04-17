@@ -1,0 +1,5 @@
+--OUT.pos   = IN.pos + IN.n * (perlin1( IN.pos*4 )*0.1)
+local pos = vec2(0.5) - abs( vec2(0.5) - fract( IN.uv ) )
+pos = smoothStep( 0.01, 0.04, pos )
+OUT.color = vec3( pos.x*pos.y )
+

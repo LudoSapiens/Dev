@@ -1,0 +1,31 @@
+camera{
+   position = {0,5,15},
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+-- Floor.
+local s = vec3( 10, 1, 10 )
+staticObject{
+   geometry = geometry( "regression/material/box", { size=s } ),
+   --material = material( "regression/material/reflective" ),
+   position = vec3( 0, -s.y, 0 ),
+}
+
+-- Cube.
+staticObject{
+   geometry    = geometry( "regression/material/cube_single" ),
+   material    = "regression/material/base",
+   --orientation = quat( vec3(0,1,0), 1/50 ),
+   position    = vec3( 2, 1, 1 ),
+}
+
+-- Mirror.
+local q1 = quat( vec3(0,1,0), 0.1 )
+local q2 = quat( vec3(1,0,0), 0.1 )
+local q  = q1 * q2
+staticObject{
+   geometry    = geometry( "regression/material/mirror" ),
+   --material    = material( "regression/material/reflective" ),
+   orientation = q,
+   position    = vec3( 0, 2, 0 ),
+}

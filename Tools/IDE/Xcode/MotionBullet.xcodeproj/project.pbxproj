@@ -1,0 +1,770 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F426F092109B472A003C990B /* Attractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37CC0E142BA3009BF822 /* Attractor.cpp */; };
+		F426F093109B472A003C990B /* Attractor.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37CD0E142BA3009BF822 /* Attractor.h */; };
+		F426F094109B472B003C990B /* BasicAttractors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37CE0E142BA3009BF822 /* BasicAttractors.cpp */; };
+		F426F095109B472C003C990B /* BasicShapes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D30E142BA3009BF822 /* BasicShapes.cpp */; };
+		F426F096109B472D003C990B /* BasicShapes.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37D40E142BA3009BF822 /* BasicShapes.h */; };
+		F426F097109B472E003C990B /* CharacterConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37DD0E142BA3009BF822 /* CharacterConstraint.h */; };
+		F426F098109B472E003C990B /* CollisionGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D50E142BA3009BF822 /* CollisionGroup.cpp */; };
+		F426F099109B472F003C990B /* CollisionGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37D60E142BA3009BF822 /* CollisionGroup.h */; };
+		F426F09A109B472F003C990B /* CollisionInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D70E142BA3009BF822 /* CollisionInfo.cpp */; };
+		F426F09B109B4730003C990B /* CollisionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37D80E142BA3009BF822 /* CollisionInfo.h */; };
+		F426F09C109B4731003C990B /* CollisionShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D90E142BA3009BF822 /* CollisionShape.cpp */; };
+		F426F09D109B4731003C990B /* CollisionShape.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37DA0E142BA3009BF822 /* CollisionShape.h */; };
+		F426F09E109B4732003C990B /* Constraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37DE0E142BA3009BF822 /* Constraint.cpp */; };
+		F426F09F109B4732003C990B /* Constraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37DF0E142BA3009BF822 /* Constraint.h */; };
+		F426F0A0109B4733003C990B /* GravitationalAttractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D00E142BA3009BF822 /* GravitationalAttractor.cpp */; };
+		F426F0A1109B4733003C990B /* GravitationalAttractor.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37D10E142BA3009BF822 /* GravitationalAttractor.h */; };
+		F426F0A2109B4734003C990B /* Joints.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37E00E142BA3009BF822 /* Joints.cpp */; };
+		F426F0A3109B4735003C990B /* Joints.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37E10E142BA3009BF822 /* Joints.h */; };
+		F426F0A4109B4735003C990B /* MotionWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37EF0E142BA3009BF822 /* MotionWorld.cpp */; };
+		F426F0A5109B4736003C990B /* MotionWorld.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37F00E142BA3009BF822 /* MotionWorld.h */; };
+		F426F0A6109B4736003C990B /* RigidBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37F10E142BA3009BF822 /* RigidBody.cpp */; };
+		F426F0A7109B4737003C990B /* RigidBody.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37F20E142BA3009BF822 /* RigidBody.h */; };
+		F426F0A8109B4738003C990B /* Springs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37E20E142BA3009BF822 /* Springs.cpp */; };
+		F426F0A9109B4738003C990B /* Springs.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37E30E142BA3009BF822 /* Springs.h */; };
+		F426F0AA109B4739003C990B /* StdDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37ED0E142BA3009BF822 /* StdDefs.h */; };
+		F426F0AB109B473A003C990B /* CharacterConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37DC0E142BA3009BF822 /* CharacterConstraint.cpp */; };
+		F426F0AC109B473A003C990B /* BasicAttractors.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37CF0E142BA3009BF822 /* BasicAttractors.h */; };
+		F426F0BA109B47D9003C990B /* Attractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37CC0E142BA3009BF822 /* Attractor.cpp */; };
+		F426F0BB109B47DA003C990B /* Attractor.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37CD0E142BA3009BF822 /* Attractor.h */; };
+		F426F0BC109B47DA003C990B /* BasicAttractors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37CE0E142BA3009BF822 /* BasicAttractors.cpp */; };
+		F426F0BD109B47DB003C990B /* BasicAttractors.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37CF0E142BA3009BF822 /* BasicAttractors.h */; };
+		F426F0BE109B47DC003C990B /* BasicShapes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D30E142BA3009BF822 /* BasicShapes.cpp */; };
+		F426F0BF109B47DC003C990B /* BasicShapes.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37D40E142BA3009BF822 /* BasicShapes.h */; };
+		F426F0C0109B47DD003C990B /* CharacterConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37DC0E142BA3009BF822 /* CharacterConstraint.cpp */; };
+		F426F0C1109B47DD003C990B /* CharacterConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37DD0E142BA3009BF822 /* CharacterConstraint.h */; };
+		F426F0C2109B47DE003C990B /* CollisionGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D50E142BA3009BF822 /* CollisionGroup.cpp */; };
+		F426F0C3109B47DF003C990B /* CollisionGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37D60E142BA3009BF822 /* CollisionGroup.h */; };
+		F426F0C4109B47DF003C990B /* CollisionInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D70E142BA3009BF822 /* CollisionInfo.cpp */; };
+		F426F0C5109B47E0003C990B /* CollisionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37D80E142BA3009BF822 /* CollisionInfo.h */; };
+		F426F0C6109B47E0003C990B /* CollisionShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D90E142BA3009BF822 /* CollisionShape.cpp */; };
+		F426F0C7109B47E1003C990B /* CollisionShape.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37DA0E142BA3009BF822 /* CollisionShape.h */; };
+		F426F0C8109B47E1003C990B /* Constraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37DE0E142BA3009BF822 /* Constraint.cpp */; };
+		F426F0C9109B47E2003C990B /* Constraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37DF0E142BA3009BF822 /* Constraint.h */; };
+		F426F0CA109B47E3003C990B /* GravitationalAttractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37D00E142BA3009BF822 /* GravitationalAttractor.cpp */; };
+		F426F0CB109B47E3003C990B /* GravitationalAttractor.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37D10E142BA3009BF822 /* GravitationalAttractor.h */; };
+		F426F0CC109B47E4003C990B /* Joints.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37E00E142BA3009BF822 /* Joints.cpp */; };
+		F426F0CD109B47E4003C990B /* Joints.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37E10E142BA3009BF822 /* Joints.h */; };
+		F426F0CE109B47E5003C990B /* MotionWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37EF0E142BA3009BF822 /* MotionWorld.cpp */; };
+		F426F0CF109B47E5003C990B /* MotionWorld.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37F00E142BA3009BF822 /* MotionWorld.h */; };
+		F426F0D0109B47E6003C990B /* RigidBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37F10E142BA3009BF822 /* RigidBody.cpp */; };
+		F426F0D1109B47E7003C990B /* RigidBody.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37F20E142BA3009BF822 /* RigidBody.h */; };
+		F426F0D2109B47E8003C990B /* Springs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37E20E142BA3009BF822 /* Springs.cpp */; };
+		F426F0D3109B47E8003C990B /* Springs.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37E30E142BA3009BF822 /* Springs.h */; };
+		F426F0D4109B47E9003C990B /* StdDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = F4BB37ED0E142BA3009BF822 /* StdDefs.h */; };
+		F479C65B125CD28400773EB5 /* libMotionBullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426F070109B46B1003C990B /* libMotionBullet.a */; };
+		F479C667125CD2F500773EB5 /* libBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F414F844107E4B4300CABC0A /* libBase.a */; };
+		F4BB38150E142BB0009BF822 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BB37EC0E142BA3009BF822 /* test.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F414F841107E4B4300CABC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4BB37B70E142B6F009BF822 /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F474926C107E36F100E91BFA;
+			remoteInfo = "BaseTest (static)";
+		};
+		F414F843107E4B4300CABC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4BB37B70E142B6F009BF822 /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4749256107E36B600E91BFA;
+			remoteInfo = "Base (static)";
+		};
+		F414F849107E4B4300CABC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4BB37BA0E142B6F009BF822 /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492ED107E388D00E91BFA;
+			remoteInfo = "CGMathTest (static)";
+		};
+		F414F84B107E4B4300CABC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4BB37BA0E142B6F009BF822 /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492CD107E380300E91BFA;
+			remoteInfo = "CGMath (static)";
+		};
+		F4578B7B101756AA008FF75E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4BB37B70E142B6F009BF822 /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F45788E21016643F008FF75E;
+			remoteInfo = Base_CocoaTouch;
+		};
+		F4578B7F101756AA008FF75E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4BB37BA0E142B6F009BF822 /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4578A2C10166C2A008FF75E;
+			remoteInfo = CGMath_CocoaTouch;
+		};
+		F479C65E125CD2AC00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4F7ECB70E1424C9003DBEE9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F426F06F109B46B1003C990B;
+			remoteInfo = "MotionBulletLib (OSX)";
+		};
+		F479C660125CD2AC00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4BB37BA0E142B6F009BF822 /* CGMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F474929E107E380300E91BFA;
+			remoteInfo = "CGMathLib (OSX)";
+		};
+		F479C662125CD2AC00773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4BB37B70E142B6F009BF822 /* Base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F47491E7107E36B600E91BFA;
+			remoteInfo = "BaseLib (OSX)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F414F839107E4B4300CABC0A /* iOS_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_Application_Debug.xcconfig; sourceTree = "<group>"; };
+		F414F83A107E4B4300CABC0A /* iOS_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_Application_Release.xcconfig; sourceTree = "<group>"; };
+		F414F83B107E4B4300CABC0A /* OSX_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_StaticLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F414F83C107E4B4300CABC0A /* OSX_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_StaticLib_Release.xcconfig; sourceTree = "<group>"; };
+		F426F070109B46B1003C990B /* libMotionBullet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMotionBullet.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F426F0B4109B479A003C990B /* libMotionBullet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMotionBullet.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4578B83101756B9008FF75E /* OSX_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Application_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B84101756B9008FF75E /* OSX_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Application_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B85101756B9008FF75E /* OSX_Executable_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Executable_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B86101756B9008FF75E /* OSX_Executable_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Executable_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B87101756B9008FF75E /* OSX_SharedLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_SharedLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B88101756B9008FF75E /* OSX_SharedLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_SharedLib_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B89101756B9008FF75E /* iOS_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_StaticLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B8A101756B9008FF75E /* iOS_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_StaticLib_Release.xcconfig; sourceTree = "<group>"; };
+		F4BB37880E1428BE009BF822 /* MotionBulletTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MotionBulletTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4BB37B70E142B6F009BF822 /* Base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Base.xcodeproj; sourceTree = "<group>"; };
+		F4BB37BA0E142B6F009BF822 /* CGMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CGMath.xcodeproj; sourceTree = "<group>"; };
+		F4BB37CC0E142BA3009BF822 /* Attractor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Attractor.cpp; sourceTree = "<group>"; };
+		F4BB37CD0E142BA3009BF822 /* Attractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attractor.h; sourceTree = "<group>"; };
+		F4BB37CE0E142BA3009BF822 /* BasicAttractors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicAttractors.cpp; sourceTree = "<group>"; };
+		F4BB37CF0E142BA3009BF822 /* BasicAttractors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicAttractors.h; sourceTree = "<group>"; };
+		F4BB37D00E142BA3009BF822 /* GravitationalAttractor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GravitationalAttractor.cpp; sourceTree = "<group>"; };
+		F4BB37D10E142BA3009BF822 /* GravitationalAttractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GravitationalAttractor.h; sourceTree = "<group>"; };
+		F4BB37D30E142BA3009BF822 /* BasicShapes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BasicShapes.cpp; sourceTree = "<group>"; };
+		F4BB37D40E142BA3009BF822 /* BasicShapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicShapes.h; sourceTree = "<group>"; };
+		F4BB37D50E142BA3009BF822 /* CollisionGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionGroup.cpp; sourceTree = "<group>"; };
+		F4BB37D60E142BA3009BF822 /* CollisionGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionGroup.h; sourceTree = "<group>"; };
+		F4BB37D70E142BA3009BF822 /* CollisionInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionInfo.cpp; sourceTree = "<group>"; };
+		F4BB37D80E142BA3009BF822 /* CollisionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionInfo.h; sourceTree = "<group>"; };
+		F4BB37D90E142BA3009BF822 /* CollisionShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionShape.cpp; sourceTree = "<group>"; };
+		F4BB37DA0E142BA3009BF822 /* CollisionShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionShape.h; sourceTree = "<group>"; };
+		F4BB37DC0E142BA3009BF822 /* CharacterConstraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterConstraint.cpp; sourceTree = "<group>"; };
+		F4BB37DD0E142BA3009BF822 /* CharacterConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterConstraint.h; sourceTree = "<group>"; };
+		F4BB37DE0E142BA3009BF822 /* Constraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constraint.cpp; sourceTree = "<group>"; };
+		F4BB37DF0E142BA3009BF822 /* Constraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constraint.h; sourceTree = "<group>"; };
+		F4BB37E00E142BA3009BF822 /* Joints.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Joints.cpp; sourceTree = "<group>"; };
+		F4BB37E10E142BA3009BF822 /* Joints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Joints.h; sourceTree = "<group>"; };
+		F4BB37E20E142BA3009BF822 /* Springs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Springs.cpp; sourceTree = "<group>"; };
+		F4BB37E30E142BA3009BF822 /* Springs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Springs.h; sourceTree = "<group>"; };
+		F4BB37EC0E142BA3009BF822 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		F4BB37ED0E142BA3009BF822 /* StdDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StdDefs.h; path = ../../../Projects/MotionBullet/StdDefs.h; sourceTree = SOURCE_ROOT; };
+		F4BB37EF0E142BA3009BF822 /* MotionWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MotionWorld.cpp; sourceTree = "<group>"; };
+		F4BB37F00E142BA3009BF822 /* MotionWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionWorld.h; sourceTree = "<group>"; };
+		F4BB37F10E142BA3009BF822 /* RigidBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RigidBody.cpp; sourceTree = "<group>"; };
+		F4BB37F20E142BA3009BF822 /* RigidBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RigidBody.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F426F06E109B46B1003C990B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F426F0B2109B479A003C990B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4BB37860E1428BE009BF822 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F479C667125CD2F500773EB5 /* libBase.a in Frameworks */,
+				F479C65B125CD28400773EB5 /* libMotionBullet.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F41D85B0100B7C39008732DA /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				F4578B82101756B9008FF75E /* Target */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		F4578B82101756B9008FF75E /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				F414F839107E4B4300CABC0A /* iOS_Application_Debug.xcconfig */,
+				F4578B83101756B9008FF75E /* OSX_Application_Debug.xcconfig */,
+				F414F83A107E4B4300CABC0A /* iOS_Application_Release.xcconfig */,
+				F4578B84101756B9008FF75E /* OSX_Application_Release.xcconfig */,
+				F4578B85101756B9008FF75E /* OSX_Executable_Debug.xcconfig */,
+				F4578B86101756B9008FF75E /* OSX_Executable_Release.xcconfig */,
+				F4578B87101756B9008FF75E /* OSX_SharedLib_Debug.xcconfig */,
+				F4578B88101756B9008FF75E /* OSX_SharedLib_Release.xcconfig */,
+				F4578B89101756B9008FF75E /* iOS_StaticLib_Debug.xcconfig */,
+				F414F83B107E4B4300CABC0A /* OSX_StaticLib_Debug.xcconfig */,
+				F4578B8A101756B9008FF75E /* iOS_StaticLib_Release.xcconfig */,
+				F414F83C107E4B4300CABC0A /* OSX_StaticLib_Release.xcconfig */,
+			);
+			name = Target;
+			path = Config/Target;
+			sourceTree = "<group>";
+		};
+		F4BB37B80E142B6F009BF822 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4578B7C101756AA008FF75E /* libBase.a */,
+				F414F844107E4B4300CABC0A /* libBase.a */,
+				F414F842107E4B4300CABC0A /* BaseTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4BB37BB0E142B6F009BF822 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4578B80101756AA008FF75E /* libCGMath.a */,
+				F414F84A107E4B4300CABC0A /* CGMathTest */,
+				F414F84C107E4B4300CABC0A /* libCGMath.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4BB37CB0E142BA3009BF822 /* Attractor */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB37CC0E142BA3009BF822 /* Attractor.cpp */,
+				F4BB37CD0E142BA3009BF822 /* Attractor.h */,
+				F4BB37CE0E142BA3009BF822 /* BasicAttractors.cpp */,
+				F4BB37CF0E142BA3009BF822 /* BasicAttractors.h */,
+				F4BB37D00E142BA3009BF822 /* GravitationalAttractor.cpp */,
+				F4BB37D10E142BA3009BF822 /* GravitationalAttractor.h */,
+			);
+			name = Attractor;
+			path = ../../../Projects/MotionBullet/Attractor;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4BB37D20E142BA3009BF822 /* Collision */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB37D30E142BA3009BF822 /* BasicShapes.cpp */,
+				F4BB37D40E142BA3009BF822 /* BasicShapes.h */,
+				F4BB37D50E142BA3009BF822 /* CollisionGroup.cpp */,
+				F4BB37D60E142BA3009BF822 /* CollisionGroup.h */,
+				F4BB37D70E142BA3009BF822 /* CollisionInfo.cpp */,
+				F4BB37D80E142BA3009BF822 /* CollisionInfo.h */,
+				F4BB37D90E142BA3009BF822 /* CollisionShape.cpp */,
+				F4BB37DA0E142BA3009BF822 /* CollisionShape.h */,
+			);
+			name = Collision;
+			path = ../../../Projects/MotionBullet/Collision;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4BB37DB0E142BA3009BF822 /* Constraint */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB37DC0E142BA3009BF822 /* CharacterConstraint.cpp */,
+				F4BB37DD0E142BA3009BF822 /* CharacterConstraint.h */,
+				F4BB37DE0E142BA3009BF822 /* Constraint.cpp */,
+				F4BB37DF0E142BA3009BF822 /* Constraint.h */,
+				F4BB37E00E142BA3009BF822 /* Joints.cpp */,
+				F4BB37E10E142BA3009BF822 /* Joints.h */,
+				F4BB37E20E142BA3009BF822 /* Springs.cpp */,
+				F4BB37E30E142BA3009BF822 /* Springs.h */,
+			);
+			name = Constraint;
+			path = ../../../Projects/MotionBullet/Constraint;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4BB37EB0E142BA3009BF822 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB37EC0E142BA3009BF822 /* test.cpp */,
+			);
+			name = src;
+			path = ../../../Projects/MotionBullet/src;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4BB37EE0E142BA3009BF822 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB37EF0E142BA3009BF822 /* MotionWorld.cpp */,
+				F4BB37F00E142BA3009BF822 /* MotionWorld.h */,
+				F4BB37F10E142BA3009BF822 /* RigidBody.cpp */,
+				F4BB37F20E142BA3009BF822 /* RigidBody.h */,
+			);
+			name = World;
+			path = ../../../Projects/MotionBullet/World;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4F7ECB50E1424C9003DBEE9 = {
+			isa = PBXGroup;
+			children = (
+				F4F7ED270E142632003DBEE9 /* Projects */,
+				F4F7ECDB0E142565003DBEE9 /* Source */,
+				F41D85B0100B7C39008732DA /* Others */,
+				F4F7ECCC0E1424FE003DBEE9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4F7ECCC0E1424FE003DBEE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB37880E1428BE009BF822 /* MotionBulletTest */,
+				F426F070109B46B1003C990B /* libMotionBullet.a */,
+				F426F0B4109B479A003C990B /* libMotionBullet.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4F7ECDB0E142565003DBEE9 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB37CB0E142BA3009BF822 /* Attractor */,
+				F4BB37D20E142BA3009BF822 /* Collision */,
+				F4BB37DB0E142BA3009BF822 /* Constraint */,
+				F4BB37EB0E142BA3009BF822 /* src */,
+				F4BB37ED0E142BA3009BF822 /* StdDefs.h */,
+				F4BB37EE0E142BA3009BF822 /* World */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		F4F7ED270E142632003DBEE9 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB37B70E142B6F009BF822 /* Base.xcodeproj */,
+				F4BB37BA0E142B6F009BF822 /* CGMath.xcodeproj */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F426F06C109B46B1003C990B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426F093109B472A003C990B /* Attractor.h in Headers */,
+				F426F096109B472D003C990B /* BasicShapes.h in Headers */,
+				F426F097109B472E003C990B /* CharacterConstraint.h in Headers */,
+				F426F099109B472F003C990B /* CollisionGroup.h in Headers */,
+				F426F09B109B4730003C990B /* CollisionInfo.h in Headers */,
+				F426F09D109B4731003C990B /* CollisionShape.h in Headers */,
+				F426F09F109B4732003C990B /* Constraint.h in Headers */,
+				F426F0A1109B4733003C990B /* GravitationalAttractor.h in Headers */,
+				F426F0A3109B4735003C990B /* Joints.h in Headers */,
+				F426F0A5109B4736003C990B /* MotionWorld.h in Headers */,
+				F426F0A7109B4737003C990B /* RigidBody.h in Headers */,
+				F426F0A9109B4738003C990B /* Springs.h in Headers */,
+				F426F0AA109B4739003C990B /* StdDefs.h in Headers */,
+				F426F0AC109B473A003C990B /* BasicAttractors.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F426F0B0109B479A003C990B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426F0BB109B47DA003C990B /* Attractor.h in Headers */,
+				F426F0BD109B47DB003C990B /* BasicAttractors.h in Headers */,
+				F426F0BF109B47DC003C990B /* BasicShapes.h in Headers */,
+				F426F0C1109B47DD003C990B /* CharacterConstraint.h in Headers */,
+				F426F0C3109B47DF003C990B /* CollisionGroup.h in Headers */,
+				F426F0C5109B47E0003C990B /* CollisionInfo.h in Headers */,
+				F426F0C7109B47E1003C990B /* CollisionShape.h in Headers */,
+				F426F0C9109B47E2003C990B /* Constraint.h in Headers */,
+				F426F0CB109B47E3003C990B /* GravitationalAttractor.h in Headers */,
+				F426F0CD109B47E4003C990B /* Joints.h in Headers */,
+				F426F0CF109B47E5003C990B /* MotionWorld.h in Headers */,
+				F426F0D1109B47E7003C990B /* RigidBody.h in Headers */,
+				F426F0D3109B47E8003C990B /* Springs.h in Headers */,
+				F426F0D4109B47E9003C990B /* StdDefs.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F426F06F109B46B1003C990B /* MotionBulletLib (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F426F0AF109B4777003C990B /* Build configuration list for PBXNativeTarget "MotionBulletLib (OSX)" */;
+			buildPhases = (
+				F426F06C109B46B1003C990B /* Headers */,
+				F426F06D109B46B1003C990B /* Sources */,
+				F426F06E109B46B1003C990B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MotionBulletLib (OSX)";
+			productName = "MotionBulletLib (OSX)";
+			productReference = F426F070109B46B1003C990B /* libMotionBullet.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F426F0B3109B479A003C990B /* MotionBulletLib (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F426F0D5109B4804003C990B /* Build configuration list for PBXNativeTarget "MotionBulletLib (iOS)" */;
+			buildPhases = (
+				F426F0B0109B479A003C990B /* Headers */,
+				F426F0B1109B479A003C990B /* Sources */,
+				F426F0B2109B479A003C990B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MotionBulletLib (iOS)";
+			productName = "MotionBulletLib (iOS)";
+			productReference = F426F0B4109B479A003C990B /* libMotionBullet.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F4BB37870E1428BE009BF822 /* MotionBulletTest (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4BB378C0E1428DD009BF822 /* Build configuration list for PBXNativeTarget "MotionBulletTest (OSX)" */;
+			buildPhases = (
+				F4BB37850E1428BE009BF822 /* Sources */,
+				F4BB37860E1428BE009BF822 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F479C65F125CD2AC00773EB5 /* PBXTargetDependency */,
+				F479C661125CD2AC00773EB5 /* PBXTargetDependency */,
+				F479C663125CD2AC00773EB5 /* PBXTargetDependency */,
+			);
+			name = "MotionBulletTest (OSX)";
+			productName = "MotionBulletTest (OSX)";
+			productReference = F4BB37880E1428BE009BF822 /* MotionBulletTest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4F7ECB70E1424C9003DBEE9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = F4F7ECBA0E1424C9003DBEE9 /* Build configuration list for PBXProject "MotionBullet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = F4F7ECB50E1424C9003DBEE9;
+			productRefGroup = F4F7ECCC0E1424FE003DBEE9 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F4BB37B80E142B6F009BF822 /* Products */;
+					ProjectRef = F4BB37B70E142B6F009BF822 /* Base.xcodeproj */;
+				},
+				{
+					ProductGroup = F4BB37BB0E142B6F009BF822 /* Products */;
+					ProjectRef = F4BB37BA0E142B6F009BF822 /* CGMath.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F426F0B3109B479A003C990B /* MotionBulletLib (iOS) */,
+				F426F06F109B46B1003C990B /* MotionBulletLib (OSX) */,
+				F4BB37870E1428BE009BF822 /* MotionBulletTest (OSX) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F414F842107E4B4300CABC0A /* BaseTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BaseTest;
+			remoteRef = F414F841107E4B4300CABC0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F414F844107E4B4300CABC0A /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libBase.a;
+			remoteRef = F414F843107E4B4300CABC0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F414F84A107E4B4300CABC0A /* CGMathTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = CGMathTest;
+			remoteRef = F414F849107E4B4300CABC0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F414F84C107E4B4300CABC0A /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libCGMath.a;
+			remoteRef = F414F84B107E4B4300CABC0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F4578B7C101756AA008FF75E /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBase.a;
+			remoteRef = F4578B7B101756AA008FF75E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F4578B80101756AA008FF75E /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCGMath.a;
+			remoteRef = F4578B7F101756AA008FF75E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F426F06D109B46B1003C990B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426F092109B472A003C990B /* Attractor.cpp in Sources */,
+				F426F094109B472B003C990B /* BasicAttractors.cpp in Sources */,
+				F426F095109B472C003C990B /* BasicShapes.cpp in Sources */,
+				F426F098109B472E003C990B /* CollisionGroup.cpp in Sources */,
+				F426F09A109B472F003C990B /* CollisionInfo.cpp in Sources */,
+				F426F09C109B4731003C990B /* CollisionShape.cpp in Sources */,
+				F426F09E109B4732003C990B /* Constraint.cpp in Sources */,
+				F426F0A0109B4733003C990B /* GravitationalAttractor.cpp in Sources */,
+				F426F0A2109B4734003C990B /* Joints.cpp in Sources */,
+				F426F0A4109B4735003C990B /* MotionWorld.cpp in Sources */,
+				F426F0A6109B4736003C990B /* RigidBody.cpp in Sources */,
+				F426F0A8109B4738003C990B /* Springs.cpp in Sources */,
+				F426F0AB109B473A003C990B /* CharacterConstraint.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F426F0B1109B479A003C990B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426F0BA109B47D9003C990B /* Attractor.cpp in Sources */,
+				F426F0BC109B47DA003C990B /* BasicAttractors.cpp in Sources */,
+				F426F0BE109B47DC003C990B /* BasicShapes.cpp in Sources */,
+				F426F0C0109B47DD003C990B /* CharacterConstraint.cpp in Sources */,
+				F426F0C2109B47DE003C990B /* CollisionGroup.cpp in Sources */,
+				F426F0C4109B47DF003C990B /* CollisionInfo.cpp in Sources */,
+				F426F0C6109B47E0003C990B /* CollisionShape.cpp in Sources */,
+				F426F0C8109B47E1003C990B /* Constraint.cpp in Sources */,
+				F426F0CA109B47E3003C990B /* GravitationalAttractor.cpp in Sources */,
+				F426F0CC109B47E4003C990B /* Joints.cpp in Sources */,
+				F426F0CE109B47E5003C990B /* MotionWorld.cpp in Sources */,
+				F426F0D0109B47E6003C990B /* RigidBody.cpp in Sources */,
+				F426F0D2109B47E8003C990B /* Springs.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4BB37850E1428BE009BF822 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4BB38150E142BB0009BF822 /* test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F479C65F125CD2AC00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F426F06F109B46B1003C990B /* MotionBulletLib (OSX) */;
+			targetProxy = F479C65E125CD2AC00773EB5 /* PBXContainerItemProxy */;
+		};
+		F479C661125CD2AC00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CGMathLib (OSX)";
+			targetProxy = F479C660125CD2AC00773EB5 /* PBXContainerItemProxy */;
+		};
+		F479C663125CD2AC00773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BaseLib (OSX)";
+			targetProxy = F479C662125CD2AC00773EB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F426F071109B46B2003C990B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F414F83B107E4B4300CABC0A /* OSX_StaticLib_Debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEV_THIRDPARTY)/include/Bullet",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(DEV_THIRDPARTY)/lib/libBulletDynamics.a",
+					"$(DEV_THIRDPARTY)/lib/libBulletCollision.a",
+					"$(DEV_THIRDPARTY)/lib/libLinearMath.a",
+				);
+				PRODUCT_NAME = MotionBullet;
+			};
+			name = Debug;
+		};
+		F426F072109B46B2003C990B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F414F83C107E4B4300CABC0A /* OSX_StaticLib_Release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEV_THIRDPARTY)/include/Bullet",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(DEV_THIRDPARTY)/lib/libBulletDynamics.a",
+					"$(DEV_THIRDPARTY)/lib/libBulletCollision.a",
+					"$(DEV_THIRDPARTY)/lib/libLinearMath.a",
+				);
+				PRODUCT_NAME = MotionBullet;
+			};
+			name = Release;
+		};
+		F426F0B5109B479B003C990B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B89101756B9008FF75E /* iOS_StaticLib_Debug.xcconfig */;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEV_THIRDPARTY)/include/Bullet",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(DEV_THIRDPARTY)/lib/libBulletCollision.a",
+					"$(DEV_THIRDPARTY)/lib/libBulletDynamics.a",
+					"$(DEV_THIRDPARTY)/lib/libLinearMath.a",
+				);
+				PRODUCT_NAME = MotionBullet;
+			};
+			name = Debug;
+		};
+		F426F0B6109B479B003C990B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B8A101756B9008FF75E /* iOS_StaticLib_Release.xcconfig */;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEV_THIRDPARTY)/include/Bullet",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(DEV_THIRDPARTY)/lib/libBulletCollision.a",
+					"$(DEV_THIRDPARTY)/lib/libBulletDynamics.a",
+					"$(DEV_THIRDPARTY)/lib/libLinearMath.a",
+				);
+				PRODUCT_NAME = MotionBullet;
+			};
+			name = Release;
+		};
+		F4BB378A0E1428BF009BF822 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B85101756B9008FF75E /* OSX_Executable_Debug.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = MotionBulletTest;
+			};
+			name = Debug;
+		};
+		F4BB378B0E1428BF009BF822 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B86101756B9008FF75E /* OSX_Executable_Release.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = MotionBulletTest;
+			};
+			name = Release;
+		};
+		F4F7ECB80E1424C9003DBEE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		F4F7ECB90E1424C9003DBEE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F426F0AF109B4777003C990B /* Build configuration list for PBXNativeTarget "MotionBulletLib (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F426F071109B46B2003C990B /* Debug */,
+				F426F072109B46B2003C990B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F426F0D5109B4804003C990B /* Build configuration list for PBXNativeTarget "MotionBulletLib (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F426F0B5109B479B003C990B /* Debug */,
+				F426F0B6109B479B003C990B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4BB378C0E1428DD009BF822 /* Build configuration list for PBXNativeTarget "MotionBulletTest (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4BB378A0E1428BF009BF822 /* Debug */,
+				F4BB378B0E1428BF009BF822 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4F7ECBA0E1424C9003DBEE9 /* Build configuration list for PBXProject "MotionBullet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F7ECB80E1424C9003DBEE9 /* Debug */,
+				F4F7ECB90E1424C9003DBEE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4F7ECB70E1424C9003DBEE9 /* Project object */;
+}

@@ -1,0 +1,17 @@
+---[[
+baseMaterial{
+   {
+      --clamp = TexClamp.LAST,
+      --color = image( "border01" )
+      color = image( "image/white" )
+   }
+}
+--]]
+--[[
+customMaterial{
+   program = "skelWeightedColors",
+   {
+
+   }
+}
+--]]

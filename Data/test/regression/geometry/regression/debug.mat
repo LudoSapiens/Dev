@@ -1,0 +1,6 @@
+baseMaterial{
+   color = {1,1,1,1},
+   {
+      color = image( "debug01" )
+   }
+}

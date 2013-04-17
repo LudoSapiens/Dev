@@ -1,0 +1,13 @@
+camera{
+   --position = {0,3,5},
+   --position = {0,0,10},
+   --position = {5.5,-0.4,10},
+   --lookAt   = { {1.5,-0.4,0}, {0,1,0} },
+   position = {5,5.5,12},
+   orientation = { -0.18549227714539, 0.17939609289169, 0.03446501493454, 0.96551638841629 }
+   --lookAt = {0,0,0}
+}
+
+staticObject{
+   geometry = "geometry/regression/simple2"
+}

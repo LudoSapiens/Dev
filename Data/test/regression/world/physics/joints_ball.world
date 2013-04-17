@@ -1,0 +1,30 @@
+camera{
+   position = { 0, 10, 20 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+local anchor = { 0, 5, 0 }
+
+local floor = staticObject{
+   geometry = geometry( "geometry/physics/box", { size=vec3(10,1,10), detailsError=1, color="gray" } ),
+   material = material( "geometry/physics/colors" ),
+   position = { 0, -1, 0 },
+}
+
+local fixed = staticObject{
+   geometry = geometry( "geometry/physics/ball", { radius=0.1, color="red" } ),
+   material = material( "geometry/physics/colors" ),
+   position = anchor,
+}
+
+local ball = object{
+   geometry       = geometry( "geometry/physics/ball", { radius=0.5, color="blue" } ),
+   material       = material( "geometry/physics/colors" ),
+   -- Previously, these were set after setting the joint.
+   position       = { -4, 5, 0 },
+   orientation    = { 0, 0, 1, 0.75 },
+   linearVelocity = { 0, 0, 1 },
+}
+
+ballJoint{ fixed, ball, anchor=anchor }

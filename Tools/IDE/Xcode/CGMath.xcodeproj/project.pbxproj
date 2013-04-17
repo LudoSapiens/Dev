@@ -1,0 +1,723 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81F7199F11CC1179004F9564 /* Variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F7199B11CC1179004F9564 /* Variant.cpp */; };
+		81F719A011CC1179004F9564 /* Variant.h in Headers */ = {isa = PBXBuildFile; fileRef = 81F7199C11CC1179004F9564 /* Variant.h */; };
+		81F719A111CC1179004F9564 /* Variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81F7199B11CC1179004F9564 /* Variant.cpp */; };
+		81F719A211CC1179004F9564 /* Variant.h in Headers */ = {isa = PBXBuildFile; fileRef = 81F7199C11CC1179004F9564 /* Variant.h */; };
+		F4578A4610166C82008FF75E /* AABBox.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ABC0CD1182400F7A183 /* AABBox.h */; };
+		F4578A4710166C83008FF75E /* AABBTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F450931C0FA9F5EC00FE148B /* AABBTree.cpp */; };
+		F4578A4810166C84008FF75E /* AABBTree.h in Headers */ = {isa = PBXBuildFile; fileRef = F450931D0FA9F5EC00FE148B /* AABBTree.h */; };
+		F4578A4910166C85008FF75E /* BIH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692ABD0CD1182400F7A183 /* BIH.cpp */; };
+		F4578A4A10166C85008FF75E /* BIH.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ABE0CD1182400F7A183 /* BIH.h */; };
+		F4578A4B10166C86008FF75E /* CGConst.h in Headers */ = {isa = PBXBuildFile; fileRef = F41309C10D8717F50025E2CB /* CGConst.h */; };
+		F4578A4C10166C87008FF75E /* CGMath.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ABF0CD1182400F7A183 /* CGMath.h */; };
+		F4578A4D10166C88008FF75E /* Dist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692AC00CD1182400F7A183 /* Dist.cpp */; };
+		F4578A4E10166C89008FF75E /* Dist.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC10CD1182400F7A183 /* Dist.h */; };
+		F4578A4F10166C89008FF75E /* Distributions.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC20CD1182400F7A183 /* Distributions.h */; };
+		F4578A5010166C89008FF75E /* Frustum.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC30CD1182400F7A183 /* Frustum.h */; };
+		F4578A5110166C8A008FF75E /* HEALPix.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC40CD1182400F7A183 /* HEALPix.h */; };
+		F4578A5210166C8A008FF75E /* HGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F450931E0FA9F5EC00FE148B /* HGrid.cpp */; };
+		F4578A5310166C8C008FF75E /* HGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = F450931F0FA9F5EC00FE148B /* HGrid.h */; };
+		F4578A5410166C8D008FF75E /* Mat3.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC60CD1182400F7A183 /* Mat3.h */; };
+		F4578A5510166C8D008FF75E /* Mat2.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC50CD1182400F7A183 /* Mat2.h */; };
+		F4578A5610166C8E008FF75E /* Mat4.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC70CD1182400F7A183 /* Mat4.h */; };
+		F4578A5710166C8E008FF75E /* Octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4045EAB0DA7B82E00E2830F /* Octree.cpp */; };
+		F4578A5810166C8F008FF75E /* Octree.h in Headers */ = {isa = PBXBuildFile; fileRef = F4045EAC0DA7B82E00E2830F /* Octree.h */; };
+		F4578A5910166C91008FF75E /* Plane.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC80CD1182400F7A183 /* Plane.h */; };
+		F4578A5A10166C91008FF75E /* Polygon.h in Headers */ = {isa = PBXBuildFile; fileRef = F41309C20D8717F50025E2CB /* Polygon.h */; };
+		F4578A5B10166C92008FF75E /* Quadric.h in Headers */ = {isa = PBXBuildFile; fileRef = F41309C30D8717F50025E2CB /* Quadric.h */; };
+		F4578A5C10166C92008FF75E /* Quat.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC90CD1182400F7A183 /* Quat.h */; };
+		F4578A5D10166C93008FF75E /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692ACA0CD1182400F7A183 /* Random.cpp */; };
+		F4578A5E10166C93008FF75E /* Random.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACB0CD1182400F7A183 /* Random.h */; };
+		F4578A5F10166C95008FF75E /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACC0CD1182400F7A183 /* Ray.h */; };
+		F4578A6010166C96008FF75E /* Ref.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACD0CD1182400F7A183 /* Ref.h */; };
+		F4578A6110166C96008FF75E /* Sphere.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACE0CD1182400F7A183 /* Sphere.h */; };
+		F4578A6210166C97008FF75E /* StdDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACF0CD1182400F7A183 /* StdDefs.h */; };
+		F4578A6410166C97008FF75E /* Vec2.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AD00CD1182400F7A183 /* Vec2.h */; };
+		F4578A6510166C9A008FF75E /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AD10CD1182400F7A183 /* Vec3.h */; };
+		F4578A6610166C9A008FF75E /* Vec4.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AD20CD1182400F7A183 /* Vec4.h */; };
+		F47492A2107E380300E91BFA /* AABBox.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ABC0CD1182400F7A183 /* AABBox.h */; };
+		F47492A3107E380300E91BFA /* BIH.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ABE0CD1182400F7A183 /* BIH.h */; };
+		F47492A4107E380300E91BFA /* CGMath.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ABF0CD1182400F7A183 /* CGMath.h */; };
+		F47492A5107E380300E91BFA /* Dist.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC10CD1182400F7A183 /* Dist.h */; };
+		F47492A6107E380300E91BFA /* Distributions.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC20CD1182400F7A183 /* Distributions.h */; };
+		F47492A7107E380300E91BFA /* Frustum.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC30CD1182400F7A183 /* Frustum.h */; };
+		F47492A8107E380300E91BFA /* HEALPix.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC40CD1182400F7A183 /* HEALPix.h */; };
+		F47492A9107E380300E91BFA /* Mat2.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC50CD1182400F7A183 /* Mat2.h */; };
+		F47492AA107E380300E91BFA /* Mat3.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC60CD1182400F7A183 /* Mat3.h */; };
+		F47492AB107E380300E91BFA /* Mat4.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC70CD1182400F7A183 /* Mat4.h */; };
+		F47492AC107E380300E91BFA /* Plane.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC80CD1182400F7A183 /* Plane.h */; };
+		F47492AD107E380300E91BFA /* Quat.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AC90CD1182400F7A183 /* Quat.h */; };
+		F47492AE107E380300E91BFA /* Random.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACB0CD1182400F7A183 /* Random.h */; };
+		F47492AF107E380300E91BFA /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACC0CD1182400F7A183 /* Ray.h */; };
+		F47492B0107E380300E91BFA /* Ref.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACD0CD1182400F7A183 /* Ref.h */; };
+		F47492B1107E380300E91BFA /* Sphere.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACE0CD1182400F7A183 /* Sphere.h */; };
+		F47492B2107E380300E91BFA /* StdDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692ACF0CD1182400F7A183 /* StdDefs.h */; };
+		F47492B3107E380300E91BFA /* Vec2.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AD00CD1182400F7A183 /* Vec2.h */; };
+		F47492B4107E380300E91BFA /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AD10CD1182400F7A183 /* Vec3.h */; };
+		F47492B5107E380300E91BFA /* Vec4.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692AD20CD1182400F7A183 /* Vec4.h */; };
+		F47492B6107E380300E91BFA /* CGConst.h in Headers */ = {isa = PBXBuildFile; fileRef = F41309C10D8717F50025E2CB /* CGConst.h */; };
+		F47492B7107E380300E91BFA /* Polygon.h in Headers */ = {isa = PBXBuildFile; fileRef = F41309C20D8717F50025E2CB /* Polygon.h */; };
+		F47492B8107E380300E91BFA /* Quadric.h in Headers */ = {isa = PBXBuildFile; fileRef = F41309C30D8717F50025E2CB /* Quadric.h */; };
+		F47492B9107E380300E91BFA /* Octree.h in Headers */ = {isa = PBXBuildFile; fileRef = F4045EAC0DA7B82E00E2830F /* Octree.h */; };
+		F47492BA107E380300E91BFA /* AABBTree.h in Headers */ = {isa = PBXBuildFile; fileRef = F450931D0FA9F5EC00FE148B /* AABBTree.h */; };
+		F47492BB107E380300E91BFA /* HGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = F450931F0FA9F5EC00FE148B /* HGrid.h */; };
+		F47492BC107E380300E91BFA /* Geom.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FD8F0110614EFB0069CA04 /* Geom.h */; };
+		F47492BD107E380300E91BFA /* Math.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FD8F0210614EFB0069CA04 /* Math.h */; };
+		F47492BE107E380300E91BFA /* Noise.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FD8F0410614EFB0069CA04 /* Noise.h */; };
+		F47492BF107E380300E91BFA /* Trig.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FD8F0510614EFB0069CA04 /* Trig.h */; };
+		F47492C1107E380300E91BFA /* BIH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692ABD0CD1182400F7A183 /* BIH.cpp */; };
+		F47492C2107E380300E91BFA /* Dist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692AC00CD1182400F7A183 /* Dist.cpp */; };
+		F47492C3107E380300E91BFA /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692ACA0CD1182400F7A183 /* Random.cpp */; };
+		F47492C4107E380300E91BFA /* Octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4045EAB0DA7B82E00E2830F /* Octree.cpp */; };
+		F47492C5107E380300E91BFA /* AABBTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F450931C0FA9F5EC00FE148B /* AABBTree.cpp */; };
+		F47492C6107E380300E91BFA /* HGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F450931E0FA9F5EC00FE148B /* HGrid.cpp */; };
+		F47492C7107E380300E91BFA /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4FD8F0310614EFB0069CA04 /* Noise.cpp */; };
+		F47492E6107E388D00E91BFA /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692AEB0CD1183000F7A183 /* test.cpp */; };
+		F47492FB107E392900E91BFA /* libCGMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4578A2C10166C2A008FF75E /* libCGMath.a */; };
+		F479BF24125BFB6B00773EB5 /* libBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F47492DD107E382900E91BFA /* libBase.a */; };
+		F4AF94F1112EE62D00794062 /* test_boxes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AF94EA112EE62D00794062 /* test_boxes.cpp */; };
+		F4AF94F2112EE62D00794062 /* test_interpolation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AF94EB112EE62D00794062 /* test_interpolation.cpp */; };
+		F4AF94F3112EE62D00794062 /* test_intersection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AF94EC112EE62D00794062 /* test_intersection.cpp */; };
+		F4AF94F4112EE62D00794062 /* test_misc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AF94ED112EE62D00794062 /* test_misc.cpp */; };
+		F4AF94F5112EE62D00794062 /* test_random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AF94EE112EE62D00794062 /* test_random.cpp */; };
+		F4AF94F6112EE62D00794062 /* test_surfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AF94EF112EE62D00794062 /* test_surfaces.cpp */; };
+		F4AF94F7112EE62D00794062 /* test_vmq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4AF94F0112EE62D00794062 /* test_vmq.cpp */; };
+		F4D44B0A12035ABE006B60A6 /* Range.h in Headers */ = {isa = PBXBuildFile; fileRef = F4D44B0612035ABE006B60A6 /* Range.h */; };
+		F4D44B0B12035ABE006B60A6 /* RayCaster.h in Headers */ = {isa = PBXBuildFile; fileRef = F4D44B0712035ABE006B60A6 /* RayCaster.h */; };
+		F4D44B0C12035ABE006B60A6 /* Range.h in Headers */ = {isa = PBXBuildFile; fileRef = F4D44B0612035ABE006B60A6 /* Range.h */; };
+		F4D44B0D12035ABE006B60A6 /* RayCaster.h in Headers */ = {isa = PBXBuildFile; fileRef = F4D44B0712035ABE006B60A6 /* RayCaster.h */; };
+		F4EF7AF8104DC4DD005BAAE4 /* AARect.h in Headers */ = {isa = PBXBuildFile; fileRef = F4EF7AF7104DC4DD005BAAE4 /* AARect.h */; };
+		F4FD8F0B10614EFB0069CA04 /* Geom.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FD8F0110614EFB0069CA04 /* Geom.h */; };
+		F4FD8F0C10614EFB0069CA04 /* Math.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FD8F0210614EFB0069CA04 /* Math.h */; };
+		F4FD8F0D10614EFB0069CA04 /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4FD8F0310614EFB0069CA04 /* Noise.cpp */; };
+		F4FD8F0E10614EFB0069CA04 /* Noise.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FD8F0410614EFB0069CA04 /* Noise.h */; };
+		F4FD8F0F10614EFB0069CA04 /* Trig.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FD8F0510614EFB0069CA04 /* Trig.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F45789F210166A9D008FF75E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44C79C40A910AC200EDC4C5 /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F45788E21016643F008FF75E;
+			remoteInfo = Base_CocoaTouch;
+		};
+		F47492DA107E382900E91BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44C79C40A910AC200EDC4C5 /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F474926C107E36F100E91BFA;
+			remoteInfo = "BaseTest (static)";
+		};
+		F47492DC107E382900E91BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44C79C40A910AC200EDC4C5 /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4749256107E36B600E91BFA;
+			remoteInfo = "Base (static)";
+		};
+		F47492F2107E38BE00E91BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44C79B90A910AA600EDC4C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F474929E107E380300E91BFA;
+			remoteInfo = "CGMath (static)";
+		};
+		F479C304125C08E400773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F44C79C40A910AC200EDC4C5 /* Base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F47491E7107E36B600E91BFA;
+			remoteInfo = "BaseLib (OSX)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		81F7199B11CC1179004F9564 /* Variant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Variant.cpp; sourceTree = "<group>"; };
+		81F7199C11CC1179004F9564 /* Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Variant.h; sourceTree = "<group>"; };
+		F4045EAB0DA7B82E00E2830F /* Octree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Octree.cpp; sourceTree = "<group>"; };
+		F4045EAC0DA7B82E00E2830F /* Octree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Octree.h; sourceTree = "<group>"; };
+		F41309C10D8717F50025E2CB /* CGConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGConst.h; sourceTree = "<group>"; };
+		F41309C20D8717F50025E2CB /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polygon.h; sourceTree = "<group>"; };
+		F41309C30D8717F50025E2CB /* Quadric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quadric.h; sourceTree = "<group>"; };
+		F44C79C40A910AC200EDC4C5 /* Base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Base.xcodeproj; sourceTree = "<group>"; };
+		F450931C0FA9F5EC00FE148B /* AABBTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AABBTree.cpp; sourceTree = "<group>"; };
+		F450931D0FA9F5EC00FE148B /* AABBTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABBTree.h; sourceTree = "<group>"; };
+		F450931E0FA9F5EC00FE148B /* HGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGrid.cpp; sourceTree = "<group>"; };
+		F450931F0FA9F5EC00FE148B /* HGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGrid.h; sourceTree = "<group>"; };
+		F4578A2C10166C2A008FF75E /* libCGMath.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCGMath.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4692ABC0CD1182400F7A183 /* AABBox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AABBox.h; sourceTree = "<group>"; };
+		F4692ABD0CD1182400F7A183 /* BIH.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = BIH.cpp; sourceTree = "<group>"; };
+		F4692ABE0CD1182400F7A183 /* BIH.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = BIH.h; sourceTree = "<group>"; };
+		F4692ABF0CD1182400F7A183 /* CGMath.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CGMath.h; sourceTree = "<group>"; };
+		F4692AC00CD1182400F7A183 /* Dist.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = Dist.cpp; sourceTree = "<group>"; };
+		F4692AC10CD1182400F7A183 /* Dist.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Dist.h; sourceTree = "<group>"; };
+		F4692AC20CD1182400F7A183 /* Distributions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Distributions.h; sourceTree = "<group>"; };
+		F4692AC30CD1182400F7A183 /* Frustum.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Frustum.h; sourceTree = "<group>"; };
+		F4692AC40CD1182400F7A183 /* HEALPix.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = HEALPix.h; sourceTree = "<group>"; };
+		F4692AC50CD1182400F7A183 /* Mat2.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Mat2.h; sourceTree = "<group>"; };
+		F4692AC60CD1182400F7A183 /* Mat3.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Mat3.h; sourceTree = "<group>"; };
+		F4692AC70CD1182400F7A183 /* Mat4.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Mat4.h; sourceTree = "<group>"; };
+		F4692AC80CD1182400F7A183 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		F4692AC90CD1182400F7A183 /* Quat.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Quat.h; sourceTree = "<group>"; };
+		F4692ACA0CD1182400F7A183 /* Random.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = Random.cpp; sourceTree = "<group>"; };
+		F4692ACB0CD1182400F7A183 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		F4692ACC0CD1182400F7A183 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
+		F4692ACD0CD1182400F7A183 /* Ref.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Ref.h; sourceTree = "<group>"; };
+		F4692ACE0CD1182400F7A183 /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
+		F4692ACF0CD1182400F7A183 /* StdDefs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = StdDefs.h; sourceTree = "<group>"; };
+		F4692AD00CD1182400F7A183 /* Vec2.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Vec2.h; sourceTree = "<group>"; };
+		F4692AD10CD1182400F7A183 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
+		F4692AD20CD1182400F7A183 /* Vec4.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Vec4.h; sourceTree = "<group>"; };
+		F4692AEB0CD1183000F7A183 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		F46DE4E6105C9DEE00E67FE9 /* iOS_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_Application_Debug.xcconfig; sourceTree = "<group>"; };
+		F46DE4E7105C9DEE00E67FE9 /* OSX_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Application_Debug.xcconfig; sourceTree = "<group>"; };
+		F46DE4E8105C9DEE00E67FE9 /* iOS_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_Application_Release.xcconfig; sourceTree = "<group>"; };
+		F46DE4E9105C9DEE00E67FE9 /* OSX_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Application_Release.xcconfig; sourceTree = "<group>"; };
+		F46DE4EA105C9DEE00E67FE9 /* OSX_Executable_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Executable_Debug.xcconfig; sourceTree = "<group>"; };
+		F46DE4EB105C9DEE00E67FE9 /* OSX_Executable_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Executable_Release.xcconfig; sourceTree = "<group>"; };
+		F46DE4EC105C9DEE00E67FE9 /* OSX_SharedLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_SharedLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F46DE4ED105C9DEE00E67FE9 /* OSX_SharedLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_SharedLib_Release.xcconfig; sourceTree = "<group>"; };
+		F46DE4EE105C9DEE00E67FE9 /* iOS_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_StaticLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F46DE4EF105C9DEE00E67FE9 /* OSX_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_StaticLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F46DE4F0105C9DEE00E67FE9 /* iOS_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_StaticLib_Release.xcconfig; sourceTree = "<group>"; };
+		F46DE4F1105C9DEE00E67FE9 /* OSX_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_StaticLib_Release.xcconfig; sourceTree = "<group>"; };
+		F47492CD107E380300E91BFA /* libCGMath.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCGMath.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F47492ED107E388D00E91BFA /* CGMathTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CGMathTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4AF94EA112EE62D00794062 /* test_boxes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_boxes.cpp; sourceTree = "<group>"; };
+		F4AF94EB112EE62D00794062 /* test_interpolation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_interpolation.cpp; sourceTree = "<group>"; };
+		F4AF94EC112EE62D00794062 /* test_intersection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_intersection.cpp; sourceTree = "<group>"; };
+		F4AF94ED112EE62D00794062 /* test_misc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_misc.cpp; sourceTree = "<group>"; };
+		F4AF94EE112EE62D00794062 /* test_random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_random.cpp; sourceTree = "<group>"; };
+		F4AF94EF112EE62D00794062 /* test_surfaces.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_surfaces.cpp; sourceTree = "<group>"; };
+		F4AF94F0112EE62D00794062 /* test_vmq.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_vmq.cpp; sourceTree = "<group>"; };
+		F4D44B0612035ABE006B60A6 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Range.h; sourceTree = "<group>"; };
+		F4D44B0712035ABE006B60A6 /* RayCaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RayCaster.h; sourceTree = "<group>"; };
+		F4EF7AF7104DC4DD005BAAE4 /* AARect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AARect.h; sourceTree = "<group>"; };
+		F4FD8F0110614EFB0069CA04 /* Geom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geom.h; sourceTree = "<group>"; };
+		F4FD8F0210614EFB0069CA04 /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		F4FD8F0310614EFB0069CA04 /* Noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Noise.cpp; sourceTree = "<group>"; };
+		F4FD8F0410614EFB0069CA04 /* Noise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Noise.h; sourceTree = "<group>"; };
+		F4FD8F0510614EFB0069CA04 /* Trig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trig.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4578A2A10166C2A008FF75E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F47492C8107E380300E91BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F479BF24125BFB6B00773EB5 /* libBase.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F47492E7107E388D00E91BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F47492FB107E392900E91BFA /* libCGMath.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F44C79B70A910AA600EDC4C5 = {
+			isa = PBXGroup;
+			children = (
+				F44C79C40A910AC200EDC4C5 /* Base.xcodeproj */,
+				F44C7A180A910B9E00EDC4C5 /* Source */,
+				F45789FC10166AF6008FF75E /* Config */,
+				F44C79EA0A910B0600EDC4C5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F44C79C50A910AC200EDC4C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F45789F310166A9D008FF75E /* libBase.a */,
+				F47492DD107E382900E91BFA /* libBase.a */,
+				F47492DB107E382900E91BFA /* BaseTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F44C79EA0A910B0600EDC4C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4578A2C10166C2A008FF75E /* libCGMath.a */,
+				F47492CD107E380300E91BFA /* libCGMath.a */,
+				F47492ED107E388D00E91BFA /* CGMathTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F44C7A180A910B9E00EDC4C5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F4692ABC0CD1182400F7A183 /* AABBox.h */,
+				F450931C0FA9F5EC00FE148B /* AABBTree.cpp */,
+				F450931D0FA9F5EC00FE148B /* AABBTree.h */,
+				F4EF7AF7104DC4DD005BAAE4 /* AARect.h */,
+				F4692ABD0CD1182400F7A183 /* BIH.cpp */,
+				F4692ABE0CD1182400F7A183 /* BIH.h */,
+				F41309C10D8717F50025E2CB /* CGConst.h */,
+				F4692ABF0CD1182400F7A183 /* CGMath.h */,
+				F4692AC00CD1182400F7A183 /* Dist.cpp */,
+				F4692AC10CD1182400F7A183 /* Dist.h */,
+				F4692AC20CD1182400F7A183 /* Distributions.h */,
+				F4692AC30CD1182400F7A183 /* Frustum.h */,
+				F4FD8F0110614EFB0069CA04 /* Geom.h */,
+				F4692AC40CD1182400F7A183 /* HEALPix.h */,
+				F450931E0FA9F5EC00FE148B /* HGrid.cpp */,
+				F450931F0FA9F5EC00FE148B /* HGrid.h */,
+				F4692AC50CD1182400F7A183 /* Mat2.h */,
+				F4692AC60CD1182400F7A183 /* Mat3.h */,
+				F4692AC70CD1182400F7A183 /* Mat4.h */,
+				F4FD8F0210614EFB0069CA04 /* Math.h */,
+				F4FD8F0310614EFB0069CA04 /* Noise.cpp */,
+				F4FD8F0410614EFB0069CA04 /* Noise.h */,
+				F4045EAB0DA7B82E00E2830F /* Octree.cpp */,
+				F4045EAC0DA7B82E00E2830F /* Octree.h */,
+				F4692AC80CD1182400F7A183 /* Plane.h */,
+				F41309C20D8717F50025E2CB /* Polygon.h */,
+				F41309C30D8717F50025E2CB /* Quadric.h */,
+				F4692AC90CD1182400F7A183 /* Quat.h */,
+				F4692ACA0CD1182400F7A183 /* Random.cpp */,
+				F4692ACB0CD1182400F7A183 /* Random.h */,
+				F4D44B0612035ABE006B60A6 /* Range.h */,
+				F4692ACC0CD1182400F7A183 /* Ray.h */,
+				F4D44B0712035ABE006B60A6 /* RayCaster.h */,
+				F4692ACD0CD1182400F7A183 /* Ref.h */,
+				F4692ACE0CD1182400F7A183 /* Sphere.h */,
+				F4692AEA0CD1183000F7A183 /* src */,
+				F4692ACF0CD1182400F7A183 /* StdDefs.h */,
+				F4FD8F0510614EFB0069CA04 /* Trig.h */,
+				81F7199B11CC1179004F9564 /* Variant.cpp */,
+				81F7199C11CC1179004F9564 /* Variant.h */,
+				F4692AD00CD1182400F7A183 /* Vec2.h */,
+				F4692AD10CD1182400F7A183 /* Vec3.h */,
+				F4692AD20CD1182400F7A183 /* Vec4.h */,
+			);
+			name = Source;
+			path = ../../../Projects/CGMath;
+			sourceTree = SOURCE_ROOT;
+		};
+		F45789FC10166AF6008FF75E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				F46DE4E6105C9DEE00E67FE9 /* iOS_Application_Debug.xcconfig */,
+				F46DE4E7105C9DEE00E67FE9 /* OSX_Application_Debug.xcconfig */,
+				F46DE4E8105C9DEE00E67FE9 /* iOS_Application_Release.xcconfig */,
+				F46DE4E9105C9DEE00E67FE9 /* OSX_Application_Release.xcconfig */,
+				F46DE4EA105C9DEE00E67FE9 /* OSX_Executable_Debug.xcconfig */,
+				F46DE4EB105C9DEE00E67FE9 /* OSX_Executable_Release.xcconfig */,
+				F46DE4EC105C9DEE00E67FE9 /* OSX_SharedLib_Debug.xcconfig */,
+				F46DE4ED105C9DEE00E67FE9 /* OSX_SharedLib_Release.xcconfig */,
+				F46DE4EE105C9DEE00E67FE9 /* iOS_StaticLib_Debug.xcconfig */,
+				F46DE4EF105C9DEE00E67FE9 /* OSX_StaticLib_Debug.xcconfig */,
+				F46DE4F0105C9DEE00E67FE9 /* iOS_StaticLib_Release.xcconfig */,
+				F46DE4F1105C9DEE00E67FE9 /* OSX_StaticLib_Release.xcconfig */,
+			);
+			name = Config;
+			path = Config/Target;
+			sourceTree = "<group>";
+		};
+		F4692AEA0CD1183000F7A183 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F4AF94EA112EE62D00794062 /* test_boxes.cpp */,
+				F4AF94EB112EE62D00794062 /* test_interpolation.cpp */,
+				F4AF94EC112EE62D00794062 /* test_intersection.cpp */,
+				F4AF94ED112EE62D00794062 /* test_misc.cpp */,
+				F4AF94EE112EE62D00794062 /* test_random.cpp */,
+				F4AF94EF112EE62D00794062 /* test_surfaces.cpp */,
+				F4AF94F0112EE62D00794062 /* test_vmq.cpp */,
+				F4692AEB0CD1183000F7A183 /* test.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F4578A2810166C2A008FF75E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4578A4610166C82008FF75E /* AABBox.h in Headers */,
+				F4578A4810166C84008FF75E /* AABBTree.h in Headers */,
+				F4578A4A10166C85008FF75E /* BIH.h in Headers */,
+				F4578A4B10166C86008FF75E /* CGConst.h in Headers */,
+				F4578A4C10166C87008FF75E /* CGMath.h in Headers */,
+				F4578A4E10166C89008FF75E /* Dist.h in Headers */,
+				F4578A4F10166C89008FF75E /* Distributions.h in Headers */,
+				F4578A5010166C89008FF75E /* Frustum.h in Headers */,
+				F4578A5110166C8A008FF75E /* HEALPix.h in Headers */,
+				F4578A5310166C8C008FF75E /* HGrid.h in Headers */,
+				F4578A5410166C8D008FF75E /* Mat3.h in Headers */,
+				F4578A5510166C8D008FF75E /* Mat2.h in Headers */,
+				F4578A5610166C8E008FF75E /* Mat4.h in Headers */,
+				F4578A5810166C8F008FF75E /* Octree.h in Headers */,
+				F4578A5910166C91008FF75E /* Plane.h in Headers */,
+				F4578A5A10166C91008FF75E /* Polygon.h in Headers */,
+				F4578A5B10166C92008FF75E /* Quadric.h in Headers */,
+				F4578A5C10166C92008FF75E /* Quat.h in Headers */,
+				F4578A5E10166C93008FF75E /* Random.h in Headers */,
+				F4578A5F10166C95008FF75E /* Ray.h in Headers */,
+				F4578A6010166C96008FF75E /* Ref.h in Headers */,
+				F4578A6110166C96008FF75E /* Sphere.h in Headers */,
+				F4578A6210166C97008FF75E /* StdDefs.h in Headers */,
+				F4578A6410166C97008FF75E /* Vec2.h in Headers */,
+				F4578A6510166C9A008FF75E /* Vec3.h in Headers */,
+				F4578A6610166C9A008FF75E /* Vec4.h in Headers */,
+				F4EF7AF8104DC4DD005BAAE4 /* AARect.h in Headers */,
+				F4FD8F0B10614EFB0069CA04 /* Geom.h in Headers */,
+				F4FD8F0C10614EFB0069CA04 /* Math.h in Headers */,
+				F4FD8F0E10614EFB0069CA04 /* Noise.h in Headers */,
+				F4FD8F0F10614EFB0069CA04 /* Trig.h in Headers */,
+				81F719A211CC1179004F9564 /* Variant.h in Headers */,
+				F4D44B0C12035ABE006B60A6 /* Range.h in Headers */,
+				F4D44B0D12035ABE006B60A6 /* RayCaster.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F47492A1107E380300E91BFA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F47492A2107E380300E91BFA /* AABBox.h in Headers */,
+				F47492A3107E380300E91BFA /* BIH.h in Headers */,
+				F47492A4107E380300E91BFA /* CGMath.h in Headers */,
+				F47492A5107E380300E91BFA /* Dist.h in Headers */,
+				F47492A6107E380300E91BFA /* Distributions.h in Headers */,
+				F47492A7107E380300E91BFA /* Frustum.h in Headers */,
+				F47492A8107E380300E91BFA /* HEALPix.h in Headers */,
+				F47492A9107E380300E91BFA /* Mat2.h in Headers */,
+				F47492AA107E380300E91BFA /* Mat3.h in Headers */,
+				F47492AB107E380300E91BFA /* Mat4.h in Headers */,
+				F47492AC107E380300E91BFA /* Plane.h in Headers */,
+				F47492AD107E380300E91BFA /* Quat.h in Headers */,
+				F47492AE107E380300E91BFA /* Random.h in Headers */,
+				F47492AF107E380300E91BFA /* Ray.h in Headers */,
+				F47492B0107E380300E91BFA /* Ref.h in Headers */,
+				F47492B1107E380300E91BFA /* Sphere.h in Headers */,
+				F47492B2107E380300E91BFA /* StdDefs.h in Headers */,
+				F47492B3107E380300E91BFA /* Vec2.h in Headers */,
+				F47492B4107E380300E91BFA /* Vec3.h in Headers */,
+				F47492B5107E380300E91BFA /* Vec4.h in Headers */,
+				F47492B6107E380300E91BFA /* CGConst.h in Headers */,
+				F47492B7107E380300E91BFA /* Polygon.h in Headers */,
+				F47492B8107E380300E91BFA /* Quadric.h in Headers */,
+				F47492B9107E380300E91BFA /* Octree.h in Headers */,
+				F47492BA107E380300E91BFA /* AABBTree.h in Headers */,
+				F47492BB107E380300E91BFA /* HGrid.h in Headers */,
+				F47492BC107E380300E91BFA /* Geom.h in Headers */,
+				F47492BD107E380300E91BFA /* Math.h in Headers */,
+				F47492BE107E380300E91BFA /* Noise.h in Headers */,
+				F47492BF107E380300E91BFA /* Trig.h in Headers */,
+				81F719A011CC1179004F9564 /* Variant.h in Headers */,
+				F4D44B0A12035ABE006B60A6 /* Range.h in Headers */,
+				F4D44B0B12035ABE006B60A6 /* RayCaster.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F4578A2B10166C2A008FF75E /* CGMathLib (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4578A3910166C31008FF75E /* Build configuration list for PBXNativeTarget "CGMathLib (iOS)" */;
+			buildPhases = (
+				F4578A2810166C2A008FF75E /* Headers */,
+				F4578A2910166C2A008FF75E /* Sources */,
+				F4578A2A10166C2A008FF75E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CGMathLib (iOS)";
+			productName = "CGMathLib (iOS)";
+			productReference = F4578A2C10166C2A008FF75E /* libCGMath.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F474929E107E380300E91BFA /* CGMathLib (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F47492CA107E380300E91BFA /* Build configuration list for PBXNativeTarget "CGMathLib (OSX)" */;
+			buildPhases = (
+				F47492A1107E380300E91BFA /* Headers */,
+				F47492C0107E380300E91BFA /* Sources */,
+				F47492C8107E380300E91BFA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CGMathLib (OSX)";
+			productName = "CGMathLib (OSX)";
+			productReference = F47492CD107E380300E91BFA /* libCGMath.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		F47492E2107E388D00E91BFA /* CGMathTest (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F47492EA107E388D00E91BFA /* Build configuration list for PBXNativeTarget "CGMathTest (OSX)" */;
+			buildPhases = (
+				F47492E5107E388D00E91BFA /* Sources */,
+				F47492E7107E388D00E91BFA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F479C305125C08E400773EB5 /* PBXTargetDependency */,
+				F47492F3107E38BE00E91BFA /* PBXTargetDependency */,
+			);
+			name = "CGMathTest (OSX)";
+			productName = "CGMathTest (OSX)";
+			productReference = F47492ED107E388D00E91BFA /* CGMathTest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F44C79B90A910AA600EDC4C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = F44C79BA0A910AA600EDC4C5 /* Build configuration list for PBXProject "CGMath" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = F44C79B70A910AA600EDC4C5;
+			productRefGroup = F44C79EA0A910B0600EDC4C5 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F44C79C50A910AC200EDC4C5 /* Products */;
+					ProjectRef = F44C79C40A910AC200EDC4C5 /* Base.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F4578A2B10166C2A008FF75E /* CGMathLib (iOS) */,
+				F47492E2107E388D00E91BFA /* CGMathTest (OSX) */,
+				F474929E107E380300E91BFA /* CGMathLib (OSX) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F45789F310166A9D008FF75E /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBase.a;
+			remoteRef = F45789F210166A9D008FF75E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F47492DB107E382900E91BFA /* BaseTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BaseTest;
+			remoteRef = F47492DA107E382900E91BFA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F47492DD107E382900E91BFA /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libBase.a;
+			remoteRef = F47492DC107E382900E91BFA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4578A2910166C2A008FF75E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4578A4710166C83008FF75E /* AABBTree.cpp in Sources */,
+				F4578A4910166C85008FF75E /* BIH.cpp in Sources */,
+				F4578A4D10166C88008FF75E /* Dist.cpp in Sources */,
+				F4578A5210166C8A008FF75E /* HGrid.cpp in Sources */,
+				F4578A5710166C8E008FF75E /* Octree.cpp in Sources */,
+				F4578A5D10166C93008FF75E /* Random.cpp in Sources */,
+				F4FD8F0D10614EFB0069CA04 /* Noise.cpp in Sources */,
+				81F719A111CC1179004F9564 /* Variant.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F47492C0107E380300E91BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F47492C1107E380300E91BFA /* BIH.cpp in Sources */,
+				F47492C2107E380300E91BFA /* Dist.cpp in Sources */,
+				F47492C3107E380300E91BFA /* Random.cpp in Sources */,
+				F47492C4107E380300E91BFA /* Octree.cpp in Sources */,
+				F47492C5107E380300E91BFA /* AABBTree.cpp in Sources */,
+				F47492C6107E380300E91BFA /* HGrid.cpp in Sources */,
+				F47492C7107E380300E91BFA /* Noise.cpp in Sources */,
+				81F7199F11CC1179004F9564 /* Variant.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F47492E5107E388D00E91BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F47492E6107E388D00E91BFA /* test.cpp in Sources */,
+				F4AF94F1112EE62D00794062 /* test_boxes.cpp in Sources */,
+				F4AF94F2112EE62D00794062 /* test_interpolation.cpp in Sources */,
+				F4AF94F3112EE62D00794062 /* test_intersection.cpp in Sources */,
+				F4AF94F4112EE62D00794062 /* test_misc.cpp in Sources */,
+				F4AF94F5112EE62D00794062 /* test_random.cpp in Sources */,
+				F4AF94F6112EE62D00794062 /* test_surfaces.cpp in Sources */,
+				F4AF94F7112EE62D00794062 /* test_vmq.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F47492F3107E38BE00E91BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F474929E107E380300E91BFA /* CGMathLib (OSX) */;
+			targetProxy = F47492F2107E38BE00E91BFA /* PBXContainerItemProxy */;
+		};
+		F479C305125C08E400773EB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BaseLib (OSX)";
+			targetProxy = F479C304125C08E400773EB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F44C79BB0A910AA600EDC4C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		F44C79BC0A910AA600EDC4C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		F4578A2D10166C2B008FF75E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F46DE4EE105C9DEE00E67FE9 /* iOS_StaticLib_Debug.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = CGMath;
+			};
+			name = Debug;
+		};
+		F4578A2E10166C2B008FF75E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F46DE4F0105C9DEE00E67FE9 /* iOS_StaticLib_Release.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = CGMath;
+			};
+			name = Release;
+		};
+		F47492CB107E380300E91BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F46DE4EF105C9DEE00E67FE9 /* OSX_StaticLib_Debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = CGMath;
+			};
+			name = Debug;
+		};
+		F47492CC107E380300E91BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F46DE4F1105C9DEE00E67FE9 /* OSX_StaticLib_Release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = CGMath;
+			};
+			name = Release;
+		};
+		F47492EB107E388D00E91BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F46DE4EA105C9DEE00E67FE9 /* OSX_Executable_Debug.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = CGMathTest;
+			};
+			name = Debug;
+		};
+		F47492EC107E388D00E91BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F46DE4EB105C9DEE00E67FE9 /* OSX_Executable_Release.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = CGMathTest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F44C79BA0A910AA600EDC4C5 /* Build configuration list for PBXProject "CGMath" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F44C79BB0A910AA600EDC4C5 /* Debug */,
+				F44C79BC0A910AA600EDC4C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4578A3910166C31008FF75E /* Build configuration list for PBXNativeTarget "CGMathLib (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4578A2D10166C2B008FF75E /* Debug */,
+				F4578A2E10166C2B008FF75E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F47492CA107E380300E91BFA /* Build configuration list for PBXNativeTarget "CGMathLib (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F47492CB107E380300E91BFA /* Debug */,
+				F47492CC107E380300E91BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F47492EA107E388D00E91BFA /* Build configuration list for PBXNativeTarget "CGMathTest (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F47492EB107E388D00E91BFA /* Debug */,
+				F47492EC107E388D00E91BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F44C79B90A910AA600EDC4C5 /* Project object */;
+}

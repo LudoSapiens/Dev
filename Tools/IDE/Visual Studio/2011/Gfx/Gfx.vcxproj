@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F33F53AC-0835-4D41-A35D-202FF98C07DA}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Gfx</RootNamespace>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PreprocessorDefinitions>COMPILING_GFX=1;GFX_D3D_SUPPORT=0;GFX_OGL_SUPPORT=1;GFX_GLES_1_SUPPORT=0;GFX_GLES_2_SUPPORT=0;GFX_GLES_EGL_SUPPORT=0;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>OpenGL32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PreprocessorDefinitions>COMPILING_GFX=1;GFX_D3D_SUPPORT=0;GFX_OGL_SUPPORT=1;GFX_GLES_1_SUPPORT=0;GFX_GLES_2_SUPPORT=0;GFX_GLES_EGL_SUPPORT=0;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>OpenGL32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>COMPILING_GFX=1;GFX_D3D_SUPPORT=0;GFX_OGL_SUPPORT=1;GFX_GLES_1_SUPPORT=0;GFX_GLES_2_SUPPORT=0;GFX_GLES_EGL_SUPPORT=0;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>OpenGL32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>COMPILING_GFX=1;GFX_D3D_SUPPORT=0;GFX_OGL_SUPPORT=1;GFX_GLES_1_SUPPORT=0;GFX_GLES_2_SUPPORT=0;GFX_GLES_EGL_SUPPORT=0;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>OpenGL32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\FB\Framebuffer.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\FB\RenderState.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Geom\Buffer.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Geom\Geometry.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\Context.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLES2Manager.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLESContext.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLESContext_EGL.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLContext.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLContext_WGL.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLManager.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\Manager.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\Null\NullContext.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Mgr\Null\NullManager.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Pass\Pass.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Pass\RenderNode.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Prog\Constants.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Prog\Program.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Tex\Sampler.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Tex\Texture.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Gfx\Tex\TextureState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\FB\Framebuffer.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\FB\RenderState.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Geom\Buffer.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Geom\Geometry.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\Context.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLES2Manager.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLESContext.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GLES\GLESContext_EGL.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLContext.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLContext_WGL.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\GL\GLManager.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\Manager.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\Null\NullContext.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Mgr\Null\NullManager.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Pass\Pass.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Pass\RenderNode.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Prog\Constants.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Prog\Program.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\StdDefs.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Tex\Sampler.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Tex\Texture.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Gfx\Tex\TextureState.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Base\Base.vcxproj">
+      <Project>{7cdcc060-d599-4217-9bdc-21d2d8abd5f1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\CGMath\CGMath.vcxproj">
+      <Project>{82dacbc8-0951-4f61-bf50-7574dae0c8c6}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

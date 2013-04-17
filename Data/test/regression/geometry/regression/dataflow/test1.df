@@ -1,0 +1,60 @@
+local n0 = difference{ position={1,1}, width=12 }
+--local n0 = union{ position={1,1}, width=12 }
+--local n0 = intersection{ position={1,1}, width=12 }
+local n1 = blocks{
+   position={1,2},
+   { {-1.5,-1.5,-1.5}, { 1.5, 1.5, 1.5}, c=0xfff }
+   --{ {2,1,1}, c=0xfff }
+}
+local n2 = blocks{
+   position={4,2},
+   { {-2,-1,-1.5}, { 2, 1, 0.5}, c=0xff0 }
+   --{ {-2,-1,-1}, { 2, 1, 1}, c=0xff0 }
+}
+---[[
+local n3 = blocks{
+   position={7,2},
+   { {-1,-2,-1}, { 1, 2, 1}, c=0xf0f }
+}
+local n4 = blocks{
+   position={10,2},
+   { {-1,-1,-2}, { 1, 1, 2}, c=0x0ff }
+}
+
+local n5 = strokes{
+   position={1,4},
+   {
+      vertices={
+         {
+            ref={{0,{0,1,0}},{0,0,0}}, c=0xf
+            --{}, {}, {}, {},
+         },
+         {
+            ref={{0,{0,1,0}},{0,1,0}},
+            --{}, {}, {}, {},
+         },
+         {
+            ref={{0,{0,1,0}},{0,2,0}},
+            --{}, {}, {}, {},
+         },
+         {
+            ref={{0.125,{0,0,1}},{0,3,0}},
+            {-1,0,-0.5}, {-1,0,0.5}, {1,0,0.5}, {1,0,-0.5},
+            s=0x1
+         },
+      },
+      segments={ {2,c=0xf}, {0,s=0x404}, {0} }
+   }
+}
+local n6 = blocks{
+   position={1,6},
+   { {2,1,1}, c=0xfff }
+}
+local n7 = importAnim{ "animation/humanoid01/walk01", position={1,8} }
+
+--]]
+--local out0 = outsocket{ id="a", position{1,0} }
+
+output( n5 )
+--input( s1, "factor", 1 )
+

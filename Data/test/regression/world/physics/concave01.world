@@ -1,0 +1,22 @@
+camera{
+   position = { 0, 30, 60 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+staticObject{
+   geometry = "geometry/physics/concave01",
+}
+
+local n = 40
+for i=1,n do
+   local f = i / n
+   local x = math.cos( f )
+   local y = 3*i + 10
+   local z = math.sin( f )
+   object{
+      geometry    = "geometry/physics/ball",
+      position    = { x, y, z },
+      restitution = 0.2,
+   }
+end

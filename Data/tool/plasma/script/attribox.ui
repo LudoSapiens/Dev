@@ -1,0 +1,284 @@
+include( "script/ui/inputWidgets" )
+
+--==============================================================================
+-- Attribox
+--==============================================================================
+
+function UI.Attribox( gui, params )
+   local params = params or {}
+
+   params.flex        = params.flex        or 1
+   params.orientation = params.orientation or UI.BoxOrientation.HORIZONTAL
+   params.size        = params.size        or {-1,-1}
+   params.gap         = 8
+   params.border      = { 8, 8, 8, 8 }
+   params.maxSize     = { 1000, 400 }
+   params.intangible  = false
+   if params.hidden == nil then params.hidden = true end
+
+   local _graph      = nil
+   local _node       = nil
+   local _gui        = nil
+   local _lockUpdate = false
+   local _viewer     = nil
+
+   local _id2w       = nil
+   local _w2id       = nil
+
+   local this = gui.box( params )
+
+   local bg = this.tquad{
+      image = "theme/plasma/image/roundedboxShadow2",
+      u     = { 0, 0.4, 0.6, 1 },
+      v     = { 0, 0.4, 0.6, 1 },
+      color = {0.0,0.0,0.0,0.25}
+   }
+
+   local createWidget
+
+   -----------------------------------------------------------------------------
+   -- Callbacks
+   -----------------------------------------------------------------------------
+   local function onSelection( viewer )
+      local sel = viewer.selection
+      if #sel == 1 then
+         this.setNode( sel[1] )
+      else
+         this.setNode( nil )
+      end
+   end
+   -----------------------------------------------------------------------------
+   local function onGraphUpdate( graph )
+   end
+   -----------------------------------------------------------------------------
+   local function onNodeModify( n, t )
+      local t = t or {}
+      _lockUpdate = true
+      local attr = t.attr
+      -- Create or remove widgets.
+      if attr then
+         for i,v in ipairs(attr) do
+            -- Create widgets.
+            if v.type and v.type ~= "" then
+               local w = createWidget( v )
+               -- Insert before sibling
+               if v.sid then
+                  local sw = _id2w[v.sid]
+                  if sw then
+                     sw.parent.addWidgetBefore( w, sw )
+                  else
+                     print( "Attribox.onNodeModify() - sid="..tostring(v.sid).." has no widget." )
+                     pw.addWidget( w )
+                  end
+               -- Insert in parent.
+               elseif v.pid then
+                  local pw = _id2w[v.pid]
+                  if pw then
+                     pw.addWidget( w )
+                  else
+                     print( "Attribox.onNodeModify() - pid="..tostring(v.pid).." has no widget." )
+                     this.addWidget( w )
+                  end
+               -- Insert at the end.
+               else
+                  this.addWidget( w )
+               end
+               if w.type == "GROUP" and w.parent == this then w.maxSize = {800,220} end
+            else
+               -- Remove widgets.
+               local w = _id2w[v.id]
+               if w then
+                  _id2w[v.id] = nil
+                  _w2id[w]    = nil
+                  w.parent.removeWidget( w )
+                  _gui.remove( w )
+               else
+                  print("ERROR: Attribox.onNodeModify() cannot find widget with id="..tostring(v.id)..".")
+               end
+            end
+         end
+         t.attr = nil -- Remove it from the loop below.
+      end
+      -- Update values.
+      for k,v in pairs( t ) do
+         local w = _id2w[k]
+         if not w then print( "widget " .. k .. " not found " )
+         else
+            local type = w.type
+            if type == "GROUP" then
+               w.hidden = not v
+            elseif w.setValue ~= nil then
+               w.setValue( v )
+            end
+         end
+      end
+      _lockUpdate = false
+   end
+   -----------------------------------------------------------------------------
+   local function onNodeRemove( n )
+      this.setNode( nil )
+   end
+   -----------------------------------------------------------------------------
+   local function onWidgetModify( w, v )
+      if _lockUpdate == false then
+         if _w2id[w] == 11 then
+            print("OWM", w, v)
+         end
+         DataFlow.setAttributes( _node, { [_w2id[w]]=v } )
+      end
+   end
+   -----------------------------------------------------------------------------
+   -- local functions
+   -----------------------------------------------------------------------------
+   createWidget = function( t )
+      local w = nil
+      local l = t.length
+      if l then
+         -- FIXME: this should be adapted to the current font size.
+         l = l*11
+      end
+      if t.label == "" then t.label = nil end
+      if t.type == "GROUP" then
+         if not t.label then
+            w = _gui.vbox{ shader=UI.shaders.boxScrollable, gap=2, type="GROUP", intangible=false }
+         else
+            w = _gui.group{ gap=2, title=t.label, type="GROUP", orientation=UI.BoxOrientation.VERTICAL, intangible=false }
+         end
+         if t.compact then
+            w.orientation = UI.BoxOrientation.HORIZONTAL
+         end
+         for i,v in ipairs(t) do
+            w.addWidget( createWidget(v) )
+         end
+      elseif t.type == "FLOAT" then
+         local min = t.range and t.range.x
+         local max = t.range and t.range.y
+         w = _gui.floatInput{ text=t.label, type="FLOAT", onModify=onWidgetModify, min=min, max=max }
+      elseif t.type == "FLOAT2" then
+         local min = t.range and t.range.x
+         local max = t.range and t.range.y
+         w = _gui.vec2Input{ text=t.label, type="FLOAT2", onModify=onWidgetModify, min=min, max=max }
+      elseif t.type == "FLOAT3" then
+         local min = t.range and t.range.x
+         local max = t.range and t.range.y
+         w = _gui.vec3Input{ text=t.label, type="FLOAT3", onModify=onWidgetModify, min=min, max=max }
+      elseif t.type == "INT" then
+         local min = t.range and t.range.x
+         local max = t.range and t.range.y
+         w = _gui.floatInput{ text=t.label, type="INT", onModify=onWidgetModify, step=1, integer=true, format="%.0f", min=min, max=max }
+      elseif t.type == "INT2" then
+         local min = t.range and t.range.x
+         local max = t.range and t.range.y
+         w = _gui.vec2Input{ text=t.label, type="INT2", onModify=onWidgetModify, step=1, integer=true, format="%.0f", min=min, max=max }
+      elseif t.type == "INT3" then
+         local min = t.range and t.range.x
+         local max = t.range and t.range.y
+         w = _gui.vec3Input{ text=t.label, type="INT3", onModify=onWidgetModify, step=1, integer=true, format="%.0f", min=min, max=max }
+      elseif t.type == "XYZ" then
+         w = _gui.vec3Input{ text=t.label, type="XYZ", onModify=onWidgetModify }
+      elseif t.type == "ORI" then
+         w = _gui.oriInput{ text=t.label, type="ORI", onModify=onWidgetModify }
+      elseif t.type == "RGB" then
+         w = _gui.rgbInput{ text=t.label, type="RGB", onModify=onWidgetModify }
+      elseif t.type == "RGBA" then
+         w = _gui.rgbaInput{ text=t.label, type="RGBA", onModify=onWidgetModify }
+      elseif t.type == "ENUM" then
+         local e = {}
+         for i,v in ipairs(t) do e[i] = _gui.menuItem{ id=i-1, text=v } end
+         w = _gui.menuInput{ text=t.label, type="ENUM", onModify=onWidgetModify, menu=_gui.menu(e), comboSize=l }
+      elseif t.type == "STRING" then
+         w = _gui.stringInput{ text=t.label, type="STRING", onModify=onWidgetModify, textWidth=l or 256 }
+      elseif t.type == "BUTTON" then
+         w = _gui.button{ text=t.label, type="BUTTON", size={l or -1,-1}, hAlign=UI.WidgetAlignment.END, onClick=function(w) onWidgetModify(w, true) end }
+      elseif t.type == "BOOL" then
+         w = _gui.boolInput{ text=t.label, type="BOOL", size={l or -1,-1}, hAlign=UI.WidgetAlignment.END, onModify=onWidgetModify }
+      else
+         print( "Unknown widget type: " .. t.type )
+         return
+      end
+      -- Set retrieval table.
+      _w2id[w]    = t.id
+      _id2w[t.id] = w
+      -- Return the created widget.
+      return w
+   end
+   -----------------------------------------------------------------------------
+   -- Methods
+   -----------------------------------------------------------------------------
+   function this.shader( w )
+      local pos   = w.globalPosition
+      local size  = w.actualSize
+      bg.position = pos  - vec2(32,32)
+      bg.size     = size + vec2(64,64)
+      return bg
+   end
+   -----------------------------------------------------------------------------
+   function this.show()
+      this.hidden = false
+   end
+   -----------------------------------------------------------------------------
+   function this.hide()
+      this.hidden = true
+   end
+   -----------------------------------------------------------------------------
+   function this.setViewer( viewer )
+      if _viewer then _viewer.onSelection = nil end
+      _viewer = viewer
+      if _viewer then _viewer.onSelection = onSelection; onSelection(_viewer) end
+   end
+   -----------------------------------------------------------------------------
+   function this.setGraph( graph )
+      if _graph then
+         --_graph.removeOnUpdate( onGraphUpdate )
+         this.setNode( nil )
+      end
+      _graph = graph
+      if _graph then
+         --_graph.addOnUpdate( onGraphUpdate )
+         onSelection(_viewer) -- Honor a selection that might have been saved.
+      end
+   end
+   -----------------------------------------------------------------------------
+   function this.setNode( node )
+      -- Node change?
+      if node == _node then return end
+      -- Remove old widgets.
+      if _node then
+         this.removeAllWidgets()
+         _graph.removeOnModify( _node, onNodeModify )
+         _graph.removeOnRemove( _node, onNodeRemove )
+         _gui = nil
+      end
+      _node = node
+      this.hide()
+      -- Create new widgets.
+      if _node then
+         local t = DataFlow.getAttributes( _node )
+         if t then
+            this.show()
+            _w2id = {}
+            _id2w = {}
+            _gui  = ObjectPool( "UI" )
+            for i,v in ipairs(t) do
+               local w = createWidget(v)
+               if w.type == "GROUP" then w.maxSize = {800,220} end
+               this.addWidget( w )
+            end
+         end
+         _graph.addOnModify( _node, onNodeModify )
+         _graph.addOnRemove( _node, onNodeRemove )
+         -- Update the current states.
+         onNodeModify( node, DataFlow.getAttributesStates( _node ) )
+      end
+   end
+   -----------------------------------------------------------------------------
+   function this.toggle()
+      if this.hidden then
+         this.show()
+      else
+         this.hide()
+      end
+   end
+
+   return this
+end

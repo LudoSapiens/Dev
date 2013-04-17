@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+<!-- shape-rendering crispEdges, geometricPrecision  -->
+
+<svg width="14px" height="14px" viewBox="0 0 14 14">
+  <desc>x</desc>
+  <rect x="0" y="0" width="14" height="14" rx="7" 
+   fill="white" stroke="none"/>
+</svg>

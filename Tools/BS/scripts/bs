@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+# =============================================================================
+#  Copyright (c) 2006, Ludo Sapiens Inc.
+#  All rights reserved.
+# 
+#  These coded instructions, statements, and computer programs contain
+#  unpublished, proprietary information and are protected by Federal copyright
+#  law. They may not be disclosed to third parties or copied or duplicated in
+#  any form, in whole or in part, without prior written consent.
+# =============================================================================
+
+import os
+import sys
+
+# Consider BS_HOME_DIR if it exists
+if 'BS_HOME_DIR' in os.environ:
+	sys.path.append(os.environ['BS_HOME_DIR'])
+
+import BuildSystem
+
+if 'BS_PROFILE' in os.environ:
+	print "Profiling..."
+	print "Generating file 'bs.prof'"
+	import hotshot, hotshot.stats
+	prof = hotshot.Profile("bs.prof")
+	prof.runcall(BuildSystem._run)
+	prof.close()
+	stats = hotshot.stats.load("bs.prof")
+	stats.strip_dirs()
+	stats.sort_stats('time', 'calls')
+	stats.print_stats(20)
+else:
+	err = BuildSystem._run()
+
+sys.exit( err )

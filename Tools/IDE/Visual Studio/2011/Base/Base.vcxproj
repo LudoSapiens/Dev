@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7CDCC060-D599-4217-9BDC-21D2D8ABD5F1}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Base</RootNamespace>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PreprocessorDefinitions>COMPILING_BASE=1;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PreprocessorDefinitions>COMPILING_BASE=1;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>COMPILING_BASE=1;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ws2_32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>COMPILING_BASE=1;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ws2_32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Cache.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\ConstString.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\DEQueue.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\DynArray.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\HashTable.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Heap.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\List.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Map.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\MapWithDefault.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\MemoryPool.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Pair.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Queue.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\RCVector.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Set.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\String.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\StringMap.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\ADT\Vector.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Dbg\DebugStream.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Dbg\Defs.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Dbg\ErrorManager.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Dbg\UnitTest.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\BinaryStream.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\FileDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\FileSystem.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\GZippedFileDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\IODevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\LockedMemoryDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\MemoryDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\MMapDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\MultiDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\NullDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\Path.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\StreamIndent.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\StringDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\IO\TextStream.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Msg\Delegate.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Msg\DelegateList.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Msg\Observer.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Msg\Subject.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Atomic.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Lock.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\RWLock.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Semaphore.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Task.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\TaskQueue.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Thread.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\Trigger.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\MT\ValueTrigger.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Net\Socket.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Net\SocketDevice.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Net\_SocketImpl.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\StdDefs.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Application.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Arguments.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\ArrayAdaptor.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Bits.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Compiler.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\CPU.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Date.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\EndianSwapper.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Enum.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Half.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Hash.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\IDPool.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Memory.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Packed.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Platform.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\RadixSort.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\RCObject.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\RCObjectNA.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\RCP.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\SHA.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Singleton.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Time.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Timer.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Unicode.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\UnicodeIterator.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Union.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\Validator.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\Base\Util\windows.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\Base\ADT\ConstString.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\ADT\String.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\ADT\StringMap.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Dbg\DebugStream.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Dbg\ErrorManager.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Dbg\UnitTest.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\BinaryStream.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\FileDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\FileSystem.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\GZippedFileDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\IODevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\LockedMemoryDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\MemoryDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\MMapDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\MultiDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\NullDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\Path.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\StringDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\IO\TextStream.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Msg\Observer.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Msg\Subject.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Lock.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\RWLock.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Semaphore.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Task.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\TaskQueue.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Thread.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\Trigger.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\MT\ValueTrigger.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Net\Socket.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Net\SocketDevice.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Net\_SocketImpl.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Application.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Arguments.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Date.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Formatter.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Memory.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\RadixSort.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\RCObject.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\RCObjectNA.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\SHA.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Time.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Unicode.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\UnicodeIterator.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\Base\Util\Validator.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

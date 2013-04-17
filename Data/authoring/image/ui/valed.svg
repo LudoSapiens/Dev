@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+
+<svg width="64px" height="20px" viewBox="0 0 64 20">
+<desc>button</desc>
+<rect x="0" y="0" width="64" height="20"
+fill="black" shape-rendering="geometricPrecision" />
+
+<rect x="2" y="2" width="60" height="16" 
+fill="white" shape-rendering="geometricPrecision" />
+
+</svg>
+

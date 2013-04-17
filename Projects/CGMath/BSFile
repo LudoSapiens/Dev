@@ -1,0 +1,44 @@
+LoadFile("../Base/BSFile")
+
+CGMathSettings = StandardSettings.copy()
+CGMathVariants = StandardVariants.copy()
+
+CGMathLib = Library(
+   "CGMath",
+   inputs=[
+      "AABBTree.cpp",
+      "BIH.cpp",
+      "Dist.cpp",
+      "HGrid.cpp",
+      "Noise.cpp",
+      "Octree.cpp",
+      "Random.cpp",
+      "Variant.cpp",
+      BaseLib,
+   ],
+   shared=True, shared_define="COMPILING_CGMATH",
+   settings=CGMathSettings,
+   variant=CGMathVariants,
+)
+
+CGMath = Application("CGMathTest",
+                     inputs=[
+                        "test.cpp",
+                        "test_boxes.cpp",
+                        "test_interpolation.cpp",
+                        "test_intersection.cpp",
+                        "test_misc.cpp",
+                        "test_random.cpp",
+                        "test_surfaces.cpp",
+                        "test_vmq.cpp",
+                        BaseLib, CGMathLib
+                     ],
+                     settings=CGMathSettings,
+                     variant=CGMathVariants)
+
+cgmath = CGMath
+
+camtest = Application("CGMathTest",
+                    inputs=["camera.cpp", BaseLib, CGMathLib],
+                    settings=CGMathSettings,
+                    variant=CGMathVariants)

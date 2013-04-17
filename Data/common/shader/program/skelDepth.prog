@@ -1,0 +1,2 @@
+vertex shader/vertex/depth_skel
+fragment shader/fragment/depth

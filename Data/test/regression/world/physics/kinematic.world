@@ -1,0 +1,17 @@
+camera{
+   position = { 0, 10, 20 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+kinematicObject{
+   geometry = geometry( "geometry/physics/box", { size=vec3(10,1,10), color="gray" } ),
+   material = material( "geometry/physics/colors" ),
+   position = { 3, -1, 0 },
+}
+
+object{
+   geometry = geometry( "geometry/physics/box", { size=vec3(1), color="red" } ),
+   material = material( "geometry/physics/colors" ),
+   position = { 0, 5, 0 },
+}

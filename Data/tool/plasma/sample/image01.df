@@ -1,0 +1,26 @@
+local n0 = drawRect{
+   position = {-1,0},
+   width = 3,
+   color={0,0,1,1},
+   center={0,0},
+   size={2,2},
+}
+local n1 = drawCircle{
+   position = {2,0},
+   width = 3,
+   color={1,0,0,1},
+   center={0,0},
+   radius=0.4,
+}
+local n2 = blendImage{
+   position = {-1,-1},
+   width = 6,
+   mode=3,
+}
+local n3 = outputImage{
+   position = {-1,-2},
+   width = 3,
+   region={0,0,1,1},
+   size={8,8},
+}
+output( n3 )

@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F414F78F107E49D800CABC0A /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41D85E9100B7E7E008732DA /* test.cpp */; };
+		F414F79C107E49D800CABC0A /* Listener.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D670CD11BBA00F7A183 /* Listener.h */; };
+		F414F79D107E49D800CABC0A /* Manager.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D690CD11BBA00F7A183 /* Manager.h */; };
+		F414F79E107E49D800CABC0A /* OpenALManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D6B0CD11BBA00F7A183 /* OpenALManager.h */; };
+		F414F79F107E49D800CABC0A /* Sound.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D6D0CD11BBA00F7A183 /* Sound.h */; };
+		F414F7A0107E49D800CABC0A /* Source.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D6F0CD11BBA00F7A183 /* Source.h */; };
+		F414F7A1107E49D800CABC0A /* StdDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D720CD11BBA00F7A183 /* StdDefs.h */; };
+		F414F7A2107E49D800CABC0A /* Types.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D730CD11BBA00F7A183 /* Types.h */; };
+		F414F7A3107E49D800CABC0A /* NullManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F4130AB60D8ABD670025E2CB /* NullManager.h */; };
+		F414F7A5107E49D800CABC0A /* Listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D660CD11BBA00F7A183 /* Listener.cpp */; };
+		F414F7A6107E49D800CABC0A /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D680CD11BBA00F7A183 /* Manager.cpp */; };
+		F414F7A7107E49D800CABC0A /* OpenALManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D6A0CD11BBA00F7A183 /* OpenALManager.cpp */; };
+		F414F7A8107E49D800CABC0A /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D6C0CD11BBA00F7A183 /* Sound.cpp */; };
+		F414F7A9107E49D800CABC0A /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D6E0CD11BBA00F7A183 /* Source.cpp */; };
+		F414F7AA107E49D800CABC0A /* NullManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4130AB50D8ABD670025E2CB /* NullManager.cpp */; };
+		F414F7E7107E4AAF00CABC0A /* libBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F414F7E1107E49F900CABC0A /* libBase.a */; };
+		F496D95A125B77AF0000FB6C /* Listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D660CD11BBA00F7A183 /* Listener.cpp */; };
+		F496D95B125B77AF0000FB6C /* Listener.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D670CD11BBA00F7A183 /* Listener.h */; };
+		F496D95C125B77AF0000FB6C /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D680CD11BBA00F7A183 /* Manager.cpp */; };
+		F496D95D125B77B00000FB6C /* Manager.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D690CD11BBA00F7A183 /* Manager.h */; };
+		F496D95E125B77B00000FB6C /* NullManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4130AB50D8ABD670025E2CB /* NullManager.cpp */; };
+		F496D95F125B77B10000FB6C /* NullManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F4130AB60D8ABD670025E2CB /* NullManager.h */; };
+		F496D960125B77B10000FB6C /* OpenALManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D6A0CD11BBA00F7A183 /* OpenALManager.cpp */; };
+		F496D961125B77B20000FB6C /* OpenALManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D6B0CD11BBA00F7A183 /* OpenALManager.h */; };
+		F496D962125B77B30000FB6C /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D6C0CD11BBA00F7A183 /* Sound.cpp */; };
+		F496D963125B77B30000FB6C /* Sound.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D6D0CD11BBA00F7A183 /* Sound.h */; };
+		F496D964125B77B40000FB6C /* Source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4692D6E0CD11BBA00F7A183 /* Source.cpp */; };
+		F496D965125B77B40000FB6C /* Source.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D6F0CD11BBA00F7A183 /* Source.h */; };
+		F496D966125B77B50000FB6C /* StdDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D720CD11BBA00F7A183 /* StdDefs.h */; };
+		F496D967125B77B50000FB6C /* Types.h in Headers */ = {isa = PBXBuildFile; fileRef = F4692D730CD11BBA00F7A183 /* Types.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F414F7DE107E49F900CABC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47F37230AF7BB710013875B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F474926C107E36F100E91BFA;
+			remoteInfo = "BaseTest (static)";
+		};
+		F414F7E0107E49F900CABC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47F37230AF7BB710013875B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4749256107E36B600E91BFA;
+			remoteInfo = "Base (static)";
+		};
+		F414F7E2107E4A8D00CABC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47F37230AF7BB710013875B /* Base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F47491E7107E36B600E91BFA;
+			remoteInfo = "Base (static)";
+		};
+		F414F7E4107E4A9A00CABC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47F36E20AF7BAAD0013875B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F414F798107E49D800CABC0A;
+			remoteInfo = "Snd (static)";
+		};
+		F4578B3D10175625008FF75E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47F37230AF7BB710013875B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F45788E21016643F008FF75E;
+			remoteInfo = Base_CocoaTouch;
+		};
+		F496D938125B772C0000FB6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47F37230AF7BB710013875B /* Base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F45788E11016643F008FF75E;
+			remoteInfo = Base_CocoaTouch;
+		};
+		F496D94E125B77630000FB6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F496D942125B77630000FB6C /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492ED107E388D00E91BFA;
+			remoteInfo = "CGMathTest (static)";
+		};
+		F496D950125B77630000FB6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F496D942125B77630000FB6C /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492CD107E380300E91BFA;
+			remoteInfo = "CGMath (static)";
+		};
+		F496D952125B77630000FB6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F496D942125B77630000FB6C /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4578A2C10166C2A008FF75E;
+			remoteInfo = CGMath_CocoaTouch;
+		};
+		F496D956125B778D0000FB6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F496D942125B77630000FB6C /* CGMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F474929E107E380300E91BFA;
+			remoteInfo = "CGMath (static)";
+		};
+		F496D958125B77970000FB6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F496D942125B77630000FB6C /* CGMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4578A2B10166C2A008FF75E;
+			remoteInfo = CGMath_CocoaTouch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F4130AB50D8ABD670025E2CB /* NullManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NullManager.cpp; path = ../../../Projects/Snd/NullManager.cpp; sourceTree = SOURCE_ROOT; };
+		F4130AB60D8ABD670025E2CB /* NullManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NullManager.h; path = ../../../Projects/Snd/NullManager.h; sourceTree = SOURCE_ROOT; };
+		F414F7D6107E49F900CABC0A /* iOS_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_Application_Debug.xcconfig; sourceTree = "<group>"; };
+		F414F7D7107E49F900CABC0A /* iOS_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_Application_Release.xcconfig; sourceTree = "<group>"; };
+		F414F7D8107E49F900CABC0A /* OSX_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_StaticLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F414F7D9107E49F900CABC0A /* OSX_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_StaticLib_Release.xcconfig; sourceTree = "<group>"; };
+		F41D85E9100B7E7E008732DA /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		F4578B4110175632008FF75E /* OSX_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Application_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B4210175632008FF75E /* OSX_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Application_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B4310175632008FF75E /* OSX_Executable_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Executable_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B4410175632008FF75E /* OSX_Executable_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_Executable_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B4510175632008FF75E /* OSX_SharedLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_SharedLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B4610175632008FF75E /* OSX_SharedLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = OSX_SharedLib_Release.xcconfig; sourceTree = "<group>"; };
+		F4578B4710175632008FF75E /* iOS_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_StaticLib_Debug.xcconfig; sourceTree = "<group>"; };
+		F4578B4810175632008FF75E /* iOS_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = iOS_StaticLib_Release.xcconfig; sourceTree = "<group>"; };
+		F4692D660CD11BBA00F7A183 /* Listener.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Listener.cpp; path = ../../../Projects/Snd/Listener.cpp; sourceTree = SOURCE_ROOT; };
+		F4692D670CD11BBA00F7A183 /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Listener.h; path = ../../../Projects/Snd/Listener.h; sourceTree = SOURCE_ROOT; };
+		F4692D680CD11BBA00F7A183 /* Manager.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Manager.cpp; path = ../../../Projects/Snd/Manager.cpp; sourceTree = SOURCE_ROOT; };
+		F4692D690CD11BBA00F7A183 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Manager.h; path = ../../../Projects/Snd/Manager.h; sourceTree = SOURCE_ROOT; };
+		F4692D6A0CD11BBA00F7A183 /* OpenALManager.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = OpenALManager.cpp; path = ../../../Projects/Snd/OpenALManager.cpp; sourceTree = SOURCE_ROOT; };
+		F4692D6B0CD11BBA00F7A183 /* OpenALManager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = OpenALManager.h; path = ../../../Projects/Snd/OpenALManager.h; sourceTree = SOURCE_ROOT; };
+		F4692D6C0CD11BBA00F7A183 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Sound.cpp; path = ../../../Projects/Snd/Sound.cpp; sourceTree = SOURCE_ROOT; };
+		F4692D6D0CD11BBA00F7A183 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Sound.h; path = ../../../Projects/Snd/Sound.h; sourceTree = SOURCE_ROOT; };
+		F4692D6E0CD11BBA00F7A183 /* Source.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Source.cpp; path = ../../../Projects/Snd/Source.cpp; sourceTree = SOURCE_ROOT; };
+		F4692D6F0CD11BBA00F7A183 /* Source.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Source.h; path = ../../../Projects/Snd/Source.h; sourceTree = SOURCE_ROOT; };
+		F4692D720CD11BBA00F7A183 /* StdDefs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = StdDefs.h; path = ../../../Projects/Snd/StdDefs.h; sourceTree = SOURCE_ROOT; };
+		F4692D730CD11BBA00F7A183 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Types.h; path = ../../../Projects/Snd/Types.h; sourceTree = SOURCE_ROOT; };
+		F479C087125C034C00773EB5 /* libSnd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSnd.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F479C088125C034C00773EB5 /* SndTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SndTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F479C08A125C034C00773EB5 /* libSnd.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libSnd.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F47F37230AF7BB710013875B /* Base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Base.xcodeproj; sourceTree = "<group>"; };
+		F496D942125B77630000FB6C /* CGMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CGMath.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F414F790107E49D800CABC0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F414F7E7107E4AAF00CABC0A /* libBase.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F414F7AB107E49D800CABC0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F496D933125B771C0000FB6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4578B4010175632008FF75E /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				F414F7D6107E49F900CABC0A /* iOS_Application_Debug.xcconfig */,
+				F414F7D7107E49F900CABC0A /* iOS_Application_Release.xcconfig */,
+				F4578B4710175632008FF75E /* iOS_StaticLib_Debug.xcconfig */,
+				F4578B4810175632008FF75E /* iOS_StaticLib_Release.xcconfig */,
+				F4578B4110175632008FF75E /* OSX_Application_Debug.xcconfig */,
+				F4578B4210175632008FF75E /* OSX_Application_Release.xcconfig */,
+				F4578B4310175632008FF75E /* OSX_Executable_Debug.xcconfig */,
+				F4578B4410175632008FF75E /* OSX_Executable_Release.xcconfig */,
+				F4578B4510175632008FF75E /* OSX_SharedLib_Debug.xcconfig */,
+				F4578B4610175632008FF75E /* OSX_SharedLib_Release.xcconfig */,
+				F414F7D8107E49F900CABC0A /* OSX_StaticLib_Debug.xcconfig */,
+				F414F7D9107E49F900CABC0A /* OSX_StaticLib_Release.xcconfig */,
+			);
+			name = Target;
+			path = Config/Target;
+			sourceTree = "<group>";
+		};
+		F4692D700CD11BBA00F7A183 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F41D85E9100B7E7E008732DA /* test.cpp */,
+			);
+			name = src;
+			path = ../../../Projects/Snd/src;
+			sourceTree = SOURCE_ROOT;
+		};
+		F47F36E00AF7BAAD0013875B = {
+			isa = PBXGroup;
+			children = (
+				F496D93A125B77350000FB6C /* Projects */,
+				F47F36F80AF7BAD30013875B /* Source */,
+				F4578B4010175632008FF75E /* Target */,
+				F47F36F20AF7BAC90013875B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F47F36F20AF7BAC90013875B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F479C087125C034C00773EB5 /* libSnd.a */,
+				F479C088125C034C00773EB5 /* SndTest */,
+				F479C08A125C034C00773EB5 /* libSnd.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F47F36F80AF7BAD30013875B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F4692D660CD11BBA00F7A183 /* Listener.cpp */,
+				F4692D670CD11BBA00F7A183 /* Listener.h */,
+				F4692D680CD11BBA00F7A183 /* Manager.cpp */,
+				F4692D690CD11BBA00F7A183 /* Manager.h */,
+				F4130AB50D8ABD670025E2CB /* NullManager.cpp */,
+				F4130AB60D8ABD670025E2CB /* NullManager.h */,
+				F4692D6A0CD11BBA00F7A183 /* OpenALManager.cpp */,
+				F4692D6B0CD11BBA00F7A183 /* OpenALManager.h */,
+				F4692D6C0CD11BBA00F7A183 /* Sound.cpp */,
+				F4692D6D0CD11BBA00F7A183 /* Sound.h */,
+				F4692D6E0CD11BBA00F7A183 /* Source.cpp */,
+				F4692D6F0CD11BBA00F7A183 /* Source.h */,
+				F4692D700CD11BBA00F7A183 /* src */,
+				F4692D720CD11BBA00F7A183 /* StdDefs.h */,
+				F4692D730CD11BBA00F7A183 /* Types.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		F47F37240AF7BB710013875B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4578B3E10175625008FF75E /* libBase.a */,
+				F414F7E1107E49F900CABC0A /* libBase.a */,
+				F414F7DF107E49F900CABC0A /* BaseTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F496D93A125B77350000FB6C /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				F47F37230AF7BB710013875B /* Base.xcodeproj */,
+				F496D942125B77630000FB6C /* CGMath.xcodeproj */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
+		F496D943125B77630000FB6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F496D953125B77630000FB6C /* libCGMath.a */,
+				F496D94F125B77630000FB6C /* CGMathTest */,
+				F496D951125B77630000FB6C /* libCGMath.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F414F79B107E49D800CABC0A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F414F79C107E49D800CABC0A /* Listener.h in Headers */,
+				F414F79D107E49D800CABC0A /* Manager.h in Headers */,
+				F414F79E107E49D800CABC0A /* OpenALManager.h in Headers */,
+				F414F79F107E49D800CABC0A /* Sound.h in Headers */,
+				F414F7A0107E49D800CABC0A /* Source.h in Headers */,
+				F414F7A1107E49D800CABC0A /* StdDefs.h in Headers */,
+				F414F7A2107E49D800CABC0A /* Types.h in Headers */,
+				F414F7A3107E49D800CABC0A /* NullManager.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F496D931125B771C0000FB6C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F496D95B125B77AF0000FB6C /* Listener.h in Headers */,
+				F496D95D125B77B00000FB6C /* Manager.h in Headers */,
+				F496D95F125B77B10000FB6C /* NullManager.h in Headers */,
+				F496D961125B77B20000FB6C /* OpenALManager.h in Headers */,
+				F496D963125B77B30000FB6C /* Sound.h in Headers */,
+				F496D965125B77B40000FB6C /* Source.h in Headers */,
+				F496D966125B77B50000FB6C /* StdDefs.h in Headers */,
+				F496D967125B77B50000FB6C /* Types.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F414F78B107E49D800CABC0A /* SndTest (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F414F793107E49D800CABC0A /* Build configuration list for PBXNativeTarget "SndTest (OSX)" */;
+			buildPhases = (
+				F414F78E107E49D800CABC0A /* Sources */,
+				F414F790107E49D800CABC0A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F414F7E5107E4A9A00CABC0A /* PBXTargetDependency */,
+			);
+			name = "SndTest (OSX)";
+			productName = "SndTest (OSX)";
+			productReference = F479C088125C034C00773EB5 /* SndTest */;
+			productType = "com.apple.product-type.tool";
+		};
+		F414F798107E49D800CABC0A /* SndLib (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F414F7B1107E49D800CABC0A /* Build configuration list for PBXNativeTarget "SndLib (OSX)" */;
+			buildPhases = (
+				F414F79B107E49D800CABC0A /* Headers */,
+				F414F7A4107E49D800CABC0A /* Sources */,
+				F414F7AB107E49D800CABC0A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F414F7E3107E4A8D00CABC0A /* PBXTargetDependency */,
+				F496D957125B778D0000FB6C /* PBXTargetDependency */,
+			);
+			name = "SndLib (OSX)";
+			productName = "SndLib (OSX)";
+			productReference = F479C08A125C034C00773EB5 /* libSnd.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		F496D934125B771C0000FB6C /* SndLib (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F496D93B125B77350000FB6C /* Build configuration list for PBXNativeTarget "SndLib (iOS)" */;
+			buildPhases = (
+				F496D931125B771C0000FB6C /* Headers */,
+				F496D932125B771C0000FB6C /* Sources */,
+				F496D933125B771C0000FB6C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F496D939125B772C0000FB6C /* PBXTargetDependency */,
+				F496D959125B77970000FB6C /* PBXTargetDependency */,
+			);
+			name = "SndLib (iOS)";
+			productName = "SndLib (iOS)";
+			productReference = F479C087125C034C00773EB5 /* libSnd.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F47F36E20AF7BAAD0013875B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = F47F36E30AF7BAAD0013875B /* Build configuration list for PBXProject "Snd" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = F47F36E00AF7BAAD0013875B;
+			productRefGroup = F47F36F20AF7BAC90013875B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F47F37240AF7BB710013875B /* Products */;
+					ProjectRef = F47F37230AF7BB710013875B /* Base.xcodeproj */;
+				},
+				{
+					ProductGroup = F496D943125B77630000FB6C /* Products */;
+					ProjectRef = F496D942125B77630000FB6C /* CGMath.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F496D934125B771C0000FB6C /* SndLib (iOS) */,
+				F414F78B107E49D800CABC0A /* SndTest (OSX) */,
+				F414F798107E49D800CABC0A /* SndLib (OSX) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F414F7DF107E49F900CABC0A /* BaseTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BaseTest;
+			remoteRef = F414F7DE107E49F900CABC0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F414F7E1107E49F900CABC0A /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libBase.a;
+			remoteRef = F414F7E0107E49F900CABC0A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F4578B3E10175625008FF75E /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBase.a;
+			remoteRef = F4578B3D10175625008FF75E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F496D94F125B77630000FB6C /* CGMathTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = CGMathTest;
+			remoteRef = F496D94E125B77630000FB6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F496D951125B77630000FB6C /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libCGMath.a;
+			remoteRef = F496D950125B77630000FB6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F496D953125B77630000FB6C /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCGMath.a;
+			remoteRef = F496D952125B77630000FB6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F414F78E107E49D800CABC0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F414F78F107E49D800CABC0A /* test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F414F7A4107E49D800CABC0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F414F7A5107E49D800CABC0A /* Listener.cpp in Sources */,
+				F414F7A6107E49D800CABC0A /* Manager.cpp in Sources */,
+				F414F7A7107E49D800CABC0A /* OpenALManager.cpp in Sources */,
+				F414F7A8107E49D800CABC0A /* Sound.cpp in Sources */,
+				F414F7A9107E49D800CABC0A /* Source.cpp in Sources */,
+				F414F7AA107E49D800CABC0A /* NullManager.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F496D932125B771C0000FB6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F496D95A125B77AF0000FB6C /* Listener.cpp in Sources */,
+				F496D95C125B77AF0000FB6C /* Manager.cpp in Sources */,
+				F496D95E125B77B00000FB6C /* NullManager.cpp in Sources */,
+				F496D960125B77B10000FB6C /* OpenALManager.cpp in Sources */,
+				F496D962125B77B30000FB6C /* Sound.cpp in Sources */,
+				F496D964125B77B40000FB6C /* Source.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F414F7E3107E4A8D00CABC0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Base (static)";
+			targetProxy = F414F7E2107E4A8D00CABC0A /* PBXContainerItemProxy */;
+		};
+		F414F7E5107E4A9A00CABC0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F414F798107E49D800CABC0A /* SndLib (OSX) */;
+			targetProxy = F414F7E4107E4A9A00CABC0A /* PBXContainerItemProxy */;
+		};
+		F496D939125B772C0000FB6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Base_CocoaTouch;
+			targetProxy = F496D938125B772C0000FB6C /* PBXContainerItemProxy */;
+		};
+		F496D957125B778D0000FB6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CGMath (static)";
+			targetProxy = F496D956125B778D0000FB6C /* PBXContainerItemProxy */;
+		};
+		F496D959125B77970000FB6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CGMath_CocoaTouch;
+			targetProxy = F496D958125B77970000FB6C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F414F794107E49D800CABC0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B4310175632008FF75E /* OSX_Executable_Debug.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -framework OpenAL";
+				PRODUCT_NAME = SndTest;
+			};
+			name = Debug;
+		};
+		F414F795107E49D800CABC0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B4410175632008FF75E /* OSX_Executable_Release.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -framework OpenAL";
+				PRODUCT_NAME = SndTest;
+			};
+			name = Release;
+		};
+		F414F7B2107E49D800CABC0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F414F7D8107E49F900CABC0A /* OSX_StaticLib_Debug.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEV_LDFLAGS = "$(inherited) -lvorbisfile -lvorbis -logg";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"COMPILING_SND=1",
+					"SND_VORBIS_SUPPORT=1",
+				);
+				PRODUCT_NAME = Snd;
+			};
+			name = Debug;
+		};
+		F414F7B3107E49D800CABC0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F414F7D9107E49F900CABC0A /* OSX_StaticLib_Release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEV_LDFLAGS = "$(inherited) -lvorbisfile -lvorbis -logg";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"COMPILING_SND=1",
+					"SND_VORBIS_SUPPORT=1",
+				);
+				PRODUCT_NAME = Snd;
+			};
+			name = Release;
+		};
+		F47F36E40AF7BAAD0013875B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		F47F36E50AF7BAAD0013875B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		F496D936125B771C0000FB6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B4710175632008FF75E /* iOS_StaticLib_Debug.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -lvorbisfile -lvorbis -logg";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"COMPILING_SND=1",
+					"SND_VORBIS_SUPPORT=1",
+				);
+				PRODUCT_NAME = Snd;
+			};
+			name = Debug;
+		};
+		F496D937125B771C0000FB6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4578B4810175632008FF75E /* iOS_StaticLib_Release.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -lvorbisfile -lvorbis -logg";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"COMPILING_SND=1",
+					"SND_VORBIS_SUPPORT=1",
+				);
+				PRODUCT_NAME = Snd;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F414F793107E49D800CABC0A /* Build configuration list for PBXNativeTarget "SndTest (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F414F794107E49D800CABC0A /* Debug */,
+				F414F795107E49D800CABC0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F414F7B1107E49D800CABC0A /* Build configuration list for PBXNativeTarget "SndLib (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F414F7B2107E49D800CABC0A /* Debug */,
+				F414F7B3107E49D800CABC0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F47F36E30AF7BAAD0013875B /* Build configuration list for PBXProject "Snd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F47F36E40AF7BAAD0013875B /* Debug */,
+				F47F36E50AF7BAAD0013875B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F496D93B125B77350000FB6C /* Build configuration list for PBXNativeTarget "SndLib (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F496D936125B771C0000FB6C /* Debug */,
+				F496D937125B771C0000FB6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F47F36E20AF7BAAD0013875B /* Project object */;
+}

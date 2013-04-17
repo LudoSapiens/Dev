@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--<?xml-stylesheet href="light.css" type="text/css"?>-->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+     viewBox="-1 -1 2 2" width="13" height="13">
+
+<defs>
+<style type="text/css">
+<![CDATA[
+.light{ fill:white; stroke:none; }
+]]>
+</style>
+</defs>
+
+<g transform="scale(1,-1)" shape-rendering="geometricPrecision">
+
+<polygon class="light" points="-1,-1 1,-1 1,-0.5 -1,-0.5 -1,-1"/>
+<polygon class="light" points="-1,0 1,0 0,1 -1,0"/>
+
+</g>
+
+</svg>

@@ -1,0 +1,48 @@
+camera{
+   position = { 0, 10, 20 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+local n  = 7 -- Number of balls.
+local nl = 2 -- Number of balls lifted on the left.
+local nr = 1 -- Number of balls lifted on the right.
+local h  = 5 -- Height of rack.
+
+local x  = -n/2 + 1/2
+local y  = 0
+local z  = 0
+local ry = y + h
+for i=1,n do
+   local xo = 0
+   local yo = 0
+   local q
+   local c = "white"
+   if i <= nl then
+      xo = -h
+      yo =  h
+      q  = { 0, 0, 1, 0.75 }
+      c  = "blue"
+   elseif i > (n-nr) then
+      xo =  h
+      yo =  h
+      q  = { 0, 0, 1, 0.25 }
+      c  = "red"
+   end
+   local rack = staticObject{
+      geometry    = geometry( "geometry/physics/box", { size=vec3(0.5,0.1,0.1), color="white" } ),
+      material    = material( "geometry/physics/colors" ),
+      position    = { x, ry, z },
+   }
+   local ball = object{
+      geometry    = geometry( "geometry/physics/ball", { radius=0.5, color=c } ),
+      material    = material( "geometry/physics/colors" ),
+      position    = { x+xo, y+yo, z },
+      orientation = q,
+      friction    = 0,
+      restitution = 1,
+   }
+   ballJoint{ rack, ball, anchor={x, ry, z+1} }
+   ballJoint{ rack, ball, anchor={x, ry, z-1} }
+   x = x + 1
+end

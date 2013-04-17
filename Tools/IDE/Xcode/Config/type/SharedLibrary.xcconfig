@@ -1,0 +1,21 @@
+//==============================================================================
+// Copyright (c) 2009, Ludo Sapiens Inc.
+// All rights reserved.
+//
+// These coded instructions, statements, and computer programs contain
+// unpublished, proprietary information and are protected by Federal copyright
+// law. They may not be disclosed to third parties or copied or duplicated in
+// any form, in whole or in part, without prior written consent.
+//==============================================================================
+
+EXECUTABLE_PREFIX = lib
+EXECUTABLE_EXTENSION = dylib
+
+MACH_O_TYPE = mh_dylib
+STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic
+SKIP_INSTALL = YES
+
+GCC_DYNAMIC_NO_PIC = NO
+
+// WARNING: Do *NOT* put inside quotes, else command-line tools linking to this won't load.
+LD_DYLIB_INSTALL_NAME = @executable_path/../Frameworks/$(EXECUTABLE_PATH)

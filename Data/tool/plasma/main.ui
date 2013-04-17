@@ -1,0 +1,542 @@
+include( "theme/plasma" )
+include( "script/ui/playbackPanel"  )
+include( "script/ui/colorPicker" )
+include( "script/ui/console"  )
+include( "script/attribox" )
+include( "script/quickbox" )
+include( "script/exportbox" )
+
+local res = ObjectPool( "RES" )
+local gui = ObjectPool( "UI" )
+
+--==============================================================================
+-- Global context
+--==============================================================================
+
+local graphInfo  = { [0] = {} }
+local curGraphID = 0
+
+local screens    = {}
+local console    = nil
+local dfviewer   = nil
+local quickbox   = nil
+local attribox   = nil
+local picker     = nil
+local exportbox  = nil
+
+--==============================================================================
+-- Graphs handling
+--==============================================================================
+
+--------------------------------------------------------------------------------
+local function makeGraphNamesUnique( graphInfo )
+   --[[
+   local graphInfo = {
+      { path="common/dataflow/test.df" },
+      { path="common/regression/test.df" },
+      { path="test/regression/test.df" },
+   }
+   --]]
+   local n = #graphInfo
+   local slash = string.byte('/')
+   local names = {}
+
+   local function findUniqueEnding( path, commonEnding )
+      local s = #path
+      local e = (commonEnding and (s - #commonEnding)) or s
+      for i=e-1,1,-1 do
+         if string.byte(path, i) == slash then
+            return path:sub(i+1)
+         end
+      end
+      return path
+   end
+
+   local function insert( candidate, id )
+      local cur = names[candidate]
+      if cur == names then
+         -- Sentinel, just fail.
+         return false
+      elseif cur then
+         -- Conflict, lengthen conflict, ignore candidate (will retry).
+         names[candidate] = names
+         local longer = findUniqueEnding( graphInfo[cur].path, candidate )
+         names[longer] = cur
+         return false
+      else
+         names[candidate] = id
+         return true
+      end
+   end
+
+   for i,gi in ipairs( graphInfo ) do
+      local path = gi.path
+      if path then
+         local name = findUniqueEnding( path )
+         while not insert(name, i) do
+            name = findUniqueEnding( path, name )
+         end
+      end
+   end
+
+   for k,v in pairs(names) do
+      if v ~= names then
+         local name = string.match( k, "(.*)(\.df)" );
+         graphInfo[v].name = name
+      end
+   end
+end
+
+--------------------------------------------------------------------------------
+local function switchGraph( id )
+   -- Find a valid id.
+   id = clamp( id, 1, #graphInfo )
+   -- Same as the current one?
+   if id == curGraphID then return end
+
+   curGraphID  = id
+   local graph = graphInfo[curGraphID].graph
+   -- Update screens.
+   for i = 1, #screens do
+      screens[i].graph = graph
+   end
+   -- Update viewer and quickbox.
+   dfviewer.graph = graph
+   quickbox.graph = graph
+   attribox.setGraph( graph )
+end
+
+--------------------------------------------------------------------------------
+local function switchNextGraph()
+   local id = curGraphID + 1
+   if id > #graphInfo then id = 1 end
+   switchGraph( id )
+end
+
+--------------------------------------------------------------------------------
+local function switchPrevGraph()
+   local id = curGraphID - 1
+   if id < 1 then id = #graphInfo end
+   switchGraph( id )
+end
+
+local _newGraphID = 1
+--------------------------------------------------------------------------------
+local function createGraph()
+   -- Create a new graph, and add it to the list of opened graphs.
+   local id = #graphInfo + 1
+   local g  = res.dfgraph()
+   local gi = { graph=g, name="untitled "..tostring(_newGraphID), path=nil }
+   _newGraphID = _newGraphID + 1
+   graphInfo[id] = gi
+   graphInfo[g]  = gi
+   makeGraphNamesUnique( graphInfo )
+   return id
+end
+
+--------------------------------------------------------------------------------
+local function closeGraph( id )
+   -- Is id valid?
+   if id < 1 or id > #graphInfo then return end
+
+   -- TODO: check if we need to save the graph.
+
+   -- Remove graph from table.
+   local gi = graphInfo[id]
+   graphInfo[gi.graph] = nil
+   table.remove( graphInfo, id )
+   makeGraphNamesUnique( graphInfo )
+
+   -- Did we remove the current graph?
+   if id == curGraphID then
+      -- Create a new graph if there is no more graph.
+      if #graphInfo == 0 then createGraph() end
+      -- Switch to the graph having the same id.
+      id         = curGraphID
+      curGraphID = 0
+      switchGraph( id )
+   else
+      -- We only need to update the current graph ID.
+      if id < curGraphID then curGraphID = curGraphID - 1 end
+   end
+end
+
+--------------------------------------------------------------------------------
+local function loadGraphCb( g )
+   local id = #graphInfo + 1
+   local gi = { graph=g, name=g.name, path=g.path }
+   graphInfo[id] = gi
+   graphInfo[g]  = gi
+   makeGraphNamesUnique( graphInfo )
+   switchGraph( id )
+end
+
+--------------------------------------------------------------------------------
+local function loadGraph( name )
+   if not name then
+      gui.fileDialog{
+         type=UI.FileDialog.OPEN,
+         allowedTypes={ "df", "DF" },
+         onConfirm=function(d)
+            loadGraph( "file://"..d.path )
+            gui.remove(d)
+         end,
+         onCancel=function(d)
+            gui.remove(d)
+         end,
+      }.ask()
+      return
+   end
+   local path = DataFlow.getGraphPath( name )
+   for i,gi in ipairs( graphInfo ) do
+      if gi.path == path then
+         print("Switching to existing graph")
+         switchGraph( i )
+         return
+      end
+   end
+   res.loadDataFlowGraph( name, loadGraphCb )
+end
+
+--------------------------------------------------------------------------------
+local function saveGraph( graph, path )
+   graph = graph or curGraphID
+   local gi = graphInfo[graph]
+   if not gi then print("ERROR: saveGraph("..graph..")."); return end
+   graph = gi.graph
+   path = path or gi.path
+   -- Require specifying file if 'as' is set, or if we have not confirmed already.
+   if not path or type(path) ~= "string" then
+      gui.fileDialog{
+         type=UI.FileDialog.SAVE,
+         allowedTypes={ "df", "DF" },
+         onConfirm=function(d)
+            -- Find other graph with same path.
+            for i,gi in ipairs(graphInfo) do
+               if gi.path == d.path then
+                  print("WARNING: Found existing opened graph with path '"..d.path.."'.")
+                  -- Close it?
+               end
+            end
+            saveGraph( graph, d.path )
+            gui.remove(d)
+         end,
+         onCancel=function(d)
+            gui.remove(d)
+         end,
+      }.ask()
+      return
+   end
+   if graph.save( path ) then
+      print("Saved graph:", path)
+      gi.path = path
+      makeGraphNamesUnique( graphInfo )
+   else
+      print("Error saving graph:", path)
+   end
+end
+
+--------------------------------------------------------------------------------
+local function exportGraph( graph )
+   local gi        = graphInfo[graph]
+   exportbox.graph = gi.graph
+   exportbox.path  = gi.path
+   exportbox.show()
+end
+
+--==============================================================================
+-- Graph viewer handling
+--==============================================================================
+
+local dfviewerRatio  = 0.5
+local dfviewerMoving = false
+--------------------------------------------------------------------------------
+local function hideGraphAnim( time, delta )
+   local r = dfviewer.parent.ratio - delta*2
+   if r < 0 then
+      r = 0
+      dfviewerMoving = false
+   end
+   dfviewer.parent.ratio = r
+   return not dfviewerMoving
+end
+--------------------------------------------------------------------------------
+local function showGraphAnim( time, delta )
+   local r = dfviewer.parent.ratio + delta*2
+   if r > dfviewerRatio then
+      r = dfviewerRatio
+      dfviewerMoving = false
+   end
+   dfviewer.parent.ratio = r
+   return not dfviewerMoving
+end
+--------------------------------------------------------------------------------
+local function hideGraph()
+   if (not dfviewerMoving) and (dfviewer.parent.ratio > 0) then
+      dfviewerRatio  = dfviewer.parent.ratio
+      dfviewerMoving = true
+      UI.addAnimator( hideGraphAnim )
+   end
+end
+--------------------------------------------------------------------------------
+local function showGraph()
+   if (not dfviewerMoving) and (dfviewer.parent.ratio < dfviewerRatio) then
+      dfviewerMoving = true
+      UI.addAnimator( showGraphAnim )
+   end
+end
+
+--==============================================================================
+-- Screens handling
+--==============================================================================
+
+--------------------------------------------------------------------------------
+local function screenID( screen )
+   for i = 1, #screens do
+      if screens[i] == screen then return i end
+   end
+end
+
+--------------------------------------------------------------------------------
+local function screenUnderPointer()
+   local w = UI.widgetUnderPointer()
+   if screenID( w ) then return w end
+end
+
+--------------------------------------------------------------------------------
+-- Lazily create custom panels for various nodes.
+local function onScreenChangeOutput( screen )
+   local oType = screen.outputType
+   if oType == "ANIMATION" then
+      local w = screen.animPlayback
+      if not w then
+         w = gui.PlaybackPanel{
+            onUpdate = function( w, t )
+               screen.time = t
+            end,
+         }
+         screen.addWidget{ w, UI.Hotspot.BOTTOM_CENTER, {0,10} }
+         screen.animPlayback = w
+         local c = w.controller
+         c.mode( "loop" )
+      end
+      w.controller.range( screen.timeRange )
+      w.hidden = false
+   else
+      local w = screen.animPlayback
+      if w then w.hidden = true end
+   end
+end
+
+--------------------------------------------------------------------------------
+local function createScreen()
+   local s = gui.dfScreen{
+      flex       = 1,
+      renderSize = { -1, -1 },
+      camera     = -1,
+      onDelete   = function( w )
+         local p = w.animPlayback
+         if p then gui.remove( p ) end
+      end,
+   }
+   s.addOnChangeOutput( onScreenChangeOutput )
+   s.graph = graphInfo[curGraphID].graph
+   screens[#screens+1] = s
+   return s
+end
+
+--------------------------------------------------------------------------------
+local function splitScreen( screen, orient, secondHalf )
+   if not screen then return end
+   local newscreen = createScreen()
+   local splitter  = gui.splitter{ flex=1, orientation=orient }
+   screen.parent.replaceWidget( screen, splitter )
+   if secondHalf then
+      splitter.addWidgets{ screen, newscreen }
+   else
+      splitter.addWidgets{ newscreen, screen }
+   end
+end
+
+--------------------------------------------------------------------------------
+local function collapseScreen( screen )
+   if #screens == 1 or not screen then return end
+   local splitter = screen.parent
+   local sibling
+   if splitter[1] == screen then
+      sibling = splitter[2]
+   else
+      sibling = splitter[1]
+   end
+   splitter.parent.replaceWidget( splitter, sibling )
+
+   table.remove( screens, screenID( screen ) )
+   gui.remove( splitter )
+   gui.remove( screen )
+end
+
+--==============================================================================
+-- Quickbox initialization
+--==============================================================================
+
+local function createGraphList( item )
+   local list = {}
+   for i, v in ipairs( graphInfo ) do
+      local name = v.name or v.path or ("(graph #"..i..")")
+      list[#list+1] = { name = name, onSelect = function() switchGraph(i) end }
+   end
+   item.link = quickbox.createList( list )
+end
+--------------------------------------------------------------------------------
+local function initQuickbox()
+   -- Create command list.
+   local cmds = {
+      { name = "Close graph",  onSelect = function() closeGraph( curGraphID ) end },
+      { name = "Export graph", onSelect = function() exportGraph( curGraphID ) end },
+      { name = "New graph",    onSelect = function() switchGraph( createGraph() ) end },
+      { name = "Open graph",   onSelect = function() loadGraph() end },
+      { name = "Save graph",   onSelect = function() saveGraph() end },
+      { name = "Switch graph", onSelect = createGraphList }
+   }
+   quickbox.addCommands( cmds )
+end
+--------------------------------------------------------------------------------
+local function toggleQuickbox()
+   --print("TOGGLE", dfviewer, dfviewer.getVisibleArea, dfviewer.graph)
+   --local v = dfviewer.getVisibleArea()
+   --local b = dfviewer.graph.getBoundingBox()
+   --print("v", v.position, v.size)
+   --print("b", b.position, b.size)
+   quickbox.toggle()
+end
+
+--==============================================================================
+-- Desktop UI
+--==============================================================================
+
+attribox  = gui.Attribox()
+dfviewer  = gui.dfViewer{ flex=1 }
+quickbox  = gui.Quickbox()
+console   = gui.Console()
+picker    = gui.ColorPicker{ hidden=true }
+exportbox = gui.Exportbox{}
+
+attribox.setViewer( dfviewer )
+quickbox.viewer = dfviewer
+
+local quickbut = gui.image{
+   image   = "image/ui/plusInCircle",
+   size    = vec2( 32 ),
+   color   = vec4( vec3(0.1), 0.9 ),
+   onClick = toggleQuickbox,
+}
+local desktop  = gui.desktop{
+   color = vec4(0.25,0.25,0.25,1.0),
+   gui.splitter{
+      flex=1, orientation=UI.BoxOrientation.HORIZONTAL,
+      dfviewer,
+      createScreen(),
+   },
+   gui.hotspots{
+      flex=1,
+      { quickbut , UI.Hotspot.TOP_LEFT, {8,-8} },
+      { quickbox , UI.Hotspot.MIDDLE_CENTER },
+      { console  , UI.Hotspot.BOTTOM_CENTER },
+      { attribox , UI.Hotspot.TOP_CENTER, {0,-10} },
+      { picker   , UI.Hotspot.MIDDLE_CENTER },
+      { exportbox, UI.Hotspot.MIDDLE_CENTER }
+   }
+}
+
+UI.setDesktop( desktop )
+desktop.colorPicker = picker
+
+--==============================================================================
+-- Event handling.
+--==============================================================================
+
+--------------------------------------------------------------------------------
+local function splitScreenH()
+   local pos = UI.getPointerPosition()
+   local sup = screenUnderPointer()
+   local mid = sup.getCenterGlobal()
+   splitScreen( sup, UI.BoxOrientation.HORIZONTAL, mid.x < pos.x )
+end
+--------------------------------------------------------------------------------
+local function splitScreenV()
+   local pos = UI.getPointerPosition()
+   local sup = screenUnderPointer()
+   local mid = sup.getCenterGlobal()
+   splitScreen( sup, UI.BoxOrientation.VERTICAL, mid.y < pos.y )
+end
+--------------------------------------------------------------------------------
+local keyPressFunc = {
+   [UI.Key.Q]      = function()
+      if UI.isKeyPressed(UI.Key.META) then
+         UI.exit()
+      end
+   end,
+   [UI.Key.SLASH]  = function() PlasmaConfig.wireframe = not PlasmaConfig.wireframe end,
+   [UI.Key.SPACE]  = toggleQuickbox,
+   [UI.Key.H]      = splitScreenH,
+   [UI.Key.V]      = splitScreenV,
+   [UI.Key.COMMA]  = hideGraph,
+   [UI.Key.PERIOD] = showGraph,
+   [UI.Key.C]      = function()
+      if UI.isKeyPressed(UI.Key.SHIFT) then
+         picker.toggle()
+      else
+         collapseScreen( screenUnderPointer() )
+      end
+   end,
+   [UI.Key.BACKQUOTE] = function()
+      console.toggle()
+   end,
+   -- Graph related hotkeys.
+   [UI.Key.O]      = function()
+      if UI.isKeyPressed(UI.Key.META) then
+         loadGraph()
+      end
+   end,
+   [UI.Key.S]      = function()
+      if UI.isKeyPressed(UI.Key.META) then
+         if UI.isKeyPressed(UI.Key.SHIFT) then
+            saveGraph( nil, true )
+         else
+            saveGraph()
+         end
+      end
+   end,
+   [UI.Key.TAB]    = function()
+      if UI.isKeyPressed( UI.Key.CTRL ) then
+         switchNextGraph()
+      end
+   end,
+   [UI.Key.W]      = function()
+      if UI.isKeyPressed( UI.Key.META ) then
+         closeGraph( curGraphID )
+      end
+   end,
+   [UI.Key.N]      = function()
+      if UI.isKeyPressed( UI.Key.META ) then
+         switchGraph( createGraph() )
+      end
+   end,
+   [UI.Key.E]      = function()
+      if UI.isKeyPressed( UI.Key.META ) then
+         exportGraph( curGraphID )
+      end
+   end,
+}
+desktop.onKeyPress = function( w, ev )
+   local func = keyPressFunc[ev.value]
+   if func then func( w, ev ) end
+end
+
+--==============================================================================
+-- MAIN
+--==============================================================================
+initQuickbox()
+--loadGraph( "geometry/regression/dataflow/test1" )
+--loadGraph( "animation/dataflow/test1" )
+switchGraph( createGraph() )

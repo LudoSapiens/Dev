@@ -1,0 +1,9 @@
+customMaterial{
+   program = "shader/program/skybox",
+   {
+      envTex = {
+         data  = imageCube( "image/editor/env01" ),
+         --clamp = TexClamp.LAST,
+      }
+   }
+}

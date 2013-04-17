@@ -1,0 +1,34 @@
+local params = ... or {}
+
+for i=1,3 do
+   if true then
+      customMaterial{
+         program = "shader/program/forward/color1_dir_refl",
+         {
+            colorTex0 = {
+               data  = image( "image/white" ),
+               clamp = TexClamp.LAST,
+            },
+            envTex = {
+               data  = imageCube( string.format("sample/probes01/probe%d", i-1) ),
+               clamp = TexClamp.LAST,
+            },
+            brdfTex = {
+               data      = image( "image/dbrdf" ),
+               clamp     = TexClamp.LAST,
+               mipFilter = TexFilter.NONE,
+            },
+            color  = vec4(1.0),
+            brdfID = ((params.brdf or 0)+0.5)/128.0,
+         }
+      }
+   else
+      baseMaterial{
+         {
+            --clamp = TexClamp.LAST,
+            --color = image( "image/border01" )
+            color = image( "image/white" )
+         },
+      }
+   end
+end

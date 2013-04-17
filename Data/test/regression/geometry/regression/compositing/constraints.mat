@@ -1,0 +1,33 @@
+--[[
+local c = {
+   --RGBMY
+   vec3( 0.30, 0.30, 0.30 ), -- Window ledge.
+   vec3( 0.30, 0.30, 0.30 ), -- Window frame.
+   vec3( 0.50, 0.50, 0.50 ), -- Floor.
+}
+--]]
+
+mapping{
+   function( IN )
+      return IN.pos.xz
+   end
+}
+
+-- Window ledge.
+material{
+   {
+      color = image( "checker" )
+   }
+}
+-- Window frame.
+material{
+   {
+      color = image( "checker2" )
+   }
+}
+-- Floor.
+material{
+   {
+      color = image( "image/white" )
+   }
+}

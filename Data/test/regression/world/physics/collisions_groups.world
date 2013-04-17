@@ -1,0 +1,73 @@
+-- This test verifies that the CollisionCategories interact properly with the CollisionMasks.
+-- It simply tests all possible combination using a 3b mask, where each bit correspond to a color channel.
+-- The current result is as follows (with numbers corresponding to R, G, and B channels respectively):
+--         blk red grn ylw blu mag cya wht
+--         000 100 010 110 001 101 011 111  -->  STATIC BLOCK COLOR (COLUMNS)
+-- blk 000  -   -   -   -   -   -   -   -
+-- red 100  -   x   -   x   -   x   -   x
+-- grn 010  -   -   x   x   -   -   x   x
+-- ylw 110  -   x   x   x   -   x   x   x
+-- blu 001  -   -   -   -   x   x   x   x
+-- mag 101  -   x   -   x   x   x   x   x
+-- cya 011  -   -   x   x   x   x   x   x
+-- wht 111  -   x   x   x   x   x   x   x
+--  |
+-- DYNAMIC SPHERE COLOR (ROWS)
+--
+-- Note:
+--   A collision (marked with 'x') should happen whenever AND-ing mask and groups yields a non-zero value.
+
+camera{
+   position = { 0, 10, 17 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+
+local colors = {
+   -- Colors, CollisionCategories
+   { "black"  , 0*2 },
+   { "red"    , 1*2 },
+   { "green"  , 2*2 },
+   { "yellow" , 3*2 },
+   { "blue"   , 4*2 },
+   { "magenta", 5*2 },
+   { "cyan"   , 6*2 },
+   { "white"  , 7*2 },
+}
+
+-- Makes an 8x8 grid to try every color on every color.
+staticObject{
+   geometry    = geometry( "geometry/physics/box", { size=vec3(10,1,10), detailsError=1, color="gray" } ),
+   material    = material( "geometry/physics/colors" ),
+   position    = {0,-1,0},
+   restitution = 0,
+}
+
+local h   = 0.25
+local h_2 = h * 0.5
+for i,v in ipairs(colors) do
+   for j=1,#colors do
+      staticObject{
+         geometry            = geometry( "geometry/physics/box", { size=vec3(0.5,0.125,0.5), color=v[1] } ),
+         material            = material( "geometry/physics/colors" ),
+         position            = { i*2 - 9, 0.5-h_2, j*2 - 9 },
+         restitution         = 0,
+         collisionCategories = v[2],
+         collisionMask       = v[2] + 1, -- Always hit the floor.
+      }
+   end
+end
+
+for i,vi in ipairs(colors) do
+   for j,vj in ipairs(colors) do
+      object{
+         geometry            = geometry( "geometry/physics/ball", { radius=0.25, color=vj[1] } ),
+         material            = material( "geometry/physics/colors" ),
+         position            = { i*2 - 9, 1, j*2 - 9 },
+         restitution         = 0,
+         collisionCategories = vj[2],
+         collisionMask       = vj[2] + 1, -- Always hit the floor.
+      }
+   end
+end

@@ -1,0 +1,37 @@
+LoadFile("../Base/BSFile")
+LoadFile("../CGMath/BSFile")
+
+MotionLib = Library(
+   "Motion",
+   inputs=[
+      "Attractor/Attractor.cpp",
+      "Attractor/BasicAttractors.cpp",
+      "Attractor/GravitationalAttractor.cpp",
+      "Collision/BasicShapes.cpp",
+      "Collision/CollisionGroup.cpp",
+      "Collision/CollisionInfo.cpp",
+      "Collision/CollisionShape.cpp",
+      "Constraint/CharacterConstraint.cpp",
+      "Constraint/Constraint.cpp",
+      "Constraint/Joints.cpp",
+      "Constraint/Springs.cpp",
+      "Solver/ImpulseSolver.cpp",
+      "Solver/NextSolver.cpp",
+      "Solver/SequentialImpulseSolver.cpp",
+      "World/MotionWorld.cpp",
+      "World/RigidBody.cpp",
+      BaseLib,
+      CGMathLib,
+   ],
+   shared=True, shared_define="COMPILING_MOTION"
+)
+
+MotionLib.settings = StandardSettings.copy()
+MotionLib.variant.add( StandardVariants )
+
+Motion = Application("motion",
+                     inputs=["test.cpp", BaseLib, CGMathLib, MotionLib],
+                     settings=MotionLib.settings,
+                     variant=MotionLib.variant)
+
+motion = Motion

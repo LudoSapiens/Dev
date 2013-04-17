@@ -1,0 +1,2 @@
+OUT.pos   = IN.pos + IN.n * (perlin1( IN.pos*4 )*0.1)
+

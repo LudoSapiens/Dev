@@ -1,0 +1,24 @@
+//==============================================================================
+// Copyright (c) 2009, Ludo Sapiens Inc.
+// All rights reserved.
+//
+// These coded instructions, statements, and computer programs contain
+// unpublished, proprietary information and are protected by Federal copyright
+// law. They may not be disclosed to third parties or copied or duplicated in
+// any form, in whole or in part, without prior written consent.
+//==============================================================================
+
+//DEV_ROOT = $(SRCROOT)/../../../..
+//DEV_THIRDPARTY = $(DEV_ROOT)/Thirdparty/platform/$(DEV_PLAT)
+
+DEV_THIRDPARTY = $(DEV_ROOT)/Thirdparty/platform/$(DEV_PLAT)
+
+DEV_CFLAGS         = 
+DEV_CPPFLAGS       = -std=c++0x
+DEV_DEFINES        = 
+DEV_INC_PATH       = $(DEV_ROOT)/Projects $(DEV_THIRDPARTY)/include
+DEV_LDFLAGS        = 
+DEV_LIB_PATH       = $(DEV_THIRDPARTY)/lib
+//DEV_WARNING_CFLAGS = -Wall
+DEV_WARNING_CFLAGS = -Wall -Wextra
+//DEV_WARNING_CFLAGS = -Wall -Wextra -ftrapv -fcatch-undefined-behavior

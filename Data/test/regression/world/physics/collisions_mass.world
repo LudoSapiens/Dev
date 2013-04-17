@@ -1,0 +1,44 @@
+-- This test verifies the impact of the mass in collisions.
+--   LEFT: 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15
+--  RIGHT: 01, 03, 05, 07, 09, 11, 15, 17, 19, 21, 23, 25, 27, 29, 31
+-- The red spheres indicate the location where the masses are equal (perfect collision).
+
+camera{
+   position = { 0, 0, 50 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+-- Zero-G environment.
+gravity{ 0, 0, 0 }
+
+local restitution = 1.0
+local n = 16
+n = n - 1
+for i=0,n do
+   local y = (i*2) - n
+
+   local m = 2*i + 1 -- 1, 3, 5, ..., whereas n = 15
+
+   local color = "blue"
+   if m == n then
+      color = "red"
+   end
+
+   object{
+      geometry    = geometry( "geometry/physics/ball", { color=color } ),
+      material    = material( "geometry/physics/colors" ),
+      position    = { 0, y, 0 },
+      restitution = restitution,
+      mass        = m,
+   }
+
+   object{
+      geometry       = geometry( "geometry/physics/ball", { color=color } ),
+      material       = material( "geometry/physics/colors" ),
+      position       = { 10, y, 0 },
+      linearVelocity = {-10, 0, 0 },
+      restitution    = restitution,
+      mass           = n,
+   }
+end

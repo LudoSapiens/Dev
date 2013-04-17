@@ -1,0 +1,6 @@
+varying vec2 mapping;
+
+void main( void )
+{
+   gl_FragColor = vec4( mapping, 0.0, 1.0 );
+}

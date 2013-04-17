@@ -1,0 +1,76 @@
+camera{
+   --position = {-0.8,1.0,1.6},
+   --lookAt   = { {0,0.2,0}, {0,1,0} },
+
+   --position = {0,10,10},
+   --lookAt   = { {0,0,0}, {0,1,0} },
+
+   position    = {0,1.7,4},
+   orientation = { -0.18910753726959, 0, 0, 0.98195642232895 }
+   --lookAt   = { {0,0,0}, {0,1,0} }
+}
+--[[
+staticObject{
+   position = {0,-10,-15},
+   geometry = geometry( "geometry/physics/box", { size=vec3(30,10,16) } ),
+}
+
+staticObject{
+   position = {0,-10-2,16},
+   geometry = geometry( "geometry/physics/box", { size=vec3(30,10,16) } ),
+}
+
+staticObject{
+   position = {0,1,20},
+   geometry = geometry( "geometry/physics/box", { size=vec3(30,2,1) } ),
+}
+
+-- Stairs.
+for i=1,10 do
+   local sx = 1
+   local sy = 0.1*i
+   local sz = 10
+   staticObject{
+      position = {4+i,sy,0},
+      geometry = geometry( "geometry/physics/box", { size=vec3(sx,sy,sz) } ),
+   }
+end
+
+local grid = { 1, 1 }
+--local grid = { 3, 1 }
+--local grid = { 3, 10 }
+
+local id  = 0
+local pos = { 0, 0, 0 }
+for j=0,grid[2]-1 do
+   pos[1] = 0
+   pos[2] = 0
+   pos[3] = -j
+   for i=0,grid[1]-1 do
+
+      skeletalObject{
+         position = pos,
+         geometry = geometry( "geometry/character/creature01", {skeleton="animation/humanoid01/body"} ),
+         material = "geometry/character/creature01",
+         graph    = animationGraph( "animation/humanoid01/complete" ),
+         brain    = brain( "brain/character/test", nil, true ),
+         attributes = { id=id },
+      }
+
+      id = id + 1
+      if pos[1] > 0 then
+         pos[1] = -pos[1]
+      else
+         pos[1] = -pos[1] + 1
+      end
+   end
+end
+--]]
+staticObject{
+   position = pos,
+   geometry = geometry( "geometry/character/creature01", {skeleton="animation/humanoid01/body"} ),
+   material = "geometry/character/creature01",
+   --graph    = animationGraph( "animation/humanoid01/complete" ),
+   --brain    = brain( "brain/character/test", nil, true ),
+   --attributes = { id=id },
+}

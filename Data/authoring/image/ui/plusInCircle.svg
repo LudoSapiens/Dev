@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- shape-rendering crispEdges, geometricPrecision  -->
+<svg width="64px" height="64px" viewBox="-1 -1 1 1" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	<desc>Plus in Circle</desc>
+	<!--
+	<g style="fill:black;stroke:none;">
+		<rect x="-1" y="-1" width="2" height="2"/>
+	</g>
+	-->
+	<g transform="translate(-1,-1) scale(0.5,0.5) translate(1,1)">
+		<g style="fill:none;stroke:white;stroke-width:0.1;stroke-linejoin:round;stroke-linecap:round;">
+			<circle cx="0" cy="0" r="0.9"/>
+			<g style="stroke-width:0.3" transform="scale(0.5)">
+				<path d="M0,-1 L0,1 M-1,0 L1,0"/>
+			</g>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,13 @@
+LoadFile("../BSFile")
+LoadFile("../../Plasma/BSFile")
+
+Calibrator = Application("Calibrator",
+                         inputs=[
+                            "CalibratorApp.cpp",
+                            "main.cpp",
+                            BaseLib, CGMathLib, FusionLib, GfxLib, MotionLib, SndLib, PlasmaLib,
+                         ],
+                         settings=GameSettings,
+                         variant=GameVariants)
+
+calibrator = Calibrator

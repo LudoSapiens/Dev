@@ -1,0 +1,18 @@
+baseMaterial{
+   {
+      color = image( "image/white" )
+   }
+}
+baseMaterial{
+   color = {0.5,0.5,0.5,1.0},
+   {
+      color = image( "image/white" )
+   }
+}
+baseMaterial{
+   color = {0.8,0.8,0.8,1.0},
+   {
+      color = image( "image/white" )
+   }
+}
+

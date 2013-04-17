@@ -1,0 +1,12 @@
+build/
+*/build/
+*/*.pbxuser
+*/*/*.pbxuser
+*/*.perspectivev3
+*/*/*.perspectivev3
+*/*.mode1v3
+*/*/*.mode1v3
+*/xcuserdata/
+*/*/xcuserdata/
+*/*/*/xcuserdata/
+#Sounds like **/xcuserdata/ doesn't work...

@@ -1,0 +1,10 @@
+camera{
+   --position = {6,12,20},
+   position = {4.5,9,15},
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+staticObject{
+   geometry = "regression/basic/params/creases03",
+   material = "regression/basic/params/creases",
+}

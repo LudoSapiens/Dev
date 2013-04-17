@@ -1,0 +1,1 @@
+--OUT.pos   = IN.pos + IN.n * vec3( perlin1( IN.pos * vec3(4) )*0.1 )

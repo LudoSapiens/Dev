@@ -1,0 +1,379 @@
+--==============================================================================
+-- rgbEditor
+--==============================================================================
+
+function UI.rgbEditor( gui, params )
+   local params = params or {}
+   params.size  = params.size or {64, 20}
+
+   local this   = gui.button( params )
+
+   local bg = this.tquad{
+      image = "theme/plasma/image/roundedboxIntShadow",
+      u = { 0.0, 0.4, 0.6, 1.0 },
+      v = { 0.0, 0.4, 0.6, 1.0 },
+   }
+
+   -----------------------------------------------------------------------------
+   function this.shader( w )
+      bg.position = w.globalPosition
+      bg.size     = w.actualSize
+      bg.color    = vec4( w.value, 1 )
+      return bg
+   end
+   -----------------------------------------------------------------------------
+   function this.onClick( w )
+      local picker = UI.getDesktop().colorPicker
+      if picker then
+         local function disconnect()
+            picker.onUpdate = nil
+            picker.onCancel = nil
+            picker.onDone   = nil
+         end
+         -- Attach callbacks.
+         picker.onUpdate = function( p )
+            w.value = p.getRGB()
+            if this.onModify then this.onModify( this ) end
+         end
+         picker.onCancel = function( p )
+            w.value = w._origColor
+            disconnect()
+         end
+         picker.onDone = function( p )
+            w._origColor = nil
+            disconnect()
+         end
+         -- Stash current color.
+         w._origColor = w.value
+         -- Set color picker.
+         picker.setRGB( w.value )
+         picker.setMode( "RGB" )
+         picker.activate()
+         --UI.getDesktop().popup( picker, w.globalPosition+vec2(w.actualSize.x,0) )
+      else
+         print("Missing color picker in the desktop")
+      end
+   end
+
+   return this
+end
+
+--==============================================================================
+-- rgbaEditor
+--==============================================================================
+
+function UI.rgbaEditor( gui, params )
+   local params = params or {}
+   params.size  = params.size or {64, 20}
+
+   local this   = gui.button( params )
+
+   local bgl = this.tquad{
+      image = "theme/plasma/image/roundedboxIntShadow",
+      u = { 0.0, 0.4, 0.5, 0.5 },
+      v = { 0.0, 0.4, 0.6, 1.0 },
+   }
+   local bgr = this.tquad{
+      image = "theme/plasma/image/roundedboxIntShadow",
+      u = { 0.5, 0.5, 0.6, 1.0 },
+      v = { 0.0, 0.4, 0.6, 1.0 },
+   }
+
+   -----------------------------------------------------------------------------
+   function this.shader( w )
+      local pos    = w.globalPosition
+      local size   = w.actualSize
+      local size2  = vec2( size.x*0.5, size.y )
+      local color  = w.value
+      bgl.position = pos
+      bgl.size     = size2
+      bgl.color    = vec4( color.xyz, 1 )
+      pos.x        = pos.x + size2.x
+      bgr.position = pos
+      bgr.size     = size2
+      bgr.color    = vec4( color.xyz*color.w, 1 ) -- Premultiplied alpha assuming a black background.
+      return bgl, bgr
+   end
+   -----------------------------------------------------------------------------
+   function this.onClick( w )
+      local picker = UI.getDesktop().colorPicker
+      if picker then
+         local function disconnect()
+            picker.onUpdate = nil
+            picker.onCancel = nil
+            picker.onDone   = nil
+         end
+         -- Attach callbacks.
+         picker.onUpdate = function( p )
+            w.value = p.getRGBA()
+            if this.onModify then this.onModify( this ) end
+         end
+         picker.onCancel = function( p )
+            w.value = w._origColor
+            disconnect()
+         end
+         picker.onDone = function( p )
+            w._origColor = nil
+            disconnect()
+         end
+         -- Stash current color.
+         w._origColor = w.value
+         -- Set color picker.
+         picker.setRGBA( w.value )
+         picker.setMode( "RGBA" )
+         picker.activate()
+         --UI.getDesktop().popup( picker, w.globalPosition+vec2(w.actualSize.x,0) )
+      else
+         print("Missing color picker in the desktop")
+      end
+   end
+
+   return this
+end
+
+--==============================================================================
+-- ColorPicker
+--==============================================================================
+
+function UI.ColorPicker( gui, params )
+   params = params or {}
+
+   params.orientation = params.orientation or UI.BoxOrientation.VERTICAL
+   params.title       = params.title       or "Color"
+
+   if params.sample == nil then params.sample = false end
+   if params.samples == nil then params.samples = true end
+
+   --if params.hidden == nil then params.hidden = true end
+
+   local this
+
+   local _lock
+   local _mode
+   local _range
+
+
+   local _conv = {
+      flt_flt = 1,
+      flt_int = 255,
+      int_flt = 1/255,
+      int_int = 1,
+   }
+
+   local _sampleOpaque
+   local _sampleTrans
+   if params.sample then
+      _sampleOpaque = gui.image{
+         image = "image/white",
+         size  = { -1, 16 },
+         color = vec4(0, 0, 0, 0),
+         flex  = 1,
+      }
+      _sampleTrans = gui.image{
+         image = "image/white",
+         size  = { -1, 16 },
+         color = vec4(0, 0, 0, 0),
+         flex  = 1,
+      }
+   end
+
+   local _samples
+   local function addSample( color, w )
+      w.addWidget( gui.rect{
+         size = {20,20},
+         color = vec4( color.xyz, 1 ),
+         onClick = function( w )
+            this.setRGBA( color )
+         end,
+      } )
+   end
+   if params.samples then
+      _samples = gui.vbox{}
+      local row = gui.hbox{}
+      addSample( vec4( 0, 0, 0, 0 ), row )
+      addSample( vec4( 1, 1, 1, 1 ), row )
+      addSample( vec4( 1, 0, 0, 1 ), row )
+      addSample( vec4( 0, 1, 0, 1 ), row )
+      addSample( vec4( 0, 0, 1, 1 ), row )
+      --_samples.addWidget( row )
+      --local row = gui.hbox{}
+      --addSample( vec4( 1, 1, 1, 1 ), row )
+      addSample( vec4( 0, 1, 1, 1 ), row )
+      addSample( vec4( 1, 0, 1, 1 ), row )
+      addSample( vec4( 1, 1, 0, 1 ), row )
+      _samples.addWidget( row )
+   end
+
+   local _comboRange = gui.comboBox{
+      menu = gui.menu{
+         gui.menuItem{ id="flt", text="Flt" },
+         gui.menuItem{ id="int", text="Int" },
+      },
+      itemId = "flt",
+      onItemChanged = function( w, i )
+         this.setRange( i )
+      end,
+   }
+
+   local _valR = gui.valueEditor{}
+   local _valG = gui.valueEditor{}
+   local _valB = gui.valueEditor{}
+   local _valA = gui.valueEditor{}
+   local _grpRGBA = gui.vbox{
+      gap    = 1,
+      gui.hbox{ gui.label{ text="R:" }, _valR },
+      gui.hbox{ gui.label{ text="G:" }, _valG },
+      gui.hbox{ gui.label{ text="B:" }, _valB },
+      gui.hbox{ gui.label{ text="A:" }, _valA },
+      gui.hbox{ flex=1, _sampleOpaque, _sampleTrans },
+      _samples,
+      _comboRange,
+      gui.hbox{
+         gui.button{ text="Cancel", onClick=function() this.cancel() end },
+         gui.spacer{ flex=1 },
+         gui.button{ text="OK", onClick=function() this.confirm() end },
+      },
+   }
+
+   local _widgetsWithRange = { _valR, _valG, _valB, _valA }
+
+
+
+   local function _updateColorSample()
+      if _lock then return end
+      if _sampleOpaque then
+         local rgba = this.getRGBA()
+         _sampleOpaque.color = vec4( rgba.xyz, 1 )
+         _sampleTrans.color  = vec4( rgba.xyz*rgba.w, 1 ) -- Premultiplied alpha assuming a black background.
+         print(_sampleOpaque.color, _sampleTrans.color)
+      end
+      if this.onUpdate then this.onUpdate( this ) end
+   end
+
+   for i,w in ipairs(_widgetsWithRange) do
+      w.onModify = _updateColorSample
+   end
+
+   this = gui.panel( params )
+
+   function this.activate()
+      this.hidden = false
+   end
+
+   function this.cancel()
+      this.hidden = true
+      if this.onCancel then this.onCancel( this ) end
+      if this.onDone then this.onDone( this ) end
+   end
+
+   function this.confirm()
+      this.hidden = true
+      if this.onConfirm then this.onConfirm( this ) end
+      if this.onDone then this.onDone( this ) end
+   end
+
+   function this.getRGBA( range )
+      range = range or "flt"
+      local s = _conv[_range.."_"..range]
+      return vec4( _valR.value, _valG.value, _valB.value, _valA.value ) * s
+   end
+
+   function this.setRGBA( val, range )
+      if type(val) ~= "userdata" then
+         val = vec4(unpack(val))
+      end
+      range = range or "flt"
+      local s = _conv[range.."_".._range]
+      local rgba = val * s
+      _valR.value = rgba.x
+      _valG.value = rgba.y
+      _valB.value = rgba.z
+      _valA.value = rgba.w
+      _updateColorSample()
+   end
+
+   function this.getRGB( range )
+      return this.getRGBA( range ).xyz
+   end
+
+   function this.setRGB( val, range )
+      this.setRGBA( vec4( val, 1 ), range )
+   end
+
+   function this.setMode( mode )
+      mode = mode or "RGBA"
+      if mode ~= _mode then
+         if mode == "RGB" then
+            this.userArea.removeAllWidgets()
+            this.userArea.addWidget( _grpRGBA )
+            _grpRGBA[4].hidden = true
+            _mode = mode
+         elseif mode == "RGBA" then
+            this.userArea.removeAllWidgets()
+            this.userArea.addWidget( _grpRGBA )
+            _grpRGBA[4].hidden = false
+            _mode = mode
+         else
+            print("Unknown mode type:", mode)
+         end
+      end
+   end
+
+   function this.setRange( range )
+      if _lock then print("ColorPicker.setRange() unexpected lock") end
+      _lock = true
+      range = range or "flt"
+      if range ~= _range then
+         local s = _conv[tostring(_range).."_"..range] or 1
+         if range == "flt" then
+            for i,w in ipairs(_widgetsWithRange) do
+               local v = w.value
+               w.min    = 0.0
+               w.max    = 10.0
+               w.step   = 1/1000
+               w.format = "%.3f"
+               w.value  = v * s
+            end
+            _range = range
+         elseif range == "int" then
+            for i,w in ipairs(_widgetsWithRange) do
+               local v = w.value
+               w.min    = 0
+               w.max    = 255
+               w.step   = 1
+               w.format = "%.0f"
+               w.value  = v * s
+            end
+            _range = range
+         else
+            print("Unknown range type:", range)
+         end
+      end
+      _lock = false
+      _updateColorSample()
+   end
+
+   function this.toggle()
+      if this.hidden then
+         this.activate()
+      else
+         this.cancel()
+      end
+   end
+
+   local keyPressFunc = {
+      [UI.Key.ESC] = this.cancel,
+      [UI.Key.V] = function() print(this.getRGBA()) end,
+   }
+   function this.onKeyPress( w, ev )
+      local func = keyPressFunc[ev.value]
+      if func then func( w, ev ) end
+   end
+
+   this.setRange( "flt" )
+   this.setMode( "RGBA" )
+   this.setRGBA( {1, 0.25, 0, 1} )
+   --this.activate()
+
+   return this
+end

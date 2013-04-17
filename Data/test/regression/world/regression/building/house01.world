@@ -1,0 +1,10 @@
+camera{
+   fov      = 60,
+   position = {8.6279363632202, 3.6524505615234, 0.74006122350693}, --{0,10,10},
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+staticObject{
+   geometry = "architecture/building/house01",
+   material = material( "architecture/simple" )
+}

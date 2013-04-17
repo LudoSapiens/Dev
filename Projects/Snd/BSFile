@@ -1,0 +1,74 @@
+LoadFile("../Base/BSFile")
+LoadFile("../CGMath/BSFile")
+
+SndSettings = StandardSettings.copy()
+SndSettings.source_directories_includes.append(ThirdpartyPath+"/include")
+
+SndVariants = StandardVariants.copy()
+
+SndSettings.platform_sources = [] #Creating inside the setting class in order not to pollute the namespace
+# Everyone supports Null and OpenAL
+SndSettings.defines["SND_NULL_SUPPORT"] = 1
+SndSettings.defines["SND_OPENAL_SUPPORT"] = 1
+# Everyone supports Ogg/Vorbis
+SndSettings.defines["SND_VORBIS_SUPPORT"] = 1
+SndSettings.defines["SND_USE_PROCESS_THREAD"] = 0
+
+#TMP
+#SndSettings.defines["SND_OPENAL_SUPPORT"] = 0
+#SndSettings.defines["SND_VORBIS_SUPPORT"] = 0
+
+# Null sound manager support
+if SndSettings.defines.get("SND_NULL_SUPPORT"):
+   SndSettings.platform_sources.append("NullManager.cpp")
+
+# OpenAL support
+if SndSettings.defines.get("SND_OPENAL_SUPPORT"):
+   SndSettings.platform_sources.append("OpenALManager.cpp")
+   if Defaults.Env.Platform == "windows":
+      SndSettings.ldflags.append("-lopenal32 -lgdi32")
+   elif Defaults.Env.Platform == "unix":
+      if Defaults.Env.PlatformFlavor == "macosx":
+         SndSettings.frameworks.append("OpenAL")
+      else:
+         SndSettings.ldflags.append("-lopenal")
+
+# Vorbis support
+if SndSettings.defines.get("SND_VORBIS_SUPPORT"):
+   for lib in [ "vorbisfile", "vorbis", "ogg" ]:
+      SndSettings.ldflags.append(ThirdpartyLibraryPath + "/lib" + lib + ".a")
+
+
+SndLib = Library(
+   "Snd",
+   inputs=[
+      "Listener.cpp",
+      "Manager.cpp",
+      "Sound.cpp",
+      "Source.cpp",
+      BaseLib,
+      CGMathLib,
+   ],
+   shared=True, shared_define="COMPILING_SND",
+   settings=SndSettings,
+   variant=SndVariants,
+)
+
+SndLib.inputs.extend(SndSettings.platform_sources)
+
+Snd = Application("snd",
+                  inputs=["test.cpp", BaseLib, CGMathLib, SndLib],
+                  settings=SndLib.settings,
+                  variant=SndLib.variant)
+
+
+snd = Snd
+
+import new
+
+def run_with_args(self):
+   self.run("simple")
+Snd.run_simple = new.instancemethod(run_with_args, Snd, Application)
+
+#Make sure we can't access them outside of Snd
+del run_with_args

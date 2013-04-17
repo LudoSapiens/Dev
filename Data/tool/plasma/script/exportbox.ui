@@ -1,0 +1,124 @@
+--==============================================================================
+-- Exportbox
+--==============================================================================
+function UI.Exportbox( gui, params )
+
+   local params  = params or {}
+   params.size   = params.size or {600,280}
+   params.border = {8,8,8,8}
+   params.gap    = 8
+   if params.hidden == nil then params.hidden = true end
+
+   local exportParams = {
+      geomPrecision = 0.01,
+      imgPosition   = vec2(0,0),
+      imgSize       = vec2(1),
+      imgBufferSize = vec2(256)
+   }
+
+   local this = gui.vbox( params )
+   local area = gui.hbox{ flex=1, gap=4 }
+   local name = gui.stringInput{ text="Name", flex=1, labelWidth=60, labelFlex=0, textFlex=1 }
+   this.addWidget( area )
+   this.addWidget( name )
+   this.addWidget( gui.hbox{
+      gui.spacer{ flex=1 },
+      gui.button{ text="Cancel", onClick = function() this.hide() end },
+      gui.spacer{ size={32,-1} },
+      gui.button{ text="Export", onClick = function() this.export() end }
+   } )
+
+   -- Geometry params.
+   local geomParams = gui.group{ title="Geometry", orientation=UI.BoxOrientation.VERTICAL,
+      gap = 4,
+      gui.floatInput{ text="Precision", object=exportParams, param="geomPrecision", format="%.3f", min=0, max=1.0, step=0.001 },
+   }
+   area.addWidget( geomParams )
+   -- Image params.
+   local imgParams = gui.group{ title="Image", orientation=UI.BoxOrientation.VERTICAL,
+      gap = 4,
+      gui.vec2Input{ text="Position",    object=exportParams, param="imgPosition" },
+      gui.vec2Input{ text="Size",        object=exportParams, param="imgSize" },
+      gui.vec2Input{ text="Buffer size", object=exportParams, param="imgBufferSize", step=1, integer=true, format="%.0f" },
+   }
+   area.addWidget( imgParams )
+   -- Animation params.
+      -- none?
+   -- World params.
+
+   -- Shader.
+   -----------------------------------------------------------------------------
+   local bg = this.tquad{
+      image = "theme/plasma/image/roundedboxShadow2",
+      u     = { 0, 0.4, 0.6, 1 },
+      v     = { 0, 0.4, 0.6, 1 },
+      color = {0,0,0,0.25}
+   }
+
+   function this.shader( w )
+      local pos   = w.globalPosition
+      local size  = w.actualSize
+      bg.position = pos  - vec2(32,32)
+      bg.size     = size + vec2(64,64)
+      return bg
+   end
+
+   -- Methods.
+   -----------------------------------------------------------------------------
+   function this.toggle()
+      if this.hidden then
+         this.show()
+      else
+         this.hide()
+      end
+   end
+   -----------------------------------------------------------------------------
+   function this.show()
+      UI.grabKeyboard( this )
+      this.hidden       = false
+      geomParams.hidden = true
+      imgParams.hidden  = true
+      -- find output type.
+      local gr = this.graph
+      if gr then
+         local type =gr.outputType
+         if type == "GEOMETRY" or type == "STROKES" then
+            geomParams.hidden = false
+            name.setValue( string.gsub( this.path, ".df", ".mesh" ) )
+         elseif type == "IMAGE" then
+            imgParams.hidden = false
+            name.setValue( string.gsub( this.path, ".df", ".png" ) )
+         elseif type == "ANIMATION" then
+            name.setValue( string.gsub( this.path, ".df", ".anim" ) )
+         elseif type == "WORLD" then
+            name.setValue( string.gsub( this.path, ".df", ".world" ) )
+         else
+            name.setValue( this.path )
+         end
+      end
+   end
+   -----------------------------------------------------------------------------
+   function this.hide()
+      this.hidden = true
+      UI.releaseKeyboard( this )
+   end
+   -----------------------------------------------------------------------------
+   local keyPressFunc = {
+      [UI.Key.ESC]         = this.hide,
+   }
+   function this.onKeyPress( w, ev )
+      local func = keyPressFunc[ev.value]
+      if func then func( w, ev ) end
+   end
+   -----------------------------------------------------------------------------
+   function this.export()
+      if this.graph then
+         for k,v in pairs( exportParams ) do print( k, v ) end
+         this.graph.export( name.getValue(), exportParams )
+      end
+      this.hide()
+   end
+
+
+   return this
+end

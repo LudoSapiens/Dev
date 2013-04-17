@@ -1,0 +1,54 @@
+--- src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp	2012-05-23 12:27:03.922020400 -0400
++++ src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp.fix	2012-05-23 12:27:16.203722800 -0400
+@@ -23,7 +23,7 @@
+ ContactProcessedCallback	gContactProcessedCallback = 0;
+ ///gContactCalcArea3Points will approximate the convex hull area using 3 points
+ ///when setting it to false, it will use 4 points to compute the area: it is more accurate but slower
+-bool						gContactCalcArea3Points = true;
++bool						gContactCalcArea3Points = false;
+ 
+ 
+ btPersistentManifold::btPersistentManifold()
+@@ -126,6 +126,7 @@
+ #endif //KEEP_DEEPEST_POINT
+ 		
+ 		btScalar res0(btScalar(0.)),res1(btScalar(0.)),res2(btScalar(0.)),res3(btScalar(0.));
++		btScalar res;
+ 
+ 	if (gContactCalcArea3Points)
+ 	{
+@@ -159,6 +160,11 @@
+ 			btVector3 cross = a3.cross(b3);
+ 			res3 = cross.length2();
+ 		}
++		// Compute current area
++		btVector3 a = m_pointCache[1].m_localPointA-m_pointCache[0].m_localPointA;
++		btVector3 b = m_pointCache[3].m_localPointA-m_pointCache[2].m_localPointA;
++		btVector3 cross = a.cross(b);
++		res = cross.length2();
+ 	} 
+ 	else
+ 	{
+@@ -177,11 +183,12 @@
+ 		if(maxPenetrationIndex != 3) {
+ 			res3 = calcArea4Points(pt.m_localPointA,m_pointCache[0].m_localPointA,m_pointCache[1].m_localPointA,m_pointCache[2].m_localPointA);
+ 		}
++		res = calcArea4Points(m_pointCache[0].m_localPointA,m_pointCache[1].m_localPointA,m_pointCache[2].m_localPointA,m_pointCache[3].m_localPointA);
+ 	}
+ 	btVector4 maxvec(res0,res1,res2,res3);
+ 	int biggestarea = maxvec.closestAxis4();
+-	return biggestarea;
+-	
++	//return biggestarea;
++	return maxvec[biggestarea] < res ? -1 : biggestarea;
+ }
+ 
+ 
+@@ -218,6 +225,7 @@
+ #else
+ 		insertIndex = 0;
+ #endif
++		if( insertIndex == -1 )  return 0;
+ 		clearUserCache(m_pointCache[insertIndex]);
+ 		
+ 	} else

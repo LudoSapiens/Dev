@@ -1,0 +1,99 @@
+//
+// Directional light, shadow, dbrdf and irrandiance map.
+
+#ifdef GL_ES
+#extension GL_EXT_shadow_samplers : require
+#define shadow2D     shadow2DEXT
+#define shadow2DProj shadow2DProjEXT
+#else
+//#define texture2DProj textureProj
+#endif
+
+#define ESM
+
+varying vec2 mapping;
+varying vec3 position;
+varying vec3 normal;
+
+// Surface.
+uniform sampler2D colorTex0;
+uniform sampler2D brdfTex;
+uniform vec4 color;
+uniform float brdfID;
+
+// Light.
+#ifdef ESM
+uniform sampler2D  light_tex;
+#else
+uniform sampler2DShadow light_tex;
+#endif
+
+uniform vec3 light_intensity;
+uniform vec3 light_direction;
+uniform mat4 light_matrix;
+
+float irradmat( mat4 m, vec3 n )
+{
+    return dot( vec4( n, 1.0 ), m * vec4( n, 1.0 ) );
+}
+
+void main(void)
+{
+   // Normal computation.
+   vec3 n = normalize( normal );
+
+   // Compute shadowing.
+   vec4 lpos = light_matrix * vec4( position, 1.0 );
+
+#ifdef ESM
+   lpos.z  -= 0.001953125; // 1.0/512.0
+   float z  = texture2DProj( light_tex, lpos ).x;
+   float sh = clamp(2.0 - exp((lpos.z/lpos.w - z) * 64.0), 0.0, 1.0);
+#else
+   lpos.z   -= 0.01;
+   float sh  = shadow2DProj( light_tex, lpos );
+#endif
+
+   // Ambient lighting.
+   mat4 gracered = mat4(
+       0.009098, -0.004780,  0.024033, -0.014947,
+      -0.004780, -0.009098, -0.011258,  0.020210,
+       0.024033, -0.011258, -0.011570, -0.017383,
+      -0.014947,  0.020210, -0.017383,  0.073787
+   );
+
+   mat4 gracegreen = mat4(
+      -0.002331, -0.002184,  0.009201, -0.002846,
+      -0.002184,  0.002331, -0.009611,  0.017903,
+       0.009201, -0.009611, -0.007038, -0.009331,
+      -0.002846,  0.017903, -0.009331,  0.041083
+   );
+   mat4 graceblue = mat4(
+      -0.013032, -0.005248,  0.005970,  0.000483,
+      -0.005248,  0.013032, -0.020370,  0.030949,
+       0.005970, -0.020370, -0.010948, -0.013784,
+       0.000483,  0.030949, -0.013784,  0.051648
+   );
+
+   //vec3 ambient = vec3(
+   //   irradmat( gracered, n ),
+   //   irradmat( gracegreen, n ),
+   //   irradmat( graceblue, n )
+   //);
+
+   vec3 nn  = vec3( n.x, n.y, n.z );
+   //float ir = irradmat( gracered, nn ) + irradmat( gracegreen, nn ) + irradmat( graceblue, nn );
+   float ir = irradmat( gracegreen, nn )*3.0;
+   vec3 ambient = vec3( ir, ir, ir );
+
+
+   float nl      = max( dot( n, light_direction ), 0.0 );
+   vec3  o       = normalize( gfxCameraPosition - position );
+   vec3  h       = normalize( light_direction + o );
+   float n_dot_h = dot(n, h);
+   float ph      = texture2D( brdfTex, vec2( n_dot_h, brdfID ) ).x;
+   vec4 lighting = vec4( light_intensity*(nl*ph*sh) + ambient, 1.0 );
+
+   // Return final color.
+   gl_FragColor = color*lighting*texture2D( colorTex0, mapping );
+}

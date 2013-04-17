@@ -1,0 +1,729 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{c2f034f1-0621-44a1-88f8-44a1ff0af2e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Action">
+      <UniqueIdentifier>{4628fcfe-54b9-495c-8bb2-4a6aceea7974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Animation">
+      <UniqueIdentifier>{83ed195a-c214-4a40-91d4-9dc4f60e95dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Geometry">
+      <UniqueIdentifier>{d1f1d08e-665a-410e-8a41-ed0bd9194982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Manipulator">
+      <UniqueIdentifier>{f707403d-c2dd-46b2-b5b6-689672591bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Particle">
+      <UniqueIdentifier>{ae91831a-deb5-4195-b1eb-88d321354060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Physics">
+      <UniqueIdentifier>{ef6fdf11-62cc-4551-9554-b8577970a907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Procedural">
+      <UniqueIdentifier>{85d8b7eb-1ee3-4842-ade3-8e6374e686d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Render">
+      <UniqueIdentifier>{c4eeba7d-22d8-43fc-a559-b6cfdaf25798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderable">
+      <UniqueIdentifier>{605236f1-7668-4acd-a624-1c111e10e3b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Resource">
+      <UniqueIdentifier>{ce68e5f2-99de-4d81-a6b0-536a9d57c395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Stimulus">
+      <UniqueIdentifier>{c456ffdd-aa3c-4715-8669-c2b3137b0229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Widget">
+      <UniqueIdentifier>{5d6dd290-7442-4d20-8025-f5e6f16c9e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\World">
+      <UniqueIdentifier>{b2656750-4c78-4578-bb28-54e99ab78de8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\DataFlow">
+      <UniqueIdentifier>{c5dab8d1-88c8-4c7b-bf3c-4244c8b68394}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Intersector.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Plasma.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Action\Action.cpp">
+      <Filter>Source\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\AnimationGraph.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\AnimationNode.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\AnimationRail.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\BasicNode.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\JumpNode.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\Puppeteer.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\SkeletalAnimation.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\Skeleton.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\TravelNode.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\Geometry.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\Material.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\MaterialSet.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\MeshGeometry.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\MetaGeometry.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\MetaNode.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\MetaSurface.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\ParametricPatch.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\SilhouetteGeometry.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\SurfaceDetails.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\SurfaceGeometry.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\CameraManipulator.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\FlyByManipulator.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\Manipulator.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Particle\ParticleAnimator.cpp">
+      <Filter>Source\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Particle\ParticleGenerator.cpp">
+      <Filter>Source\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Particle\Smoke.cpp">
+      <Filter>Source\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Particle\Spark.cpp">
+      <Filter>Source\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Physics\CollisionShapeGenerator.cpp">
+      <Filter>Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Physics\PlasmaAttractors.cpp">
+      <Filter>Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\Boundary.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\BoundaryPolygon.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\BSP2.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\BSP3.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\Component.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralGeometry.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralMaterial.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralMesh.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralWorld.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Render\DeferredRenderer.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Render\ForwardRenderer.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Render\ForwardRendererFixed.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Render\ForwardRendererHDR.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Render\PlasmaBaker.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Render\Renderer.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Renderable\BasicsRenderable.cpp">
+      <Filter>Source\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Renderable\DebugRenderable.cpp">
+      <Filter>Source\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Renderable\Renderable.cpp">
+      <Filter>Source\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Resource\ResExporter.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Resource\ResManager.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Resource\Serializer.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Widget\PlasmaBrowser.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Widget\PlasmaScreen.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\Brain.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\Camera.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\Entity.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\EntityGroup.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\Light.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\RigidEntity.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\Selection.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\SkeletalEntity.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\Viewport.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\World.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\WorldVM.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Action\PuppeteerAction.cpp">
+      <Filter>Source\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Action\Command.cpp">
+      <Filter>Source\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Animation\Pinocchio.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Stimulus\EventStimuli.cpp">
+      <Filter>Source\Stimulus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Stimulus\Stimulus.cpp">
+      <Filter>Source\Stimulus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralAnimationGraph.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralSkeleton.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralAnimation.cpp">
+      <Filter>Source\Procedural</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\Controller.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\EventDispatcher.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\Receptor.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Widget\DFViewer.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFBlocks.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFGeometry.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFGraph.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFNode.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFPatch.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFStrokes.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\ProceduralDataFlow.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\MultiCharacterController.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Render\DebugGeometry.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\ManipulatorGroup.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Stimulus\Orders.cpp">
+      <Filter>Source\Stimulus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Resource\ResourceVM.cpp">
+      <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFMessenger.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFNodeAttr.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFStrokesTool.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\TextureMosaic.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\TouchCameraManipulator.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\ProxyEntity.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Action\BasicActions.cpp">
+      <Filter>Source\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Action\TKAction.cpp">
+      <Filter>Source\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Widget\DFScreen.cpp">
+      <Filter>Source\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\World\ParticleEntity.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Particle\ParticleData.cpp">
+      <Filter>Source\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Geometry\ParticleGeometry.cpp">
+      <Filter>Source\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Particle\BaseParticles.cpp">
+      <Filter>Source\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFImageGenerator.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFAnimNodes.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFGeomNodes.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFImageNodes.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFWorld.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFWorldNodes.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\Manipulator\RefManipulator.cpp">
+      <Filter>Source\Manipulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFStrokesNodes.cpp">
+      <Filter>Source\DataFlow</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Intersector.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Plasma.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\StdDefs.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Action\Action.h">
+      <Filter>Source\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\AnimationGraph.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\AnimationNode.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\AnimationRail.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\BasicNode.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\JumpNode.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\Pinocchio.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\Puppeteer.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\SkeletalAnimation.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\Skeleton.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Animation\TravelNode.h">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\Geometry.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\Material.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\MaterialSet.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\MeshGeometry.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\MetaGeometry.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\MetaNode.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\MetaSurface.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\ParametricPatch.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\SilhouetteGeometry.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\SurfaceDetails.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\SurfaceGeometry.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\CameraManipulator.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\FlyByManipulator.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\Manipulator.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Particle\ParticleAnimator.h">
+      <Filter>Source\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Particle\ParticleData.h">
+      <Filter>Source\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Particle\ParticleGenerator.h">
+      <Filter>Source\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Particle\Smoke.h">
+      <Filter>Source\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Particle\Spark.h">
+      <Filter>Source\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Physics\CollisionShapeGenerator.h">
+      <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Physics\PlasmaAttractors.h">
+      <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\Boundary.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\BoundaryPolygon.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\BSP2.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\BSP3.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\Component.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralContext.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralGeometry.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralMaterial.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralMesh.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralWorld.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Render\DeferredRenderer.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Render\ForwardRenderer.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Render\ForwardRendererFixed.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Render\ForwardRendererHDR.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Render\PlasmaBaker.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Render\Renderer.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Renderable\BasicsRenderable.h">
+      <Filter>Source\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Renderable\DebugRenderable.h">
+      <Filter>Source\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Renderable\Renderable.h">
+      <Filter>Source\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Resource\BinaryResourceTask.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Resource\ResExporter.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Resource\ResManager.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Resource\Serializer.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Widget\PlasmaBrowser.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Widget\PlasmaScreen.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\Brain.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\Camera.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\Entity.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\EntityGroup.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\Light.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\RigidEntity.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\Selection.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\SkeletalEntity.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\Viewport.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\World.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\WorldVM.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Action\PuppeteerAction.h">
+      <Filter>Source\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Action\Command.h">
+      <Filter>Source\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Stimulus\EventStimuli.h">
+      <Filter>Source\Stimulus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Stimulus\Stimulus.h">
+      <Filter>Source\Stimulus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralAnimationGraph.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralSkeleton.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Procedural\ProceduralAnimation.h">
+      <Filter>Source\Procedural</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\Controller.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\EventDispatcher.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\Receptor.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Widget\DFViewer.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFBlocks.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFGeometry.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFGraph.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFNode.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFPatch.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFStrokes.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\ProceduralDataFlow.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\MultiCharacterController.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Render\DebugGeometry.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\ManipulatorGroup.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Stimulus\Orders.h">
+      <Filter>Source\Stimulus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Resource\ResourceVM.h">
+      <Filter>Source\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFMessenger.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFNodeAttr.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFStrokesTool.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\TextureMosaic.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\TouchCameraManipulator.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\ProxyEntity.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Action\BasicActions.h">
+      <Filter>Source\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Action\TKAction.h">
+      <Filter>Source\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Widget\DFScreen.h">
+      <Filter>Source\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\World\ParticleEntity.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Geometry\ParticleGeometry.h">
+      <Filter>Source\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Particle\BaseParticles.h">
+      <Filter>Source\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFImageGenerator.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFAnimNodes.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFGeomNodes.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFImageNodes.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFWorld.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFWorldNodes.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\Manipulator\RefManipulator.h">
+      <Filter>Source\Manipulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\Plasma\DataFlow\DFStrokesNodes.h">
+      <Filter>Source\DataFlow</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

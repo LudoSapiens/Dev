@@ -1,0 +1,9 @@
+camera{
+   position = {0,10,10},
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+staticObject{
+   geometry = "regression/moderate/roof01",
+   material = "architecture/abstract/abstract01"
+}

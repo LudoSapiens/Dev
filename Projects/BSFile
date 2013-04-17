@@ -1,0 +1,8 @@
+LoadFile("Base/BSFile")
+LoadFile("CGMath/BSFile")
+LoadFile("Gfx/BSFile")
+LoadFile("Snd/BSFile")
+LoadFile("Fusion/BSFile")
+LoadFile("Motion/BSFile")
+LoadFile("Plasma/BSFile")
+LoadFile("Game/BSFile")

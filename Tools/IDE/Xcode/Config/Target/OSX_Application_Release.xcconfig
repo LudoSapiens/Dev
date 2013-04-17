@@ -1,0 +1,16 @@
+//==============================================================================
+// Copyright (c) 2009, Ludo Sapiens Inc.
+// All rights reserved.
+//
+// These coded instructions, statements, and computer programs contain
+// unpublished, proprietary information and are protected by Federal copyright
+// law. They may not be disclosed to third parties or copied or duplicated in
+// any form, in whole or in part, without prior written consent.
+//==============================================================================
+
+#include "../_Common.xcconfig"
+#include "../_Dev.xcconfig"
+#include "../type/Application.xcconfig"
+#include "../conf/Release.xcconfig"
+#include "../plat/OSX.xcconfig"
+#include "../_Merge.xcconfig"

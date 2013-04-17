@@ -1,0 +1,24 @@
+Code originally developped by Ludo Sapiens:
+------------------------------------------
+
+Jocelyn Houle <jocelyn.houle@ludosapiens.com>
+Luc Leblanc <luc.leblanc@ludosapiens.com>
+
+
+Some code contributed by:
+------------------------
+
+Philippe Beaudoin
+* Various contributions in early versions of Base, CGMath, Fusion, and Plasma.
+* Responsible for most of Canvas, Grid, TreeList classes in Fusion.
+
+Sean Barrett
+* Public domain image loading/saving library.
+* Public domain ogg/vorbis library.
+* Public domain truetype library.
+
+Don Clugston
+* Public domain fast delegates.
+
+Ilya Baran
+* LGPL Pinocchio automatic rigging library.

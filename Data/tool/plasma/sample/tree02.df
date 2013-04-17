@@ -1,0 +1,19 @@
+local n0 = treeJPH{
+   position = {-1,1},
+   width = 3,
+   detail=6,
+   levels=3,
+   height=6,
+   heightD=0,
+   photoS=1,
+   seed=0,
+   sun={1,1,0},
+   { crook=0, crookD=0, photo=1, photoD=0, radius=0.05 },
+   { crook=0, crookD=0, photo=1, photoD=0, radius=0.8 },
+   { crook=0, crookD=0, photo=1, photoD=0, radius=0.8 },
+}
+local n1 = strokesDebug{
+   position = {-1,0},
+   width = 3,
+}
+output( n0 )

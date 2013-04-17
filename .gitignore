@@ -1,0 +1,55 @@
+# Some editor backup files.
+*~
+*.swp
+
+# Config file.
+Data/config.lua
+
+# Debug config file.
+*/debug.conf
+
+# BuildSystem.
+Projects/*/out
+Projects/*/.bs_dep_cache
+Projects/*/*/out
+Projects/*/*/.bs_dep_cache
+*.pyc
+
+# Blender temporary files.
+*.blend1
+*.blend2
+
+# Compiled third-party platform directories.
+Thirdparty/platform/
+Thirdparty/src/.d
+Thirdparty/src/bullet/
+Thirdparty/src/freetype/
+Thirdparty/src/libogg/
+Thirdparty/src/libpng/
+Thirdparty/src/libvorbis/
+Thirdparty/src/lua/
+Thirdparty/src/zlib/
+Thirdparty/src/*.tar.gz
+Thirdparty/src/*.tar.bz2
+Thirdparty/src/*.zip
+
+# Android
+Tools/IDE/Android/*/libs/
+Tools/IDE/Android/*/*/libs/
+Tools/IDE/Android/*/obj/
+Tools/IDE/Android/*/*/obj/
+
+# Visual Studio (based on VS2008, but might work for 2005).
+Tools/IDE/Visual Studio*/*.ncb
+Tools/IDE/Visual Studio*/*.suo
+Tools/IDE/Visual Studio*/Debug/
+Tools/IDE/Visual Studio*/Release/
+Tools/IDE/Visual Studio*/*/Debug/
+Tools/IDE/Visual Studio*/*/Release/
+Tools/IDE/Visual Studio*/*/*.user
+
+# Windows
+*.stackdump
+
+#Puzzles
+Data/game/polycubic/geometry/*

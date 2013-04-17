@@ -1,0 +1,32 @@
+-- Block material.
+baseMaterial{
+   color = { 1, 1, 1, 1 },
+   {
+      color = image( "image/white" ),
+      clamp = TexClamp.LAST,
+   }
+}
+
+-- Smooth edge.
+customMaterial{
+   program = "colorTex",
+   {
+      colorTex = {
+         data  = image( "image/white" ),
+         clamp = TexClamp.LAST,
+      },
+      color = vec4( 0, 0, 1, 1 ),
+   }
+}
+
+-- Crease edge.
+customMaterial{
+   program = "colorTex",
+   {
+      colorTex = {
+         data  = image( "image/white" ),
+         clamp = TexClamp.LAST,
+      },
+      color = vec4( 1, 0, 0, 1 ),
+   }
+}

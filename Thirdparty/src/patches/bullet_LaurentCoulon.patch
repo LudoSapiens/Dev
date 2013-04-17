@@ -1,0 +1,456 @@
+diff -ru bullet-2.80\src/BulletCollision/CollisionDispatch/btCollisionWorld.cpp bullet-2.80 Collision Response\src/BulletCollision/CollisionDispatch/btCollisionWorld.cpp
+--- bullet-2.80\src/BulletCollision/CollisionDispatch/btCollisionWorld.cpp	2012-06-01 10:44:08.310491400 -0700
++++ bullet-2.80 Collision Response\src/BulletCollision/CollisionDispatch/btCollisionWorld.cpp	2012-07-11 10:24:07.725980600 -0700
+@@ -1409,7 +1409,7 @@
+ 			for (int j=0;j<numContacts;j++)
+ 			{
+ 				btManifoldPoint& cp = contactManifold->getContactPoint(j);
+-				getDebugDrawer()->drawContactPoint(cp.m_positionWorldOnB,cp.m_normalWorldOnB,cp.getDistance(),cp.getLifeTime(),color);
++				getDebugDrawer()->drawContactPoint(cp.m_positionWorldOnB,cp.m_normalWorldOnB,cp.getDistance(),1,color);
+ 			}
+ 		}
+ 	}
+diff -ru bullet-2.80\src/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h bullet-2.80 Collision Response\src/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h
+--- bullet-2.80\src/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h	2012-06-01 10:44:09.966741400 -0700
++++ bullet-2.80 Collision Response\src/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h	2012-07-10 15:14:43.826988800 -0700
+@@ -51,8 +51,7 @@
+ 				m_contactMotion1(0.f),
+ 				m_contactMotion2(0.f),
+ 				m_contactCFM1(0.f),
+-				m_contactCFM2(0.f),
+-				m_lifeTime(0)
++				m_contactCFM2(0.f)
+ 			{
+ 			}
+ 
+@@ -73,8 +72,7 @@
+ 					m_contactMotion1(0.f),
+ 					m_contactMotion2(0.f),
+ 					m_contactCFM1(0.f),
+-					m_contactCFM2(0.f),
+-					m_lifeTime(0)
++					m_contactCFM2(0.f)
+ 			{
+ 				mConstraintRow[0].m_accumImpulse = 0.f;
+ 				mConstraintRow[1].m_accumImpulse = 0.f;
+@@ -110,8 +108,6 @@
+ 			btScalar		m_contactMotion2;
+ 			btScalar		m_contactCFM1;
+ 			btScalar		m_contactCFM2;
+-
+-			int				m_lifeTime;//lifetime of the contactpoint in frames
+ 			
+ 			btVector3		m_lateralFrictionDir1;
+ 			btVector3		m_lateralFrictionDir2;
+@@ -125,10 +121,6 @@
+ 			{
+ 				return m_distance1;
+ 			}
+-			int	getLifeTime() const
+-			{
+-				return m_lifeTime;
+-			}
+ 
+ 			const btVector3& getPositionWorldOnA() const {
+ 				return m_positionWorldOnA;
+diff -ru bullet-2.80\src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp bullet-2.80 Collision Response\src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp
+--- bullet-2.80\src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp	2012-06-01 10:44:09.982366400 -0700
++++ bullet-2.80 Collision Response\src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp	2012-07-10 15:12:37.249673900 -0700
+@@ -260,7 +260,6 @@
+ 		manifoldPoint.m_positionWorldOnA = trA( manifoldPoint.m_localPointA );
+ 		manifoldPoint.m_positionWorldOnB = trB( manifoldPoint.m_localPointB );
+ 		manifoldPoint.m_distance1 = (manifoldPoint.m_positionWorldOnA -  manifoldPoint.m_positionWorldOnB).dot(manifoldPoint.m_normalWorldOnB);
+-		manifoldPoint.m_lifeTime++;
+ 	}
+ 
+ 	/// then 
+diff -ru bullet-2.80\src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h bullet-2.80 Collision Response\src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h
+--- bullet-2.80\src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h	2012-06-01 10:44:09.997991400 -0700
++++ bullet-2.80 Collision Response\src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h	2012-07-10 15:10:41.781662900 -0700
+@@ -154,7 +154,6 @@
+ 			m_pointCache[lastUsedIndex].m_lateralFrictionInitialized = false;
+ 			m_pointCache[lastUsedIndex].m_appliedImpulseLateral1 = 0.f;
+ 			m_pointCache[lastUsedIndex].m_appliedImpulseLateral2 = 0.f;
+-			m_pointCache[lastUsedIndex].m_lifeTime = 0;
+ 		}
+ 
+ 		btAssert(m_pointCache[lastUsedIndex].m_userPersistentData==0);
+@@ -166,7 +165,6 @@
+ 
+ #define MAINTAIN_PERSISTENCY 1
+ #ifdef MAINTAIN_PERSISTENCY
+-		int	lifeTime = m_pointCache[insertIndex].getLifeTime();
+ 		btScalar	appliedImpulse = m_pointCache[insertIndex].mConstraintRow[0].m_accumImpulse;
+ 		btScalar	appliedLateralImpulse1 = m_pointCache[insertIndex].mConstraintRow[1].m_accumImpulse;
+ 		btScalar	appliedLateralImpulse2 = m_pointCache[insertIndex].mConstraintRow[2].m_accumImpulse;
+@@ -174,7 +172,6 @@
+ 		
+ 		
+ 			
+-		btAssert(lifeTime>=0);
+ 		void* cache = m_pointCache[insertIndex].m_userPersistentData;
+ 		
+ 		m_pointCache[insertIndex] = newPoint;
+@@ -189,7 +186,6 @@
+ 		m_pointCache[insertIndex].mConstraintRow[2].m_accumImpulse = appliedLateralImpulse2;
+ 
+ 
+-		m_pointCache[insertIndex].m_lifeTime = lifeTime;
+ #else
+ 		clearUserCache(m_pointCache[insertIndex]);
+ 		m_pointCache[insertIndex] = newPoint;
+diff -ru bullet-2.80\src/BulletDynamics/ConstraintSolver/btContactSolverInfo.h bullet-2.80 Collision Response\src/BulletDynamics/ConstraintSolver/btContactSolverInfo.h
+--- bullet-2.80\src/BulletDynamics/ConstraintSolver/btContactSolverInfo.h	2012-06-01 10:44:10.185491400 -0700
++++ bullet-2.80 Collision Response\src/BulletDynamics/ConstraintSolver/btContactSolverInfo.h	2012-07-10 15:22:46.058277500 -0700
+@@ -51,7 +51,6 @@
+ 	btScalar	m_warmstartingFactor;
+ 
+ 	int			m_solverMode;
+-	int	m_restingContactRestitutionThreshold;
+ 	int			m_minimumSolverBatchSize;
+ 
+ 
+@@ -79,7 +78,6 @@
+ 		m_linearSlop = btScalar(0.0);
+ 		m_warmstartingFactor=btScalar(0.85);
+ 		m_solverMode = SOLVER_USE_WARMSTARTING | SOLVER_SIMD;// | SOLVER_RANDMIZE_ORDER;
+-		m_restingContactRestitutionThreshold = 2;//resting contact lifetime threshold to disable restitution
+ 		m_minimumSolverBatchSize = 128; //try to combine islands until the amount of constraints reaches this limit
+ 	}
+ };
+diff -ru bullet-2.80\src/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.cpp bullet-2.80 Collision Response\src/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.cpp
+--- bullet-2.80\src/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.cpp	2012-06-01 10:44:10.310491400 -0700
++++ bullet-2.80 Collision Response\src/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.cpp	2012-07-12 10:20:29.271801800 -0700
+@@ -101,23 +101,13 @@
+ 	deltaImpulse	-=	deltaVel1Dotn*c.m_jacDiagABInv;
+ 	deltaImpulse	-=	deltaVel2Dotn*c.m_jacDiagABInv;
+ 
+-	const btScalar sum = btScalar(c.m_appliedImpulse) + deltaImpulse;
+-	if (sum < c.m_lowerLimit)
+-	{
+-		deltaImpulse = c.m_lowerLimit-c.m_appliedImpulse;
+-		c.m_appliedImpulse = c.m_lowerLimit;
+-	}
+-	else if (sum > c.m_upperLimit) 
+-	{
+-		deltaImpulse = c.m_upperLimit-c.m_appliedImpulse;
+-		c.m_appliedImpulse = c.m_upperLimit;
+-	}
+-	else
+-	{
+-		c.m_appliedImpulse = sum;
+-	}
+-		body1.internalApplyImpulse(c.m_contactNormal*body1.internalGetInvMass(),c.m_angularComponentA,deltaImpulse);
+-		body2.internalApplyImpulse(-c.m_contactNormal*body2.internalGetInvMass(),c.m_angularComponentB,deltaImpulse);
++	//clamp the impulse correction so that applied impulse never goes beyond its limits
++	deltaImpulse = btMin(deltaImpulse, c.m_upperLimit - c.m_appliedImpulse);
++	deltaImpulse = btMax(deltaImpulse, c.m_lowerLimit - c.m_appliedImpulse);
++	c.m_appliedImpulse = btScalar(c.m_appliedImpulse) + deltaImpulse;
++
++	body1.internalApplyImpulse(c.m_contactNormal*body1.internalGetInvMass(),c.m_angularComponentA,deltaImpulse);
++	body2.internalApplyImpulse(-c.m_contactNormal*body2.internalGetInvMass(),c.m_angularComponentB,deltaImpulse);
+ }
+ 
+  void btSequentialImpulseConstraintSolver::resolveSingleConstraintRowLowerLimitSIMD(btRigidBody& body1,btRigidBody& body2,const btSolverConstraint& c)
+@@ -159,16 +149,11 @@
+ 
+ 	deltaImpulse	-=	deltaVel1Dotn*c.m_jacDiagABInv;
+ 	deltaImpulse	-=	deltaVel2Dotn*c.m_jacDiagABInv;
+-	const btScalar sum = btScalar(c.m_appliedImpulse) + deltaImpulse;
+-	if (sum < c.m_lowerLimit)
+-	{
+-		deltaImpulse = c.m_lowerLimit-c.m_appliedImpulse;
+-		c.m_appliedImpulse = c.m_lowerLimit;
+-	}
+-	else
+-	{
+-		c.m_appliedImpulse = sum;
+-	}
++
++	//clamp the impulse correction so that applied impulse never goes below its lower limit (in this case 0.0f)
++	deltaImpulse = btMax(deltaImpulse, -c.m_appliedImpulse);
++	c.m_appliedImpulse = btScalar(c.m_appliedImpulse) + deltaImpulse;
++
+ 	body1.internalApplyImpulse(c.m_contactNormal*body1.internalGetInvMass(),c.m_angularComponentA,deltaImpulse);
+ 	body2.internalApplyImpulse(-c.m_contactNormal*body2.internalGetInvMass(),c.m_angularComponentB,deltaImpulse);
+ }
+@@ -179,36 +164,25 @@
+         btRigidBody& body2,
+         const btSolverConstraint& c)
+ {
+-		if (c.m_rhsPenetration)
+-        {
+-			gNumSplitImpulseRecoveries++;
+-			btScalar deltaImpulse = c.m_rhsPenetration-btScalar(c.m_appliedPushImpulse)*c.m_cfm;
+-			const btScalar deltaVel1Dotn	=	c.m_contactNormal.dot(body1.internalGetPushVelocity()) 	+ c.m_relpos1CrossNormal.dot(body1.internalGetTurnVelocity());
+-			const btScalar deltaVel2Dotn	=	-c.m_contactNormal.dot(body2.internalGetPushVelocity()) + c.m_relpos2CrossNormal.dot(body2.internalGetTurnVelocity());
+-
+-			deltaImpulse	-=	deltaVel1Dotn*c.m_jacDiagABInv;
+-			deltaImpulse	-=	deltaVel2Dotn*c.m_jacDiagABInv;
+-			const btScalar sum = btScalar(c.m_appliedPushImpulse) + deltaImpulse;
+-			if (sum < c.m_lowerLimit)
+-			{
+-				deltaImpulse = c.m_lowerLimit-c.m_appliedPushImpulse;
+-				c.m_appliedPushImpulse = c.m_lowerLimit;
+-			}
+-			else
+-			{
+-				c.m_appliedPushImpulse = sum;
+-			}
+-			body1.internalApplyPushImpulse(c.m_contactNormal*body1.internalGetInvMass(),c.m_angularComponentA,deltaImpulse);
+-			body2.internalApplyPushImpulse(-c.m_contactNormal*body2.internalGetInvMass(),c.m_angularComponentB,deltaImpulse);
+-        }
++	gNumSplitImpulseRecoveries++;
++	btScalar deltaImpulse = c.m_rhsPenetration-btScalar(c.m_appliedPushImpulse)*c.m_cfm;
++	const btScalar deltaVel1Dotn	=	c.m_contactNormal.dot(body1.internalGetPushVelocity()) 	+ c.m_relpos1CrossNormal.dot(body1.internalGetTurnVelocity());
++	const btScalar deltaVel2Dotn	=	-c.m_contactNormal.dot(body2.internalGetPushVelocity()) + c.m_relpos2CrossNormal.dot(body2.internalGetTurnVelocity());
++
++	deltaImpulse	-=	deltaVel1Dotn*c.m_jacDiagABInv;
++	deltaImpulse	-=	deltaVel2Dotn*c.m_jacDiagABInv;
++
++	//clamp the impulse correction so that applied impulse never goes below its lower limit
++	deltaImpulse = btMax(deltaImpulse, c.m_lowerLimit - c.m_appliedPushImpulse);
++	c.m_appliedPushImpulse = btScalar(c.m_appliedPushImpulse) + deltaImpulse;
++
++	body1.internalApplyPushImpulse(c.m_contactNormal*body1.internalGetInvMass(),c.m_angularComponentA,deltaImpulse);
++	body2.internalApplyPushImpulse(-c.m_contactNormal*body2.internalGetInvMass(),c.m_angularComponentB,deltaImpulse);
+ }
+ 
+  void btSequentialImpulseConstraintSolver::resolveSplitPenetrationSIMD(btRigidBody& body1,btRigidBody& body2,const btSolverConstraint& c)
+ {
+ #ifdef USE_SIMD
+-	if (!c.m_rhsPenetration)
+-		return;
+-
+ 	gNumSplitImpulseRecoveries++;
+ 
+ 	__m128 cpAppliedImp = _mm_set1_ps(c.m_appliedPushImpulse);
+@@ -501,8 +475,8 @@
+ 				}
+ 
+ 				solverConstraint.m_contactNormal = cp.m_normalWorldOnB;
+-				solverConstraint.m_relpos1CrossNormal = rel_pos1.cross(cp.m_normalWorldOnB);
+-				solverConstraint.m_relpos2CrossNormal = rel_pos2.cross(-cp.m_normalWorldOnB);
++				solverConstraint.m_relpos1CrossNormal = torqueAxis0;
++				solverConstraint.m_relpos2CrossNormal = -torqueAxis1;
+ 
+ 
+ 
+@@ -510,27 +484,25 @@
+ 			btVector3 vel1 = rb0 ? rb0->getVelocityInLocalPoint(rel_pos1) : btVector3(0,0,0);
+ 			btVector3 vel2 = rb1 ? rb1->getVelocityInLocalPoint(rel_pos2) : btVector3(0,0,0);
+ 			vel  = vel1 - vel2;
++
++			btVector3 oldVel1 = rb0 ? rb0->getOldLinearVelocity() - rb0->getLinearVelocity() : btVector3(0,0,0);
++			btVector3 oldVel2 = rb1 ? rb1->getOldLinearVelocity() - rb1->getLinearVelocity() : btVector3(0,0,0);
++			btVector3 oldVel = oldVel1 - oldVel2;
++			oldVel += vel;
++
+ 			rel_vel = cp.m_normalWorldOnB.dot(vel);
++			btScalar oldRelVel = cp.m_normalWorldOnB.dot(oldVel);
+ 
+ 				btScalar penetration = cp.getDistance()+infoGlobal.m_linearSlop;
+-
++				btScalar positionalError = -penetration * infoGlobal.m_erp / infoGlobal.m_timeStep;
++				btScalar penetrationImpulse = positionalError * solverConstraint.m_jacDiagABInv;
+ 
+ 				solverConstraint.m_friction = cp.m_combinedFriction;
+ 
+-				btScalar restitution = 0.f;
+-				
+-				if (cp.m_lifeTime>infoGlobal.m_restingContactRestitutionThreshold)
+-				{
+-					restitution = 0.f;
+-				} else
+-				{
+-					restitution =  restitutionCurve(rel_vel, cp.m_combinedRestitution);
+-					if (restitution <= btScalar(0.))
+-					{
+-						restitution = 0.f;
+-					};
+-				}
+-
++				//compute the target relative velocity to solve for based on the restitution value
++				//the restitution is computed using the relative velocity at the start of the frame to 
++				//avoid giving energy to the system.
++				btScalar target_rel_vel = cp.m_combinedRestitution * -oldRelVel;
+ 
+ 				///warm starting (or zero if disabled)
+ 				if (infoGlobal.m_solverMode & SOLVER_USE_WARMSTARTING)
+@@ -548,35 +520,26 @@
+ 				solverConstraint.m_appliedPushImpulse = 0.f;
+ 
+ 				{
+-					btScalar rel_vel;
+-					btScalar vel1Dotn = solverConstraint.m_contactNormal.dot(rb0?rb0->getLinearVelocity():btVector3(0,0,0)) 
+-						+ solverConstraint.m_relpos1CrossNormal.dot(rb0?rb0->getAngularVelocity():btVector3(0,0,0));
+-					btScalar vel2Dotn = -solverConstraint.m_contactNormal.dot(rb1?rb1->getLinearVelocity():btVector3(0,0,0)) 
+-						+ solverConstraint.m_relpos2CrossNormal.dot(rb1?rb1->getAngularVelocity():btVector3(0,0,0));
++					btScalar velocityError = target_rel_vel - rel_vel;// * damping;
+ 
+-					rel_vel = vel1Dotn+vel2Dotn;
+-
+-					btScalar positionalError = 0.f;
+-					btScalar	velocityError = restitution - rel_vel;// * damping;
+-
+-					if (penetration>0)
+-					{
+-						positionalError = 0;
+-						velocityError -= penetration / infoGlobal.m_timeStep;
+-					} else
++					if (!infoGlobal.m_splitImpulse)
+ 					{
+-						positionalError = -penetration * infoGlobal.m_erp/infoGlobal.m_timeStep;
+-					}
++						if (penetration>0)
++						{
++							penetrationImpulse = 0;
++							velocityError -= penetration / infoGlobal.m_timeStep;
++						}
++
++						btScalar velocityImpulse = velocityError *solverConstraint.m_jacDiagABInv;
+ 
+-					btScalar  penetrationImpulse = positionalError*solverConstraint.m_jacDiagABInv;
+-					btScalar velocityImpulse = velocityError *solverConstraint.m_jacDiagABInv;
+-					if (!infoGlobal.m_splitImpulse || (penetration > infoGlobal.m_splitImpulsePenetrationThreshold))
+-					{
+ 						//combine position and velocity into rhs
+ 						solverConstraint.m_rhs = penetrationImpulse+velocityImpulse;
+ 						solverConstraint.m_rhsPenetration = 0.f;
+-					} else
++					}
++					else
+ 					{
++						btScalar velocityImpulse = velocityError *solverConstraint.m_jacDiagABInv;
++
+ 						//split position and velocity into rhs and m_rhsPenetration
+ 						solverConstraint.m_rhs = velocityImpulse;
+ 						solverConstraint.m_rhsPenetration = penetrationImpulse;
+@@ -712,7 +675,7 @@
+ 				} else
+ 				{
+ 					//re-calculate friction direction every frame, todo: check if this is really needed
+-					btPlaneSpace1(cp.m_normalWorldOnB,cp.m_lateralFrictionDir1,cp.m_lateralFrictionDir2);
++//					btPlaneSpace1(cp.m_normalWorldOnB,cp.m_lateralFrictionDir1,cp.m_lateralFrictionDir2);
+ 					if ((infoGlobal.m_solverMode & SOLVER_USE_2_FRICTION_DIRECTIONS))
+ 					{
+ 						applyAnisotropicFriction(colObj0,cp.m_lateralFrictionDir2);
+@@ -929,9 +892,9 @@
+ 
+ 							rel_vel = vel1Dotn+vel2Dotn;
+ 
+-							btScalar restitution = 0.f;
++							btScalar target_rel_vel = 0.f;
+ 							btScalar positionalError = solverConstraint.m_rhs;//already filled in by getConstraintInfo2
+-							btScalar	velocityError = restitution - rel_vel * info2.m_damping;
++							btScalar	velocityError = target_rel_vel - rel_vel * info2.m_damping;
+ 							btScalar	penetrationImpulse = positionalError*solverConstraint.m_jacDiagABInv;
+ 							btScalar	velocityImpulse = velocityError *solverConstraint.m_jacDiagABInv;
+ 							solverConstraint.m_rhs = penetrationImpulse+velocityImpulse;
+diff -ru bullet-2.80\src/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.cpp bullet-2.80 Collision Response\src/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.cpp
+--- bullet-2.80\src/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.cpp	2012-06-01 10:44:10.435491400 -0700
++++ bullet-2.80 Collision Response\src/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.cpp	2012-07-12 11:50:03.503031500 -0700
+@@ -346,6 +346,8 @@
+ 	for ( int i=0;i<m_nonStaticRigidBodies.size();i++)
+ 	{
+ 		btRigidBody* body = m_nonStaticRigidBodies[i];
++		body->setOldLinearVelocity(body->getLinearVelocity());
++
+ 		if (body->isActive())
+ 		{
+ 			body->applyGravity();
+@@ -366,8 +368,8 @@
+ 		//if (body->getActivationState() != ISLAND_SLEEPING)
+ 		{
+ 			btTransform interpolatedTransform;
+-			btTransformUtil::integrateTransform(body->getInterpolationWorldTransform(),
+-				body->getInterpolationLinearVelocity(),body->getInterpolationAngularVelocity(),m_localTime*body->getHitFraction(),interpolatedTransform);
++			btTransformUtil::integrateTransform(body->getWorldTransform(),
++				body->getLinearVelocity(),body->getAngularVelocity(),m_localTime*body->getHitFraction(),interpolatedTransform);
+ 			body->getMotionState()->setWorldTransform(interpolatedTransform);
+ 		}
+ 	}
+@@ -506,9 +508,6 @@
+ 	
+ 	///CallbackTriggers();
+ 
+-	///integrate transforms
+-	integrateTransforms(timeStep);
+-
+ 	///update vehicle simulation
+ 	updateActions(timeStep);
+ 	
+@@ -981,6 +980,7 @@
+ 			body->applyDamping(timeStep);
+ 
+ 			body->predictIntegratedTransform(timeStep,body->getInterpolationWorldTransform());
++			body->setCenterOfMassTransform(body->getInterpolationWorldTransform());
+ 		}
+ 	}
+ }
+diff -ru bullet-2.80\src/BulletDynamics/Dynamics/btRigidBody.cpp bullet-2.80 Collision Response\src/BulletDynamics/Dynamics/btRigidBody.cpp
+--- bullet-2.80\src/BulletDynamics/Dynamics/btRigidBody.cpp	2012-07-12 11:45:26.207931200 -0700
++++ bullet-2.80 Collision Response\src/BulletDynamics/Dynamics/btRigidBody.cpp	2012-07-12 11:50:36.409070900 -0700
+@@ -44,6 +44,7 @@
+ 	m_internalType=CO_RIGID_BODY;
+ 
+ 	m_linearVelocity.setValue(btScalar(0.0), btScalar(0.0), btScalar(0.0));
++	m_oldLinearVelocity.setValue(btScalar(0.0), btScalar(0.0), btScalar(0.0));
+ 	m_angularVelocity.setValue(btScalar(0.),btScalar(0.),btScalar(0.));
+ 	m_angularFactor.setValue(1,1,1);
+ 	m_linearFactor.setValue(1,1,1);
+@@ -102,7 +103,7 @@
+ 
+ void btRigidBody::predictIntegratedTransform(btScalar timeStep,btTransform& predictedTransform) 
+ {
+-	btTransformUtil::integrateTransform(m_worldTransform,m_linearVelocity,m_angularVelocity,timeStep,predictedTransform);
++	btTransformUtil::integrateTransform(m_worldTransform,m_oldLinearVelocity,m_angularVelocity,timeStep,predictedTransform);
+ }
+ 
+ void			btRigidBody::saveKinematicState(btScalar timeStep)
+@@ -328,7 +329,7 @@
+ 		//correct the position/orientation based on push/turn recovery
+ 		btTransform newTransform;
+ 		btTransformUtil::integrateTransform(getWorldTransform(),m_pushVelocity,m_turnVelocity,timeStep,newTransform);
+-		setWorldTransform(newTransform);
++		setCenterOfMassTransform(newTransform);
+ 		//m_originalBody->setCompanionId(-1);
+ 	}
+ //	m_deltaLinearVelocity.setZero();
+diff -ru bullet-2.80\src/BulletDynamics/Dynamics/btRigidBody.h bullet-2.80 Collision Response\src/BulletDynamics/Dynamics/btRigidBody.h
+--- bullet-2.80\src/BulletDynamics/Dynamics/btRigidBody.h	2012-06-01 10:44:10.482366400 -0700
++++ bullet-2.80 Collision Response\src/BulletDynamics/Dynamics/btRigidBody.h	2012-07-10 14:55:03.318919100 -0700
+@@ -67,6 +67,8 @@
+ 	btVector3		m_totalForce;
+ 	btVector3		m_totalTorque;
+ 	
++	btVector3		m_oldLinearVelocity;
++
+ 	btScalar		m_linearDamping;
+ 	btScalar		m_angularDamping;
+ 
+@@ -348,6 +350,12 @@
+ 	const btVector3&   getLinearVelocity() const { 
+ 		return m_linearVelocity; 
+ 	}
++
++	const btVector3& getOldLinearVelocity() const
++	{ 
++		return m_oldLinearVelocity; 
++	}
++
+ 	const btVector3&    getAngularVelocity() const { 
+ 		return m_angularVelocity; 
+ 	}
+@@ -358,6 +366,11 @@
+ 		m_linearVelocity = lin_vel; 
+ 	}
+ 
++	inline void setOldLinearVelocity(const btVector3& old_vel)
++	{ 
++		m_oldLinearVelocity = old_vel; 
++	}
++
+ 	inline void setAngularVelocity(const btVector3& ang_vel) 
+ 	{ 
+ 		m_angularVelocity = ang_vel; 

@@ -1,0 +1,282 @@
+--==============================================================================
+--  Include files
+--==============================================================================
+
+addRoot( "calibrator" )
+include( "theme/iphone" )
+include( "script/ui/inputWidgets" )
+include( "script/util/table" )
+
+gui = ObjectPool()
+
+--==============================================================================
+--  UI definition.
+--==============================================================================
+
+--------------------------------------------------------------------------------
+local function ControlPanel( ui, params )
+   local this = params or {}
+
+   this.title       = this.title       or "Calibrator"
+   this.orientation = this.orientation or UI.BoxOrientation.VERTICAL
+   this.hAlign      = this.hAlign      or UI.WidgetAlignment.START
+   this.vAlign      = this.vAlign      or UI.WidgetAlignment.START
+   this.size        = this.size        or { 300, -1 }
+
+   local this = ui.panel( this )
+
+   local name
+   local start
+
+   start = ui.button{
+      text    = "Go",
+      enabled = false,
+      onClick = function( w )
+         if w.text ~= "!!!" then
+            if this.onStart then this.onStart() end
+         else
+            if this.onClearSaved then this.onClearSaved() end
+            name.text = ""
+            name.onEndEdit( name )
+         end
+      end,
+   }
+
+   name = ui.textEntry{
+      flex = 1,
+      onStartEdit = function( w )
+         start.enabled = false
+      end,
+      onEndEdit = function( w )
+         if w.text == "@remove" then
+            start.text = "!!!"
+         else
+            start.text = "Go"
+         end
+         start.enabled = #w.text > 0
+      end,
+   }
+
+   function this.getName()
+      return name.text
+   end
+
+   this.addWidgets{
+      ui.hbox{
+         ui.label{ text="Name" },
+         name,
+         start,
+      },
+      --[[
+      ui.hbox{
+         ui.image{ image="image/ui/close" },
+         ui.image{ image="image/ui/sphere" },
+         ui.image{ image="image/ui/treeplus" },
+      },
+      --]]
+   }
+
+   return this
+end
+
+-----------------------------------------------------------------------------
+local function createDesktop()
+
+   local controlPanel
+   local desktop
+   local dumpButton
+   local stopButton
+   local target
+
+   local data_s -- Session data
+   local data_c -- Current case data
+
+   local offset
+
+   local logFile = Path.userRoot() .. "data.log"
+
+   --==============================================================================
+   -- CALLBACKS
+   --==============================================================================
+   local function saveData()
+      print("Saving into:", logFile )
+      local f = io.open( logFile, "a" )
+      f:write( os.date("\n-- %Y-%m-%d %X\n") )
+      table.serialize( f, data_s )
+      f:write( "\n" )
+      f:close()
+   end
+   local function printSavedData()
+      local f = io.open( logFile, "r" )
+      if f then
+         print( "Printing dumped data" )
+         print( logFile )
+         local sep = "--------------------------------------------------------------------------------"
+         print( sep )
+         print( f:read("*all") )
+         f:close()
+         print( sep )
+      else
+         print( "Error opening data file" )
+         print( logFile )
+      end
+   end
+   local function removeSavedData()
+      print( "Removing all dumped data" )
+      os.remove( logFile )
+   end
+   --[[
+   local i = 1
+   local p = {
+      {0, 460},
+      {0, 0}, {319,0},
+      {0, 479}, {319,479},
+      { 10, 470 },
+      { 15, 465 },
+      { 20, 460 },
+   }
+   --]]
+   local function randomPos()
+      local x = math.random( 320    ) - 1
+      local y = math.random( 480-30 ) - 1  -- Skip status bar.
+      if x < 16 and y < 16 then
+         return randomPos()
+      else
+         return x, y
+      end
+   end
+   local function nextTarget()
+      local x, y = randomPos()
+      --[[
+      local e = p[i]
+      x = e[1]
+      y = e[2]
+      i = i + 1
+      --]]
+      target.position = { x - offset[1], y - offset[2] }
+      data_c = {} -- Make a new entry
+      data_c[1] = { x, y }
+      --print( table.toString(data_c[1]), table.toString(target.position) )
+   end
+   local function pointerPress( w, ev )
+      --print( "P", ev.pointerID, table.toString(ev.position), ev.type )
+      data_c[2] = ev.position
+   end
+   local function pointerMove( w, ev )
+      --print( "M", ev.pointerID, table.toString(ev.position), ev.type )
+   end
+   local function pointerRelease( w, ev )
+      --print( "R", ev.pointerID, table.toString(ev.position), ev.type )
+      data_c[3] = ev.position
+      data_s[#data_s+1] = data_c
+      nextTarget()
+   end
+   local function charHandler( widget, ev )
+      local key = ev.value
+      if key == UI.Key.ESC or key == UI.Key.q then
+         UI.exit()
+      end
+   end
+   local function keyPress( widget, ev )
+      local key = ev.value
+      -- Just keep real keypressed.
+      if ev.repeated then
+         return
+      end
+      if key == UI.Key.SPACE then
+         local pos    = UI.getPointerPosition()
+         local center = menu.center
+         UI.getDesktop().modal( menu, { pos[1] - center[1], pos[2] - center[2] } )
+      end
+   end
+   local function setCallbacks()
+      desktop.onPointerPress   = pointerPress
+      desktop.onPointerMove    = pointerMove
+      desktop.onPointerRelease = pointerRelease
+      target.onPointerPress    = pointerPress
+      target.onPointerMove     = pointerMove
+      target.onPointerRelease  = pointerRelease
+   end
+   local function unsetCallbacks()
+      desktop.onPointerPress   = nil
+      desktop.onPointerMove    = nil
+      desktop.onPointerRelease = nil
+      target.onPointerPress    = nil
+      target.onPointerMove     = nil
+      target.onPointerRelease  = nil
+   end
+   local function startCollecting()
+      local name = controlPanel.getName()
+      --print("start collecting:", name)
+      data_s = { name=name }
+      nextTarget()
+      setCallbacks()
+      controlPanel.hidden = true
+      dumpButton.hidden   = true
+      stopButton.hidden   = false
+      target.hidden       = false
+   end
+   local function stopCollecting()
+      --print("stop collecting")
+      target.hidden       = true
+      stopButton.hidden   = true
+      dumpButton.hidden   = false
+      controlPanel.hidden = false
+      unsetCallbacks()
+      saveData()
+   end
+
+   --==============================================================================
+   -- UI
+   --==============================================================================
+
+   controlPanel = ControlPanel( gui, { position={10, 376} } )
+   controlPanel.onStart      = startCollecting
+   controlPanel.onClearSaved = removeSavedData
+
+   stopButton = gui.label{
+      text     = "x",
+      size     = { 16, 16 },
+      position = {  0,  0 },
+      onClick  = stopCollecting,
+      hidden   = true,
+   }
+
+   dumpButton = gui.label{
+      text     = "",
+      size     = { 16, 16 },
+      position = {  0,  0 },
+      onClick  = printSavedData,
+      hidden   = false,
+   }
+
+   local s = { 32, 32 }
+   offset  = { 15, 17 }
+   target  = gui.image{
+      image    = "target",
+      size     = s,
+      position = {0, 0},
+      hAlign   = UI.WidgetAlignment.START,
+      vAlign   = UI.WidgetAlignment.START,
+      hidden   = true,
+   }
+
+   desktop = gui.desktop{
+      color        = { 0.5, 0.5, 0.5, 1.0 },
+      onChar       = charHandler,
+      onKeyPress   = keyPress,
+      onKeyRelease = keyRelease,
+      controlPanel,
+      stopButton,
+      dumpButton,
+      target,
+   }
+
+   return desktop
+end
+
+math.randomseed( os.time() )
+
+--------------------------------------------------------------------------------
+-- Set the main desktop.
+UI.setDesktop( createDesktop() )

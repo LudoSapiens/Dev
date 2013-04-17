@@ -1,0 +1,10 @@
+customMaterial{
+   program = "colorTex",
+   {
+      colorTex = {
+         data  = image( "image/checker" ),
+         clamp = TexClamp.LAST,
+      },
+      color = vec4( 1, 0, 0, 1 ),
+   }
+}

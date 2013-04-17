@@ -1,0 +1,57 @@
+customMaterial{
+   program = "program/colorTex",
+   {
+      colorTex = {
+         data  = image( "image/white" ),
+         clamp = TexClamp.LAST,
+      },
+      color = vec4( 1, 0, 0, 1 ),
+   }
+}
+
+customMaterial{
+   program = "program/colorTex",
+   {
+      colorTex = {
+         data  = image( "image/checker" ),
+         clamp = TexClamp.LAST,
+      },
+      color = vec4( 1, 0, 0, 1 ),
+   }
+}
+
+customMaterial{
+   program = "program/colorTex",
+   {
+      colorTex = {
+         data  = image( "image/white" ),
+         clamp = TexClamp.LAST,
+      },
+      color = vec4( 0, 1, 0, 1 ),
+   }
+}
+
+customMaterial{
+   program = "program/colorTex",
+   {
+      colorTex = {
+         data  = image( "image/checker" ),
+         clamp = TexClamp.LAST,
+      },
+      color = vec4( 0, 1, 0, 1 ),
+   }
+}
+
+customMaterial{
+   program = "program/color",
+   {
+      color = vec4( 0, 1, 1, 1 ),
+   }
+}
+
+customMaterial{
+   program = "program/color",
+   {
+      color = vec4( 1, 0, 1, 1 ),
+   }
+}

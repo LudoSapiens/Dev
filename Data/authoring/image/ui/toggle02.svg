@@ -1,0 +1,52 @@
+<?xml version="1.0" standalone="no"?>
+
+<svg width="64px" height="30px" viewBox="0 0 64 30">
+<desc>button</desc>
+
+<linearGradient id="grad0" gradientUnits="objectBoundingBox"
+    x1="0%" y1="100%" x2="0%" y2="0%">
+    <stop offset="0%" stop-color="rgb(150,150,150)" />
+    <stop offset="100%" stop-color="rgb(255,255,255)" />
+</linearGradient>
+
+<radialGradient id="grad1" gradientUnits="objectBoundingBox"
+    cx="50%" cy="90%" r="50%">
+    <stop offset="0%" stop-color="rgb(230,230,230)" />
+    <stop offset="20%" stop-color="rgb(230,230,230)" />
+    <stop offset="100%" stop-color="rgb(120,220,120)" />
+</radialGradient>
+
+<linearGradient id="grad2" gradientUnits="objectBoundingBox"
+    x1="0%" y1="100%" x2="0%" y2="0%">
+    <stop offset="0%" stop-color="rgb(230,230,230)" />
+    <stop offset="100%" stop-color="rgb(150,150,150)" />
+</linearGradient>
+
+<radialGradient id="grad3" gradientUnits="objectBoundingBox"
+    cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="rgb(255,255,255)" />
+    <stop offset="100%" stop-color="rgb(230,230,230)" />
+</radialGradient>
+
+<linearGradient id="grad4" gradientUnits="objectBoundingBox"
+    x1="0%" y1="100%" x2="0%" y2="0%">
+    <stop offset="0%" stop-color="rgb(190,190,190)" />
+    <stop offset="100%" stop-color="rgb(110,110,110)" />
+</linearGradient>
+
+
+<rect x="0" y="0" width="64" height="30" rx="16"
+fill="black" shape-rendering="geometricPrecision" />
+
+<rect x="2" y="2" width="60" height="26" rx="14"
+fill="url(#grad0)"/>
+
+<rect x="14" y="2" width="36" height="26" rx="2"
+fill="url(#grad4)"/>
+<rect x="15" y="4" width="34" height="22" rx="2"
+fill="url(#grad1)"/>
+<rect x="18" y="5" width="28" height="4" rx="4"
+fill="url(#grad3)"/>
+
+</svg>
+

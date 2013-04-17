@@ -1,0 +1,9 @@
+camera{
+   position = {2,3,4},
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+staticObject{
+   geometry = geometry( "regression/material/cube_single" ),
+   material = "regression/material/custom",
+}

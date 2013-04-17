@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{82DACBC8-0951-4F61-BF50-7574DAE0C8C6}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>CGMath</RootNamespace>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Config\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PreprocessorDefinitions>COMPILING_CGMATH=1;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PreprocessorDefinitions>COMPILING_CGMATH=1;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>COMPILING_CGMATH=1;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>COMPILING_CGMATH=1;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\AABBox.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\AABBTree.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\AARect.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\BIH.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\CGConst.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\CGMath.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Dist.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Distributions.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Frustum.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Geom.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Grid.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\HEALPix.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\HGrid.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Mat2.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Mat3.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Mat4.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Math.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Noise.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Octree.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Plane.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Polygon.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Quadric.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Quat.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Random.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Range.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Ray.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\RayCaster.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Ref.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Sphere.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\StdDefs.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Trig.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Variant.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Vec2.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Vec3.h" />
+    <ClInclude Include="..\..\..\..\..\Projects\CGMath\Vec4.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\CGMath\AABBTree.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\CGMath\BIH.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\CGMath\Dist.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\CGMath\HGrid.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\CGMath\Noise.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\CGMath\Octree.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\CGMath\Random.cpp" />
+    <ClCompile Include="..\..\..\..\..\Projects\CGMath\Variant.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Base\Base.vcxproj">
+      <Project>{7cdcc060-d599-4217-9bdc-21d2d8abd5f1}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

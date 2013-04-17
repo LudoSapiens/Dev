@@ -1,0 +1,30 @@
+camera{
+   position = { 0, 10, 20 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+light{
+   shape     = "directional",
+   position  = {-10, 10, 10},
+   intensity = vec3(1.0),
+   lookAt    = { {0,0,0}, {0,0,-1} },
+}
+
+staticObject{
+   friction    = 0.5,
+   restitution = 0.5,
+   geometry = geometry( "geometry/physics/base" ),
+   --geometry = geometry( "geometry/physics/box", {size=vec3(10,1,10)} ),
+   position = { 0, -1, 0 },
+}
+
+for i=0,10 do
+object{
+   mass     = 1,
+   friction = 1,
+   geometry = geometry( "geometry/physics/box", { size=vec3(0.2), color="red" } ),
+   material = material( "geometry/physics/colors" ),
+   position = { 2, 5+i, 2 },
+}
+end

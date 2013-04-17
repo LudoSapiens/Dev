@@ -1,0 +1,15 @@
+local c = {
+   vec4(0.0, 0.0, 0.0, 1.0),
+   vec4(0.3, 0.3, 0.3, 1.0),
+   vec4(1.0, 1.0, 1.0, 1.0),
+}
+
+for i,v in ipairs( c ) do
+   baseMaterial{
+      color = v,
+      {
+         clamp = TexClamp.LAST,
+         color = image( "image/white" )
+      },
+   }
+end

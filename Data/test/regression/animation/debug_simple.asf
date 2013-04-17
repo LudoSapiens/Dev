@@ -1,0 +1,99 @@
+# AST/ASF file generated using VICON BodyLanguage
+# -----------------------------------------------
+:version 1.10
+:name VICON
+:units
+  mass 1.0
+  length 1.0
+  angle deg
+:documentation
+   Sample ASF file created by hand for debugging purposes.
+:root
+   order TX TY TZ RX RY RZ
+   axis XYZ
+   position 0 0 0
+   orientation 0 0 0
+:bonedata
+  begin
+     id 1
+     name torso
+     direction 0.0 1.0 0.0
+     length 2.0
+     axis 0 0 0   XYZ
+     dof rx ry rz
+     limits (-inf inf)
+            (-inf inf)
+            (-inf inf)
+  end
+  begin
+     id 2
+     name neck
+     direction 0.0 1.0 0.1
+     length 1.0
+     axis 0 0 0   XYZ
+     dof rx ry rz
+     limits (-inf inf)
+            (-inf inf)
+            (-inf inf)
+  end
+  begin
+     id 3
+     name head
+     direction 0.0 1.0 0.0
+     length 1.0
+     axis 0 0 0   XYZ
+     dof rx ry rz
+     limits (-inf inf)
+            (-inf inf)
+            (-inf inf)
+  end
+  begin
+     id 4
+     name larm
+     direction 1.0 0.0 0.0
+     length 3.0
+     axis 0 90 180   XYZ
+     dof rx ry rz
+     limits (-inf inf)
+            (-inf inf)
+            (-inf inf)
+  end
+  begin
+     id 5
+     name lhand
+     direction 1.0 1.0 0.0
+     length 0.5
+     axis 0 0 0   XYZ
+     dof rx rz
+     limits (-inf inf)
+            (-inf inf)
+  end
+  begin
+     id 6
+     name rarm
+     direction -1.0 0.0 0.0
+     length 3.0
+     axis 0 0 0   XYZ
+     dof rx ry rz
+     limits (-inf inf)
+            (-inf inf)
+            (-inf inf)
+  end
+  begin
+     id 7
+     name rhand
+     direction -1.0 1.0 0.0
+     length 0.5
+     axis 0 0 0   XYZ
+     dof rx rz
+     limits (-inf inf)
+            (-inf inf)
+  end
+:hierarchy
+  begin
+    root torso
+    torso neck larm rarm
+    neck head
+    larm lhand
+    rarm rhand
+  end

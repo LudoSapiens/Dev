@@ -1,0 +1,594 @@
+--=============================================================================
+-- Copyright (c) 2008, Ludo Sapiens Inc.
+-- All rights reserved.
+--
+-- These coded instructions, statements, and computer programs contain
+-- unpublished, proprietary information and are protected by Federal copyright
+-- law. They may not be disclosed to third parties or copied or duplicated in
+-- any form, in whole or in part, without prior written consent.
+--=============================================================================
+
+--==============================================================================
+-- INPUT WIDGETS
+--==============================================================================
+-- These input widgets must specify both an 'obj' parameter as well as an
+-- associated string 'param'.
+-- The widget will then automatically retrieve obj[param] on update.
+-- Samples:
+--   ui.vec3Input{ text="Pos", object=manip, param="position" }
+--   ui.vec4Input{ text="Col", object=manip, param="color", min=0, max=1, step=0.01 }
+--   ui.vec3Input{ text="Subd", min=1, step=1, object=manip, param="subdivision", format="%d" }
+
+--local labelWidth = 80
+--local labelFlex  = 0
+
+local labelWidth = -1
+local labelFlex  = 1
+
+--==============================================================================
+-- floatInput
+--==============================================================================
+function UI.floatInput( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or 0
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=labelFlex }
+      this.addWidget( label )
+   end
+   local x = ui.valueEditor{ value=value, min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format=params.format or "%.2f", enabled=params.enabled, integer=params.integer }
+   this.addWidget( x )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         if this.onModify then
+            this.onModify( this, x.value )
+         elseif obj then
+            obj[param] = x.value
+         end
+      end
+   end
+
+   x.onModify = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock        = true
+      local value = (obj and obj[param]) or 0
+      x.value     = value
+      lock        = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return x.value
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      x.value = v
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- vec2Input
+--==============================================================================
+function UI.vec2Input( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or {0,0}
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=labelFlex }
+      this.addWidget( label )
+   end
+   local x = ui.valueEditor{ value=value[1], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format=params.format or "%.2f", enabled=params.enabled, integer=params.integer }
+   local y = ui.valueEditor{ value=value[2], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format=params.format or "%.2f", enabled=params.enabled, integer=params.integer }
+   this.addWidget( x )
+   this.addWidget( y )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         local value = vec2( x.value, y.value )
+         if this.onModify then
+            this.onModify( this, value )
+         elseif obj then
+            obj[param] = value
+         end
+      end
+   end
+
+   x.onModify = onModify
+   y.onModify = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock = true
+      local value = (obj and obj[param]) or {0,0}
+      x.value=value[1]
+      y.value=value[2]
+      lock = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return vec2( x.value, y.value )
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      x.value = v[1]
+      y.value = v[2]
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- vec3Input
+--==============================================================================
+function UI.vec3Input( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or {0,0,0}
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=labelFlex }
+      this.addWidget( label )
+   end
+   local x = ui.valueEditor{ value=value[1], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format = params.format or "%.3f", enabled=params.enabled, integer=params.integer }
+   local y = ui.valueEditor{ value=value[2], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format = params.format or "%.3f", enabled=params.enabled, integer=params.integer }
+   local z = ui.valueEditor{ value=value[3], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format = params.format or "%.3f", enabled=params.enabled, integer=params.integer }
+   this.addWidget( x )
+   this.addWidget( y )
+   this.addWidget( z )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         local value = vec3( x.value, y.value, z.value )
+         if this.onModify then
+            this.onModify( this, value )
+         elseif obj then
+            obj[param] = value
+         end
+      end
+   end
+
+   x.onModify = onModify
+   y.onModify = onModify
+   z.onModify = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock = true
+      local value = (obj and obj[param]) or {0,0,0}
+      x.value=value[1]
+      y.value=value[2]
+      z.value=value[3]
+      lock = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return vec3( x.value, y.value, z.value )
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      x.value = v[1]
+      y.value = v[2]
+      z.value = v[3]
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- vec4Input
+--==============================================================================
+function UI.vec4Input( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or {0,0,0,0}
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=labelFlex }
+      this.addWidget( label )
+   end
+   local x = ui.valueEditor{ value=value[1], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format = params.format or "%.2f", enabled=params.enabled, integer=params.integer }
+   local y = ui.valueEditor{ value=value[2], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format = params.format or "%.2f", enabled=params.enabled, integer=params.integer }
+   local z = ui.valueEditor{ value=value[3], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format = params.format or "%.2f", enabled=params.enabled, integer=params.integer }
+   local w = ui.valueEditor{ value=value[4], min=params.min or -10000, max=params.max or 10000, step=params.step or 0.01, format = params.format or "%.2f", enabled=params.enabled, integer=params.integer }
+   this.addWidget( x )
+   this.addWidget( y )
+   this.addWidget( z )
+   this.addWidget( w )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         local value = vec4( x.value, y.value, z.value, w.value )
+         if this.onModify then
+            this.onModify( this, value )
+         elseif obj then
+            obj[param] = value
+         end
+      end
+   end
+
+   x.onModify = onModify
+   y.onModify = onModify
+   z.onModify = onModify
+   w.onModify = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock = true
+      local value = (obj and obj[param]) or {0,0,0,0}
+      x.value=value[1]
+      y.value=value[2]
+      z.value=value[3]
+      w.value=value[4]
+      lock = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return vec4( x.value, y.value, z.value, w.value )
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      x.value = v[1]
+      y.value = v[2]
+      z.value = v[3]
+      w.value = v[4]
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- oriInput
+--==============================================================================
+function UI.oriInput( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or quat()
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=labelFlex }
+      this.addWidget( label )
+   end
+   local a,c = value.toAxisCir()
+   local s = {52,-1}
+   local x = ui.valueEditor{ size=s, value=a.x, min=-1, max=1, step=params.step or 0.001, format = params.format or "%.3f", enabled=params.enabled }
+   local y = ui.valueEditor{ size=s, value=a.y, min=-1, max=1, step=params.step or 0.001, format = params.format or "%.3f", enabled=params.enabled }
+   local z = ui.valueEditor{ size=s, value=a.z, min=-1, max=1, step=params.step or 0.001, format = params.format or "%.3f", enabled=params.enabled }
+   local w = ui.valueEditor{ size=s, value=c,   min=-1, max=1, step=params.step or 0.001, format = params.format or "%.3f", enabled=params.enabled }
+   this.addWidget( x )
+   this.addWidget( y )
+   this.addWidget( z )
+   this.addWidget( w )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         local value = this.getValue()
+         if this.onModify then
+            this.onModify( this, value )
+         elseif obj then
+            obj[param] = value
+         end
+      end
+   end
+
+   x.onModify = onModify
+   y.onModify = onModify
+   z.onModify = onModify
+   w.onModify = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock = true
+      local value = (obj and obj[param]) or quat()
+      this.setValue( value )
+      lock = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return quat( {x.value,y.value,z.value}, w.value )
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      lock = true
+      local a, c = v.toAxisCir()
+      x.value = a.x
+      y.value = a.y
+      z.value = a.z
+      w.value = c
+      lock = false
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- rgbInput
+--==============================================================================
+function UI.rgbInput( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or vec3(0,0,0)
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=labelFlex }
+      this.addWidget( label )
+   end
+   local col = ui.rgbEditor{ value=value, enabled=params.enabled }
+   this.addWidget( col )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         local value = col.value
+         if this.onModify then
+            this.onModify( this, value )
+         elseif obj then
+            obj[param] = value
+         end
+      end
+   end
+
+   col.onModify = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock        = true
+      local value = (obj and obj[param]) or vec3(0,0,0)
+      col.value   = value
+      lock        = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return col.value
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      col.value = v
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- rgbaInput
+--==============================================================================
+function UI.rgbaInput( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or vec4(0,0,0,0)
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=labelFlex }
+      this.addWidget( label )
+   end
+   local col = ui.rgbaEditor{ value=value, enabled=params.enabled }
+   this.addWidget( col )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         local value = col.value
+         if this.onModify then
+            this.onModify( this, value )
+         elseif obj then
+            obj[param] = value
+         end
+      end
+   end
+
+   col.onModify = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock        = true
+      local value = (obj and obj[param]) or vec4(0,0,0,0)
+      col.value   = value
+      lock        = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return col.value
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      col.value = v
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- menuInput
+--==============================================================================
+function UI.menuInput( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or 1
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=labelFlex }
+      this.addWidget( label )
+   end
+   local enums = ui.comboBox{ size={params.comboSize or 120, -1}, menu=params.menu , itemId=value, enabled=params.enabled }
+   this.addWidget( enums )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         if this.onModify then
+            this.onModify( this, this.getValue() )
+         elseif obj then
+            obj[param] = this.getValue()
+         end
+      end
+   end
+
+   enums.onItemChanged = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock         = true
+      local value  = (obj and obj[param]) or 1
+      enums.itemId = value
+      lock         = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      local value = enums.itemId
+      local nval  = tonumber(value)
+      value       = nval or value
+      return value
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      enums.itemId = v
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- stringInput
+--==============================================================================
+function UI.stringInput( ui, params )
+   params.vAlign = params.vAlign or UI.WidgetAlignment.START
+   local obj     = params.object
+   local param   = params.param
+   local value   = params.value or (obj and obj[param]) or ""
+   local lock    = false
+
+   -----------------------------------------------------------------------------
+   params.gap = params.gap or 4
+   local this = ui.hbox( params )
+   -----------------------------------------------------------------------------
+
+   if params.text then
+      local label = ui.label{ text=params.text, size={params.labelWidth or labelWidth, -1}, flex=params.labelFlex or labelFlex }
+      this.addWidget( label )
+   end
+   local te = ui.textEntry{ text=value, size={params.textWidth or 100, -1 }, enabled=params.enabled, flex=params.textFlex or 0 }
+   this.addWidget( te )
+
+   -----------------------------------------------------------------------------
+   local function onModify()
+      if not lock then
+         local value = te.text
+         if this.onModify then
+            this.onModify( this, value )
+         elseif obj then
+            obj[param] = value
+         end
+      end
+   end
+
+   --te.onEdit = onModify
+   te.onModify = onModify
+
+   -----------------------------------------------------------------------------
+   function this.update()
+      lock        = true
+      local value = (obj and obj[param]) or ""
+      te.text     = value
+      lock        = false
+   end
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return te.text
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      te.text = v
+   end
+   -----------------------------------------------------------------------------
+   return this
+end
+
+--==============================================================================
+-- boolInput
+--==============================================================================
+function UI.boolInput( ui, params )
+   local this = ui.toggle( params )
+
+   -----------------------------------------------------------------------------
+   function this.getValue()
+      return this.toggled
+   end
+   -----------------------------------------------------------------------------
+   function this.setValue( v )
+      this.toggled = v
+   end
+   -----------------------------------------------------------------------------
+   function this.onClick( w )
+      if this.onModify then
+         this.onModify( w, w.toggled )
+      end
+   end
+   -----------------------------------------------------------------------------
+   return this
+end

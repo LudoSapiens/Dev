@@ -1,0 +1,31 @@
+print "Welcome to our project"
+
+Defaults.Variables.variants = Variant(["debug"])
+
+StandardSettings = Settings( source_paths=["src"], include_paths=[".."])
+StandardVariants = Variant(["warnings", "multi-thread"])
+if Defaults.Env.PlatformFlavor == "linux":
+   StandardVariants.add( "pic" )
+# Allow inline asm blocks.
+#StandardVariants.add( "asm" )
+# Should have some processor detection code.
+StandardVariants.add( "sse" )
+StandardVariants.add( "C++11" )
+
+StandardSettings.defines["MOTION_BULLET"] = 1
+
+ThirdpartyPath = BuildSystem.Defaults.Tools.FileManager.path.join(
+   "..",
+   "..",
+   "Thirdparty",
+   "platform",
+   BuildSystem.Defaults.Env.PlatformFlavor
+)
+ThirdpartyIncludePath = BuildSystem.Defaults.Tools.FileManager.path.join(
+   ThirdpartyPath,
+   "include"
+)
+ThirdpartyLibraryPath = BuildSystem.Defaults.Tools.FileManager.path.join(
+   ThirdpartyPath,
+   "lib"
+)

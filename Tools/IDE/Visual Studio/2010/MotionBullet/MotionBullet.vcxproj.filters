@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{bb165b6e-3a45-4ce6-8218-75014ba55026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Attractor">
+      <UniqueIdentifier>{c90db21f-f6a1-4833-ba1e-5c61678b9a46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Collision">
+      <UniqueIdentifier>{fbed2b26-e0bc-485a-88bf-b607f327990f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Constraint">
+      <UniqueIdentifier>{50654b3a-4087-4146-81c6-bb9a552264a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\World">
+      <UniqueIdentifier>{59284714-1485-4d5e-b230-bca2f06f7cb2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Attractor\Attractor.cpp">
+      <Filter>Source\Attractor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Attractor\BasicAttractors.cpp">
+      <Filter>Source\Attractor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Attractor\GravitationalAttractor.cpp">
+      <Filter>Source\Attractor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Collision\BasicShapes.cpp">
+      <Filter>Source\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Collision\CollisionGroup.cpp">
+      <Filter>Source\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Collision\CollisionInfo.cpp">
+      <Filter>Source\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Collision\CollisionShape.cpp">
+      <Filter>Source\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Constraint\CharacterConstraint.cpp">
+      <Filter>Source\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Constraint\Constraint.cpp">
+      <Filter>Source\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Constraint\Joints.cpp">
+      <Filter>Source\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\Constraint\Springs.cpp">
+      <Filter>Source\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\World\MotionWorld.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Projects\MotionBullet\World\RigidBody.cpp">
+      <Filter>Source\World</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Attractor\Attractor.h">
+      <Filter>Source\Attractor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Attractor\BasicAttractors.h">
+      <Filter>Source\Attractor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Attractor\GravitationalAttractor.h">
+      <Filter>Source\Attractor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Collision\BasicShapes.h">
+      <Filter>Source\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Collision\CollisionGroup.h">
+      <Filter>Source\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Collision\CollisionInfo.h">
+      <Filter>Source\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Collision\CollisionShape.h">
+      <Filter>Source\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Constraint\CharacterConstraint.h">
+      <Filter>Source\Constraint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Constraint\Constraint.h">
+      <Filter>Source\Constraint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Constraint\Joints.h">
+      <Filter>Source\Constraint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\Constraint\Springs.h">
+      <Filter>Source\Constraint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\World\MotionWorld.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Projects\MotionBullet\World\RigidBody.h">
+      <Filter>Source\World</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

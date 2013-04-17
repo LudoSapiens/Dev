@@ -1,0 +1,83 @@
+--=============================================================================
+-- Copyright (c) 2008, Ludo Sapiens Inc.
+-- All rights reserved.
+--
+-- These coded instructions, statements, and computer programs contain
+-- unpublished, proprietary information and are protected by Federal copyright
+-- law. They may not be disclosed to third parties or copied or duplicated in
+-- any form, in whole or in part, without prior written consent.
+--=============================================================================
+
+-- This test verifies that the collision callback mechanism works.
+-- A ball cascades down blocks, and the wall takes the color of the blocks hit.
+
+camera{
+   position = { 0, 1, 25 },
+   lookAt   = { {0,1,0}, {0,1,0} },
+   fovMode  = "smallest",
+}
+
+local orientations = {
+   quat( vec3(0,0,1), -0.05 ),
+   quat( vec3(0,0,1),  0.05 ),
+}
+
+local colors = {
+   -- Colors
+   "black"  ,
+   "white"  ,
+   "yellow" ,
+   "magenta",
+   "cyan"   ,
+   "blue"   ,
+   "green"  ,
+   "red"    ,
+}
+local n = #colors
+
+-- Slanted blocks placed in a V-shape configuration.
+
+for i,c in ipairs(colors) do
+   local parity = (i % #orientations)
+   local q = orientations[ parity + 1 ]
+   local x = (parity * 2 - 1) * 1.5
+   local y = 2*i - n
+   staticObject{
+      geometry    = geometry( "geometry/physics/box", { size=vec3(1.5,0.1,0.5), color=c, detailsError=1.0 } ),
+      material    = material( "geometry/physics/colors" ),
+      position    = { x, y, 0 },
+      orientation = q,
+      attributes  = {
+         matColor = c,
+      },
+   }
+end
+
+-- The falling ball.
+local ball = object{
+   senses     = 0x1,
+   geometry   = geometry( "geometry/physics/ball", { radius=0.25, color="gray" } ),
+   material   = material( "geometry/physics/colors" ),
+   position   = { -1, n+1, 0 },
+   attributes = {
+      matColor = "gray",
+   },
+}
+
+-- The "light" (just a colored indicator).
+local light = staticObject{
+   geometry   = geometry( "geometry/physics/box", { size=vec3(5,n+1,0.5), color="gray", detailsError=1.0 } ),
+   material   = material( "geometry/physics/colors" ),
+   position   = { 0, 1, -1 },
+   brain      = brain(
+      "brain/regression/physics/collisions_callback",
+      {
+         contactReceptor{ receivingEntity=ball },
+      }
+   ),
+   attributes = {
+      matColor = "gray",
+   },
+}
+
+--print("CR:", contactReceptor()) -- Verify than an extra one gets properly garbage collected.

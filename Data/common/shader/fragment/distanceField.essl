@@ -1,0 +1,38 @@
+//
+// Distance field GLSL fragment shader.
+//
+
+#extension GL_OES_standard_derivatives : enable
+
+varying highp vec2 mapping;
+
+uniform sampler2D colorTex;
+uniform highp vec4 color;
+
+void main( void )
+{
+   //const float scaleFactor = 64.0; // Normal  (1024/16.0)==(texSize/(2.0*maxDistance)
+   //const float scaleFactor = 48.0; // Sharp
+   const highp float scaleFactor = 32.0; // Extra sharp
+   highp float w = fwidth(mapping.x)*scaleFactor;
+
+   // Main
+   highp vec4  t = texture2D( colorTex, mapping );
+   highp float d = t.a;
+
+   //float f = smoothstep( 0.5-w, 0.5+w, d );
+   highp float f = clamp((d - (0.5-w))/(2.0*w), 0.0, 1.0);
+   highp vec4 c  = color*f;
+
+   // Border
+   //highp float b = clamp((d - (0.3-w))/(2.0*w), 0.0, 1.0);
+   //c             = c + vec4(0.0,0.0,0.0,1.0)*(b*(1.0-c.a));
+
+   // Shadow
+   //highp vec4  t2 = texture2D( colorTex, mapping+vec2(-0.004,0.004) );
+   //highp float d2 = t2.a;
+   //highp float s  = clamp((d2 - (0.5-0.3))/(2.0*0.3), 0.0, 1.0);
+   //c              = c + vec4(0.0,0.0,0.0,0.6)*(s*(1.0-c.a));
+
+   gl_FragColor = c;
+}

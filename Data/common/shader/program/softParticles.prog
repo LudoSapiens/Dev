@@ -1,0 +1,2 @@
+vertex shader/vertex/cm_softParticles
+fragment shader/fragment/softParticles

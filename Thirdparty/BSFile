@@ -1,0 +1,523 @@
+import os
+import subprocess
+
+def static_lib_file(name):
+   format = BuildSystem.Defaults.Tools.Compiler.static_lib_format
+   return BuildSystem.Utilities.formatName(format, name)
+
+# Setting some tweak variables
+# Note: the os.environ assignments could change other BSFiles
+thirdparty_maps = dict()
+if "PREFIX" in os.environ:
+   thirdparty_maps["INSTALL_DIR"] = BuildSystem.Defaults.Tools.FileManager.path.to_unix(
+      os.environ["PREFIX"]
+   )
+else:
+   thirdparty_maps["INSTALL_DIR"] = BuildSystem.Defaults.Tools.FileManager.path.to_unix(
+      BuildSystem.Defaults.Tools.FileManager.path.join(
+         BuildSystem.Utilities.Env[-1].realpath,
+         "platform",
+         BuildSystem.Defaults.Env.PlatformFlavor
+      )
+   )
+
+print "Installing in:", thirdparty_maps["INSTALL_DIR"]
+if BuildSystem.Defaults.Env.PlatformFlavor == "mingw":
+   #MinGW
+   thirdparty_maps["LIBPNG_MAKEFILE"] = "makefile.gcc"
+   thirdparty_maps["LUA_PLATFORM"] = "generic"
+   #No CFLAGS/CXXFLAGS overrides
+elif BuildSystem.Defaults.Env.PlatformFlavor == "cygwin":
+   #Cygwin
+   thirdparty_maps["LIBPNG_MAKEFILE"] = "makefile.gcc"
+   thirdparty_maps["LUA_PLATFORM"] = "generic"
+   #No CFLAGS/CXXFLAGS overrides
+elif BuildSystem.Defaults.Env.PlatformFlavor == "msvc":
+   #MSVC
+   thirdparty_maps["LIBPNG_MAKEFILE"] = "makefile.vcwin32"
+   thirdparty_maps["LUA_PLATFORM"] = "generic"
+   #No CFLAGS/CXXFLAGS overrides
+elif BuildSystem.Defaults.Env.PlatformFlavor == "linux":
+   #Linux
+   thirdparty_maps["LIBPNG_MAKEFILE"] = "makefile.linux"
+   thirdparty_maps["LUA_PLATFORM"] = "linux"
+   os.environ["CFLAGS"] = "-fPIC"
+   os.environ["CXXFLAGS"] = os.environ["CFLAGS"]
+elif BuildSystem.Defaults.Env.PlatformFlavor == "macosx":
+   #MacOSX
+   thirdparty_maps["LIBPNG_MAKEFILE"] = "makefile.darwin"
+   thirdparty_maps["LUA_PLATFORM"] = "macosx"
+   os.environ["CFLAGS"] = "-fPIC"
+   os.environ["CXXFLAGS"] = os.environ["CFLAGS"]
+else:
+   raise RuntimeError, "Unknown platform: %s %s" % (str(BuildSystem.Defaults.Env.Platform),
+                                                    str(BuildSystem.Defaults.Env.PlatformFlavor))
+
+#So that the imported classe(s), and the code above are available for the code below
+globals().update(locals())
+
+class BulletHandler(AutoconfHandler, CopyHandler):
+   def __init__(self):
+      self.version = "-2.80-rev2531"
+      src_path =  BuildSystem.Defaults.Tools.FileManager.path.join("src", "bullet")
+      conf_flags = [ "--prefix=" + thirdparty_maps["INSTALL_DIR"] ]
+      if Defaults.Env.PlatformFlavor == "linux":
+         conf_flags.append("--with-pic")
+      AutoconfHandler.__init__(self, "Bullet", src_path, steps=["configure", "build", "install"],
+                               conf_flags=conf_flags)
+      CopyHandler.__init__(self, "Bullet")
+      src_files_path = BuildSystem.Defaults.Tools.FileManager.path.join(src_path, "src")
+      src_files_path_len = len(src_files_path)
+      # Map header files.
+      for root, dirs, files in os.walk(src_files_path, topdown=False):
+         for name in files:
+            if name[-2:] == ".h":
+               srcFile = BuildSystem.Defaults.Tools.FileManager.path.join(root, name)
+               dstFile = BuildSystem.Defaults.Tools.FileManager.path.join(thirdparty_maps["INSTALL_DIR"], "include", "Bullet", root[src_files_path_len+1:], name)
+               self.addMapping( srcFile, dstFile )
+      path = BuildSystem.Defaults.Tools.FileManager.path
+      files = None
+      dst_dir = path.join( thirdparty_maps["INSTALL_DIR"], "lib" )
+      if BuildSystem.Defaults.Env.PlatformFlavor == "macosx":
+         files = [
+            "src/BulletCollision/Release/libBulletCollision.a",
+            "src/BulletDynamics/Release/libBulletDynamics.a",
+            "src/BulletMultiThreaded/Release/libBulletMultiThreaded.a",
+            "src/BulletSoftBody/Release/libBulletSoftBody.a",
+            "src/LinearMath/Release/libLinearMath.a",
+         ]
+      elif BuildSystem.Defaults.Env.PlatformFlavor == "msvc":
+         files = [ "" ]
+      else:
+         files = [
+            "src/BulletCollision/libBulletCollision.a",
+            "src/BulletDynamics/libBulletDynamics.a",
+            "src/BulletMultiThreaded/libBulletMultiThreaded.a",
+            "src/BulletSoftBody/libBulletSoftBody.a",
+            "src/LinearMath/libLinearMath.a",
+         ]
+      for f in files:
+         full = path.join(src_path, f)
+         if path.exists(full):
+            #print("Full: " + full)
+            self.addMapping( full, path.join(dst_dir, path.basename(f)) )
+         #else:
+         #   print("Missing file: " + full)
+   def pre_install(self):
+      if not BuildSystem.Defaults.Tools.FileManager.path.exists(self.source_dir):
+         src_dir = BuildSystem.Defaults.Tools.FileManager.path.dirname(self.source_dir)
+         archive_dir = self.source_dir + self.version
+         archive_file = archive_dir + ".zip"
+         BuildSystem.Utilities.uncompress(archive_file, src_dir)
+         BuildSystem.Defaults.Tools.FileManager.rename(archive_dir, self.source_dir)
+   def post_install(self):
+      pass #print(self.filemap)
+   def __call__(self):
+      self.pre_install()
+      self.run()
+      self.post_install()
+
+class FreetypeHandler(AutoconfHandler, CopyHandler):
+   def __init__(self):
+      self.version = "-2.4.6" # See VS2008 circa line 311.
+      src_path =  BuildSystem.Defaults.Tools.FileManager.path.join("src", "freetype")
+      conf_flags = [ "--prefix=" + thirdparty_maps["INSTALL_DIR"] ]
+      conf_flags.append("--disable-shared")
+      conf_flags.append("--without-bzip2")
+      AutoconfHandler.__init__(self, "Freetype", src_path, conf_flags=conf_flags)
+   def pre_install(self):
+      if not BuildSystem.Defaults.Tools.FileManager.path.exists(self.source_dir):
+         src_dir = BuildSystem.Defaults.Tools.FileManager.path.dirname(self.source_dir)
+         archive_dir = self.source_dir + self.version
+         archive_file = archive_dir + ".tar.bz2"
+         BuildSystem.Utilities.uncompress(archive_file, src_dir)
+         BuildSystem.Defaults.Tools.FileManager.rename(archive_dir, self.source_dir)
+   def post_install(self):
+      pass
+   def __call__(self):
+      self.pre_install()
+      self.run()
+      self.post_install()
+
+class LibOggHandler(AutoconfHandler):
+   def __init__(self):
+      self.version = "-1.2.2"
+      src_path = BuildSystem.Defaults.Tools.FileManager.path.join("src", "libogg")
+      conf_flags = [ "--prefix=" + thirdparty_maps["INSTALL_DIR"] ]
+      conf_flags.append("--disable-shared")
+      AutoconfHandler.__init__(self, "LibOgg", src_path, steps=["configure", "build", "install"],
+                               conf_flags=conf_flags)
+   def pre_install(self):
+      if not BuildSystem.Defaults.Tools.FileManager.path.exists(self.source_dir):
+         src_dir = BuildSystem.Defaults.Tools.FileManager.path.dirname(self.source_dir)
+         archive_dir = self.source_dir + self.version
+         archive_file = archive_dir + ".tar.gz"
+         BuildSystem.Utilities.uncompress(archive_file, src_dir)
+         BuildSystem.Defaults.Tools.FileManager.rename(archive_dir, self.source_dir)
+   def post_install(self):
+      pass
+   def __call__(self):
+      self.pre_install()
+      self.run()
+      self.post_install()
+
+class LibPNGHandler(AutoconfHandler):
+   def __init__(self):
+      self.version = "-1.2.18"
+      src_path =  BuildSystem.Defaults.Tools.FileManager.path.join("src", "libpng")
+      conf_flags = [ "--prefix=" + thirdparty_maps["INSTALL_DIR"] ]
+      conf_flags.append("--disable-shared")
+      conf_flags.append("--without-libpng-compat")
+      if Defaults.Env.PlatformFlavor == "linux":
+         conf_flags.append("--with-pic")
+      #Required to find ZLib just installed
+      conf_flags.append("CFLAGS=-I" + thirdparty_maps["INSTALL_DIR"] + "/include")
+      conf_flags.append("LDFLAGS=-L" + thirdparty_maps["INSTALL_DIR"] + "/lib")
+      AutoconfHandler.__init__(self, "LibPNG", src_path, steps=["configure", "build", "install"],
+                               conf_flags=conf_flags)
+   def pre_install(self):
+      if not BuildSystem.Defaults.Tools.FileManager.path.exists(self.source_dir):
+         src_dir = BuildSystem.Defaults.Tools.FileManager.path.dirname(self.source_dir)
+         archive_dir = self.source_dir + self.version
+         archive_file = archive_dir + ".tar.bz2"
+         BuildSystem.Utilities.uncompress(archive_file, src_dir)
+         BuildSystem.Defaults.Tools.FileManager.rename(archive_dir, self.source_dir)
+   def post_install(self):
+      pass
+   def __call__(self):
+      self.pre_install()
+      self.run()
+      self.post_install()
+
+class LibVorbisHandler(AutoconfHandler):
+   def __init__(self):
+      self.version = "-1.3.2"
+      src_path =  BuildSystem.Defaults.Tools.FileManager.path.join("src", "libvorbis")
+      makefile = BuildSystem.Defaults.Tools.FileManager.path.join("scripts", thirdparty_maps["LIBPNG_MAKEFILE"])
+      conf_flags = [ "--prefix=" + thirdparty_maps["INSTALL_DIR"] ]
+      conf_flags.append("--disable-shared")
+      #Required to find Ogg just installed
+      conf_flags.append("CFLAGS=-I" + thirdparty_maps["INSTALL_DIR"] + "/include")
+      conf_flags.append("LDFLAGS=-L" + thirdparty_maps["INSTALL_DIR"] + "/lib")
+      AutoconfHandler.__init__(self, "LibVorbis", src_path, steps=["configure", "build", "install"],
+                               conf_flags=conf_flags)
+   def pre_install(self):
+      if not BuildSystem.Defaults.Tools.FileManager.path.exists(self.source_dir):
+         src_dir = BuildSystem.Defaults.Tools.FileManager.path.dirname(self.source_dir)
+         archive_dir = self.source_dir + self.version
+         archive_file = archive_dir + ".tar.bz2"
+         BuildSystem.Utilities.uncompress(archive_file, src_dir)
+         BuildSystem.Defaults.Tools.FileManager.rename(archive_dir, self.source_dir)
+   def post_install(self):
+      pass
+   def __call__(self):
+      self.pre_install()
+      self.run()
+      self.post_install()
+
+class LuaHandler(AutoconfHandler):
+   def __init__(self):
+      self.version = "-5.1.4"
+      src_path =  BuildSystem.Defaults.Tools.FileManager.path.join("src", "lua")
+      build_flags = []
+      if "CC" in os.environ:
+         build_flags.append("CC=" + os.environ["CC"])
+      build_flags.append(thirdparty_maps["LUA_PLATFORM"])
+      install_flags = [ "INSTALL_TOP=" + thirdparty_maps["INSTALL_DIR"] ]
+      AutoconfHandler.__init__(self, "Lua", src_path, steps=["build", "install"],
+                               build_flags=build_flags,
+                               install_flags=install_flags)
+   def pre_install(self):
+      if not BuildSystem.Defaults.Tools.FileManager.path.exists(self.source_dir):
+         src_dir = BuildSystem.Defaults.Tools.FileManager.path.dirname(self.source_dir)
+         archive_dir = self.source_dir + self.version
+         archive_file = archive_dir + ".tar.gz"
+         BuildSystem.Utilities.uncompress(archive_file, src_dir)
+         BuildSystem.Defaults.Tools.FileManager.rename(archive_dir, self.source_dir)
+   def post_install(self):
+      pass
+   def __call__(self):
+      self.pre_install()
+      self.run()
+      self.post_install()
+
+class ZLibHandler(AutoconfHandler):
+   def __init__(self):
+      self.version = "-1.2.5"
+      src_path =  BuildSystem.Defaults.Tools.FileManager.path.join("src", "zlib")
+      conf_flags = [ "--prefix=" + thirdparty_maps["INSTALL_DIR"] ]
+      AutoconfHandler.__init__(self, "ZLib", src_path, steps=["configure", "build", "install"], conf_flags=conf_flags)
+   def pre_install(self):
+      if not BuildSystem.Defaults.Tools.FileManager.path.exists(self.source_dir):
+         src_dir = BuildSystem.Defaults.Tools.FileManager.path.dirname(self.source_dir)
+         archive_dir = self.source_dir + self.version
+         archive_file = archive_dir + ".tar.gz"
+         BuildSystem.Utilities.uncompress(archive_file, src_dir)
+         BuildSystem.Defaults.Tools.FileManager.rename(archive_dir, self.source_dir)
+   def post_install(self):
+      pass
+   def __call__(self):
+      self.pre_install()
+      self.run()
+      self.post_install()
+#
+
+Bullet = BulletHandler()
+Freetype = FreetypeHandler()
+LibOgg = LibOggHandler()
+LibPNG = LibPNGHandler()
+LibVorbis = LibVorbisHandler()
+Lua = LuaHandler()
+ZLib = ZLibHandler()
+
+_all = [ ZLib, LibPNG, Freetype, Lua, LibOgg, LibVorbis ]
+
+class VS2008Handler(CopyHandler):
+   def __init__(self, ZLib=None, Lua=None, Freetype=None, Bullet=None):
+      path = BuildSystem.Defaults.Tools.FileManager.path
+      self.vcbuild = "c:/Program Files/Microsoft Visual Studio 9.0/VC/vcpackages/vcbuild.exe"
+      self.vcprojdir = "../Tools/IDE/Visual Studio Express 2008/Thirdparty"
+      self.vcprojfile = "Thirdparty.sln"
+      self.vctarget = "Release|Win32"
+      CopyHandler.__init__(self, "VS2008")
+      dst_dir = path.to_unix(
+         path.join(
+            BuildSystem.Utilities.Env[-1].realpath,
+            "platform",
+            "vs2008"
+         )
+      )
+      self.dst_dir = dst_dir
+      dst_inc = path.join( dst_dir, "include" )
+      dst_lib = path.join( dst_dir, "lib" )
+      src_build = path.join( "..", "Tools", "IDE", "Visual Studio Express 2008", "Thirdparty", "Release" )
+      src_zlib = ZLib.source_dir
+      src_lua = path.join(Lua.source_dir, "src")
+      src_ft2 = path.join(Freetype.source_dir)
+      #print(dst_dir)
+      #print(src_build)
+      # Map ZLib files.
+      self.addMapping( path.join(src_zlib, "zconf.h"),    path.join(dst_inc, "zconf.h")   )
+      self.addMapping( path.join(src_zlib, "zlib.h"),     path.join(dst_inc, "zlib.h")    )
+      self.addMapping( path.join(src_build, "zlib.lib"),  path.join(dst_lib, "zlib.lib")  )
+      # Map Lua files
+      self.addMapping( path.join(src_lua, "lua.h"),      path.join(dst_inc, "lua.h")     )
+      self.addMapping( path.join(src_lua, "luaconf.h"),  path.join(dst_inc, "luaconf.h") )
+      self.addMapping( path.join(src_lua, "lualib.h"),   path.join(dst_inc, "lualib.h")  )
+      self.addMapping( path.join(src_lua, "lauxlib.h"),  path.join(dst_inc, "lauxlib.h") )
+      self.addMapping( path.join(src_build, "lua.lib"),  path.join(dst_lib, "lua.lib")   )
+      # Map Freetype files.
+      self.addMapping( path.join(src_ft2, "include", "ft2build.h"),  path.join(dst_inc, "ft2build.h") )
+      self.addMapping( path.join(src_ft2, "include", "freetype"),    path.join(dst_inc, "freetype")   )
+      self.addMapping( path.join(src_ft2, "objs", "freetype246.lib"),  path.join(dst_lib, "freetype.lib") )
+      # Map Bullet files.
+      src_bullet = path.join(Bullet.source_dir, "src")
+      src_bullet_len = len(src_bullet)
+      src_bullet_lib = path.join(Bullet.source_dir, "out", "release8", "libs")
+      for root, dirs, files in os.walk( src_bullet, topdown=False):
+         for name in files:
+            if name[-2:] == ".h":
+               srcFile = path.join(root, name)
+               dstFile = path.join(dst_inc, "Bullet", root[src_bullet_len+1:], name)
+               #dstFile = path.join(dst_inc, root[src_bullet_len+1:], name)
+               self.addMapping( srcFile, dstFile )
+      self.addMapping( path.join(src_bullet_lib, "libbulletcollision.lib"), path.join(dst_lib, "BulletCollision.lib") )
+      self.addMapping( path.join(src_bullet_lib, "libbulletdynamics.lib"),  path.join(dst_lib, "BulletDynamics.lib")  )
+      self.addMapping( path.join(src_bullet_lib, "libbulletmath.lib"),      path.join(dst_lib, "BulletMath.lib")      )
+   def __call__(self):
+      #self.pre_install()
+      #self.run()
+      #self.post_install()
+      command = [ self.vcbuild, self.vcprojfile, self.vctarget ]
+      #command.append( "/rebuild" )
+      retcode = subprocess.call(command, shell=False, cwd=self.vcprojdir)
+      print("Error? " + str(retcode))
+      #print("Cleaning for special cases")
+      #BuildSystem.Defaults.Tools.FileManager.delete( self.dst_dir, delete_non_empty_dirs=True )
+      print("Copying files into: " + self.dst_dir)
+      self.copy_destination()
+
+class VS2010Handler(CopyHandler):
+   def __init__(self, ZLib=None, Lua=None, Freetype=None, Bullet=None):
+      path = BuildSystem.Defaults.Tools.FileManager.path
+      self.vcbuild = "c:/WINDOWS/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe"
+      self.vcprojdir = "../Tools/IDE/Visual Studio/2010/Thirdparty"
+      self.vcprojfile = "Thirdparty.sln"
+      self.vcconfigs = [ "Release", "Debug" ]
+      CopyHandler.__init__(self, "VS2010")
+      dst_dir = path.to_unix(
+         path.join(
+            BuildSystem.Utilities.Env[-1].realpath,
+            "platform",
+            "vs2010"
+         )
+      )
+      self.dst_dir = dst_dir
+      dst_inc = path.join( dst_dir, "include" )
+      dst_lib = path.join( dst_dir, "lib" )
+      src_build_base = path.join( "..", "Tools", "IDE", "Visual Studio", "2010", "Thirdparty" )
+      src_build_rel  = path.join( src_build_base, "Release" )
+      src_build_dbg  = path.join( src_build_base, "Debug" )
+      src_zlib = ZLib.source_dir
+      src_lua = path.join(Lua.source_dir, "src")
+      src_ft2 = path.join(Freetype.source_dir)
+      #print(dst_dir)
+      #print(src_build_base)
+      # Map ZLib files.
+      self.addMapping( path.join(src_zlib, "zconf.h"),    path.join(dst_inc, "zconf.h")   )
+      self.addMapping( path.join(src_zlib, "zlib.h"),     path.join(dst_inc, "zlib.h")    )
+      #self.addMapping( path.join(src_build_rel, "ZLib.lib"),  path.join(dst_lib, "ZLib.lib")  )
+      # Map Lua files
+      self.addMapping( path.join(src_lua, "lua.h"),      path.join(dst_inc, "lua.h")     )
+      self.addMapping( path.join(src_lua, "luaconf.h"),  path.join(dst_inc, "luaconf.h") )
+      self.addMapping( path.join(src_lua, "lualib.h"),   path.join(dst_inc, "lualib.h")  )
+      self.addMapping( path.join(src_lua, "lauxlib.h"),  path.join(dst_inc, "lauxlib.h") )
+      #self.addMapping( path.join(src_build_rel, "Lua.lib"),  path.join(dst_lib, "Lua.lib")   )
+      ## Map Freetype files.
+      #self.addMapping( path.join(src_ft2, "include", "ft2build.h"),  path.join(dst_inc, "ft2build.h") )
+      #self.addMapping( path.join(src_ft2, "include", "freetype"),    path.join(dst_inc, "freetype")   )
+      #self.addMapping( path.join(src_ft2, "objs", "freetype244.lib"),  path.join(dst_lib, "freetype.lib") )
+      ## Map Bullet files.
+      src_bullet = path.join(Bullet.source_dir, "src")
+      src_bullet_len = len(src_bullet)
+      #src_bullet_lib = path.join(Bullet.source_dir, "out", "release8", "libs")
+      for root, dirs, files in os.walk( src_bullet, topdown=False):
+         for name in files:
+            if name[-2:] == ".h":
+               srcFile = path.join(root, name)
+               dstFile = path.join(dst_inc, "Bullet", root[src_bullet_len+1:], name)
+               #dstFile = path.join(dst_inc, root[src_bullet_len+1:], name)
+               self.addMapping( srcFile, dstFile )
+      for vcconfig in self.vcconfigs:
+         src_dir = path.join( src_build_base, vcconfig )
+         dst_dir = path.join( dst_lib, vcconfig )
+         for lib in [ "BulletCollision.lib", "BulletDynamics.lib", "LinearMath.lib", "Lua.lib", "ZLib.lib" ]:
+            self.addMapping( path.join( src_dir, lib ), path.join( dst_dir, lib ) )
+   def __call__(self):
+      #self.pre_install()
+      #self.run()
+      #self.post_install()
+      for vcconfig in self.vcconfigs:
+         command = [ self.vcbuild, self.vcprojfile, "/p:Configuration="+vcconfig, "/p:Platform=Win32" ]
+         #command.append( "/rebuild" )
+         retcode = subprocess.call(command, shell=False, cwd=self.vcprojdir)
+         print("Error? " + str(retcode))
+         if retcode != 0:
+            print("Command ran:"+str(command))
+            return retcode
+      #print("Cleaning for special cases")
+      #BuildSystem.Defaults.Tools.FileManager.delete( self.dst_dir, delete_non_empty_dirs=True )
+      print("Copying files into: " + self.dst_dir)
+      self.copy_destination()
+
+class VS2011Handler(CopyHandler):
+   def __init__(self, ZLib=None, Lua=None, Freetype=None, Bullet=None):
+      path = BuildSystem.Defaults.Tools.FileManager.path
+      self.vcbuild = "c:/WINDOWS/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe"
+      self.vcprojdir = "../Tools/IDE/Visual Studio/2011/Thirdparty"
+      self.vcprojfile = "Thirdparty.sln"
+      self.vcconfigs = [ "Release", "Debug" ]
+      self.vcplats   = [ "32-bit", "64-bit" ]
+      self.plasToPath = {
+         "32-bit": path.join("x86", "32"),
+         "64-bit": path.join("x86", "64"),
+      }
+      CopyHandler.__init__(self, "VS2011")
+      dst_dir = path.to_unix(
+         path.join(
+            BuildSystem.Utilities.Env[-1].realpath,
+            "platform",
+            "vs2011"
+         )
+      )
+      self.dst_dir = dst_dir
+      dst_inc = path.join( dst_dir, "include" )
+      dst_lib = path.join( dst_dir, "lib" )
+      src_build_base = path.join( "..", "Tools", "IDE", "Visual Studio", "2011", "Thirdparty", "build" )
+      src_build_rel  = path.join( src_build_base, "Release" )
+      src_build_dbg  = path.join( src_build_base, "Debug" )
+      src_zlib = ZLib.source_dir
+      src_lua = path.join(Lua.source_dir, "src")
+      src_ft2 = path.join(Freetype.source_dir)
+      #print(dst_dir)
+      #print(src_build_base)
+      # Map ZLib files.
+      self.addMapping( path.join(src_zlib, "zconf.h"),    path.join(dst_inc, "zconf.h")   )
+      self.addMapping( path.join(src_zlib, "zlib.h"),     path.join(dst_inc, "zlib.h")    )
+      #self.addMapping( path.join(src_build_rel, "ZLib.lib"),  path.join(dst_lib, "ZLib.lib")  )
+      # Map Lua files
+      self.addMapping( path.join(src_lua, "lua.h"),      path.join(dst_inc, "lua.h")     )
+      self.addMapping( path.join(src_lua, "luaconf.h"),  path.join(dst_inc, "luaconf.h") )
+      self.addMapping( path.join(src_lua, "lualib.h"),   path.join(dst_inc, "lualib.h")  )
+      self.addMapping( path.join(src_lua, "lauxlib.h"),  path.join(dst_inc, "lauxlib.h") )
+      #self.addMapping( path.join(src_build_rel, "Lua.lib"),  path.join(dst_lib, "Lua.lib")   )
+      ## Map Freetype files.
+      #self.addMapping( path.join(src_ft2, "include", "ft2build.h"),  path.join(dst_inc, "ft2build.h") )
+      #self.addMapping( path.join(src_ft2, "include", "freetype"),    path.join(dst_inc, "freetype")   )
+      #self.addMapping( path.join(src_ft2, "objs", "freetype244.lib"),  path.join(dst_lib, "freetype.lib") )
+      ## Map Bullet files.
+      src_bullet = path.join(Bullet.source_dir, "src")
+      src_bullet_len = len(src_bullet)
+      #src_bullet_lib = path.join(Bullet.source_dir, "out", "release8", "libs")
+      for root, dirs, files in os.walk( src_bullet, topdown=False):
+         for name in files:
+            if name[-2:] == ".h":
+               srcFile = path.join(root, name)
+               dstFile = path.join(dst_inc, "Bullet", root[src_bullet_len+1:], name)
+               #dstFile = path.join(dst_inc, root[src_bullet_len+1:], name)
+               self.addMapping( srcFile, dstFile )
+      for vcplat in self.vcplats:
+         platpath = self.plasToPath[vcplat]
+         for vcconfig in self.vcconfigs:
+            src_dir = path.join( src_build_base, platpath, vcconfig, "bin" )
+            dst_dir = path.join( dst_lib, platpath, vcconfig )
+            for lib in [ "BulletCollision.lib", "BulletDynamics.lib", "LinearMath.lib", "Lua.lib", "ZLib.lib" ]:
+               self.addMapping( path.join( src_dir, lib ), path.join( dst_dir, lib ) )
+   def __call__(self):
+      #self.pre_install()
+      #self.run()
+      #self.post_install()
+      for vcplat in self.vcplats:
+         for vcconfig in self.vcconfigs:
+            command = [ self.vcbuild, "/m", self.vcprojfile, "/p:Configuration="+vcconfig, "/p:Platform="+vcplat ]
+            #command.append( "/rebuild" )
+            retcode = subprocess.call(command, shell=False, cwd=self.vcprojdir)
+            #print("Error? " + str(retcode))
+            if retcode != 0:
+               print("Command ran:"+str(command))
+               return retcode
+      #print("Cleaning for special cases")
+      #BuildSystem.Defaults.Tools.FileManager.delete( self.dst_dir, delete_non_empty_dirs=True )
+      print("Copying files into: " + self.dst_dir)
+      self.copy_destination()
+
+if BuildSystem.Defaults.Env.Platform == "windows":
+   VS2008 = VS2008Handler(ZLib=ZLib, Lua=Lua, Freetype=Freetype, Bullet=Bullet)
+   VS2010 = VS2010Handler(ZLib=ZLib, Lua=Lua, Freetype=Freetype, Bullet=Bullet)
+   VS2011 = VS2011Handler(ZLib=ZLib, Lua=Lua, Freetype=Freetype, Bullet=Bullet)
+
+def all():
+   for a in _all:
+      a()
+
+def pre_install():
+   for a in _all:
+      a.pre_install()
+
+def install():
+   for a in _all:
+      a.install()
+
+def post_install():
+   for a in _all:
+      a.post_install()
+
+def clean():
+   for a in _all:
+      a.clean()
+
+def osx():
+   pkg = [ Bullet, Lua, LibOgg, LibVorbis ]
+   for p in pkg:
+      print("Decompressing " + p.name)
+      p.pre_install()

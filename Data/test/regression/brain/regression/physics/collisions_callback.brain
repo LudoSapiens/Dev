@@ -1,0 +1,35 @@
+local entity, stimuli = ...
+--print( "physics collisions callback", entity, stimuli )
+--print( "orig", entity.matColorOrig )
+local nameToColor = {
+   black   =  vec4( 0.15, 0.15, 0.15, 1.00 ),
+   blue    =  vec4( 0.00, 0.00, 0.75, 1.00 ),
+   cyan    =  vec4( 0.00, 0.75, 0.75, 1.00 ),
+   gray    =  vec4( 0.25, 0.25, 0.25, 1.00 ),
+   green   =  vec4( 0.00, 0.75, 0.00, 1.00 ),
+   magenta =  vec4( 0.75, 0.00, 0.75, 1.00 ),
+   red     =  vec4( 0.75, 0.00, 0.00, 1.00 ),
+   white   =  vec4( 0.75, 0.75, 0.75, 1.00 ),
+   yellow  =  vec4( 0.75, 0.75, 0.00, 1.00 ),
+}
+
+local function changeColor( colorName )
+   local color = nameToColor[colorName]
+   post( { "materialColor", entity, color } )
+   local a = action( "debug", { color=colorName, autoDelete=false, notifyOnCompletion=true }, true )
+   print( a )
+end
+
+for i,s in ipairs( stimuli ) do
+   if s.type == "contactBegin" then
+      --print("Contact Begin")
+      changeColor( s.collidingEntity.matColor )
+   elseif s.type == "contactEnd" then
+      --print("Contact End")
+      changeColor( entity.matColor )
+   elseif s.type == "actionCompleted" then
+      print( "Action completed", s.action, s.action.color )
+   else
+      print("Unknown stimulus type", s.type)
+   end
+end

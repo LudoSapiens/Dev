@@ -1,0 +1,224 @@
+--==============================================================================
+-- Playback Controller
+--==============================================================================
+function PlaybackController( params )
+   local _inf = math.huge
+
+   local _sTime   = 0      -- Start time.
+   local _eTime   = _inf   -- End time.
+   local _cTime   = 0      -- Current time; range [sTime, _eTime].
+   local _dir     = 1      -- Direction of the loop (1: forward, -1: backward).
+   local _speed   = 1      -- The current speed at which the playback happens.
+   local _playing = false  -- A flag indicating whether or not we are playing.
+
+   local this = {}
+
+   local function _execute( time, delta )
+      --if delta > 1 then return false end -- Masking long steps (debug).
+      --if time > 7 then io.stdin:read'*l' end
+      -- Checking _playing before in case the use called stop() since last time.
+      -- Checking also after in case goTo() reaches past the end in "once" mode.
+      if _playing then
+         --print("Exec", time, delta, _cTime, _cTime + delta*_speed*_dir )
+         this.goTo( _cTime + delta*_speed*_dir )
+         if this.onUpdate then this.onUpdate( _cTime ) end
+         return not _playing
+      else
+         return true
+      end
+   end
+
+   local function _goTo_loop( time )
+      if _eTime ~= _inf then
+         local rel = time - _sTime -- Relative to start.
+         local dur = _eTime - _sTime
+         if dur ~= 0 then
+            local f = (rel % dur)/dur  -- Also handles negative rel times.
+            _cTime = _sTime + f*dur
+         else
+            _cTime = _sTime
+         end
+         --print(string.format("loop: rel=%.2f dur=%.2f f=%.2f dir=%d cTime=%.2f", rel, dur, f, _dir, _cTime))
+      else
+         _cTime = max( _sTime, time )
+      end
+      if this.onUpdate then this.onUpdate( _cTime ) end
+   end
+
+   local function _goTo_once( time )
+      _cTime = clamp( time, _sTime, _eTime )
+      if (_dir == 1 and _cTime == _eTime) or (_dir == -1 and _cTime == _sTime) then
+         _playing = false
+         if this.onEvent then this.onEvent("stop") end
+      end
+      --print(string.format("once: dir=%d cTime=%.2f", _dir, _cTime))
+      if this.onUpdate then this.onUpdate( _cTime ) end
+   end
+
+   local function _goTo_pingpong( time )
+      if _eTime ~= _inf then
+         local rel = time - _sTime -- Relative to start.
+         local dur = (_eTime - _sTime)
+         local dr2 = dur * 2
+         local mod = rel % dr2
+         local   f = mod / dr2
+         local ndir
+         if f > 0.5 then
+            _cTime = _sTime + (1-f)*dr2
+            ndir   = -_dir
+         else
+            _cTime = _sTime + f*dr2
+            ndir   = _dir
+         end
+         _dir = _dir*_dir*ndir -- _dir*ndir will be -1 if the sign changes on this step.
+         --print(string.format("ping: rel=%.2f dur=%.2f mod=%.2f f=%.2f ndir=%d dir=%d cTime=%.2f", rel, dur, mod, f, ndir, _dir, _cTime))
+      else
+         _cTime = max( _sTime, time )
+         _dir   = 1
+      end
+      if this.onUpdate then this.onUpdate( _cTime ) end
+   end
+
+   local _modeToFunc = {
+      loop     = _goTo_loop,
+      once     = _goTo_once,
+      pingpong = _goTo_pingpong,
+   }
+   local _funcToMode = {}
+   for k,v in pairs(_modeToFunc) do
+      _funcToMode[v] = k
+   end
+
+   function this.playing()
+      return _playing
+   end
+
+   function this.play( reverse )
+      this.reverse( reverse )
+      --print("Play", _sTime, _eTime, _dir, _cTime, _playing)
+      if not _playing then
+         _playing = true
+         if this.onEvent then this.onEvent("play") end
+         UI.addAnimator( _execute )
+      end
+   end
+
+   function this.pause()
+      if _playing then
+         _playing = false
+         if this.onEvent then this.onEvent("pause") end
+      end
+   end
+
+   function this.playOrPause()
+      if _playing then
+         this.pause()
+      else
+         this.play()
+      end
+   end
+
+   function this.stop()
+      if _playing then
+         _playing = false
+         if this.onEvent then this.onEvent("stop") end
+      end
+   end
+
+   function this.goToStart()
+      this.goTo( _sTime )
+      if this.onEvent then this.onEvent("goToStart") end
+   end
+
+   function this.goToEnd()
+      this.goTo( _eTime )
+      _cTime = _eTime  -- Overide to make sure we show the end time (risk with _dir?).
+      if this.onUpdate then this.onUpdate( _cTime ) end
+      if this.onEvent then this.onEvent("goToEnd") end
+   end
+
+   function this.range( tr )
+      _sTime = tr[1]
+      _eTime = tr[2]
+      if this.onEvent then this.onEvent("range", _sTime, _eTime) end
+   end
+
+   function this.startTime( t )
+      if t then
+         _sTime = t
+         if this.onEvent then this.onEvent("startTime", _sTime) end
+      else
+         return _sTime
+      end
+   end
+
+   function this.endTime( t )
+      if t then
+         _eTime = t
+         if this.onEvent then this.onEvent("endTime", _eTime) end
+      else
+         return _eTime
+      end
+   end
+
+   function this.currentTime()
+      return _cTime
+   end
+
+   function this.speed( s )
+      if s then
+         _speed = s
+         if this.onEvent then this.onEvent("speed", _speed) end
+      else
+         return _speed
+      end
+   end
+
+
+   function this.reverse( r )
+      if r ~= nil then
+         if r then
+            _dir = -1
+         else
+            _dir = 1
+         end
+         if this.onEvent then this.onEvent("reverse", _speed) end
+      else
+         return _dir <= 0
+      end
+   end
+
+   function this.mode( m, r )
+      if m then
+         local func = _modeToFunc[m]
+         if func then
+            this.goTo = func
+            this.reverse( r )
+         else
+            print("ERROR - Bad PlaybackController mode:", m)
+         end
+      else
+         local mode = _funcToMode[this.goTo]
+         if not mode then
+            print("ERROR - Bad PlaybackController goTo() function.")
+         end
+         return mode
+      end
+   end
+
+   if params then
+      for k,v in pairs(params) do
+         local func = this[k]
+         --print("Params", k, v, func)
+         if func then
+            func(v)
+         else
+            this[k] = v
+         end
+      end
+   end
+
+   if not this.goTo then this.mode("once") end
+
+   return this
+end

@@ -1,0 +1,42 @@
+local n0 = treeWP{
+   position = {-1,1},
+   width = 3,
+   seed=0,
+   shape="spherical",
+   scale=8,
+   scaleV=0,
+   ratio=0.05,
+   baseSplits=2,
+   { curveRes=2, curve=0, curveV=0, curveBack=0, downAngle=60, downAngleV=0, length=1, lengthV=0, segSplits=1, taper=1 },
+   { curveRes=3, curve=0, curveV=0, curveBack=0, downAngle=60, downAngleV=0, length=1, lengthV=0, segSplits=0, taper=1 },
+   { curveRes=1, curve=0, curveV=0, curveBack=0, downAngle=60, downAngleV=0, length=1, lengthV=0, segSplits=0, taper=1 },
+   { curveRes=5, curve=0, curveV=0, curveBack=0, downAngle=60, downAngleV=0, length=1, lengthV=0, segSplits=0, taper=1 },
+}
+local n1 = strokes{
+   position = {-1,-2},
+   width = 3,
+   {
+      vertices={
+         { ref={{0,0,0,1},{-0.40861,-1.56793,0}}, s=0, c=0x000f, {-0.5,0,-0.5}, {-0.5,0,0.5}, {0.5,0,0.5}, {0.5,0,-0.5} },
+         { ref={{0,0,0,1},{-0.426002,4.47596,0}}, s=0, c=0x0000, {-0.5,0,-0.5}, {-0.5,0,0.5}, {0.5,0,0.5}, {0.5,0,-0.5} },
+         { ref={{0,0,0,1},{-3.80141,6.70135,0}}, s=0, c=0x0000, {-0.5,0,-0.5}, {-0.5,0,0.5}, {0.5,0,0.5}, {0.5,0,-0.5} },
+      },
+      segments={
+         {0,c=0x00,s=0}, {0,c=0x00,s=0},
+      },
+   },
+   {
+      vertices={
+         { ref={{0,0,0,1},{-0.281562,4.51573,0}}, s=0, c=0x000f, {-0.5,0,-0.5}, {-0.5,0,0.5}, {0.5,0,0.5}, {0.5,0,-0.5} },
+         { ref={{0,0,0,1},{2.02254,6.65219,0}}, s=0, c=0x0000, {-0.5,0,-0.5}, {-0.5,0,0.5}, {0.5,0,0.5}, {0.5,0,-0.5} },
+      },
+      segments={
+         {0,c=0x00,s=0},
+      },
+   },
+}
+local n2 = strokesDebug{
+   position = {-1,0},
+   width = 3,
+}
+output( n2 )

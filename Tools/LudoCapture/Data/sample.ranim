@@ -1,0 +1,19 @@
+rawAnimation{
+   info  = { device="kinect", tool="LudoCapture 1.0.0" },
+   names = { "HEAD", "NECK" },
+   {  -- Frame 1.
+      time = 0.0,
+      { 0, 1, 0 },
+      { 0, 0, 0 },
+   },
+   {  -- Frame 2.
+      time = 0.1,
+      { 1, 1, 0 },
+      { 1, 0, 0 },
+   },
+   {  -- Frame 3.
+      time = 1.0,
+      { 1, 1, 1 },
+      { 1, 0, 1 },
+   },
+}

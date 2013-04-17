@@ -1,0 +1,15 @@
+//
+// Mapping, normal and position GLSL vertex shader.
+//
+
+varying vec2 mapping;
+varying vec3 normal;
+varying vec3 position;
+
+void main(void)
+{
+   mapping     = gfxMultiTexCoord0.xy;
+   normal      = (gfxWorldMatrix * vec4(gfxNormal,0)).xyz;
+   position    = (gfxWorldMatrix * gfxVertex).xyz;
+   gl_Position = gfxWorldViewProjectionMatrix * gfxVertex;
+}

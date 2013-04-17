@@ -1,0 +1,15 @@
+material{
+   {
+      color = image( "checker" )
+   }
+}
+material{
+   {
+      color = image( "checker2" )
+   }
+}
+material{
+   {
+      color = image( "image/white" )
+   }
+}

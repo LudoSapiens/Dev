@@ -1,0 +1,3 @@
+vertex color tex0
+color "color"
+tex "colorTex" modulate

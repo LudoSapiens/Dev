@@ -1,0 +1,39 @@
+#!/bin/sh
+##
+# Wrapper around p4merge.
+#
+# The tool 'p4merge' is part of P4V, and can be downloaded freely from Perforce's P4V site:
+#   http://www.perforce.com/perforce/downloads/index.html
+#
+# Calling p4merge.app/Contents/MacOS/p4merge directly results in a series of error messages:
+#   Class QSomeClass is implemented in both * and *. One of the two will be used. Which one is undefined.
+# So it is better to call 'launchp4merge' (found inside the bundle).
+#
+# Unfortunately, it requires absolute paths, which this script transforms as required.
+#
+# Author: Jocelyn Houle
+# Date  : 2011-01-28
+##
+
+#echo $OSTYPE
+case "$OSTYPE" in
+   darwin*)
+      P4MERGE=`mdfind -interpret "p4merge kind:Application" | xargs -J % find % -name launchp4merge`;
+      ;;
+   *)
+      P4MERGE=p4merge;
+      ;;
+esac
+
+#echo "$@"
+for arg in "$@" ; do
+   # Make file resources absolute paths
+   if [ -e $arg ] && [[ $arg != /* ]]; then
+      arg="$PWD/$arg"
+   fi
+   args+=("$arg")
+done
+#echo "---"   
+#echo "${args[@]}"
+
+$P4MERGE "${args[@]}"

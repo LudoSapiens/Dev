@@ -1,0 +1,17 @@
+--[[
+local c = {
+   vec3( 0.70, 0.70, 0.70 ),
+   vec3( 0.30, 0.30, 0.30 ),
+}
+
+local col = c[IN.id]
+if col then
+   OUT.color = col
+end
+--]]
+
+material{
+   {
+      color = image( "checker" )
+   }
+}

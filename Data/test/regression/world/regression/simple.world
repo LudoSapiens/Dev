@@ -1,0 +1,10 @@
+camera{
+   position = {0,10,10},
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+staticObject{
+   geometry = geometry( "geometry/regression/simple" ),
+   material = material( "geometry/regression/simple" ),
+   --brain = brain( "brain/test" ),
+}

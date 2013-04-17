@@ -1,0 +1,9 @@
+camera{
+   --position = {0,10,10},
+   position = { 9,6,9 },
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+staticObject{
+   geometry = "regression/curve/moderate02"
+}

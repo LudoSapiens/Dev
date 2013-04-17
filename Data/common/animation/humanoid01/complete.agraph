@@ -1,0 +1,78 @@
+local stand = basicNode{
+   name="stand",
+   animation( "animation/humanoid01/stand01_cycle" )
+}
+
+local forward = travelNode{
+   name="forward",
+   direction={0,0,1},
+   animation( "animation/humanoid01/walk01_cycle" ),
+   animation( "animation/humanoid01/run01_cycle" )
+}
+
+local backward = travelNode{
+   name="backward",
+   direction={0,0,-1},
+   animation( "animation/humanoid01/walkback01" ),
+   animation( "animation/humanoid01/runback01" )
+}
+
+local jump = jumpNode{
+   name="jump",
+   basicNode{
+      name="jump.launching",
+      animation( "animation/humanoid01/jump03" )
+   },
+   basicNode{
+      name="jump.flying",
+      animation( "animation/humanoid01/air01" )
+   },
+   basicNode{
+      name="jump.landing",
+      animation( "animation/humanoid01/land01" )
+   },
+   0.050, -- Start of jump blend (liftoff time in the launch node).
+   0.725, -- End of jump blend (usually end of launch node).
+   1.000, -- End of land blend.
+}
+
+--local fall = basicNode{
+--   name="fall",
+--   animation( "animation/humanoid01/air01" )
+--}
+local fall = jumpNode{
+   name="fall",
+   basicNode{
+      name="jump.flying",
+      animation( "animation/humanoid01/air01" )
+   },
+   basicNode{
+      name="jump.flying",
+      animation( "animation/humanoid01/air01" )
+   },
+   basicNode{
+      name="jump.landing",
+      animation( "animation/humanoid01/land01" )
+   },
+   0.0, -- Start of jump blend (liftoff time in the launch node).
+   0.0, -- End of jump blend (usually end of launch node).
+   1.0, -- End of land blend.
+}
+
+transition( stand, jump, 0.05 )
+transition( forward, jump, 0.05 )
+transition( backward, jump, 0.05 )
+transition( jump, stand, 0.1 )
+transition( jump, forward, 0.1 )
+transition( jump, backward, 0.1 )
+transitions( stand, forward, 0.25 )
+transitions( stand, backward, 0.25 )
+transitions( forward, backward, 0.25 )
+
+transition( stand, fall, 0.05 )
+transition( forward, fall, 0.05 )
+transition( backward, fall, 0.05 )
+transition( fall, stand, 0.1 )
+transition( fall, forward, 0.1 )
+transition( fall, backward, 0.1 )
+onFall( "fall" )

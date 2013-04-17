@@ -1,0 +1,100 @@
+LoadFile("../Base/BSFile")
+
+GfxSettings = StandardSettings.copy()
+GfxVariants = StandardVariants.copy()
+
+# Same as in main.h
+TEST_API_UNKNOWN = 0
+TEST_API_GLX     = 1
+TEST_API_WGL     = 2
+TEST_API_UNUSED  = 3
+TEST_API_D3D     = 4
+
+GfxSettings.platform_sources = [] #Creating inside the setting class in order not to pollute the namespace
+if Defaults.Env.Platform == "windows":
+   GfxSettings.defines["TEST_API"] = TEST_API_WGL # WGL or D3D
+   GfxSettings.defines["GFX_OGL_SUPPORT"] = 1
+   GfxSettings.defines["GFX_OGL_WGL_SUPPORT"] = 1  #Relevant files below
+   GfxSettings.defines["GFX_D3D_SUPPORT"] = 0 # Was 1
+elif Defaults.Env.Platform == "unix":
+   if Defaults.Env.PlatformFlavor == "macosx":
+      GfxSettings.defines["TEST_API"] = TEST_API_GLX
+      GfxSettings.defines["GFX_OGL_SUPPORT"] = 1
+      GfxSettings.defines["GFX_OGL_GLX_SUPPORT"] = int(GfxSettings.defines["TEST_API"] == TEST_API_GLX)
+      if Defaults.Env.PlatformVersion == "9.0.0":
+         if GfxSettings.defines["GFX_OGL_GLX_SUPPORT"]:
+            GfxSettings.ldflags.append("-Wl,-dylib_file,/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib:/System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib")
+   else:
+      GfxSettings.defines["TEST_API"] = TEST_API_GLX
+      GfxSettings.defines["GFX_OGL_SUPPORT"] = 1
+      GfxSettings.defines["GFX_OGL_GLX_SUPPORT"] = 1
+
+# Direct3D support
+if GfxSettings.defines.get("GFX_D3D_SUPPORT"):
+   GfxSettings.platform_sources.append("Mgr/D3D/D3DContext.cpp")
+   GfxSettings.platform_sources.append("Mgr/D3D/D3DManager.cpp")
+   GfxSettings.ldflags.append("-ld3d9")
+   if Defaults.Env.PlatformFlavor == "cygwin":
+      GfxSettings.ldflags.append("-ld3dx9")
+   else:
+      #GfxSettings.ldflags.append("-ld3dx9_30")
+      GfxSettings.ldflags.append("-ld3dx9")
+
+# OpenGL support
+if GfxSettings.defines.get("GFX_OGL_SUPPORT"):
+   GfxSettings.platform_sources.append("Mgr/GL/GLContext.cpp")
+   GfxSettings.platform_sources.append("Mgr/GL/GLManager.cpp")
+   if GfxSettings.defines.get("GFX_OGL_GLX_SUPPORT"):
+      GfxSettings.platform_sources.append("Mgr/GL/GLContext_GLX.cpp")
+      GfxSettings.source_directories_includes.append("/usr/X11R6/include")
+      GfxSettings.ldflags.append("-lGL -lGLU -L/usr/X11R6/lib -lX11")
+   if GfxSettings.defines.get("GFX_OGL_WGL_SUPPORT"):
+      GfxSettings.platform_sources.append("Mgr/GL/GLContext_WGL.cpp")
+      GfxSettings.ldflags.append("-lglu32 -lopengl32 -lgdi32")
+
+GfxLib = Library(
+   "Gfx",
+   inputs=[
+      "FB/Framebuffer.cpp",
+      "FB/RenderState.cpp",
+      "Geom/Buffer.cpp",
+      "Geom/Geometry.cpp",
+      "Mgr/Context.cpp",
+      "Mgr/Manager.cpp",
+      "Mgr/Null/NullContext.cpp",
+      "Mgr/Null/NullManager.cpp",
+      "Pass/Pass.cpp",
+      "Pass/RenderNode.cpp",
+      "Prog/Constants.cpp",
+      "Prog/Program.cpp",
+      "Tex/Sampler.cpp",
+      "Tex/Texture.cpp",
+      "Tex/TextureState.cpp",
+      BaseLib,
+   ],
+   shared=True, shared_define="COMPILING_GFX",
+   settings=GfxSettings,
+   variant=GfxVariants
+)
+
+GfxLib.inputs.extend(GfxSettings.platform_sources)
+
+Gfx = Application("GfxTest",
+                  inputs=["main.cpp", BaseLib, GfxLib],
+                  settings=GfxLib.settings,
+                  variant=GfxLib.variant)
+
+gfx = Gfx
+
+import new
+
+def run_with_args(self):
+   self.run("simple")
+Gfx.run_simple = new.instancemethod(run_with_args, Gfx, Application)
+
+def run_with_args(self):
+   self.run("simple_texture")
+Gfx.run_simple_texture = new.instancemethod(run_with_args, Gfx, Application)
+
+#Make sure we can't access them outside of Gfx
+del run_with_args

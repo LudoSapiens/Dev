@@ -1,0 +1,6 @@
+GameSettings = StandardSettings.copy()
+GameSettings.source_directories_includes.append( "../.." )
+
+GameVariants = StandardVariants.copy()
+
+LoadFile("Calibrator/BSFile")

@@ -1,0 +1,11 @@
+camera{
+   --position = {0,0,20},
+   --position = {6,12,20},
+   position = {4.5,9,15},
+   lookAt   = { {0,0,0}, {0,1,0} },
+}
+
+staticObject{
+   geometry = "regression/basic/params/blocks01",
+   material = material( "regression/debug" ),   
+}

@@ -1,0 +1,39 @@
+local entity, stimuli = ...
+
+local map = {}
+
+function map.begin( s )
+   action( "puppeteer", { jumpConst={0,4,0}, jumpScale={1,1,1} }, true )
+   action( "puppeteer", { state="stand" }, true )
+end
+function map.deselect( s )
+   post( { "materialColor", entity, vec4(1,1,1,1) } ) -- Bring back white color.
+end
+function map.select( s )
+   post( { "materialColor", entity, vec4(1,0,0,1) } ) -- Set selection as red.
+end
+function map.jump( s )
+   action( "puppeteer", { state="jump" }, true )
+end
+function map.fall( s )
+   print( "FALLING" )
+   action( "puppeteer", { state="stand" }, true )
+end
+function map.land( s )
+   action( "puppeteer", { state="stand" }, true )
+end
+function map.move( s )
+   action( "puppeteer", { state="forward", velocity=s.velocity, angularVelocity={1.0,0} }, true )
+end
+function map.stop( s )
+   action( "puppeteer", { state="stand", angularVelocity={0,0} }, true )
+end
+
+local function unknownType( s )
+   print( "Unknown stimulus type:", s.type )
+end
+
+for i,s in ipairs( stimuli ) do
+   local func = map[s.type] or unknownType
+   func( s )
+end

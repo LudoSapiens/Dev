@@ -1,0 +1,27 @@
+#ifdef GL_ES
+#extension GL_EXT_shadow_samplers : require
+#define shadow2D     shadow2DEXT
+#define shadow2DProj shadow2DProjEXT
+#endif
+
+varying vec2 mapping; // FIXME: To remove (from vs also).
+varying vec3 position;
+varying vec3 normal;  // FIXME: To remove (from vs also).
+
+// Surface.
+uniform sampler2D colorTex0; // FIXME: To remove (from vs also).
+uniform vec4      color;     // FIXME: To remove (from vs also).
+
+// Light.
+//uniform sampler2D  light_tex;
+uniform sampler2DShadow light_tex;
+uniform vec3 light_intensity;
+uniform vec3 light_direction;
+uniform mat4 light_matrix;
+
+void main(void)
+{
+   float z = gl_FragCoord.z;
+   //z *= 32768.0;
+   gl_FragColor = vec4(z);
+}

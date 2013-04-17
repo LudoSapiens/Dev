@@ -1,0 +1,97 @@
+--==============================================================================
+--  Include files
+--==============================================================================
+
+include( "theme/plasma" )
+include( "script/ui/fileDialog" )
+
+gui = ObjectPool()
+
+--==============================================================================
+--  Ui definition.
+--==============================================================================
+
+local function createDesktop()
+
+   local menu
+
+   --==============================================================================
+   -- CALLBACKS
+   --==============================================================================
+
+   local function charHandler( widget, ev )
+      local key = ev.value
+
+      if key == UI.Key.ESC or key == UI.Key.q then
+         UI.exit()
+      end
+   end
+
+   local function keyPress( widget, ev )
+      local key = ev.value
+
+      -- Just keep real keypressed.
+      if ev.repeated then
+         return
+      end
+
+      if key == UI.Key.SPACE then
+         local pos    = UI.getPointerPosition()
+         local center = menu.center
+         UI.getDesktop().modal( menu, { pos[1] - center[1], pos[2] - center[2] } )
+      end
+   end
+
+   --==============================================================================
+   -- UI
+   --==============================================================================
+
+   menu = gui.radialMenu{
+      radius = 80,
+      gui.radialButton{ text = "Option1", onClick = function() print( "1" ) end },
+      gui.radialButton{ text = "Option2", onClick = function() print( "2" ) end },
+      gui.radialButton{ text = "Option3", onClick = function() print( "3" ) end },
+      gui.radialButton{ text = "Option4", onClick = function() print( "4" ) end },
+      gui.radialButton{ text = "Option5", onClick = function() print( "5" ) end },
+      gui.radialButton{ text = "Option6", onClick = function() print( "6" ) end },
+   }
+
+   return gui.desktop{
+      color        = { 0.5, 0.5, 0.5, 1.0 },
+      onChar       = charHandler,
+      onKeyPress   = keyPress,
+      onKeyRelease = keyRelease,
+      gui.panel{
+         title          = "PANEL",
+         gap            = 6,
+         minimizeButton = true,
+         closeButton    = true,
+         orientation    = UI.BoxOrientation.VERTICAL,
+         resizableH     = true,
+         resizableV     = true,
+         position       = { 100, 100 },
+         gui.hbox{
+            gui.label{ text = "An active label" },
+            gui.label{ text = "A disabled label", enabled = false },
+         },
+         gui.hbox{
+            gap = 6,
+            gui.button{ text = "Button" },
+            gui.button{ text = "Button", enabled = false },
+            gui.toggle{ text = "Toggle" },
+         },
+         gui.separator{},
+         gui.valueEditor{ value = 10, format = "%.15g", max = 10000, step = 1 },
+         gui.textEntry{ text = "text0123456789" },
+      },
+      gui.fileDialog( "/",
+         {
+            position = { 400, 100 },
+         }
+      ),
+   }
+end
+
+--------------------------------------------------------------------------------
+-- Set the main desktop.
+UI.setDesktop( createDesktop() )

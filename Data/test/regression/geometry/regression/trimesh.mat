@@ -1,0 +1,24 @@
+mapping{
+   function( IN )
+      return vec2( IN.xy )
+   end
+}
+
+material{
+   {
+      clamp        = TexClamp.LAST,
+      color        = image( "checker" ),
+      displacement = function( IN ) return IN.pos + IN.normal*noise() end
+   },
+   {
+      color = image( "checker2" )
+   }
+}
+
+material{
+   {
+      clamp        = TexClamp.LAST,
+      color        = image( "checker2" ),
+      displacement = function( IN ) return IN.pos + IN.normal*noise() end
+   }
+}

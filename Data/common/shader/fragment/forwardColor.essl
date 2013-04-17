@@ -1,0 +1,28 @@
+//
+// Fragment shader for simple forward rendering color.
+//
+uniform sampler2D colorTex;
+uniform sampler2D normalTex;
+varying highp vec2 mapping;
+varying highp vec3 position;
+//varying highp vec3 normal;
+
+void main(void)
+{
+   // Normal computation.
+   highp vec3 normal = texture2D( normalTex, mapping ).rgb * 2.0 - 1.0;
+   normal = (gfxWorldViewMatrix * vec4( normal, 0.0 )).xyz;
+
+   // Compute lighting.
+   highp vec3 lightPos   = vec3( 1.0, 5.0, 20.0 );
+   highp vec4 backColor  = vec4( 0.2, 0.2, 0.9, 1.0 );
+   highp vec4 frontColor = vec4( 0.9, 0.9, 0.9, 1.0 );
+   highp float nl        = max( dot( normalize( normal ), normalize( lightPos-position ) ), 0.0 );  
+   highp vec4 lighting   = mix( backColor, frontColor, nl );
+   
+   // Return final color.
+   gl_FragColor = lighting*texture2D( colorTex, mapping );
+   //gl_FragColor = lighting;
+   //gl_FragColor = texture2D( colorTex, mapping );
+   //gl_FragColor = texture2D( normalTex, mapping );
+}

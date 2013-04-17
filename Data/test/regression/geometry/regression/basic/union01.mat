@@ -1,0 +1,9 @@
+OUT.pos   = IN.pos + IN.n * (perlin1( IN.pos*4 )*0.1)
+
+local color
+if IN.id == 0 then
+   color = vec3(0.9)
+else
+   color = vec3(0.5,0.5,0.9)
+end
+OUT.color = color*abs(dot(IN.n,normalize(vec3(-2,2.5,4))))

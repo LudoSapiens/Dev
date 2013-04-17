@@ -1,0 +1,10 @@
+local params = ...
+local img    = params.image or "image/white"
+
+baseMaterial{
+   color = { 1, 1, 1, 1 },
+   {
+      color = image( img ),
+      clamp = TexClamp.LAST,
+   }
+}

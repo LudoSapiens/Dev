@@ -1,0 +1,188 @@
+include( "script/ui/controller/playback" )
+
+--=============================================================================
+-- Playback Panel
+--=============================================================================
+
+PLAYBACK = {}
+-- PLAYBACK.EJECT         = { name="eject"        , image="image/ui/playback/eject"         }
+-- PLAYBACK.NEXT          = { name="next"         , image="image/ui/playback/next"          }
+-- PLAYBACK.PAUSE         = { name="pause"        , image="image/ui/playback/pause"         }
+-- PLAYBACK.PLAY          = { name="play"         , image="image/ui/playback/play"          }
+-- PLAYBACK.PREVIOUS      = { name="previous"     , image="image/ui/playback/previous"      }
+-- PLAYBACK.SEEK_BACKWARD = { name="seek_backward", image="image/ui/playback/seek_backward" }
+-- PLAYBACK.SEEK_FORWARD  = { name="seek_forward" , image="image/ui/playback/seek_forward"  }
+-- PLAYBACK.STOP          = { name="stop"         , image="image/ui/playback/stop"          }
+
+PLAYBACK.icons = {
+   ["eject"]         = "image/ui/playback/eject",
+   ["next"]          = "image/ui/playback/next",
+   ["pause"]         = "image/ui/playback/pause",
+   ["play"]          = "image/ui/playback/play",
+   ["play/pause"]    = "image/ui/playback/play",
+   ["previous"]      = "image/ui/playback/previous",
+   ["seek_backward"] = "image/ui/playback/seek_backward",
+   ["seek_forward"]  = "image/ui/playback/seek_forward",
+   ["stop"]          = "image/ui/playback/stop",
+}
+PLAYBACK.animation = { "time", "previous", "play/pause", "next", "speed" }
+
+--------------------------------------------------------------------------------
+-- Returns a playback widget appropriate for the specified name.
+function UI.PlaybackWidget( gui, name )
+   if name == "time" then
+      return gui.valueEditor{
+         id     = name,
+         format = "%.2f",
+         step   = 0.01,
+      }
+   elseif name == "speed" then
+      return gui.valueEditor{
+         id     = name,
+         format = "%.2f",
+         step   = 0.01,
+         min    = 0,
+         max    = 8,
+         value  = 1,
+         size   = { 48, -1 },
+      }
+   else
+      return gui.button{
+         id   = name,
+         icon = PLAYBACK.icons[name],
+      }
+   end
+end
+
+--------------------------------------------------------------------------------
+-- Returns a playback panel which properly connects a PlaybackController with
+-- a set of widgets (either specified else created).
+function UI.PlaybackPanel( gui, params )
+
+   params = params or {}
+
+   local _lockTime = false
+
+   local this = gui.hbox{
+      gap    = 5,
+      onDelete = function( w )
+         w.controller.stop()
+      end,
+   }
+
+   local widgets = params
+   if #widgets == 0 then widgets = PLAYBACK.animation end
+   for i,v in ipairs(widgets) do
+      if type(v) == "string" then
+         this.addWidget( gui.PlaybackWidget(v) )
+      else
+         this.addWidget( v ) -- Assume it's a widget.
+      end
+   end
+
+   this.controller = params.controller or PlaybackController()
+   this.onUpdate   = params.onUpdate
+
+   local function _onEvent( ev, v1, v2 )
+      -- Handle special cases.
+      if ev == "play" or ev == "pause" or ev == "stop" then
+         local w = this.findWidget( "play/pause" )
+         if w then
+            -- Toggle.
+            if this.controller.playing() then
+               w.icon = PLAYBACK.icons.pause
+            else
+               w.icon = PLAYBACK.icons.play
+            end
+            return
+         end
+      elseif ev == "range" then
+         local w = this.findWidget( "time" )
+         if w then
+            w.min = v1
+            w.max = v2
+            return
+         end
+      elseif ev == "speed" then
+         local w = this.findWidget( "speed" )
+         if w then
+            w.value = v1
+            return
+         end
+      end
+      -- Send standard message.
+      --local w = this.findWidget( ev )
+   end
+
+   local function _onUpdate( t )
+      -- Update time UI.
+      local w = this.findWidget( "time" )
+      if w and not _lockTime then
+         _lockTime = true
+         w.value   = t
+         _lockTime = false
+      end
+      -- Update callback.
+      if this.onUpdate then this.onUpdate( this, t ) end
+   end
+
+   local function _onModify( w, val )
+      if _lockTime then return end
+      _lockTime = true
+      this.controller.stop()
+      this.controller.goTo( val )
+      _lockTime = false
+   end
+   local function _onSpeed( w, val )
+      if _lockTime then return end
+      _lockTime = true
+      this.controller.speed( val )
+      _lockTime = false
+   end
+
+   -- Connect widgets and controller.
+   this.controller.onEvent  = _onEvent
+   this.controller.onUpdate = _onUpdate
+
+   function _bindWidgetsToController()
+      local c = this.controller
+      local w
+      w = this.findWidget( "play" )
+      if w and not w.onClick then w.onClick = c.play end
+      w = this.findWidget( "pause" )
+      if w and not w.onClick then w.onClick = c.pause end
+      w = this.findWidget( "play/pause" )
+      if w and not w.onClick then w.onClick = c.playOrPause end
+      w = this.findWidget( "stop" )
+      if w and not w.onClick then w.onClick = c.stop end
+      w = this.findWidget( "previous" )
+      if w and not w.onClick then w.onClick = c.goToStart end
+      w = this.findWidget( "next" )
+      if w and not w.onClick then w.onClick = c.goToEnd end
+      w = this.findWidget( "time" )
+      if w and not w.onModify then w.onModify = _onModify end
+      w = this.findWidget( "speed" )
+      if w and not w.onModify then w.onModify = _onSpeed end
+   end
+
+   _bindWidgetsToController()
+
+   --------------------------------------------------------------------------------
+   function this.enable()
+      local n = this.numWidgets()
+      for i=1,n do
+         this[i].enabled = true
+      end
+   end
+
+   --------------------------------------------------------------------------------
+   function this.disable()
+      local n = this.numWidgets()
+      for i=1,n do
+         this[i].enabled = false
+      end
+   end
+
+   return this
+
+end

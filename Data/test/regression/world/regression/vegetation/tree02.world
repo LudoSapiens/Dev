@@ -1,0 +1,12 @@
+camera{
+   --position = {0,10,10},
+   --lookAt   = { {0,0,0}, {0,1,0} },
+   position = { 0.45089200139046, 10.962537765503, 4.9931592941284 },
+   orientation = { 0.47138714790344, -0.005770742893219, -0.0030852556228638, -0.8819020986557 }
+}
+
+staticObject{
+   geometry = geometry( "vegetation/tree02", {}, true ),
+   --material = material( "vegetation/mat01" ),
+   material = material( "regression/debug" ),
+}

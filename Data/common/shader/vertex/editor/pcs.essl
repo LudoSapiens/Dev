@@ -1,0 +1,8 @@
+varying vec4 vcolor;
+
+void main(void)
+{
+   gl_Position  = gfxWorldViewProjectionMatrix * gfxVertex;
+   gl_PointSize = gfxMultiTexCoord1.x;
+   vcolor       = gfxColor;
+}

@@ -1,0 +1,1436 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81BD2C0612B70B4D0070B4CE /* SplashLE~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 81BD2C0512B70B4D0070B4CE /* SplashLE~iphone.png */; };
+		F422998D12AFC82900353BFC /* GameSave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F422998B12AFC82900353BFC /* GameSave.cpp */; };
+		F422998E12AFC82900353BFC /* GameSave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F422998B12AFC82900353BFC /* GameSave.cpp */; };
+		F42600C110A35035003C990B /* Fusion.xib in Resources */ = {isa = PBXBuildFile; fileRef = F42600C010A35035003C990B /* Fusion.xib */; };
+		F42600C910A350AF003C990B /* libBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC5810A32C9A003C990B /* libBase.a */; };
+		F42600CA10A350BB003C990B /* libCGMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC6710A32C9A003C990B /* libCGMath.a */; };
+		F42600CB10A350C5003C990B /* libFusion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC7D10A32C9A003C990B /* libFusion.a */; };
+		F42600CC10A350D0003C990B /* libGfx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC9E10A32C9A003C990B /* libGfx.a */; };
+		F42600CD10A350D7003C990B /* libMotionBullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCB210A32C9A003C990B /* libMotionBullet.a */; };
+		F42600CE10A350DF003C990B /* libPlasma.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCC810A32C9A003C990B /* libPlasma.a */; };
+		F426016C10A354C1003C990B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F426FCE810A32CB8003C990B /* main.cpp */; };
+		F426016D10A354C1003C990B /* GameApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F426FCE510A32CB8003C990B /* GameApp.cpp */; };
+		F426FCEA10A32CB8003C990B /* GameApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F426FCE510A32CB8003C990B /* GameApp.cpp */; };
+		F426FCEB10A32CB8003C990B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F426FCE810A32CB8003C990B /* main.cpp */; };
+		F426FDD210A34276003C990B /* libBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC5A10A32C9A003C990B /* libBase.a */; };
+		F426FDD310A3427E003C990B /* libCGMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC6910A32C9A003C990B /* libCGMath.a */; };
+		F426FDD410A34287003C990B /* libFusion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC8910A32C9A003C990B /* libFusion.a */; };
+		F426FDD510A34293003C990B /* libGfx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCA410A32C9A003C990B /* libGfx.a */; };
+		F426FDD610A3429E003C990B /* libMotionBullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCB410A32C9A003C990B /* libMotionBullet.a */; };
+		F426FE0610A342E7003C990B /* libPlasma.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCD410A32C9A003C990B /* libPlasma.a */; };
+		F426FEAF10A343BA003C990B /* Fusion.xib in Resources */ = {isa = PBXBuildFile; fileRef = F426FEAE10A343BA003C990B /* Fusion.xib */; };
+		F43AEF1C132F9BEA00415449 /* SplashLE-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F43AEF1A132F9BE900415449 /* SplashLE-Landscape~ipad.png */; };
+		F43AEF1D132F9BEA00415449 /* SplashLE-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F43AEF1B132F9BEA00415449 /* SplashLE-Portrait~ipad.png */; };
+		F43AEF23132FAB7C00415449 /* icon_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = F43AEF22132FAB7C00415449 /* icon_72x72.png */; };
+		F43AEF24132FAB7C00415449 /* icon_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = F43AEF22132FAB7C00415449 /* icon_72x72.png */; };
+		F43AEF26132FAB8E00415449 /* icon_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = F43AEF25132FAB8E00415449 /* icon_114x114.png */; };
+		F43AEF27132FAB8E00415449 /* icon_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = F43AEF25132FAB8E00415449 /* icon_114x114.png */; };
+		F43AEF2E132FAC3C00415449 /* Splash-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F43AEF2C132FAC3C00415449 /* Splash-Landscape~ipad.png */; };
+		F43AEF2F132FAC3C00415449 /* Splash-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F43AEF2D132FAC3C00415449 /* Splash-Portrait~ipad.png */; };
+		F471DF9512B2F13C00277A49 /* icon_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = F471DF9412B2F13B00277A49 /* icon_57x57.png */; };
+		F471E2EE12B6F16600277A49 /* Fusion.xib in Resources */ = {isa = PBXBuildFile; fileRef = F426FEAE10A343BA003C990B /* Fusion.xib */; };
+		F471E2F012B6F16600277A49 /* icon_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = F471DF9412B2F13B00277A49 /* icon_57x57.png */; };
+		F471E2F212B6F16600277A49 /* GameApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F426FCE510A32CB8003C990B /* GameApp.cpp */; };
+		F471E2F312B6F16600277A49 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F426FCE810A32CB8003C990B /* main.cpp */; };
+		F471E2F412B6F16600277A49 /* GameManipulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BEBDB710A4A73E0002EA0F /* GameManipulator.cpp */; };
+		F471E2F512B6F16600277A49 /* Attractors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BE8B0210C596B4006B9915 /* Attractors.cpp */; };
+		F471E2F612B6F16600277A49 /* GameSave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F422998B12AFC82900353BFC /* GameSave.cpp */; };
+		F471E2F812B6F16600277A49 /* libBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC5A10A32C9A003C990B /* libBase.a */; };
+		F471E2F912B6F16600277A49 /* libCGMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC6910A32C9A003C990B /* libCGMath.a */; };
+		F471E2FA12B6F16600277A49 /* libFusion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FC8910A32C9A003C990B /* libFusion.a */; };
+		F471E2FB12B6F16600277A49 /* libGfx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCA410A32C9A003C990B /* libGfx.a */; };
+		F471E2FC12B6F16600277A49 /* libMotionBullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCB410A32C9A003C990B /* libMotionBullet.a */; };
+		F471E2FD12B6F16600277A49 /* libPlasma.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F426FCD410A32C9A003C990B /* libPlasma.a */; };
+		F471E2FE12B6F16600277A49 /* libSnd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F479C6E2125CD46200773EB5 /* libSnd.a */; };
+		F49FB599132E97C200B1C1B9 /* Fusion-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F49FB598132E97C200B1C1B9 /* Fusion-iPad.xib */; };
+		F49FB621132E9D1700B1C1B9 /* Fusion-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F49FB598132E97C200B1C1B9 /* Fusion-iPad.xib */; };
+		F4BE8B0910C596B4006B9915 /* Attractors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BE8B0210C596B4006B9915 /* Attractors.cpp */; };
+		F4BE8B0B10C596B4006B9915 /* Attractors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BE8B0210C596B4006B9915 /* Attractors.cpp */; };
+		F4BEBDBB10A4A73E0002EA0F /* GameManipulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BEBDB710A4A73E0002EA0F /* GameManipulator.cpp */; };
+		F4BEBDBC10A4A73E0002EA0F /* GameManipulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4BEBDB710A4A73E0002EA0F /* GameManipulator.cpp */; };
+		F4C4881C12A9909500B4EF35 /* Splash~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C4881B12A9909500B4EF35 /* Splash~iphone.png */; };
+		F4C79703125CEA28001ED357 /* libSnd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F479C6E2125CD46200773EB5 /* libSnd.a */; };
+		F4C7971A125CEAB8001ED357 /* libSnd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F479C6E6125CD46200773EB5 /* libSnd.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F40AEE08116A2F4900695CF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4369D4C114E9EDD007653BA;
+			remoteInfo = "FusionTest_Cocoa (static)";
+		};
+		F426008A10A34FD5003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F414F879107E4BB800CABC0A;
+			remoteInfo = "Plasma_Cocoa_Bullet (static)";
+		};
+		F426FC5510A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F474926C107E36F100E91BFA;
+			remoteInfo = "BaseTest (static)";
+		};
+		F426FC5710A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4749256107E36B600E91BFA;
+			remoteInfo = "Base (static)";
+		};
+		F426FC5910A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F45788E21016643F008FF75E;
+			remoteInfo = Base_CocoaTouch;
+		};
+		F426FC6410A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492ED107E388D00E91BFA;
+			remoteInfo = "CGMathTest (static)";
+		};
+		F426FC6610A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F47492CD107E380300E91BFA;
+			remoteInfo = "CGMath (static)";
+		};
+		F426FC6810A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4578A2C10166C2A008FF75E;
+			remoteInfo = CGMath_CocoaTouch;
+		};
+		F426FC7A10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F616107E44AB00CABC0A;
+			remoteInfo = "FusionApp_Cocoa (static)";
+		};
+		F426FC7C10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F688107E44AB00CABC0A;
+			remoteInfo = "Fusion_Cocoa (static)";
+		};
+		F426FC8610A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4D4E722108D04AD00614A03;
+			remoteInfo = "FusionApp CocoaTouch (GLES)";
+		};
+		F426FC8810A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4D4E797108D04F300614A03;
+			remoteInfo = "Fusion CocoaTouch (GLES)";
+		};
+		F426FC8A10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F44C7FDF0A91114E00EDC4C5;
+			remoteInfo = FusionApp_X11;
+		};
+		F426FC9B10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F47E107E3D1300CABC0A;
+			remoteInfo = "GfxTest_Cocoa (static)";
+		};
+		F426FC9D10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F471107E3D0700CABC0A;
+			remoteInfo = "Gfx_Cocoa (static)";
+		};
+		F426FCA310A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4D4E677108CE20900614A03;
+			remoteInfo = "Gfx CocoaTouch (GLES)";
+		};
+		F426FCA510A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4020DC90AA8CF8D00DB0230;
+			remoteInfo = GfxTest_X11;
+		};
+		F426FCAD10A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F4BB37880E1428BE009BF822;
+			remoteInfo = MotionBulletTest;
+		};
+		F426FCB110A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F426F070109B46B1003C990B;
+			remoteInfo = "MotionBullet (static)";
+		};
+		F426FCB310A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F426F0B4109B479A003C990B;
+			remoteInfo = "MotionBullet CocoaTouch (static)";
+		};
+		F426FCC510A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F876107E4BB800CABC0A;
+			remoteInfo = "PlasmaApp_Cocoa_Bullet (static)";
+		};
+		F426FCC710A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F414F911107E4BB800CABC0A;
+			remoteInfo = "Plasma_Cocoa_Bullet (static)";
+		};
+		F426FCD110A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F447AF691098CCFA00CC1805;
+			remoteInfo = PlasmaApp_CocoaTouch;
+		};
+		F426FCD310A32C9A003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F447AF4D1098CC8200CC1805;
+			remoteInfo = Plasma_CocoaTouch_Bullet;
+		};
+		F426FDBD10A3410B003C990B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F447AF4C1098CC8200CC1805;
+			remoteInfo = Plasma_CocoaTouch_Bullet;
+		};
+		F471E2E012B6F16600277A49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F45788E11016643F008FF75E;
+			remoteInfo = "BaseLib (iOS)";
+		};
+		F471E2E212B6F16600277A49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4578A2B10166C2A008FF75E;
+			remoteInfo = "CGMathLib (iOS)";
+		};
+		F471E2E412B6F16600277A49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D4E729108D04F300614A03;
+			remoteInfo = "FusionLib (iOS)";
+		};
+		F471E2E612B6F16600277A49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D4E64A108CE20900614A03;
+			remoteInfo = "GfxLib (iOS)";
+		};
+		F471E2E812B6F16600277A49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F426F0B3109B479A003C990B;
+			remoteInfo = "MotionBulletLib (iOS)";
+		};
+		F471E2EA12B6F16600277A49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F447AF4C1098CC8200CC1805;
+			remoteInfo = Plasma_CocoaTouch_Bullet;
+		};
+		F471E2EC12B6F16600277A49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F496D934125B771C0000FB6C;
+			remoteInfo = "SndLib (iOS)";
+		};
+		F479C6C0125CD46100773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C3E5125CB5E800773EB5;
+			remoteInfo = "FusionLib (X11)";
+		};
+		F479C6CF125CD46200773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C337125C0A1E00773EB5;
+			remoteInfo = "GfxLib (X11)";
+		};
+		F479C6E1125CD46200773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C087125C034C00773EB5;
+			remoteInfo = "SndLib (iOS)";
+		};
+		F479C6E3125CD46200773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C088125C034C00773EB5;
+			remoteInfo = "SndTest (OSX)";
+		};
+		F479C6E5125CD46200773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C08A125C034C00773EB5;
+			remoteInfo = "SndLib (OSX)";
+		};
+		F479C8C5125CE1E800773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C8C0125CE1C900773EB5;
+			remoteInfo = "PlasmaApp (X11)";
+		};
+		F479C8D2125CE20900773EB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F479C8CE125CE1EA00773EB5;
+			remoteInfo = "PlasmaLib (X11)";
+		};
+		F4C796F7125CEA13001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D4E64A108CE20900614A03;
+			remoteInfo = "GfxLib (iOS)";
+		};
+		F4C796F9125CEA13001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F496D934125B771C0000FB6C;
+			remoteInfo = "SndLib (iOS)";
+		};
+		F4C796FB125CEA13001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D4E729108D04F300614A03;
+			remoteInfo = "FusionLib (iOS)";
+		};
+		F4C796FD125CEA13001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F426F0B3109B479A003C990B;
+			remoteInfo = "MotionBulletLib (iOS)";
+		};
+		F4C796FF125CEA13001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F45788E11016643F008FF75E;
+			remoteInfo = "BaseLib (iOS)";
+		};
+		F4C79701125CEA13001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F4578A2B10166C2A008FF75E;
+			remoteInfo = "CGMathLib (iOS)";
+		};
+		F4C797A9125CEC7C001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F414F43F107E3D0700CABC0A;
+			remoteInfo = "GfxLib (OSX)";
+		};
+		F4C797AB125CEC7C001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F414F798107E49D800CABC0A;
+			remoteInfo = "SndLib (OSX)";
+		};
+		F4C797AD125CEC7C001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F414F619107E44AB00CABC0A;
+			remoteInfo = "FusionLib (OSX)";
+		};
+		F4C797AF125CEC7C001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F426F06F109B46B1003C990B;
+			remoteInfo = "MotionBulletLib (OSX)";
+		};
+		F4C797B1125CEC7C001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F47491E7107E36B600E91BFA;
+			remoteInfo = "BaseLib (OSX)";
+		};
+		F4C797B3125CEC7C001ED357 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F474929E107E380300E91BFA;
+			remoteInfo = "CGMathLib (OSX)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		81BD2C0512B70B4D0070B4CE /* SplashLE~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SplashLE~iphone.png"; path = "../../../Data/game/polycubic/texture/SplashLE~iphone.png"; sourceTree = SOURCE_ROOT; };
+		F422998B12AFC82900353BFC /* GameSave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameSave.cpp; path = ../../../Projects/Game/Polycubic/GameSave.cpp; sourceTree = SOURCE_ROOT; };
+		F422998C12AFC82900353BFC /* GameSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSave.h; path = ../../../Projects/Game/Polycubic/GameSave.h; sourceTree = SOURCE_ROOT; };
+		F426004B10A34F95003C990B /* Polycubic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Polycubic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F426004D10A34F95003C990B /* Polycubic_OSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Polycubic_OSX-Info.plist"; sourceTree = "<group>"; };
+		F42600C010A35035003C990B /* Fusion.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Fusion.xib; path = ../../../Projects/Fusion/Core/Cocoa/Fusion.xib; sourceTree = SOURCE_ROOT; };
+		F426FC2110A32BCF003C990B /* Polycubic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Polycubic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F426FC2410A32BCF003C990B /* Polycubic_iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Polycubic_iOS-Info.plist"; sourceTree = "<group>"; };
+		F426FC2910A32C60003C990B /* iOS_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = iOS_Application_Debug.xcconfig; path = Config/Target/iOS_Application_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2A10A32C60003C990B /* OSX_Application_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_Application_Debug.xcconfig; path = Config/Target/OSX_Application_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2B10A32C60003C990B /* iOS_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = iOS_Application_Release.xcconfig; path = Config/Target/iOS_Application_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2C10A32C60003C990B /* OSX_Application_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_Application_Release.xcconfig; path = Config/Target/OSX_Application_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2D10A32C60003C990B /* OSX_Executable_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_Executable_Debug.xcconfig; path = Config/Target/OSX_Executable_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2E10A32C60003C990B /* OSX_Executable_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_Executable_Release.xcconfig; path = Config/Target/OSX_Executable_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC2F10A32C60003C990B /* OSX_SharedLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_SharedLib_Debug.xcconfig; path = Config/Target/OSX_SharedLib_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3010A32C60003C990B /* OSX_SharedLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_SharedLib_Release.xcconfig; path = Config/Target/OSX_SharedLib_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3110A32C60003C990B /* iOS_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = iOS_StaticLib_Debug.xcconfig; path = Config/Target/iOS_StaticLib_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3210A32C60003C990B /* OSX_StaticLib_Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_StaticLib_Debug.xcconfig; path = Config/Target/OSX_StaticLib_Debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3310A32C60003C990B /* iOS_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = iOS_StaticLib_Release.xcconfig; path = Config/Target/iOS_StaticLib_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3410A32C60003C990B /* OSX_StaticLib_Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = OSX_StaticLib_Release.xcconfig; path = Config/Target/OSX_StaticLib_Release.xcconfig; sourceTree = SOURCE_ROOT; };
+		F426FC3710A32C9A003C990B /* Base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Base.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CGMath.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Fusion.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC4010A32C9A003C990B /* Gfx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Gfx.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MotionBullet.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC4610A32C9A003C990B /* Plasma.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Plasma.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FC4910A32C9A003C990B /* Snd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Snd.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F426FCE510A32CB8003C990B /* GameApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameApp.cpp; path = ../../../Projects/Game/Polycubic/GameApp.cpp; sourceTree = SOURCE_ROOT; };
+		F426FCE610A32CB8003C990B /* GameApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameApp.h; path = ../../../Projects/Game/Polycubic/GameApp.h; sourceTree = SOURCE_ROOT; };
+		F426FCE810A32CB8003C990B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F426FCE910A32CB8003C990B /* StdDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StdDefs.h; path = ../../../Projects/Game/Polycubic/StdDefs.h; sourceTree = SOURCE_ROOT; };
+		F426FEAE10A343BA003C990B /* Fusion.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Fusion.xib; path = ../../../Projects/Fusion/Core/CocoaTouch/Fusion.xib; sourceTree = SOURCE_ROOT; };
+		F43AEF1A132F9BE900415449 /* SplashLE-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SplashLE-Landscape~ipad.png"; path = "../../../Data/game/polycubic/texture/SplashLE-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
+		F43AEF1B132F9BEA00415449 /* SplashLE-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SplashLE-Portrait~ipad.png"; path = "../../../Data/game/polycubic/texture/SplashLE-Portrait~ipad.png"; sourceTree = SOURCE_ROOT; };
+		F43AEF22132FAB7C00415449 /* icon_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_72x72.png; path = ../../../Data/game/polycubic/texture/icon_72x72.png; sourceTree = SOURCE_ROOT; };
+		F43AEF25132FAB8E00415449 /* icon_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_114x114.png; path = ../../../Data/game/polycubic/texture/icon_114x114.png; sourceTree = SOURCE_ROOT; };
+		F43AEF2C132FAC3C00415449 /* Splash-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Splash-Landscape~ipad.png"; path = "../../../Data/game/polycubic/texture/Splash-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
+		F43AEF2D132FAC3C00415449 /* Splash-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Splash-Portrait~ipad.png"; path = "../../../Data/game/polycubic/texture/Splash-Portrait~ipad.png"; sourceTree = SOURCE_ROOT; };
+		F471DF9412B2F13B00277A49 /* icon_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_57x57.png; path = ../../../Data/game/polycubic/texture/icon_57x57.png; sourceTree = SOURCE_ROOT; };
+		F471E30312B6F16600277A49 /* Polycubic LE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polycubic LE.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F471E30512B6F16700277A49 /* PolycubicLE_iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PolycubicLE_iOS-Info.plist"; sourceTree = "<group>"; };
+		F49FB598132E97C200B1C1B9 /* Fusion-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "Fusion-iPad.xib"; path = "../../../Projects/Fusion/Core/CocoaTouch/Fusion-iPad.xib"; sourceTree = SOURCE_ROOT; };
+		F4BE8B0210C596B4006B9915 /* Attractors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Attractors.cpp; sourceTree = "<group>"; };
+		F4BE8B0310C596B4006B9915 /* Attractors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attractors.h; sourceTree = "<group>"; };
+		F4BEBDB710A4A73E0002EA0F /* GameManipulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManipulator.cpp; sourceTree = "<group>"; };
+		F4BEBDB810A4A73E0002EA0F /* GameManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManipulator.h; sourceTree = "<group>"; };
+		F4C4881B12A9909500B4EF35 /* Splash~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Splash~iphone.png"; path = "../../../Data/game/polycubic/texture/Splash~iphone.png"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F426004910A34F95003C990B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42600C910A350AF003C990B /* libBase.a in Frameworks */,
+				F42600CA10A350BB003C990B /* libCGMath.a in Frameworks */,
+				F42600CB10A350C5003C990B /* libFusion.a in Frameworks */,
+				F42600CC10A350D0003C990B /* libGfx.a in Frameworks */,
+				F42600CD10A350D7003C990B /* libMotionBullet.a in Frameworks */,
+				F42600CE10A350DF003C990B /* libPlasma.a in Frameworks */,
+				F4C7971A125CEAB8001ED357 /* libSnd.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F426FC1F10A32BCF003C990B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426FDD210A34276003C990B /* libBase.a in Frameworks */,
+				F426FDD310A3427E003C990B /* libCGMath.a in Frameworks */,
+				F426FDD410A34287003C990B /* libFusion.a in Frameworks */,
+				F426FDD510A34293003C990B /* libGfx.a in Frameworks */,
+				F426FDD610A3429E003C990B /* libMotionBullet.a in Frameworks */,
+				F426FE0610A342E7003C990B /* libPlasma.a in Frameworks */,
+				F4C79703125CEA28001ED357 /* libSnd.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F471E2F712B6F16600277A49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F471E2F812B6F16600277A49 /* libBase.a in Frameworks */,
+				F471E2F912B6F16600277A49 /* libCGMath.a in Frameworks */,
+				F471E2FA12B6F16600277A49 /* libFusion.a in Frameworks */,
+				F471E2FB12B6F16600277A49 /* libGfx.a in Frameworks */,
+				F471E2FC12B6F16600277A49 /* libMotionBullet.a in Frameworks */,
+				F471E2FD12B6F16600277A49 /* libPlasma.a in Frameworks */,
+				F471E2FE12B6F16600277A49 /* libSnd.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F426003710A34CBC003C990B /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				F42600C010A35035003C990B /* Fusion.xib */,
+				F426004D10A34F95003C990B /* Polycubic_OSX-Info.plist */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
+		F426FC0710A32B8C003C990B = {
+			isa = PBXGroup;
+			children = (
+				F426FC3610A32C80003C990B /* Projects */,
+				F426FC3510A32C7B003C990B /* Source */,
+				F426FC2810A32C4E003C990B /* Config */,
+				F426FE9A10A34347003C990B /* Resources */,
+				F426FC2210A32BCF003C990B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F426FC2210A32BCF003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC2110A32BCF003C990B /* Polycubic.app */,
+				F426004B10A34F95003C990B /* Polycubic.app */,
+				F471E30312B6F16600277A49 /* Polycubic LE.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC2810A32C4E003C990B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC2910A32C60003C990B /* iOS_Application_Debug.xcconfig */,
+				F426FC2B10A32C60003C990B /* iOS_Application_Release.xcconfig */,
+				F426FC3110A32C60003C990B /* iOS_StaticLib_Debug.xcconfig */,
+				F426FC3310A32C60003C990B /* iOS_StaticLib_Release.xcconfig */,
+				F426FC2A10A32C60003C990B /* OSX_Application_Debug.xcconfig */,
+				F426FC2C10A32C60003C990B /* OSX_Application_Release.xcconfig */,
+				F426FC2D10A32C60003C990B /* OSX_Executable_Debug.xcconfig */,
+				F426FC2E10A32C60003C990B /* OSX_Executable_Release.xcconfig */,
+				F426FC2F10A32C60003C990B /* OSX_SharedLib_Debug.xcconfig */,
+				F426FC3010A32C60003C990B /* OSX_SharedLib_Release.xcconfig */,
+				F426FC3210A32C60003C990B /* OSX_StaticLib_Debug.xcconfig */,
+				F426FC3410A32C60003C990B /* OSX_StaticLib_Release.xcconfig */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		F426FC3510A32C7B003C990B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F4BEBDB610A4A73E0002EA0F /* Manipulator */,
+				F426FCE510A32CB8003C990B /* GameApp.cpp */,
+				F426FCE610A32CB8003C990B /* GameApp.h */,
+				F422998B12AFC82900353BFC /* GameSave.cpp */,
+				F422998C12AFC82900353BFC /* GameSave.h */,
+				F4BE8B0110C596B4006B9915 /* Physics */,
+				F426FCE910A32CB8003C990B /* StdDefs.h */,
+				F426FCE710A32CB8003C990B /* src */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		F426FC3610A32C80003C990B /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC3710A32C9A003C990B /* Base.xcodeproj */,
+				F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */,
+				F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */,
+				F426FC4010A32C9A003C990B /* Gfx.xcodeproj */,
+				F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */,
+				F426FC4610A32C9A003C990B /* Plasma.xcodeproj */,
+				F426FC4910A32C9A003C990B /* Snd.xcodeproj */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
+		F426FC3810A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC5A10A32C9A003C990B /* libBase.a */,
+				F426FC5810A32C9A003C990B /* libBase.a */,
+				F426FC5610A32C9A003C990B /* BaseTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC3B10A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC6910A32C9A003C990B /* libCGMath.a */,
+				F426FC6510A32C9A003C990B /* CGMathTest */,
+				F426FC6710A32C9A003C990B /* libCGMath.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC3E10A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FC8710A32C9A003C990B /* Fusion.app */,
+				F426FC8910A32C9A003C990B /* libFusion.a */,
+				F426FC7B10A32C9A003C990B /* Fusion.app */,
+				F426FC7D10A32C9A003C990B /* libFusion.a */,
+				F40AEE09116A2F4900695CF2 /* FusionTest */,
+				F426FC8B10A32C9A003C990B /* Fusion_X11 */,
+				F479C6C1125CD46100773EB5 /* libFusion_X11.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC4110A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FCA410A32C9A003C990B /* libGfx.a */,
+				F426FC9C10A32C9A003C990B /* GfxTest.app */,
+				F426FC9E10A32C9A003C990B /* libGfx.a */,
+				F426FCA610A32C9A003C990B /* GfxTest_X11 */,
+				F479C6D0125CD46200773EB5 /* libGfxLib_X11.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC4410A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FCB410A32C9A003C990B /* libMotionBullet.a */,
+				F426FCB210A32C9A003C990B /* libMotionBullet.a */,
+				F426FCAE10A32C9A003C990B /* MotionBulletTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC4710A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F426FCD210A32C9A003C990B /* Plasma.app */,
+				F426FCD410A32C9A003C990B /* libPlasma.a */,
+				F426FCC610A32C9A003C990B /* Plasma.app */,
+				F426FCC810A32C9A003C990B /* libPlasma.a */,
+				F479C8C6125CE1E800773EB5 /* Plasma_X11 */,
+				F479C8D3125CE20900773EB5 /* libPlasma_X11.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FC4A10A32C9A003C990B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F479C6E2125CD46200773EB5 /* libSnd.a */,
+				F479C6E4125CD46200773EB5 /* SndTest */,
+				F479C6E6125CD46200773EB5 /* libSnd.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F426FCE710A32CB8003C990B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F426FCE810A32CB8003C990B /* main.cpp */,
+			);
+			name = src;
+			path = ../../../Projects/Game/Polycubic/src;
+			sourceTree = SOURCE_ROOT;
+		};
+		F426FE9A10A34347003C990B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F426FEAD10A343A5003C990B /* iOS */,
+				F426003710A34CBC003C990B /* OSX */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F426FEAD10A343A5003C990B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F471DF9412B2F13B00277A49 /* icon_57x57.png */,
+				F43AEF22132FAB7C00415449 /* icon_72x72.png */,
+				F43AEF25132FAB8E00415449 /* icon_114x114.png */,
+				F4C4881B12A9909500B4EF35 /* Splash~iphone.png */,
+				F43AEF2C132FAC3C00415449 /* Splash-Landscape~ipad.png */,
+				F43AEF2D132FAC3C00415449 /* Splash-Portrait~ipad.png */,
+				F43AEF1A132F9BE900415449 /* SplashLE-Landscape~ipad.png */,
+				F43AEF1B132F9BEA00415449 /* SplashLE-Portrait~ipad.png */,
+				81BD2C0512B70B4D0070B4CE /* SplashLE~iphone.png */,
+				F426FEAE10A343BA003C990B /* Fusion.xib */,
+				F49FB598132E97C200B1C1B9 /* Fusion-iPad.xib */,
+				F426FC2410A32BCF003C990B /* Polycubic_iOS-Info.plist */,
+				F471E30512B6F16700277A49 /* PolycubicLE_iOS-Info.plist */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		F4BE8B0110C596B4006B9915 /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				F4BE8B0210C596B4006B9915 /* Attractors.cpp */,
+				F4BE8B0310C596B4006B9915 /* Attractors.h */,
+			);
+			name = Physics;
+			path = ../../../Projects/Game/Polycubic/Physics;
+			sourceTree = SOURCE_ROOT;
+		};
+		F4BEBDB610A4A73E0002EA0F /* Manipulator */ = {
+			isa = PBXGroup;
+			children = (
+				F4BEBDB710A4A73E0002EA0F /* GameManipulator.cpp */,
+				F4BEBDB810A4A73E0002EA0F /* GameManipulator.h */,
+			);
+			name = Manipulator;
+			path = ../../../Projects/Game/Polycubic/Manipulator;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F426004A10A34F95003C990B /* Polycubic (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F426005010A34F96003C990B /* Build configuration list for PBXNativeTarget "Polycubic (OSX)" */;
+			buildPhases = (
+				F426004710A34F95003C990B /* Resources */,
+				F426004810A34F95003C990B /* Sources */,
+				F426004910A34F95003C990B /* Frameworks */,
+				F42600D410A351BD003C990B /* CopyData */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4C797B2125CEC7C001ED357 /* PBXTargetDependency */,
+				F4C797B4125CEC7C001ED357 /* PBXTargetDependency */,
+				F4C797AE125CEC7C001ED357 /* PBXTargetDependency */,
+				F4C797AA125CEC7C001ED357 /* PBXTargetDependency */,
+				F4C797B0125CEC7C001ED357 /* PBXTargetDependency */,
+				F426008B10A34FD5003C990B /* PBXTargetDependency */,
+				F4C797AC125CEC7C001ED357 /* PBXTargetDependency */,
+			);
+			name = "Polycubic (OSX)";
+			productName = "Polycubic (OSX)";
+			productReference = F426004B10A34F95003C990B /* Polycubic.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F426FC2010A32BCF003C990B /* Polycubic (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F426FC2710A32BD2003C990B /* Build configuration list for PBXNativeTarget "Polycubic (iOS)" */;
+			buildPhases = (
+				F426FC1D10A32BCF003C990B /* Resources */,
+				F426FC1E10A32BCF003C990B /* Sources */,
+				F426FC1F10A32BCF003C990B /* Frameworks */,
+				F426FEBA10A343F0003C990B /* CopyData */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4C79700125CEA13001ED357 /* PBXTargetDependency */,
+				F4C79702125CEA13001ED357 /* PBXTargetDependency */,
+				F4C796FC125CEA13001ED357 /* PBXTargetDependency */,
+				F4C796F8125CEA13001ED357 /* PBXTargetDependency */,
+				F4C796FE125CEA13001ED357 /* PBXTargetDependency */,
+				F426FDBE10A3410B003C990B /* PBXTargetDependency */,
+				F4C796FA125CEA13001ED357 /* PBXTargetDependency */,
+			);
+			name = "Polycubic (iOS)";
+			productName = "Polycubic (iOS)";
+			productReference = F426FC2110A32BCF003C990B /* Polycubic.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F471E2DE12B6F16600277A49 /* Polycubic LE (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F471E30012B6F16600277A49 /* Build configuration list for PBXNativeTarget "Polycubic LE (iOS)" */;
+			buildPhases = (
+				F471E2ED12B6F16600277A49 /* Resources */,
+				F471E2F112B6F16600277A49 /* Sources */,
+				F471E2F712B6F16600277A49 /* Frameworks */,
+				F471E2FF12B6F16600277A49 /* CopyData */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F471E2DF12B6F16600277A49 /* PBXTargetDependency */,
+				F471E2E112B6F16600277A49 /* PBXTargetDependency */,
+				F471E2E312B6F16600277A49 /* PBXTargetDependency */,
+				F471E2E512B6F16600277A49 /* PBXTargetDependency */,
+				F471E2E712B6F16600277A49 /* PBXTargetDependency */,
+				F471E2E912B6F16600277A49 /* PBXTargetDependency */,
+				F471E2EB12B6F16600277A49 /* PBXTargetDependency */,
+			);
+			name = "Polycubic LE (iOS)";
+			productName = "Polycubic (iOS)";
+			productReference = F471E30312B6F16600277A49 /* Polycubic LE.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F426FC0910A32B8C003C990B /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F426FC0C10A32B8C003C990B /* Build configuration list for PBXProject "Polycubic" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = F426FC0710A32B8C003C990B;
+			productRefGroup = F426FC2210A32BCF003C990B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F426FC3810A32C9A003C990B /* Products */;
+					ProjectRef = F426FC3710A32C9A003C990B /* Base.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC3B10A32C9A003C990B /* Products */;
+					ProjectRef = F426FC3A10A32C9A003C990B /* CGMath.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC3E10A32C9A003C990B /* Products */;
+					ProjectRef = F426FC3D10A32C9A003C990B /* Fusion.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC4110A32C9A003C990B /* Products */;
+					ProjectRef = F426FC4010A32C9A003C990B /* Gfx.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC4410A32C9A003C990B /* Products */;
+					ProjectRef = F426FC4310A32C9A003C990B /* MotionBullet.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC4710A32C9A003C990B /* Products */;
+					ProjectRef = F426FC4610A32C9A003C990B /* Plasma.xcodeproj */;
+				},
+				{
+					ProductGroup = F426FC4A10A32C9A003C990B /* Products */;
+					ProjectRef = F426FC4910A32C9A003C990B /* Snd.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F426FC2010A32BCF003C990B /* Polycubic (iOS) */,
+				F471E2DE12B6F16600277A49 /* Polycubic LE (iOS) */,
+				F426004A10A34F95003C990B /* Polycubic (OSX) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F40AEE09116A2F4900695CF2 /* FusionTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = FusionTest;
+			remoteRef = F40AEE08116A2F4900695CF2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC5610A32C9A003C990B /* BaseTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BaseTest;
+			remoteRef = F426FC5510A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC5810A32C9A003C990B /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libBase.a;
+			remoteRef = F426FC5710A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC5A10A32C9A003C990B /* libBase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBase.a;
+			remoteRef = F426FC5910A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC6510A32C9A003C990B /* CGMathTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = CGMathTest;
+			remoteRef = F426FC6410A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC6710A32C9A003C990B /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libCGMath.a;
+			remoteRef = F426FC6610A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC6910A32C9A003C990B /* libCGMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCGMath.a;
+			remoteRef = F426FC6810A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC7B10A32C9A003C990B /* Fusion.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Fusion.app;
+			remoteRef = F426FC7A10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC7D10A32C9A003C990B /* libFusion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libFusion.a;
+			remoteRef = F426FC7C10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC8710A32C9A003C990B /* Fusion.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Fusion.app;
+			remoteRef = F426FC8610A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC8910A32C9A003C990B /* libFusion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFusion.a;
+			remoteRef = F426FC8810A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC8B10A32C9A003C990B /* Fusion_X11 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Fusion_X11;
+			remoteRef = F426FC8A10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC9C10A32C9A003C990B /* GfxTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = GfxTest.app;
+			remoteRef = F426FC9B10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FC9E10A32C9A003C990B /* libGfx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libGfx.a;
+			remoteRef = F426FC9D10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCA410A32C9A003C990B /* libGfx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGfx.a;
+			remoteRef = F426FCA310A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCA610A32C9A003C990B /* GfxTest_X11 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = GfxTest_X11;
+			remoteRef = F426FCA510A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCAE10A32C9A003C990B /* MotionBulletTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = MotionBulletTest;
+			remoteRef = F426FCAD10A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCB210A32C9A003C990B /* libMotionBullet.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMotionBullet.a;
+			remoteRef = F426FCB110A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCB410A32C9A003C990B /* libMotionBullet.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMotionBullet.a;
+			remoteRef = F426FCB310A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCC610A32C9A003C990B /* Plasma.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Plasma.app;
+			remoteRef = F426FCC510A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCC810A32C9A003C990B /* libPlasma.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libPlasma.a;
+			remoteRef = F426FCC710A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCD210A32C9A003C990B /* Plasma.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Plasma.app;
+			remoteRef = F426FCD110A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F426FCD410A32C9A003C990B /* libPlasma.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPlasma.a;
+			remoteRef = F426FCD310A32C9A003C990B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C6C1125CD46100773EB5 /* libFusion_X11.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFusion_X11.a;
+			remoteRef = F479C6C0125CD46100773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C6D0125CD46200773EB5 /* libGfxLib_X11.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGfxLib_X11.a;
+			remoteRef = F479C6CF125CD46200773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C6E2125CD46200773EB5 /* libSnd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSnd.a;
+			remoteRef = F479C6E1125CD46200773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C6E4125CD46200773EB5 /* SndTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SndTest;
+			remoteRef = F479C6E3125CD46200773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C6E6125CD46200773EB5 /* libSnd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libSnd.a;
+			remoteRef = F479C6E5125CD46200773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C8C6125CE1E800773EB5 /* Plasma_X11 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Plasma_X11;
+			remoteRef = F479C8C5125CE1E800773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F479C8D3125CE20900773EB5 /* libPlasma_X11.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPlasma_X11.a;
+			remoteRef = F479C8D2125CE20900773EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F426004710A34F95003C990B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42600C110A35035003C990B /* Fusion.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F426FC1D10A32BCF003C990B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426FEAF10A343BA003C990B /* Fusion.xib in Resources */,
+				F4C4881C12A9909500B4EF35 /* Splash~iphone.png in Resources */,
+				F471DF9512B2F13C00277A49 /* icon_57x57.png in Resources */,
+				F49FB599132E97C200B1C1B9 /* Fusion-iPad.xib in Resources */,
+				F43AEF24132FAB7C00415449 /* icon_72x72.png in Resources */,
+				F43AEF27132FAB8E00415449 /* icon_114x114.png in Resources */,
+				F43AEF2E132FAC3C00415449 /* Splash-Landscape~ipad.png in Resources */,
+				F43AEF2F132FAC3C00415449 /* Splash-Portrait~ipad.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F471E2ED12B6F16600277A49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F471E2EE12B6F16600277A49 /* Fusion.xib in Resources */,
+				F49FB621132E9D1700B1C1B9 /* Fusion-iPad.xib in Resources */,
+				F471E2F012B6F16600277A49 /* icon_57x57.png in Resources */,
+				81BD2C0612B70B4D0070B4CE /* SplashLE~iphone.png in Resources */,
+				F43AEF1C132F9BEA00415449 /* SplashLE-Landscape~ipad.png in Resources */,
+				F43AEF1D132F9BEA00415449 /* SplashLE-Portrait~ipad.png in Resources */,
+				F43AEF23132FAB7C00415449 /* icon_72x72.png in Resources */,
+				F43AEF26132FAB8E00415449 /* icon_114x114.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F42600D410A351BD003C990B /* CopyData */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = CopyData;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "Script/CopyData.py game/polycubic/manifest";
+		};
+		F426FEBA10A343F0003C990B /* CopyData */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = CopyData;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "Script/CopyData.py game/polycubic/manifest";
+		};
+		F471E2FF12B6F16600277A49 /* CopyData */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = CopyData;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "Script/CopyData.py game/polycubic/manifestLE";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F426004810A34F95003C990B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426016C10A354C1003C990B /* main.cpp in Sources */,
+				F426016D10A354C1003C990B /* GameApp.cpp in Sources */,
+				F4BEBDBC10A4A73E0002EA0F /* GameManipulator.cpp in Sources */,
+				F4BE8B0B10C596B4006B9915 /* Attractors.cpp in Sources */,
+				F422998E12AFC82900353BFC /* GameSave.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F426FC1E10A32BCF003C990B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F426FCEA10A32CB8003C990B /* GameApp.cpp in Sources */,
+				F426FCEB10A32CB8003C990B /* main.cpp in Sources */,
+				F4BEBDBB10A4A73E0002EA0F /* GameManipulator.cpp in Sources */,
+				F4BE8B0910C596B4006B9915 /* Attractors.cpp in Sources */,
+				F422998D12AFC82900353BFC /* GameSave.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F471E2F112B6F16600277A49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F471E2F212B6F16600277A49 /* GameApp.cpp in Sources */,
+				F471E2F312B6F16600277A49 /* main.cpp in Sources */,
+				F471E2F412B6F16600277A49 /* GameManipulator.cpp in Sources */,
+				F471E2F512B6F16600277A49 /* Attractors.cpp in Sources */,
+				F471E2F612B6F16600277A49 /* GameSave.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F426008B10A34FD5003C990B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Plasma_Cocoa_Bullet (static)";
+			targetProxy = F426008A10A34FD5003C990B /* PBXContainerItemProxy */;
+		};
+		F426FDBE10A3410B003C990B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Plasma_CocoaTouch_Bullet;
+			targetProxy = F426FDBD10A3410B003C990B /* PBXContainerItemProxy */;
+		};
+		F471E2DF12B6F16600277A49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BaseLib (iOS)";
+			targetProxy = F471E2E012B6F16600277A49 /* PBXContainerItemProxy */;
+		};
+		F471E2E112B6F16600277A49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CGMathLib (iOS)";
+			targetProxy = F471E2E212B6F16600277A49 /* PBXContainerItemProxy */;
+		};
+		F471E2E312B6F16600277A49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FusionLib (iOS)";
+			targetProxy = F471E2E412B6F16600277A49 /* PBXContainerItemProxy */;
+		};
+		F471E2E512B6F16600277A49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GfxLib (iOS)";
+			targetProxy = F471E2E612B6F16600277A49 /* PBXContainerItemProxy */;
+		};
+		F471E2E712B6F16600277A49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MotionBulletLib (iOS)";
+			targetProxy = F471E2E812B6F16600277A49 /* PBXContainerItemProxy */;
+		};
+		F471E2E912B6F16600277A49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Plasma_CocoaTouch_Bullet;
+			targetProxy = F471E2EA12B6F16600277A49 /* PBXContainerItemProxy */;
+		};
+		F471E2EB12B6F16600277A49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SndLib (iOS)";
+			targetProxy = F471E2EC12B6F16600277A49 /* PBXContainerItemProxy */;
+		};
+		F4C796F8125CEA13001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GfxLib (iOS)";
+			targetProxy = F4C796F7125CEA13001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C796FA125CEA13001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SndLib (iOS)";
+			targetProxy = F4C796F9125CEA13001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C796FC125CEA13001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FusionLib (iOS)";
+			targetProxy = F4C796FB125CEA13001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C796FE125CEA13001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MotionBulletLib (iOS)";
+			targetProxy = F4C796FD125CEA13001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C79700125CEA13001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BaseLib (iOS)";
+			targetProxy = F4C796FF125CEA13001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C79702125CEA13001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CGMathLib (iOS)";
+			targetProxy = F4C79701125CEA13001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C797AA125CEC7C001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GfxLib (OSX)";
+			targetProxy = F4C797A9125CEC7C001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C797AC125CEC7C001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SndLib (OSX)";
+			targetProxy = F4C797AB125CEC7C001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C797AE125CEC7C001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FusionLib (OSX)";
+			targetProxy = F4C797AD125CEC7C001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C797B0125CEC7C001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MotionBulletLib (OSX)";
+			targetProxy = F4C797AF125CEC7C001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C797B2125CEC7C001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BaseLib (OSX)";
+			targetProxy = F4C797B1125CEC7C001ED357 /* PBXContainerItemProxy */;
+		};
+		F4C797B4125CEC7C001ED357 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CGMathLib (OSX)";
+			targetProxy = F4C797B3125CEC7C001ED357 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F426004E10A34F96003C990B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F426FC2A10A32C60003C990B /* OSX_Application_Debug.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -framework AppKit -framework IOKit -framework OpenGL -framework OpenAL -llua -lBulletCollision -lBulletDynamics -lLinearMath -logg -lvorbis -lvorbisfile -lz";
+				INFOPLIST_FILE = "Polycubic_OSX-Info.plist";
+				PRODUCT_NAME = Polycubic;
+			};
+			name = Debug;
+		};
+		F426004F10A34F96003C990B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F426FC2C10A32C60003C990B /* OSX_Application_Release.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -framework AppKit -framework IOKit -framework OpenGL -framework OpenAL -llua -lBulletCollision -lBulletDynamics -lLinearMath -logg -lvorbis -lvorbisfile -lz";
+				INFOPLIST_FILE = "Polycubic_OSX-Info.plist";
+				PRODUCT_NAME = Polycubic;
+			};
+			name = Release;
+		};
+		F426FC0A10A32B8C003C990B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		F426FC0B10A32B8C003C990B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEV_ROOT = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		F426FC2510A32BD1003C990B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F426FC2910A32C60003C990B /* iOS_Application_Debug.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -framework AudioToolbox -framework CoreGraphics -framework Foundation -framework OpenAL -framework OpenGLES -framework QuartzCore -framework UIKit -llua -lBulletCollision -lBulletDynamics -lLinearMath -logg -lvorbis -lvorbisfile -lz";
+				INFOPLIST_FILE = "Polycubic_iOS-Info.plist";
+				PRODUCT_NAME = Polycubic;
+			};
+			name = Debug;
+		};
+		F426FC2610A32BD1003C990B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F426FC2B10A32C60003C990B /* iOS_Application_Release.xcconfig */;
+			buildSettings = {
+				DEV_LDFLAGS = "$(inherited) -framework AudioToolbox -framework CoreGraphics -framework Foundation -framework OpenAL -framework OpenGLES -framework QuartzCore -framework UIKit -llua -lBulletCollision -lBulletDynamics -lLinearMath -logg -lvorbis -lvorbisfile -lz";
+				INFOPLIST_FILE = "Polycubic_iOS-Info.plist";
+				PRODUCT_NAME = Polycubic;
+			};
+			name = Release;
+		};
+		F471E30112B6F16600277A49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F426FC2910A32C60003C990B /* iOS_Application_Debug.xcconfig */;
+			buildSettings = {
+				DEV_DEFINES = "$(inherited) POLYCUBIC_LE=1";
+				DEV_LDFLAGS = "$(inherited) -framework AudioToolbox -framework CoreGraphics -framework Foundation -framework OpenAL -framework OpenGLES -framework QuartzCore -framework UIKit -llua -lBulletCollision -lBulletDynamics -lLinearMath -logg -lvorbis -lvorbisfile -lz";
+				INFOPLIST_FILE = "PolycubicLE_iOS-Info.plist";
+				PRODUCT_NAME = "Polycubic LE";
+			};
+			name = Debug;
+		};
+		F471E30212B6F16600277A49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F426FC2B10A32C60003C990B /* iOS_Application_Release.xcconfig */;
+			buildSettings = {
+				DEV_DEFINES = "$(inherited) POLYCUBIC_LE=1";
+				DEV_LDFLAGS = "$(inherited) -framework AudioToolbox -framework CoreGraphics -framework Foundation -framework OpenAL -framework OpenGLES -framework QuartzCore -framework UIKit -llua -lBulletCollision -lBulletDynamics -lLinearMath -logg -lvorbis -lvorbisfile -lz";
+				INFOPLIST_FILE = "PolycubicLE_iOS-Info.plist";
+				PRODUCT_NAME = "Polycubic LE";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F426005010A34F96003C990B /* Build configuration list for PBXNativeTarget "Polycubic (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F426004E10A34F96003C990B /* Debug */,
+				F426004F10A34F96003C990B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F426FC0C10A32B8C003C990B /* Build configuration list for PBXProject "Polycubic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F426FC0A10A32B8C003C990B /* Debug */,
+				F426FC0B10A32B8C003C990B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F426FC2710A32BD2003C990B /* Build configuration list for PBXNativeTarget "Polycubic (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F426FC2510A32BD1003C990B /* Debug */,
+				F426FC2610A32BD1003C990B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F471E30012B6F16600277A49 /* Build configuration list for PBXNativeTarget "Polycubic LE (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F471E30112B6F16600277A49 /* Debug */,
+				F471E30212B6F16600277A49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F426FC0910A32B8C003C990B /* Project object */;
+}

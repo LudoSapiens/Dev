@@ -1,0 +1,12 @@
+//
+// Vertex color with texture GLSL fragment shader.
+//
+
+uniform sampler2D colorTex;
+varying vec2 mapping;
+varying vec4 vcolor;
+
+void main( void )
+{
+   gl_FragColor = vcolor * texture2D( colorTex, mapping );
+}
